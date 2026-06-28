@@ -1,0 +1,13 @@
+{
+  "name": "tejas-portfolio",
+  "version": "1.0.0",
+  "description": "Portfolio website for Tejas Raj",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0"
+  }
+}

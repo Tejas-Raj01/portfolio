@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tejas Raj - Portfolio</title>
+    <meta name="description" content="Portfolio of Tejas Raj, a Computer Science student at NIT Durgapur, passionate about software engineering, AI, and open-source.">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="blob-bg blob-1"></div>
+    <div class="blob-bg blob-2"></div>
+    
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="#" class="logo">TR.</a>
+            <div class="nav-links">
+                <a href="#about">Education</a>
+                <a href="#experience">Open Source</a>
+                <a href="#projects">Projects</a>
+                <a href="#skills">Skills</a>
+                <a href="#achievements">Achievements</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="hero">
+            <div class="hero-content fade-in">
+                <h2 class="greeting">Hi, I'm</h2>
+                <h1 class="name">Tejas Raj</h1>
+                <h3 class="role">Software Engineer & Open Source Contributor</h3>
+                <p class="summary">B.Tech in Computer Science and Engineering at NIT Durgapur. Passionate about building scalable systems, AI platforms, and contributing to open-source.</p>
+                <div class="social-links">
+                    <a href="mailto:rajtejas.xyz@gmail.com" target="_blank" aria-label="Email" class="social-icon"><i class="fas fa-envelope"></i></a>
+                    <a href="https://github.com/tejas-2341" target="_blank" aria-label="GitHub" class="social-icon"><i class="fab fa-github"></i></a>
+                    <a href="#" target="_blank" aria-label="LinkedIn" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" target="_blank" aria-label="CodeChef" class="social-icon"><i class="fas fa-code"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education / About Section -->
+        <section id="about" class="section">
+            <h2 class="section-title fade-in">Education</h2>
+            <div class="card glass-card fade-in">
+                <div class="card-header">
+                    <h3>National Institute of Technology, Durgapur</h3>
+                    <span class="date">Expected May 2027</span>
+                </div>
+                <p class="subtitle">Bachelor of Technology in Computer Science and Engineering</p>
+                <p class="location">India</p>
+            </div>
+        </section>
+
+        <!-- Open Source Contributions -->
+        <section id="experience" class="section">
+            <h2 class="section-title fade-in">Open Source Contributions</h2>
+            
+            <div class="card glass-card fade-in">
+                <div class="card-header">
+                    <h3>canonical / snapcraft <a href="#" class="github-link"><i class="fab fa-github"></i></a></h3>
+                </div>
+                <p class="tech-stack">Python, Linux DevOps</p>
+                <ul class="bullet-list">
+                    <li><strong>Core Framework Fix:</strong> Resolved hardcoded fallbacks in framework linters by dynamically passing <code>build_base</code> parameters, ensuring accurate base detection for complex systems. <span class="highlight">[Merged PR #6272]</span></li>
+                    <li><strong>Documentation Update:</strong> Added manual connection note and approval warning for the <code>personal-files</code> interface in the "Craft a snap" tutorial. <span class="highlight">[Merged PR #6269]</span></li>
+                </ul>
+            </div>
+
+            <div class="card glass-card fade-in mt-4">
+                <div class="card-header">
+                    <h3>cpeditor / cpeditor <a href="#" class="github-link"><i class="fab fa-github"></i></a></h3>
+                </div>
+                <p class="tech-stack">C++, Qt, Python</p>
+                <ul class="bullet-list">
+                    <li><strong>Hindi Localization & Bug Fix:</strong> Maintained global accessibility by translating 3,600+ UI strings into Hindi via Gemini API and effectively solved a critical duplicated search keyword bug. <span class="highlight">[Merged PR #1501]</span></li>
+                    <li><strong>Font Scaling Feature:</strong> Applied software design principles to add user configuration toggling for Ctrl+Scroll font scaling dynamically within the code editor. <span class="highlight">[Merged PR #1499]</span></li>
+                    <li><strong>Tab Management:</strong> Implemented middle-click functionality to instantly close editor tabs, streamlining UI navigation for competitive programmers. <span class="highlight">[Merged PR #1498]</span></li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section">
+            <h2 class="section-title fade-in">Projects</h2>
+            
+            <div class="projects-grid">
+                <div class="card glass-card project-card fade-in">
+                    <div class="project-header">
+                        <h3>Distributed Key-Value Database</h3>
+                        <div class="project-links">
+                            <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            <a href="#" aria-label="Live App"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <p class="tech-stack">C++, React.js, Multithreading, Networking</p>
+                    <ul class="bullet-list">
+                        <li>Architected a decentralized, peer-to-peer key-value <strong>storage solution in C++</strong>, leveraging Consistent Hashing for balanced data partitioning and a Gossip Protocol for autonomous node discovery.</li>
+                        <li>Engineered a <strong>high-performance</strong> concurrent engine using <strong>multi-threading</strong> and <code>std::shared_mutex</code>, ensuring strict <strong>synchronization</strong> and thread-safe operations under heavy request loads.</li>
+                        <li>Implemented tunable Quorum Replication (N, W, R) for customizable consistency levels and a Write-Ahead Log (WAL) mechanism, guaranteeing instantaneous crash recovery and high <strong>reliability</strong>.</li>
+                        <li>Developed a real-time <strong>React.js visualization tool</strong> integrated with Ngrok tunneling to execute stress tests, perform <strong>systems data analysis</strong>, and validate operations under Chaos Engineering.</li>
+                    </ul>
+                </div>
+
+                <div class="card glass-card project-card fade-in">
+                    <div class="project-header">
+                        <h3>AI Job Platform</h3>
+                        <div class="project-links">
+                            <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            <a href="#" aria-label="Live App"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <p class="tech-stack">Python, FastAPI, React, PostgreSQL</p>
+                    <p class="project-subtitle">AI-Powered Career Intelligence Platform</p>
+                    <ul class="bullet-list">
+                        <li>Architected a decoupled, scalable <strong>AI-integrated software</strong> platform utilizing FastAPI and React.js, processing unstructured resumes and automating real-time job discovery via async Celery workers and Redis.</li>
+                        <li>Engineered a memory-optimized semantic matching engine to <strong>analyze information and evaluate results</strong>, using scikit-learn TF-IDF and Cosine Similarity to calculate precise compatibility in milliseconds.</li>
+                        <li>Developed fault-tolerant <strong>scalable engineering solutions</strong> using the Groq API and LangChain, featuring dynamic active-model fallback loops and rigorous JSON-cleansing to guarantee 100% uptime.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="section">
+            <h2 class="section-title fade-in">Skills</h2>
+            <div class="skills-container">
+                <div class="skill-category fade-in">
+                    <h3>Languages</h3>
+                    <div class="skill-tags">
+                        <span class="tag">C/C++</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">Java</span>
+                        <span class="tag">JavaScript (ES6+)</span>
+                        <span class="tag">TypeScript</span>
+                        <span class="tag">SQL</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category fade-in">
+                    <h3>Software Dev</h3>
+                    <div class="skill-tags">
+                        <span class="tag">MERN Stack</span>
+                        <span class="tag">React.js</span>
+                        <span class="tag">Node.js</span>
+                        <span class="tag">Express.js</span>
+                        <span class="tag">MongoDB</span>
+                        <span class="tag">WebSockets</span>
+                        <span class="tag">REST APIs</span>
+                    </div>
+                </div>
+
+                <div class="skill-category fade-in">
+                    <h3>Architecture & Tools</h3>
+                    <div class="skill-tags">
+                        <span class="tag">Docker</span>
+                        <span class="tag">Distributed Systems</span>
+                        <span class="tag">Linux (Arch/Hyprland)</span>
+                        <span class="tag">Performance Debugging</span>
+                        <span class="tag">Git</span>
+                    </div>
+                </div>
+
+                <div class="skill-category fade-in">
+                    <h3>Coursework</h3>
+                    <div class="skill-tags">
+                        <span class="tag">Data Structures & Algorithms</span>
+                        <span class="tag">Software Design</span>
+                        <span class="tag">Operating Systems</span>
+                        <span class="tag">DBMS</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Achievements Section -->
+        <section id="achievements" class="section">
+            <h2 class="section-title fade-in">Achievements</h2>
+            <div class="card glass-card fade-in">
+                <ul class="achievement-list">
+                    <li>
+                        <i class="fas fa-trophy"></i>
+                        <span><strong>CodeChef:</strong> 4* (Max: 1804) [handle tejas_2341]</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-award"></i>
+                        <span><strong>JEE Advanced:</strong> Secured <strong>AIR 4152</strong> out of 180K+ participants.</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-medal"></i>
+                        <span><strong>JEE Main:</strong> Secured <strong>AIR 1832</strong> out of 1.2M+ participants.</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Tejas Raj. Designed with passion.</p>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>
