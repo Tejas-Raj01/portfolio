@@ -8,7 +8,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <!-- FontAwesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Open Graph / LinkedIn / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://portfolio-liart-eta-34.vercel.app/">
+    <meta property="og:title" content="Tejas Raj - Portfolio">
+    <meta property="og:description" content="Portfolio of Tejas Raj, a Computer Science student at NIT Durgapur, passionate about software engineering, AI, and open-source.">
+    <meta property="og:image" content="https://portfolio-liart-eta-34.vercel.app/og-image.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://portfolio-liart-eta-34.vercel.app/">
+    <meta property="twitter:title" content="Tejas Raj - Portfolio">
+    <meta property="twitter:description" content="Portfolio of Tejas Raj, a Computer Science student at NIT Durgapur, passionate about software engineering, AI, and open-source.">
+    <meta property="twitter:image" content="https://portfolio-liart-eta-34.vercel.app/og-image.png">
 </head>
 <body>
     <canvas id="matrix-bg"></canvas>
@@ -66,6 +78,7 @@
                 </div>
                 <p class="tech-stack">PHP, React.js, WordPress</p>
                 <ul class="bullet-list">
+                    <li><strong>Accessibility & UX (Carousel):</strong> Normalized event targets and implemented a URL cleaning helper to ensure consistent Carousel modal behavior across keyboard and mouse interactions for attachment links. <a href="https://github.com/Automattic/jetpack/pull/50220" target="_blank" class="highlight">[Merged PR #50220]</a></li>
                     <li><strong>Editor Stability (Slideshow):</strong> Resolved a block editor crash during standard Gallery to Slideshow transformations by defaulting image data and recovering <code>core/image</code> attributes from nested innerBlocks. <a href="https://github.com/Automattic/jetpack/pull/50035" target="_blank" class="highlight">[Merged PR #50035]</a></li>
                     <li><strong>API Schema Reliability:</strong> Resolved strict schema parser failures in external API consumers (like Google Gemini) by refactoring the connection status REST schema to utilize <code>oneOf</code> for enum types. <a href="https://github.com/Automattic/jetpack/pull/50030" target="_blank" class="highlight">[Merged PR #50030]</a></li>
                     <li><strong>Feature Enhancement:</strong> Introduced a new filter (<code>jetpack_social_image_generator_disable_text</code>) to optionally disable text overlays on generated social images, complete with PHPUnit test cases. <a href="https://github.com/Automattic/jetpack/pull/50029" target="_blank" class="highlight">[Merged PR #50029]</a></li>
