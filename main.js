@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Ultra-fast Typing Effect for Role and Passion
             const roleText = "Software Engineer & Open Source Contributor";
-            const summaryText = "Building scalable systems, AI platforms, and open-source software.";
+            const summaryText = "Building scalable systems, AI & open-source software.";
             
             const roleSpan = document.getElementById('type-role');
             const summarySpan = document.getElementById('type-summary');
