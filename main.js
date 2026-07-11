@@ -62,8 +62,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const heroInner = document.querySelector('.hero-inner');
         if (heroInner) {
             heroInner.innerHTML = `
-                <div class="name">tejas</div>
-                <hr>
+                <div class="name">tejas-raj@archlinux</div>
+                <div class="neofetch-divider">-------------------</div>
                 <div class="neofetch-row"><span class="neofetch-key">OS</span><span>Arch Linux x86_64</span></div>
                 <div class="neofetch-row"><span class="neofetch-key">Host</span><span>NIT Durgapur</span></div>
                 <div class="neofetch-row"><span class="neofetch-key">Kernel</span><span>6.1.53-1-lts</span></div>
