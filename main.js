@@ -1,106 +1,187 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Scroll reveal animations
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1
-    };
+    
+    // 1. Fake Linux Boot Sequence
+    const bootSequence = document.createElement('div');
+    bootSequence.id = 'boot-sequence';
+    document.body.appendChild(bootSequence);
+    
+    // Hide main content initially
+    const mainContent = document.querySelector('main');
+    const navBar = document.querySelector('.navbar');
+    if(mainContent) mainContent.style.display = 'none';
+    if(navBar) navBar.style.display = 'none';
 
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
+    const bootLogs = [
+        "[ <span class='boot-ok'>OK</span> ] Started Show Plymouth Boot Screen.",
+        "[ <span class='boot-ok'>OK</span> ] Reached target Paths.",
+        "[ <span class='boot-ok'>OK</span> ] Reached target Basic System.",
+        "Mounting /sys/kernel/debug...",
+        "[ <span class='boot-ok'>OK</span> ] Mounted /sys/kernel/debug.",
+        "Starting Load/Save Random Seed...",
+        "[ <span class='boot-ok'>OK</span> ] Started Load/Save Random Seed.",
+        "Starting udev Coldplug all Devices...",
+        "[ <span class='boot-ok'>OK</span> ] Started udev Coldplug all Devices.",
+        "Starting Network Time Synchronization...",
+        "[ <span class='boot-ok'>OK</span> ] Started Network Time Synchronization.",
+        "[ <span class='boot-ok'>OK</span> ] Reached target System Initialization.",
+        "[ <span class='boot-ok'>OK</span> ] Reached target Sockets.",
+        "[ <span class='boot-ok'>OK</span> ] Reached target Basic System.",
+        "Starting Network Manager...",
+        "[ <span class='boot-ok'>OK</span> ] Started Network Manager.",
+        "Starting WPA supplicant...",
+        "[ <span class='boot-ok'>OK</span> ] Started WPA supplicant.",
+        "[ <span class='boot-ok'>OK</span> ] Reached target Network.",
+        "Starting Light Display Manager...",
+        "[ <span class='boot-ok'>OK</span> ] Started Light Display Manager.",
+        "[ <span class='boot-ok'>OK</span> ] Reached target Graphical Interface.",
+        "Welcome to Arch Linux!"
+    ];
 
-    const fadeElements = document.querySelectorAll('.fade-in');
-    fadeElements.forEach(element => {
-        observer.observe(element);
-    });
-
-    // 2. Navbar scroll effect (Waybar style floating adjustment)
-    const navbar = document.querySelector('.navbar');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.style.background = 'rgba(26, 27, 38, 0.9)'; // Darker Tokyo Night bg
-            navbar.style.border = '1px solid #7dcfff'; // Cyan border on scroll
-            navbar.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.6)';
+    let logIndex = 0;
+    const bootInterval = setInterval(() => {
+        if (logIndex < bootLogs.length) {
+            const line = document.createElement('div');
+            line.className = 'boot-line';
+            line.innerHTML = bootLogs[logIndex];
+            bootSequence.appendChild(line);
+            window.scrollTo(0, document.body.scrollHeight);
+            logIndex++;
         } else {
-            navbar.style.background = 'rgba(36, 40, 59, 0.7)';
-            navbar.style.border = '1px solid #414868';
-            navbar.style.boxShadow = '0 4px 20px rgba(0,0,0,0.4)';
+            clearInterval(bootInterval);
+            setTimeout(() => {
+                bootSequence.remove();
+                if(mainContent) mainContent.style.display = 'block';
+                if(navBar) navBar.style.display = 'flex';
+                initPortfolio();
+            }, 500);
         }
-    });
+    }, 40); // Fast log printing
 
-    // 3. Hover Glow effect tracking for Hyprland borders
-    // Removed because the CSS handles it nicely now with pseudo-elements 
-    // and cubic-bezier. Keeping it clean and CSS-driven for performance.
+    function initPortfolio() {
+        // 2. Format Neofetch Right Column
+        const heroInner = document.querySelector('.hero-inner');
+        if (heroInner) {
+            heroInner.innerHTML = `
+                <div class="name">tejas</div>
+                <hr>
+                <div class="neofetch-row"><span class="neofetch-key">OS</span><span>Arch Linux x86_64</span></div>
+                <div class="neofetch-row"><span class="neofetch-key">Host</span><span>NIT Durgapur</span></div>
+                <div class="neofetch-row"><span class="neofetch-key">Kernel</span><span>6.1.53-1-lts</span></div>
+                <div class="neofetch-row"><span class="neofetch-key">Uptime</span><span>20 years</span></div>
+                <div class="neofetch-row"><span class="neofetch-key">Role</span><span id="type-role"></span></div>
+                <div class="neofetch-row"><span class="neofetch-key">Passion</span><span id="type-summary"></span></div>
+                <div class="social-links" id="type-socials"></div>
+            `;
 
-    // 4. Interactive Tabs (Tmux/FZF style)
-    const tabBtns = document.querySelectorAll('.tab-btn');
-    const tabPanes = document.querySelectorAll('.tab-pane');
-
-    tabBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            // Remove active classes
-            tabBtns.forEach(b => b.classList.remove('active'));
-            tabPanes.forEach(p => p.classList.remove('active'));
-
-            // Add active class to clicked button
-            btn.classList.add('active');
-
-            // Show corresponding tab pane
-            const targetId = btn.getAttribute('data-target');
-            const targetPane = document.getElementById(targetId);
+            // Ultra-fast Typing Effect for Role and Passion
+            const roleText = "Software Engineer & Open Source Contributor";
+            const summaryText = "Building scalable systems, AI platforms, and open-source software.";
             
-            // Re-trigger the CSS animation
-            targetPane.style.animation = 'none';
-            targetPane.offsetHeight; // Trigger reflow
-            targetPane.style.animation = null;
+            const roleSpan = document.getElementById('type-role');
+            const summarySpan = document.getElementById('type-summary');
             
-            targetPane.classList.add('active');
-        });
-    });
+            let rIdx = 0;
+            let sIdx = 0;
 
-    // 5. Terminal Typing Effect for Hero Section
-    const glowBadge = document.querySelector('.glow-badge');
-    if (glowBadge) {
-        const text = 'sys.init("Hello World");';
-        glowBadge.textContent = ''; // Clear text
-        
-        let i = 0;
-        const typeWriter = () => {
-            if (i < text.length) {
-                glowBadge.textContent += text.charAt(i);
-                i++;
-                // Randomize typing speed slightly for realism
-                setTimeout(typeWriter, Math.random() * 50 + 30);
-            } else {
-                // Add blinking cursor at the end
-                const cursor = document.createElement('span');
-                cursor.textContent = '█';
-                cursor.style.animation = 'blink 1s step-end infinite';
-                
-                // Add keyframes dynamically if not present
-                if (!document.getElementById('cursor-styles')) {
-                    const style = document.createElement('style');
-                    style.id = 'cursor-styles';
-                    style.innerHTML = `
-                        @keyframes blink {
-                            0%, 100% { opacity: 1; }
-                            50% { opacity: 0; }
-                        }
+            function typeRole() {
+                if (rIdx < roleText.length) {
+                    roleSpan.textContent += roleText.charAt(rIdx);
+                    rIdx++;
+                    setTimeout(typeRole, 20);
+                } else {
+                    typeSummary();
+                }
+            }
+
+            function typeSummary() {
+                if (sIdx < summaryText.length) {
+                    summarySpan.textContent += summaryText.charAt(sIdx);
+                    sIdx++;
+                    setTimeout(typeSummary, 20);
+                } else {
+                    document.getElementById('type-socials').innerHTML = `
+                        <a href="https://github.com/Tejas-Raj01" target="_blank" class="social-icon">[GitHub]</a>
+                        <a href="https://www.linkedin.com/in/tejas-raj-09aa4a236/" target="_blank" class="social-icon">[LinkedIn]</a>
+                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=rajtejas.xyz@gmail.com" target="_blank" class="social-icon">[Email]</a>
                     `;
-                    document.head.appendChild(style);
+                }
+            }
+            
+            setTimeout(typeRole, 300);
+        }
+
+        // 3. Tmux Navbar formatting
+        const navLinks = document.querySelector('.nav-links');
+        if (navLinks) {
+            const links = navLinks.querySelectorAll('a');
+            links.forEach((link, idx) => {
+                const text = link.innerText;
+                link.innerHTML = `[${idx}] ~/${text}`;
+            });
+        }
+
+        // 4. Section titles formatting
+        const sectionTitles = document.querySelectorAll('.section-title');
+        sectionTitles.forEach(title => {
+            const text = title.innerText.replace('.', '').trim();
+            title.innerHTML = `ls -la`;
+            title.setAttribute('data-dir', text);
+        });
+
+        // 5. Interactive Tabs
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabPanes = document.querySelectorAll('.tab-pane');
+
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                tabBtns.forEach(b => b.classList.remove('active'));
+                tabPanes.forEach(p => p.classList.remove('active'));
+                btn.classList.add('active');
+                const targetId = btn.getAttribute('data-target');
+                document.getElementById(targetId).classList.add('active');
+            });
+        });
+
+        // 6. Blinking Block Cursor logic
+        const cursor = document.createElement('span');
+        cursor.id = 'dynamic-cursor';
+        document.body.appendChild(cursor);
+
+        // Append cursor to hovered element if it's text-based
+        document.addEventListener('mouseover', (e) => {
+            const el = e.target;
+            if (['H1', 'H2', 'H3', 'A', 'SPAN', 'P', 'BUTTON', 'DIV'].includes(el.tagName)) {
+                // Ignore elements that shouldn't have cursor inside them directly, or are structural
+                if (el.classList.contains('glass-card') || el.classList.contains('section')) return;
+                
+                // Remove cursor from current parent
+                if (cursor.parentNode) {
+                    cursor.parentNode.removeChild(cursor);
                 }
                 
-                glowBadge.appendChild(cursor);
+                // Append to new hovered element
+                el.appendChild(cursor);
             }
-        };
-        
-        // Start typing after a short delay
-        setTimeout(typeWriter, 600);
+        });
+
+        // 7. Vim Keybindings
+        document.addEventListener('keydown', (e) => {
+            // j = scroll down
+            if (e.key === 'j') {
+                window.scrollBy({ top: 100, behavior: 'auto' });
+            }
+            // k = scroll up
+            else if (e.key === 'k') {
+                window.scrollBy({ top: -100, behavior: 'auto' });
+            }
+            // 1-5 = jump to sections
+            else if (['1', '2', '3', '4', '5'].includes(e.key)) {
+                const sections = document.querySelectorAll('section');
+                const idx = parseInt(e.key) - 1;
+                if (sections[idx]) {
+                    sections[idx].scrollIntoView({ behavior: 'auto' });
+                }
+            }
+        });
     }
 });
