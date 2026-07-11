@@ -176,14 +176,7 @@ canvas {
 }
 
 .hero-content::before {
-    content: 
-"       /\\ \n"
-"      /  \\ \n"
-"     /    \\ \n"
-"    /      \\ \n"
-"   /   ,,   \\ \n"
-"  /   |  |   \\ \n"
-" /_-''    ''-_\\";
+    content: "       /\\ \A       /  \\ \A      /    \\ \A     /      \\ \A    /   ,,   \\ \A   /   |  |   \\ \A  /_-''    ''-_\\";
     font-family: var(--font-mono);
     color: var(--accent);
     white-space: pre;
