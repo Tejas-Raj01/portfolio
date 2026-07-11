@@ -206,13 +206,15 @@ canvas#matrix-bg {
 }
 
 .name {
-    font-size: 16px;
-    color: var(--accent);
+    font-size: 42px;
+    color: var(--fg-color);
     font-weight: bold;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
 }
 
 .name::after {
-    content: '@archlinux';
+    display: none;
 }
 
 .text-gradient {
