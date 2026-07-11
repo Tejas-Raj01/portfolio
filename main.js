@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Scroll reveal animations
+    // 1. Scroll reveal animations
     const observerOptions = {
         root: null,
         rootMargin: '0px',
@@ -20,29 +20,25 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(element);
     });
 
-    // Navbar scroll effect
+    // 2. Navbar scroll effect (Waybar style floating adjustment)
     const navbar = document.querySelector('.navbar');
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
+            navbar.style.background = 'rgba(26, 27, 38, 0.9)'; // Darker Tokyo Night bg
+            navbar.style.border = '1px solid #7dcfff'; // Cyan border on scroll
+            navbar.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.6)';
         } else {
-            navbar.classList.remove('scrolled');
+            navbar.style.background = 'rgba(36, 40, 59, 0.7)';
+            navbar.style.border = '1px solid #414868';
+            navbar.style.boxShadow = '0 4px 20px rgba(0,0,0,0.4)';
         }
     });
 
-    // Hover Glow effect tracking
-    const cards = document.querySelectorAll('.hover-glow');
-    cards.forEach(card => {
-        card.addEventListener('mousemove', e => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            card.style.setProperty('--mouse-x', `${x}px`);
-            card.style.setProperty('--mouse-y', `${y}px`);
-        });
-    });
+    // 3. Hover Glow effect tracking for Hyprland borders
+    // Removed because the CSS handles it nicely now with pseudo-elements 
+    // and cubic-bezier. Keeping it clean and CSS-driven for performance.
 
-    // Tabs functionality
+    // 4. Interactive Tabs (Tmux/FZF style)
     const tabBtns = document.querySelectorAll('.tab-btn');
     const tabPanes = document.querySelectorAll('.tab-pane');
 
@@ -57,65 +53,54 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Show corresponding tab pane
             const targetId = btn.getAttribute('data-target');
-            document.getElementById(targetId).classList.add('active');
+            const targetPane = document.getElementById(targetId);
+            
+            // Re-trigger the CSS animation
+            targetPane.style.animation = 'none';
+            targetPane.offsetHeight; // Trigger reflow
+            targetPane.style.animation = null;
+            
+            targetPane.classList.add('active');
         });
     });
 
-    // Matrix Rain Effect (Updated to match new theme)
-    const canvas = document.getElementById('matrix-bg');
-    if (canvas) {
-        const ctx = canvas.getContext('2d');
+    // 5. Terminal Typing Effect for Hero Section
+    const glowBadge = document.querySelector('.glow-badge');
+    if (glowBadge) {
+        const text = 'sys.init("Hello World");';
+        glowBadge.textContent = ''; // Clear text
         
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        resizeCanvas();
-
-        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()';
-        const fontSize = 14;
-        let columns = Math.floor(canvas.width / fontSize);
-        let drops = [];
-
-        for (let x = 0; x < columns; x++) {
-            drops[x] = 1;
-        }
-
-        function drawMatrix() {
-            ctx.fillStyle = 'rgba(8, 8, 15, 0.05)'; // Deep Navy fade
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            
-            // Randomly use Cyan or Purple for matrix
-            ctx.font = fontSize + 'px "Fira Code", monospace';
-
-            for (let i = 0; i < drops.length; i++) {
-                const text = chars.charAt(Math.floor(Math.random() * chars.length));
+        let i = 0;
+        const typeWriter = () => {
+            if (i < text.length) {
+                glowBadge.textContent += text.charAt(i);
+                i++;
+                // Randomize typing speed slightly for realism
+                setTimeout(typeWriter, Math.random() * 50 + 30);
+            } else {
+                // Add blinking cursor at the end
+                const cursor = document.createElement('span');
+                cursor.textContent = '█';
+                cursor.style.animation = 'blink 1s step-end infinite';
                 
-                // 50/50 cyan or purple
-                if (Math.random() > 0.5) {
-                    ctx.fillStyle = 'rgba(0, 242, 254, 0.5)'; // Cyan
-                } else {
-                    ctx.fillStyle = 'rgba(79, 172, 254, 0.5)'; // Purple
+                // Add keyframes dynamically if not present
+                if (!document.getElementById('cursor-styles')) {
+                    const style = document.createElement('style');
+                    style.id = 'cursor-styles';
+                    style.innerHTML = `
+                        @keyframes blink {
+                            0%, 100% { opacity: 1; }
+                            50% { opacity: 0; }
+                        }
+                    `;
+                    document.head.appendChild(style);
                 }
-
-                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                    drops[i] = 0;
-                }
-                drops[i]++;
+                
+                glowBadge.appendChild(cursor);
             }
-        }
-
-        setInterval(drawMatrix, 50);
-
-        window.addEventListener('resize', () => {
-            resizeCanvas();
-            columns = Math.floor(canvas.width / fontSize);
-            drops = [];
-            for (let x = 0; x < columns; x++) {
-                drops[x] = 1;
-            }
-        });
+        };
+        
+        // Start typing after a short delay
+        setTimeout(typeWriter, 600);
     }
 });
