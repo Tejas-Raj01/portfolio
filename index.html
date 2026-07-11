@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tejas Raj - Portfolio</title>
     <meta name="description" content="Portfolio of Tejas Raj, a Computer Science student at NIT Durgapur, passionate about software engineering, AI, and open-source.">
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Updated Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <!-- FontAwesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -28,7 +29,7 @@
     
     <nav class="navbar">
         <div class="nav-content">
-            <a href="#" class="logo">root@tejas:~#</a>
+            <a href="#" class="logo">TR<span class="dot">.</span></a>
             <div class="nav-links">
                 <a href="#about">Education</a>
                 <a href="#experience">Open Source</a>
@@ -36,16 +37,19 @@
                 <a href="#skills">Skills</a>
                 <a href="#achievements">Achievements</a>
             </div>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
         </div>
     </nav>
 
     <main>
         <!-- Hero Section -->
-        <section id="hero" class="hero">
+        <section id="hero" class="hero section">
             <div class="hero-content fade-in">
-                <h2 class="greeting">sys.init("Hello World");</h2>
-                <h1 class="name">Tejas Raj</h1>
-                <h3 class="role">Software Engineer & Open Source Contributor</h3>
+                <div class="badge glow-badge">sys.init("Hello World");</div>
+                <h1 class="name">Tejas <span class="text-gradient">Raj</span></h1>
+                <h3 class="role">Software Engineer <span class="separator">&bull;</span> Open Source Contributor</h3>
                 <p class="summary">B.Tech in Computer Science and Engineering at NIT Durgapur. Passionate about building scalable systems, AI platforms, and contributing to open-source.</p>
                 <div class="social-links">
                     <a href="https://mail.google.com/mail/?view=cm&fs=1&to=rajtejas.xyz@gmail.com" target="_blank" aria-label="Email" class="social-icon"><i class="fas fa-envelope"></i></a>
@@ -54,120 +58,138 @@
                     <a href="https://www.codechef.com/users/tejas_2341" target="_blank" aria-label="CodeChef" class="social-icon"><i class="fas fa-code"></i></a>
                 </div>
             </div>
+            <!-- Optional 3D asset or generated image here -->
         </section>
 
         <!-- Education / About Section -->
         <section id="about" class="section">
-            <h2 class="section-title fade-in"><span class="prompt">~/</span>Education<span class="cursor">_</span></h2>
-            <div class="card glass-card fade-in">
+            <h2 class="section-title fade-in">Education<span class="dot">.</span></h2>
+            <div class="card glass-card hover-glow fade-in">
                 <div class="card-header">
                     <h3>National Institute of Technology, Durgapur</h3>
-                    <span class="date">Expected May 2027</span>
+                    <span class="badge date-badge">Expected May 2027</span>
                 </div>
                 <p class="subtitle">Bachelor of Technology in Computer Science and Engineering</p>
-                <p class="location">India</p>
+                <p class="location"><i class="fas fa-map-marker-alt"></i> India</p>
             </div>
         </section>
 
         <!-- Open Source Contributions -->
         <section id="experience" class="section">
-            <h2 class="section-title fade-in"><span class="prompt">~/</span>Open_Source<span class="cursor">_</span></h2>
-            <div class="card glass-card fade-in">
-                <div class="card-header">
-                    <h3>pytorch / pytorch <a href="https://github.com/pytorch/pytorch" target="_blank" class="github-link"><i class="fab fa-github"></i></a></h3>
+            <h2 class="section-title fade-in">Open Source<span class="dot">.</span></h2>
+            <div class="tabs-container fade-in">
+                <div class="tabs-sidebar">
+                    <button class="tab-btn active" data-target="pytorch"><i class="fab fa-python"></i> PyTorch</button>
+                    <button class="tab-btn" data-target="automattic"><i class="fab fa-wordpress"></i> Automattic</button>
+                    <button class="tab-btn" data-target="canonical"><i class="fab fa-ubuntu"></i> Canonical</button>
+                    <button class="tab-btn" data-target="cpeditor"><i class="fas fa-code"></i> CP Editor</button>
                 </div>
-                <p class="tech-stack">Python, PyTorch FX</p>
-                <ul class="bullet-list">
-                    <li><strong>Type Annotations:</strong> Resolved strict static type checker failures by dynamically constructing proper tuple type annotations using <code>tuple.__class_getitem__</code> for operations returning multiple tensors in `fx` operator schemas. <a href="https://github.com/pytorch/pytorch/pull/189142" target="_blank" class="highlight">[Merged PR #189142]</a></li>
-                </ul>
-            </div>
+                <div class="tabs-content">
+                    <!-- PyTorch -->
+                    <div id="pytorch" class="tab-pane active glass-card hover-glow">
+                        <div class="card-header">
+                            <h3>pytorch / pytorch <a href="https://github.com/pytorch/pytorch" target="_blank" class="github-link"><i class="fab fa-github"></i></a></h3>
+                        </div>
+                        <div class="tech-stack"><span class="tech-tag">Python</span><span class="tech-tag">PyTorch FX</span></div>
+                        <ul class="bullet-list">
+                            <li><strong>Type Annotations:</strong> Resolved strict static type checker failures by dynamically constructing proper tuple type annotations using <code>tuple.__class_getitem__</code> for operations returning multiple tensors in `fx` operator schemas. <a href="https://github.com/pytorch/pytorch/pull/189142" target="_blank" class="highlight">[Merged PR #189142]</a></li>
+                        </ul>
+                    </div>
 
-            <div class="card glass-card fade-in mt-4">
-                <div class="card-header">
-                    <h3>Automattic / jetpack <a href="https://github.com/Automattic/jetpack" target="_blank" class="github-link"><i class="fab fa-github"></i></a></h3>
-                </div>
-                <p class="tech-stack">PHP, React.js, WordPress</p>
-                <ul class="bullet-list">
-                    <li><strong>Accessibility & UX (Carousel):</strong> Normalized event targets and implemented a URL cleaning helper to ensure consistent Carousel modal behavior across keyboard and mouse interactions for attachment links. <a href="https://github.com/Automattic/jetpack/pull/50220" target="_blank" class="highlight">[Merged PR #50220]</a></li>
-                    <li><strong>Editor Stability (Slideshow):</strong> Resolved a block editor crash during standard Gallery to Slideshow transformations by defaulting image data and recovering <code>core/image</code> attributes from nested innerBlocks. <a href="https://github.com/Automattic/jetpack/pull/50035" target="_blank" class="highlight">[Merged PR #50035]</a></li>
-                    <li><strong>API Schema Reliability:</strong> Resolved strict schema parser failures in external API consumers (like Google Gemini) by refactoring the connection status REST schema to utilize <code>oneOf</code> for enum types. <a href="https://github.com/Automattic/jetpack/pull/50030" target="_blank" class="highlight">[Merged PR #50030]</a></li>
-                    <li><strong>Feature Enhancement:</strong> Introduced a new filter (<code>jetpack_social_image_generator_disable_text</code>) to optionally disable text overlays on generated social images, complete with PHPUnit test cases. <a href="https://github.com/Automattic/jetpack/pull/50029" target="_blank" class="highlight">[Merged PR #50029]</a></li>
-                    <li><strong>Editor Stability (Tiled Gallery):</strong> Fixed a block editor crash when transforming a Gallery block back to a Tiled Gallery, safely extracting image attributes from innerBlocks. <a href="https://github.com/Automattic/jetpack/pull/50025" target="_blank" class="highlight">[Merged PR #50025]</a></li>
-                    <li><strong>Architecture Refactoring:</strong> Refactored shared stores across the package to expose strongly typed store objects rather than string IDs, improving TypeScript type flow while preserving backwards compatibility. <a href="https://github.com/Automattic/jetpack/pull/49810" target="_blank" class="highlight">[Merged PR #49810]</a></li>
-                </ul>
-            </div>
+                    <!-- Automattic -->
+                    <div id="automattic" class="tab-pane glass-card hover-glow">
+                        <div class="card-header">
+                            <h3>Automattic / jetpack <a href="https://github.com/Automattic/jetpack" target="_blank" class="github-link"><i class="fab fa-github"></i></a></h3>
+                        </div>
+                        <div class="tech-stack"><span class="tech-tag">PHP</span><span class="tech-tag">React.js</span><span class="tech-tag">WordPress</span></div>
+                        <ul class="bullet-list">
+                            <li><strong>Accessibility & UX (Carousel):</strong> Normalized event targets and implemented a URL cleaning helper to ensure consistent Carousel modal behavior across keyboard and mouse interactions for attachment links. <a href="https://github.com/Automattic/jetpack/pull/50220" target="_blank" class="highlight">[Merged PR #50220]</a></li>
+                            <li><strong>Editor Stability (Slideshow):</strong> Resolved a block editor crash during standard Gallery to Slideshow transformations by defaulting image data and recovering <code>core/image</code> attributes from nested innerBlocks. <a href="https://github.com/Automattic/jetpack/pull/50035" target="_blank" class="highlight">[Merged PR #50035]</a></li>
+                            <li><strong>API Schema Reliability:</strong> Resolved strict schema parser failures in external API consumers (like Google Gemini) by refactoring the connection status REST schema to utilize <code>oneOf</code> for enum types. <a href="https://github.com/Automattic/jetpack/pull/50030" target="_blank" class="highlight">[Merged PR #50030]</a></li>
+                            <li><strong>Architecture Refactoring:</strong> Refactored shared stores across the package to expose strongly typed store objects rather than string IDs, improving TypeScript type flow while preserving backwards compatibility. <a href="https://github.com/Automattic/jetpack/pull/49810" target="_blank" class="highlight">[Merged PR #49810]</a></li>
+                            <li><strong>Other Fixes:</strong> Introduced new filter to optionally disable text overlays <a href="https://github.com/Automattic/jetpack/pull/50029" target="_blank" class="highlight">[#50029]</a> and fixed Tiled Gallery transformations <a href="https://github.com/Automattic/jetpack/pull/50025" target="_blank" class="highlight">[#50025]</a>.</li>
+                        </ul>
+                    </div>
 
-            <div class="card glass-card fade-in mt-4">
-                <div class="card-header">
-                    <h3>canonical / snapcraft <a href="https://github.com/canonical/snapcraft" target="_blank" class="github-link"><i class="fab fa-github"></i></a></h3>
-                </div>
-                <p class="tech-stack">Python, Linux DevOps</p>
-                <ul class="bullet-list">
-                    <li><strong>Core Framework Fix:</strong> Resolved hardcoded fallbacks in framework linters by dynamically passing <code>build_base</code> parameters, ensuring accurate base detection for complex systems. <a href="https://github.com/canonical/snapcraft/pull/6272" target="_blank" class="highlight">[Merged PR #6272]</a></li>
-                    <li><strong>Documentation Update:</strong> Added manual connection note and approval warning for the <code>personal-files</code> interface in the "Craft a snap" tutorial. <a href="https://github.com/canonical/snapcraft/pull/6269" target="_blank" class="highlight">[Merged PR #6269]</a></li>
-                </ul>
-            </div>
+                    <!-- Canonical -->
+                    <div id="canonical" class="tab-pane glass-card hover-glow">
+                        <div class="card-header">
+                            <h3>canonical / snapcraft <a href="https://github.com/canonical/snapcraft" target="_blank" class="github-link"><i class="fab fa-github"></i></a></h3>
+                        </div>
+                        <div class="tech-stack"><span class="tech-tag">Python</span><span class="tech-tag">Linux DevOps</span></div>
+                        <ul class="bullet-list">
+                            <li><strong>Core Framework Fix:</strong> Resolved hardcoded fallbacks in framework linters by dynamically passing <code>build_base</code> parameters, ensuring accurate base detection for complex systems. <a href="https://github.com/canonical/snapcraft/pull/6272" target="_blank" class="highlight">[Merged PR #6272]</a></li>
+                            <li><strong>Documentation Update:</strong> Added manual connection note and approval warning for the <code>personal-files</code> interface in the "Craft a snap" tutorial. <a href="https://github.com/canonical/snapcraft/pull/6269" target="_blank" class="highlight">[Merged PR #6269]</a></li>
+                        </ul>
+                    </div>
 
-            <div class="card glass-card fade-in mt-4">
-                <div class="card-header">
-                    <h3>cpeditor / cpeditor <a href="https://github.com/cpeditor/cpeditor" target="_blank" class="github-link"><i class="fab fa-github"></i></a></h3>
+                    <!-- cpeditor -->
+                    <div id="cpeditor" class="tab-pane glass-card hover-glow">
+                        <div class="card-header">
+                            <h3>cpeditor / cpeditor <a href="https://github.com/cpeditor/cpeditor" target="_blank" class="github-link"><i class="fab fa-github"></i></a></h3>
+                        </div>
+                        <div class="tech-stack"><span class="tech-tag">C++</span><span class="tech-tag">Qt</span><span class="tech-tag">Python</span></div>
+                        <ul class="bullet-list">
+                            <li><strong>Localization & Bug Fix:</strong> Maintained global accessibility by translating 3,600+ UI strings into Hindi via Gemini API and effectively solved a critical duplicated search keyword bug. <a href="https://github.com/cpeditor/cpeditor/pull/1501" target="_blank" class="highlight">[Merged PR #1501]</a></li>
+                            <li><strong>Font Scaling Feature:</strong> Added user configuration toggling for Ctrl+Scroll font scaling dynamically within the code editor. <a href="https://github.com/cpeditor/cpeditor/pull/1499" target="_blank" class="highlight">[Merged PR #1499]</a></li>
+                            <li><strong>Tab Management:</strong> Implemented middle-click functionality to instantly close editor tabs. <a href="https://github.com/cpeditor/cpeditor/pull/1498" target="_blank" class="highlight">[Merged PR #1498]</a></li>
+                        </ul>
+                    </div>
                 </div>
-                <p class="tech-stack">C++, Qt, Python</p>
-                <ul class="bullet-list">
-                    <li><strong>Hindi Localization & Bug Fix:</strong> Maintained global accessibility by translating 3,600+ UI strings into Hindi via Gemini API and effectively solved a critical duplicated search keyword bug. <a href="https://github.com/cpeditor/cpeditor/pull/1501" target="_blank" class="highlight">[Merged PR #1501]</a></li>
-                    <li><strong>Font Scaling Feature:</strong> Applied software design principles to add user configuration toggling for Ctrl+Scroll font scaling dynamically within the code editor. <a href="https://github.com/cpeditor/cpeditor/pull/1499" target="_blank" class="highlight">[Merged PR #1499]</a></li>
-                    <li><strong>Tab Management:</strong> Implemented middle-click functionality to instantly close editor tabs, streamlining UI navigation for competitive programmers. <a href="https://github.com/cpeditor/cpeditor/pull/1498" target="_blank" class="highlight">[Merged PR #1498]</a></li>
-                </ul>
             </div>
         </section>
 
         <!-- Projects Section -->
         <section id="projects" class="section">
-            <h2 class="section-title fade-in"><span class="prompt">~/</span>Projects<span class="cursor">_</span></h2>
+            <h2 class="section-title fade-in">Projects<span class="dot">.</span></h2>
             
-            <div class="projects-grid">
-                <div class="card glass-card project-card fade-in">
-                    <div class="project-header">
-                        <h3>Distributed Key-Value Database</h3>
-                        <div class="project-links">
-                            <a href="https://github.com/Tejas-Raj01/distributed-system" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                            <a href="https://distributed-system-git-main-drakkkkks-projects.vercel.app/" target="_blank" aria-label="Live App"><i class="fas fa-external-link-alt"></i></a>
+            <div class="bento-grid">
+                <div class="bento-item bento-large glass-card hover-glow fade-in">
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3><i class="fas fa-network-wired accent-icon"></i> Distributed Key-Value Database</h3>
+                            <div class="project-links">
+                                <a href="https://github.com/Tejas-Raj01/distributed-system" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                                <a href="https://distributed-system-git-main-drakkkkks-projects.vercel.app/" target="_blank" aria-label="Live App"><i class="fas fa-external-link-alt"></i></a>
+                            </div>
                         </div>
+                        <div class="tech-stack"><span class="tech-tag">C++</span><span class="tech-tag">React.js</span><span class="tech-tag">Multithreading</span><span class="tech-tag">Networking</span></div>
+                        <ul class="bullet-list">
+                            <li>Architected a decentralized, peer-to-peer key-value <strong>storage solution in C++</strong>, leveraging Consistent Hashing for balanced data partitioning and a Gossip Protocol for autonomous node discovery.</li>
+                            <li>Engineered a <strong>high-performance</strong> concurrent engine using <strong>multi-threading</strong> and <code>std::shared_mutex</code>.</li>
+                            <li>Implemented tunable Quorum Replication (N, W, R) for customizable consistency levels and a Write-Ahead Log (WAL) mechanism.</li>
+                            <li>Developed a real-time <strong>React.js visualization tool</strong> integrated with Ngrok tunneling to execute stress tests.</li>
+                        </ul>
                     </div>
-                    <p class="tech-stack">C++, React.js, Multithreading, Networking</p>
-                    <ul class="bullet-list">
-                        <li>Architected a decentralized, peer-to-peer key-value <strong>storage solution in C++</strong>, leveraging Consistent Hashing for balanced data partitioning and a Gossip Protocol for autonomous node discovery.</li>
-                        <li>Engineered a <strong>high-performance</strong> concurrent engine using <strong>multi-threading</strong> and <code>std::shared_mutex</code>, ensuring strict <strong>synchronization</strong> and thread-safe operations under heavy request loads.</li>
-                        <li>Implemented tunable Quorum Replication (N, W, R) for customizable consistency levels and a Write-Ahead Log (WAL) mechanism, guaranteeing instantaneous crash recovery and high <strong>reliability</strong>.</li>
-                        <li>Developed a real-time <strong>React.js visualization tool</strong> integrated with Ngrok tunneling to execute stress tests, perform <strong>systems data analysis</strong>, and validate operations under Chaos Engineering.</li>
-                    </ul>
                 </div>
 
-                <div class="card glass-card project-card fade-in">
-                    <div class="project-header">
-                        <h3>AI Job Platform</h3>
-                        <div class="project-links">
-                            <a href="https://github.com/Tejas-Raj01/ai-job-platform" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                            <a href="https://ai-job-platofrm.vercel.app" target="_blank" aria-label="Live App"><i class="fas fa-external-link-alt"></i></a>
+                <div class="bento-item glass-card hover-glow fade-in" style="--animation-delay: 0.2s">
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3><i class="fas fa-robot accent-icon"></i> AI Job Platform</h3>
+                            <div class="project-links">
+                                <a href="https://github.com/Tejas-Raj01/ai-job-platform" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                                <a href="https://ai-job-platofrm.vercel.app" target="_blank" aria-label="Live App"><i class="fas fa-external-link-alt"></i></a>
+                            </div>
                         </div>
+                        <div class="tech-stack"><span class="tech-tag">Python</span><span class="tech-tag">FastAPI</span><span class="tech-tag">React</span><span class="tech-tag">PostgreSQL</span></div>
+                        <p class="project-subtitle">AI-Powered Career Intelligence Platform</p>
+                        <ul class="bullet-list">
+                            <li>Architected a decoupled platform processing unstructured resumes via async Celery workers and Redis.</li>
+                            <li>Engineered a memory-optimized semantic matching engine using scikit-learn TF-IDF and Cosine Similarity.</li>
+                            <li>Developed fault-tolerant solutions using the Groq API and LangChain.</li>
+                        </ul>
                     </div>
-                    <p class="tech-stack">Python, FastAPI, React, PostgreSQL</p>
-                    <p class="project-subtitle">AI-Powered Career Intelligence Platform</p>
-                    <ul class="bullet-list">
-                        <li>Architected a decoupled, scalable <strong>AI-integrated software</strong> platform utilizing FastAPI and React.js, processing unstructured resumes and automating real-time job discovery via async Celery workers and Redis.</li>
-                        <li>Engineered a memory-optimized semantic matching engine to <strong>analyze information and evaluate results</strong>, using scikit-learn TF-IDF and Cosine Similarity to calculate precise compatibility in milliseconds.</li>
-                        <li>Developed fault-tolerant <strong>scalable engineering solutions</strong> using the Groq API and LangChain, featuring dynamic active-model fallback loops and rigorous JSON-cleansing to guarantee 100% uptime.</li>
-                    </ul>
                 </div>
             </div>
         </section>
 
         <!-- Skills Section -->
         <section id="skills" class="section">
-            <h2 class="section-title fade-in"><span class="prompt">~/</span>Skills<span class="cursor">_</span></h2>
-            <div class="skills-container">
-                <div class="skill-category fade-in">
-                    <h3>Languages</h3>
+            <h2 class="section-title fade-in">Skills<span class="dot">.</span></h2>
+            <div class="bento-grid skills-bento">
+                <div class="bento-item glass-card hover-glow fade-in">
+                    <h3><i class="fas fa-code"></i> Languages</h3>
                     <div class="skill-tags">
                         <span class="tag">C/C++</span>
                         <span class="tag">Python</span>
@@ -178,8 +200,8 @@
                     </div>
                 </div>
                 
-                <div class="skill-category fade-in">
-                    <h3>Software Dev</h3>
+                <div class="bento-item glass-card hover-glow fade-in" style="--animation-delay: 0.1s">
+                    <h3><i class="fas fa-layer-group"></i> Software Dev</h3>
                     <div class="skill-tags">
                         <span class="tag">MERN Stack</span>
                         <span class="tag">React.js</span>
@@ -191,8 +213,8 @@
                     </div>
                 </div>
 
-                <div class="skill-category fade-in">
-                    <h3>Architecture & Tools</h3>
+                <div class="bento-item glass-card hover-glow fade-in" style="--animation-delay: 0.2s">
+                    <h3><i class="fas fa-tools"></i> Architecture & Tools</h3>
                     <div class="skill-tags">
                         <span class="tag">Docker</span>
                         <span class="tag">Distributed Systems</span>
@@ -202,8 +224,8 @@
                     </div>
                 </div>
 
-                <div class="skill-category fade-in">
-                    <h3>Coursework</h3>
+                <div class="bento-item glass-card hover-glow fade-in" style="--animation-delay: 0.3s">
+                    <h3><i class="fas fa-book"></i> Coursework</h3>
                     <div class="skill-tags">
                         <span class="tag">Data Structures & Algorithms</span>
                         <span class="tag">Software Design</span>
@@ -216,20 +238,32 @@
 
         <!-- Achievements Section -->
         <section id="achievements" class="section">
-            <h2 class="section-title fade-in"><span class="prompt">~/</span>Achievements<span class="cursor">_</span></h2>
-            <div class="card glass-card fade-in">
+            <h2 class="section-title fade-in">Achievements<span class="dot">.</span></h2>
+            <div class="card glass-card hover-glow fade-in">
                 <ul class="achievement-list">
                     <li>
-                        <i class="fas fa-trophy"></i>
-                        <span><strong>CodeChef:</strong> 4* (Max: 1804) [handle <a href="https://www.codechef.com/users/tejas_2341" target="_blank" style="color: inherit; text-decoration: underline;">tejas_2341</a>]</span>
+                        <div class="achievement-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="achievement-text">
+                            <span><strong>CodeChef:</strong> 4* (Max: 1804) [handle <a href="https://www.codechef.com/users/tejas_2341" target="_blank" class="highlight">tejas_2341</a>]</span>
+                        </div>
                     </li>
                     <li>
-                        <i class="fas fa-award"></i>
-                        <span><strong>JEE Advanced:</strong> Secured <strong>AIR 4152</strong> out of 180K+ participants.</span>
+                        <div class="achievement-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <div class="achievement-text">
+                            <span><strong>JEE Advanced:</strong> Secured <strong>AIR 4152</strong> out of 180K+ participants.</span>
+                        </div>
                     </li>
                     <li>
-                        <i class="fas fa-medal"></i>
-                        <span><strong>JEE Main:</strong> Secured <strong>AIR 1832</strong> out of 1.2M+ participants.</span>
+                        <div class="achievement-icon">
+                            <i class="fas fa-medal"></i>
+                        </div>
+                        <div class="achievement-text">
+                            <span><strong>JEE Main:</strong> Secured <strong>AIR 1832</strong> out of 1.2M+ participants.</span>
+                        </div>
                     </li>
                 </ul>
             </div>
@@ -237,7 +271,9 @@
     </main>
 
     <footer>
-        <p>&copy; 2026 Tejas Raj. Designed with passion.</p>
+        <div class="footer-content">
+            <p>&copy; 2026 Tejas Raj. Built with precision.</p>
+        </div>
     </footer>
 
     <script type="module" src="/main.js"></script>
