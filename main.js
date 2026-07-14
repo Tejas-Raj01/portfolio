@@ -150,6 +150,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // Append cursor to hovered element if it's text-based
         document.addEventListener('mouseover', (e) => {
             const el = e.target;
+            
+            // Fix: Prevent cursor from appending to itself
+            if (el === cursor) return;
+
             if (['H1', 'H2', 'H3', 'A', 'SPAN', 'P', 'BUTTON', 'DIV'].includes(el.tagName)) {
                 // Ignore elements that shouldn't have cursor inside them directly, or are structural
                 if (el.classList.contains('glass-card') || el.classList.contains('section')) return;
