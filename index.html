@@ -117,11 +117,21 @@
                         </div>
                         <div class="tech-stack"><span class="tech-tag">PHP</span><span class="tech-tag">React.js</span><span class="tech-tag">WordPress</span></div>
                         <ul class="bullet-list">
-                            <li><strong>Accessibility & UX (Carousel):</strong> Normalized event targets and implemented a URL cleaning helper to ensure consistent Carousel modal behavior across keyboard and mouse interactions for attachment links. <a href="https://github.com/Automattic/jetpack/pull/50220" target="_blank" class="highlight">[Merged PR #50220]</a></li>
-                            <li><strong>Editor Stability (Slideshow):</strong> Resolved a block editor crash during standard Gallery to Slideshow transformations by defaulting image data and recovering <code>core/image</code> attributes from nested innerBlocks. <a href="https://github.com/Automattic/jetpack/pull/50035" target="_blank" class="highlight">[Merged PR #50035]</a></li>
-                            <li><strong>API Schema Reliability:</strong> Resolved strict schema parser failures in external API consumers (like Google Gemini) by refactoring the connection status REST schema to utilize <code>oneOf</code> for enum types. <a href="https://github.com/Automattic/jetpack/pull/50030" target="_blank" class="highlight">[Merged PR #50030]</a></li>
-                            <li><strong>Architecture Refactoring:</strong> Refactored shared stores across the package to expose strongly typed store objects rather than string IDs, improving TypeScript type flow while preserving backwards compatibility. <a href="https://github.com/Automattic/jetpack/pull/49810" target="_blank" class="highlight">[Merged PR #49810]</a></li>
-                            <li><strong>Other Fixes:</strong> Introduced new filter to optionally disable text overlays <a href="https://github.com/Automattic/jetpack/pull/50029" target="_blank" class="highlight">[#50029]</a> and fixed Tiled Gallery transformations <a href="https://github.com/Automattic/jetpack/pull/50025" target="_blank" class="highlight">[#50025]</a>.</li>
+                            <li><strong>Accessibility & UX (Carousel):</strong> Normalized event target in shouldOpenModal for Jetpack Carousel to ensure consistent behavior across keyboard and mouse interactions for attachment links. <a href="https://github.com/Automattic/jetpack/pull/50220" target="_blank" class="highlight">[Merged PR #50220]</a></li>
+                            <br>
+                            <li><strong>Accessibility & SEO (Carousel):</strong> Changed empty <code>&lt;h2&gt;</code> and <code>&lt;h3&gt;</code> tags to <code>&lt;div&gt;</code> tags in the Carousel HTML skeleton to resolve SEO and accessibility warnings. <a href="https://github.com/Automattic/jetpack/pull/50199" target="_blank" class="highlight">[Merged PR #50199]</a></li>
+                            <br>
+                            <li><strong>Accessibility (Carousel):</strong> Added an aria-label attribute to the hidden download link in the Carousel module to provide a descriptive label for screen readers. <a href="https://github.com/Automattic/jetpack/pull/50181" target="_blank" class="highlight">[Merged PR #50181]</a></li>
+                            <br>
+                            <li><strong>Editor Stability (Slideshow):</strong> Resolved a block editor crash during standard Gallery to Slideshow transformations by safely extracting image data from nested innerBlocks. <a href="https://github.com/Automattic/jetpack/pull/50035" target="_blank" class="highlight">[Merged PR #50035]</a></li>
+                            <br>
+                            <li><strong>API Schema Reliability:</strong> Updated the Jetpack Publicize REST API connection status schema to utilize <code>oneOf</code> to prevent strict OpenAPI parser failures. <a href="https://github.com/Automattic/jetpack/pull/50030" target="_blank" class="highlight">[Merged PR #50030]</a></li>
+                            <br>
+                            <li><strong>Social Image Generator:</strong> Introduced the <code>jetpack_social_image_generator_disable_text</code> filter to easily disable the text overlay on generated social images. <a href="https://github.com/Automattic/jetpack/pull/50029" target="_blank" class="highlight">[Merged PR #50029]</a></li>
+                            <br>
+                            <li><strong>Editor Stability (Tiled Gallery):</strong> Resolved an editor crash when transforming a Gallery block back to a Tiled Gallery by safely recovering the images attribute. <a href="https://github.com/Automattic/jetpack/pull/50025" target="_blank" class="highlight">[Merged PR #50025]</a></li>
+                            <br>
+                            <li><strong>Architecture Refactoring:</strong> Replaced the usage of string IDs with the actual store object in useSelect and useDispatch calls across shared stores to preserve TypeScript types. <a href="https://github.com/Automattic/jetpack/pull/49810" target="_blank" class="highlight">[Merged PR #49810]</a></li>
                         </ul>
                     </div>
 
