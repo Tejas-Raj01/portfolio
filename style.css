@@ -393,24 +393,28 @@ canvas#matrix-bg {
 
 .project-header {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: flex-start;
-    gap: 12px;
     margin-bottom: 10px;
 }
 .project-header h3 {
     margin-bottom: 0;
 }
 .project-links {
-    display: inline-flex;
+    display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
+    margin-left: auto;
 }
 .project-links a {
     color: var(--accent);
     font-size: 14px;
     display: inline-flex;
     align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    transition: color 0.2s ease;
 }
 .project-links a:hover {
     color: #ffffff;
