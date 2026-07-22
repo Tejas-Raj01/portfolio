@@ -102,6 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     document.getElementById('type-socials').innerHTML = `
                         <a href="https://github.com/Tejas-Raj01" target="_blank" class="social-icon">[GitHub]</a>
                         <a href="https://www.linkedin.com/in/tejas-raj-09aa4a236/" target="_blank" class="social-icon">[LinkedIn]</a>
+                        <a href="https://www.codechef.com/users/tejas_2341" target="_blank" class="social-icon">[CodeChef]</a>
                         <a href="https://mail.google.com/mail/?view=cm&fs=1&to=rajtejas.xyz@gmail.com" target="_blank" class="social-icon">[Email]</a>
                     `;
                 }
@@ -153,6 +154,9 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Fix: Prevent cursor from appending to itself
             if (el === cursor) return;
+
+            // Ignore icon links, icons, and elements that shouldn't shift when hovered
+            if (el.closest('.project-links') || el.closest('.social-links') || el.closest('.github-link') || el.tagName === 'I') return;
 
             if (['H1', 'H2', 'H3', 'A', 'SPAN', 'P', 'BUTTON', 'DIV'].includes(el.tagName)) {
                 // Ignore elements that shouldn't have cursor inside them directly, or are structural
