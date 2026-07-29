@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initCopyEmailButtons();
     initCommandPalette();
     initArchitectureModals();
+    initResumeModal();
     initMetricsObserver();
 });
 
@@ -259,6 +260,12 @@ function initCommandPalette() {
             } else if (action === 'copy-email') {
                 const copyBtn = document.querySelector('.copy-email-btn');
                 if (copyBtn) copyBtn.click();
+            } else if (action === 'open-resume') {
+                const resumeModal = document.getElementById('resume-modal');
+                if (resumeModal) {
+                    resumeModal.classList.add('open');
+                    resumeModal.setAttribute('aria-hidden', 'false');
+                }
             }
         });
     });
@@ -367,7 +374,38 @@ function initArchitectureModals() {
     }
 }
 
-// 7. Impact Metrics Counter Animation
+// 7. Resume Viewer Modal Logic
+function initResumeModal() {
+    const resumeBtns = document.querySelectorAll('.open-resume-modal');
+    const resumeModal = document.getElementById('resume-modal');
+    const resumeClose = document.getElementById('resume-close');
+
+    if (!resumeModal) return;
+
+    resumeBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            resumeModal.classList.add('open');
+            resumeModal.setAttribute('aria-hidden', 'false');
+        });
+    });
+
+    if (resumeClose) {
+        resumeClose.addEventListener('click', () => {
+            resumeModal.classList.remove('open');
+            resumeModal.setAttribute('aria-hidden', 'true');
+        });
+    }
+
+    resumeModal.addEventListener('click', (e) => {
+        if (e.target === resumeModal) {
+            resumeModal.classList.remove('open');
+            resumeModal.setAttribute('aria-hidden', 'true');
+        }
+    });
+}
+
+// 8. Impact Metrics Counter Animation
 function initMetricsObserver() {
     const metricNumbers = document.querySelectorAll('.metric-number');
 

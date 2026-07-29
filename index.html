@@ -87,7 +87,7 @@
                 <button id="cmd-palette-btn" class="cmd-btn" aria-label="Open Command Palette (Ctrl+K)">
                     <i class="fas fa-search"></i> <span class="cmd-key">⌘K</span>
                 </button>
-                <a href="#resume" class="btn btn-accent-sm">Resume.pdf</a>
+                <button class="btn btn-accent-sm open-resume-modal"><i class="fas fa-file-pdf"></i> Resume</button>
             </div>
         </div>
     </header>
@@ -120,7 +120,7 @@
                         <li><strong>AIR 1832</strong> JEE Main & <strong>AIR 4152</strong> JEE Advanced</li>
                     </ul>
                     <div class="hero-cta-row">
-                        <a href="#resume" class="btn btn-accent"><i class="fas fa-file-pdf"></i> View Resume</a>
+                        <button class="btn btn-accent open-resume-modal"><i class="fas fa-file-pdf"></i> View Resume</button>
                         <a href="https://github.com/Tejas-Raj01" target="_blank" class="social-icon">[GitHub]</a>
                         <a href="https://www.linkedin.com/in/tejas-raj-09aa4a236/" target="_blank" class="social-icon">[LinkedIn]</a>
                         <button class="social-icon copy-email-btn" data-email="rajtejas.xyz@gmail.com">[Copy Email]</button>
@@ -391,26 +391,26 @@
         <section id="cp" class="section">
             <h2 class="section-title" data-dir="CompetitiveProgramming">ls -la</h2>
             <div class="card glass-card">
-                <div class="cp-metrics-row">
-                    <div class="cp-item">
+                <div class="cp-grid">
+                    <div class="cp-box">
                         <div class="cp-title"><i class="fas fa-code"></i> CodeChef</div>
-                        <div class="cp-val">1804 <span class="highlight">(4★ Max, Div 1)</span></div>
-                        <a href="https://www.codechef.com/users/tejas_2341" target="_blank" class="highlight">[handle @tejas_2341]</a>
+                        <div class="cp-val">1804 <span class="highlight">(4★ Div 1)</span></div>
+                        <a href="https://www.codechef.com/users/tejas_2341" target="_blank" class="cp-handle-link">[handle @tejas_2341]</a>
                     </div>
-                    <div class="cp-item">
+                    <div class="cp-box">
                         <div class="cp-title"><i class="fas fa-chart-line"></i> Codeforces</div>
                         <div class="cp-val">1400+ <span class="highlight">(Specialist)</span></div>
-                        <a href="https://codeforces.com/profile/tejas_2341" target="_blank" class="highlight">[handle @tejas_2341]</a>
+                        <a href="https://codeforces.com/profile/tejas_2341" target="_blank" class="cp-handle-link">[handle @tejas_2341]</a>
                     </div>
-                    <div class="cp-item">
+                    <div class="cp-box">
                         <div class="cp-title"><i class="fas fa-award"></i> JEE Advanced</div>
                         <div class="cp-val">AIR 4152</div>
-                        <span class="subtitle">Top 2.3% of 180K+ candidates</span>
+                        <div class="subtitle">Top 2.3% of 180K+ candidates</div>
                     </div>
-                    <div class="cp-item">
+                    <div class="cp-box">
                         <div class="cp-title"><i class="fas fa-medal"></i> JEE Main</div>
                         <div class="cp-val">AIR 1832</div>
-                        <span class="subtitle">Top 0.15% of 1.2M+ candidates</span>
+                        <div class="subtitle">Top 0.15% of 1.2M+ candidates</div>
                     </div>
                 </div>
                 <div class="cp-competencies">
@@ -505,9 +505,14 @@
                     <li>✓ AIR 1832 JEE Main (Top 0.15%)</li>
                     <li>✓ B.Tech CSE @ NIT Durgapur (Expected May 2027)</li>
                 </ul>
-                <a href="https://raw.githubusercontent.com/Tejas-Raj01/portfolio/main/public/download.png" target="_blank" class="btn btn-accent-lg">
-                    <i class="fas fa-download"></i> Download Resume PDF
-                </a>
+                <div class="resume-buttons-row">
+                    <button class="btn btn-accent open-resume-modal">
+                        <i class="fas fa-eye"></i> View Resume Preview
+                    </button>
+                    <a href="https://raw.githubusercontent.com/Tejas-Raj01/portfolio/main/public/download.png" download="Tejas_Raj_Resume.png" target="_blank" class="btn btn-accent-lg">
+                        <i class="fas fa-download"></i> Download Resume File
+                    </a>
+                </div>
             </div>
         </section>
 
@@ -515,15 +520,22 @@
         <section id="contact" class="section">
             <h2 class="section-title" data-dir="Contact">ls -la</h2>
             <div class="card glass-card">
-                <div class="contact-row">
-                    <div>
-                        <p><strong>Email:</strong> rajtejas.xyz@gmail.com</p>
-                        <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/tejas-raj-09aa4a236/" target="_blank" class="highlight">in/tejas-raj-09aa4a236</a></p>
-                        <p><strong>GitHub:</strong> <a href="https://github.com/Tejas-Raj01" target="_blank" class="highlight">github.com/Tejas-Raj01</a></p>
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <span class="contact-label">Email:</span>
+                        <span class="contact-val">rajtejas.xyz@gmail.com</span>
                     </div>
-                    <div class="contact-actions">
-                        <button class="btn btn-accent copy-email-btn" data-email="rajtejas.xyz@gmail.com"><i class="fas fa-copy"></i> Copy Email</button>
+                    <div class="contact-item">
+                        <span class="contact-label">LinkedIn:</span>
+                        <a href="https://www.linkedin.com/in/tejas-raj-09aa4a236/" target="_blank" class="highlight">in/tejas-raj-09aa4a236</a>
                     </div>
+                    <div class="contact-item">
+                        <span class="contact-label">GitHub:</span>
+                        <a href="https://github.com/Tejas-Raj01" target="_blank" class="highlight">github.com/Tejas-Raj01</a>
+                    </div>
+                </div>
+                <div class="contact-actions-row">
+                    <button class="btn btn-accent copy-email-btn" data-email="rajtejas.xyz@gmail.com"><i class="fas fa-copy"></i> Copy Email Address</button>
                 </div>
                 <div class="avail-box">
                     <span class="boot-ok">[AVAILABLE]</span> Open for 2025/2026/2027 Software Engineering Internships & Full-Time Roles.
@@ -555,6 +567,7 @@
                 
                 <div class="cmd-group-title">Actions</div>
                 <button class="cmd-item" data-action="copy-email">Copy Email Address (rajtejas.xyz@gmail.com)</button>
+                <button class="cmd-item" data-action="open-resume">View Resume Preview Modal</button>
                 <button class="cmd-item" data-action="external" data-target="https://github.com/Tejas-Raj01">Open GitHub Profile</button>
                 <button class="cmd-item" data-action="external" data-target="https://www.linkedin.com/in/tejas-raj-09aa4a236/">Open LinkedIn Profile</button>
             </div>
@@ -570,6 +583,24 @@
             </div>
             <div class="arch-body" id="arch-body">
                 <!-- Injected via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Resume Viewer Modal -->
+    <div id="resume-modal" class="modal-overlay" aria-hidden="true">
+        <div class="resume-modal-card">
+            <div class="resume-modal-header">
+                <h3>Tejas Raj — Software Engineer Resume</h3>
+                <div class="resume-modal-actions">
+                    <a href="https://raw.githubusercontent.com/Tejas-Raj01/portfolio/main/public/download.png" download="Tejas_Raj_Resume.png" target="_blank" class="btn btn-accent-sm">
+                        <i class="fas fa-download"></i> Download File
+                    </a>
+                    <button id="resume-close" class="cmd-close-btn">&times;</button>
+                </div>
+            </div>
+            <div class="resume-modal-body">
+                <img src="https://raw.githubusercontent.com/Tejas-Raj01/portfolio/main/public/download.png" alt="Tejas Raj Resume Preview" class="resume-preview-img">
             </div>
         </div>
     </div>
