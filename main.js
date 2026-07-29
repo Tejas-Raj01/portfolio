@@ -1,238 +1,375 @@
+// Tejas Raj Portfolio — Main Logic & Micro-Interactions
+
 document.addEventListener('DOMContentLoaded', () => {
-    
-    // 1. Fake Linux Boot Sequence
-    const bootSequence = document.createElement('div');
-    bootSequence.id = 'boot-sequence';
-    document.body.appendChild(bootSequence);
-    
-    // Hide main content initially
-    const mainContent = document.querySelector('main');
-    const navBar = document.querySelector('.navbar');
-    if(mainContent) mainContent.style.display = 'none';
-    if(navBar) navBar.style.display = 'none';
-
-    const bootLogs = [
-        "[ <span class='boot-ok'>OK</span> ] Started Show Plymouth Boot Screen.",
-        "[ <span class='boot-ok'>OK</span> ] Reached target Paths.",
-        "[ <span class='boot-ok'>OK</span> ] Reached target Basic System.",
-        "Mounting /sys/kernel/debug...",
-        "[ <span class='boot-ok'>OK</span> ] Mounted /sys/kernel/debug.",
-        "Starting Load/Save Random Seed...",
-        "[ <span class='boot-ok'>OK</span> ] Started Load/Save Random Seed.",
-        "Starting udev Coldplug all Devices...",
-        "[ <span class='boot-ok'>OK</span> ] Started udev Coldplug all Devices.",
-        "Starting Network Time Synchronization...",
-        "[ <span class='boot-ok'>OK</span> ] Started Network Time Synchronization.",
-        "[ <span class='boot-ok'>OK</span> ] Reached target System Initialization.",
-        "[ <span class='boot-ok'>OK</span> ] Reached target Sockets.",
-        "[ <span class='boot-ok'>OK</span> ] Reached target Basic System.",
-        "Starting Network Manager...",
-        "[ <span class='boot-ok'>OK</span> ] Started Network Manager.",
-        "Starting WPA supplicant...",
-        "[ <span class='boot-ok'>OK</span> ] Started WPA supplicant.",
-        "[ <span class='boot-ok'>OK</span> ] Reached target Network.",
-        "Starting Light Display Manager...",
-        "[ <span class='boot-ok'>OK</span> ] Started Light Display Manager.",
-        "[ <span class='boot-ok'>OK</span> ] Reached target Graphical Interface.",
-        "Welcome to Arch Linux!"
-    ];
-
-    let logIndex = 0;
-    const bootInterval = setInterval(() => {
-        if (logIndex < bootLogs.length) {
-            const line = document.createElement('div');
-            line.className = 'boot-line';
-            line.innerHTML = bootLogs[logIndex];
-            bootSequence.appendChild(line);
-            window.scrollTo(0, document.body.scrollHeight);
-            logIndex++;
-        } else {
-            clearInterval(bootInterval);
-            setTimeout(() => {
-                bootSequence.remove();
-                if(mainContent) mainContent.style.display = 'block';
-                if(navBar) navBar.style.display = 'flex';
-                initPortfolio();
-            }, 500);
-        }
-    }, 40); // Fast log printing
-
-    function initPortfolio() {
-        // 2. Format Neofetch Right Column
-        const heroInner = document.querySelector('.hero-inner');
-        if (heroInner) {
-            heroInner.innerHTML = `
-                <div class="name">tejas-raj@archlinux</div>
-                <div class="neofetch-divider">-------------------</div>
-                <div class="neofetch-row"><span class="neofetch-key">OS</span><span>Arch Linux x86_64</span></div>
-                <div class="neofetch-row"><span class="neofetch-key">Host</span><span>NIT Durgapur</span></div>
-                <div class="neofetch-row"><span class="neofetch-key">Kernel</span><span>6.1.53-1-lts</span></div>
-                <div class="neofetch-row"><span class="neofetch-key">Uptime</span><span>20 years</span></div>
-                <div class="neofetch-row"><span class="neofetch-key">Role</span><span id="type-role"></span></div>
-                <div class="neofetch-row"><span class="neofetch-key">Passion</span><span id="type-summary"></span></div>
-                <div class="social-links" id="type-socials"></div>
-            `;
-
-            // Ultra-fast Typing Effect for Role and Passion
-            const roleText = "Software Engineer & Open Source Contributor";
-            const summaryText = "Building scalable systems, AI & open-source software.";
-            
-            const roleSpan = document.getElementById('type-role');
-            const summarySpan = document.getElementById('type-summary');
-            
-            let rIdx = 0;
-            let sIdx = 0;
-
-            function typeRole() {
-                if (rIdx < roleText.length) {
-                    roleSpan.textContent += roleText.charAt(rIdx);
-                    rIdx++;
-                    setTimeout(typeRole, 20);
-                } else {
-                    typeSummary();
-                }
-            }
-
-            function typeSummary() {
-                if (sIdx < summaryText.length) {
-                    summarySpan.textContent += summaryText.charAt(sIdx);
-                    sIdx++;
-                    setTimeout(typeSummary, 20);
-                } else {
-                    document.getElementById('type-socials').innerHTML = `
-                        <a href="https://github.com/Tejas-Raj01" target="_blank" class="social-icon">[GitHub]</a>
-                        <a href="https://www.linkedin.com/in/tejas-raj-09aa4a236/" target="_blank" class="social-icon">[LinkedIn]</a>
-                        <a href="https://www.codechef.com/users/tejas_2341" target="_blank" class="social-icon">[CodeChef]</a>
-                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=rajtejas.xyz@gmail.com" target="_blank" class="social-icon">[Email]</a>
-                    `;
-                }
-            }
-            
-            setTimeout(typeRole, 300);
-        }
-
-        // 3. Tmux Navbar formatting
-        const navLinks = document.querySelector('.nav-links');
-        if (navLinks) {
-            const links = navLinks.querySelectorAll('a');
-            links.forEach((link, idx) => {
-                const text = link.innerText;
-                link.innerHTML = `[${idx}] ~/${text}`;
-            });
-        }
-
-        // 4. Section titles formatting
-        const sectionTitles = document.querySelectorAll('.section-title');
-        sectionTitles.forEach(title => {
-            const text = title.innerText.replace('.', '').trim();
-            title.innerHTML = `ls -la`;
-            title.setAttribute('data-dir', text);
-        });
-
-        // 5. Interactive Tabs
-        const tabBtns = document.querySelectorAll('.tab-btn');
-        const tabPanes = document.querySelectorAll('.tab-pane');
-
-        tabBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                tabBtns.forEach(b => b.classList.remove('active'));
-                tabPanes.forEach(p => p.classList.remove('active'));
-                btn.classList.add('active');
-                const targetId = btn.getAttribute('data-target');
-                document.getElementById(targetId).classList.add('active');
-            });
-        });
-
-        // 6. Blinking Block Cursor logic
-        const cursor = document.createElement('span');
-        cursor.id = 'dynamic-cursor';
-        document.body.appendChild(cursor);
-
-        // Append cursor to hovered element if it's text-based
-        document.addEventListener('mouseover', (e) => {
-            const el = e.target;
-            
-            // Fix: Prevent cursor from appending to itself
-            if (el === cursor) return;
-
-            // Ignore icon links, icons, and elements that shouldn't shift when hovered
-            if (el.closest('.project-links') || el.closest('.social-links') || el.closest('.github-link') || el.tagName === 'I') return;
-
-            if (['H1', 'H2', 'H3', 'A', 'SPAN', 'P', 'BUTTON', 'DIV'].includes(el.tagName)) {
-                // Ignore elements that shouldn't have cursor inside them directly, or are structural
-                if (el.classList.contains('glass-card') || el.classList.contains('section')) return;
-                
-                // Remove cursor from current parent
-                if (cursor.parentNode) {
-                    cursor.parentNode.removeChild(cursor);
-                }
-                
-                // Append to new hovered element
-                el.appendChild(cursor);
-            }
-        });
-
-        // 7. Vim Keybindings
-        document.addEventListener('keydown', (e) => {
-            // j = scroll down
-            if (e.key === 'j') {
-                window.scrollBy({ top: 100, behavior: 'auto' });
-            }
-            // k = scroll up
-            else if (e.key === 'k') {
-                window.scrollBy({ top: -100, behavior: 'auto' });
-            }
-            // 1-5 = jump to sections
-            else if (['1', '2', '3', '4', '5'].includes(e.key)) {
-                const sections = document.querySelectorAll('section');
-                const idx = parseInt(e.key) - 1;
-                if (sections[idx]) {
-                    sections[idx].scrollIntoView({ behavior: 'auto' });
-                }
-            }
-        });
-
-        // 8. Matrix Background Logic
-        const canvas = document.getElementById('matrix-bg');
-        if (canvas) {
-            const ctx = canvas.getContext('2d');
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-
-            const matrixLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()_+';
-            const characters = matrixLetters.split('');
-            const fontSize = 14;
-            const columns = canvas.width / fontSize;
-            const drops = [];
-
-            for (let x = 0; x < columns; x++) {
-                drops[x] = 1;
-            }
-
-            function drawMatrix() {
-                ctx.fillStyle = 'rgba(10, 10, 10, 0.05)';
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-                ctx.fillStyle = '#00ff41'; // Hacky Green
-                ctx.font = fontSize + 'px monospace';
-
-                for (let i = 0; i < drops.length; i++) {
-                    const text = characters[Math.floor(Math.random() * characters.length)];
-                    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-                    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                        drops[i] = 0;
-                    }
-                    drops[i]++;
-                }
-            }
-
-            setInterval(drawMatrix, 50);
-
-            window.addEventListener('resize', () => {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-            });
-        }
-    }
+    initScrollSpyAndProgress();
+    initCopyEmailButtons();
+    initCommandPalette();
+    initArchitectureModals();
+    initMobileMenu();
+    initMetricsObserver();
 });
+
+// 1. Reading Progress Bar & ScrollSpy Navigation
+function initScrollSpyAndProgress() {
+    const progressBar = document.getElementById('progress-bar');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('section[id]');
+
+    window.addEventListener('scroll', () => {
+        // Reading Progress
+        const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        if (progressBar) {
+            progressBar.style.width = `${scrolled}%`;
+        }
+
+        // Active Section ScrollSpy
+        let currentSectionId = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - 100;
+            const sectionHeight = section.offsetHeight;
+            if (winScroll >= sectionTop && winScroll < sectionTop + sectionHeight) {
+                currentSectionId = section.getAttribute('id');
+            }
+        });
+
+        if (currentSectionId) {
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSectionId}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+    }, { passive: true });
+}
+
+// 2. Copy Email Toast Notification
+function initCopyEmailButtons() {
+    const copyBtns = document.querySelectorAll('.copy-email-btn');
+    const toastContainer = document.getElementById('toast-container');
+
+    copyBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const email = btn.getAttribute('data-email') || 'rajtejas.xyz@gmail.com';
+            
+            navigator.clipboard.writeText(email).then(() => {
+                showToast(`Email copied: ${email}`);
+            }).catch(() => {
+                // Fallback copy
+                const tempInput = document.createElement('input');
+                tempInput.value = email;
+                document.body.appendChild(tempInput);
+                tempInput.select();
+                document.execCommand('copy');
+                document.body.removeChild(tempInput);
+                showToast(`Email copied: ${email}`);
+            });
+        });
+    });
+
+    function showToast(message) {
+        if (!toastContainer) return;
+        const toast = document.createElement('div');
+        toast.className = 'toast';
+        toast.innerHTML = `<i class="fas fa-check-circle"></i> <span>${message}</span>`;
+        toastContainer.appendChild(toast);
+
+        setTimeout(() => {
+            toast.style.opacity = '0';
+            toast.style.transform = 'translateY(10px)';
+            toast.style.transition = 'all 0.25s ease-out';
+            setTimeout(() => toast.remove(), 250);
+        }, 3000);
+    }
+}
+
+// 3. Command Palette (Cmd+K / Ctrl+K) Modal
+function initCommandPalette() {
+    const cmdBtn = document.getElementById('cmd-palette-btn');
+    const cmdModal = document.getElementById('cmd-modal');
+    const cmdClose = document.getElementById('cmd-close');
+    const cmdInput = document.getElementById('cmd-input');
+    const cmdResults = document.getElementById('cmd-results');
+    const cmdItems = document.querySelectorAll('.cmd-item');
+
+    if (!cmdModal || !cmdInput) return;
+
+    let selectedIndex = -1;
+
+    function openPalette() {
+        cmdModal.classList.add('open');
+        cmdModal.setAttribute('aria-hidden', 'false');
+        cmdInput.value = '';
+        filterItems('');
+        setTimeout(() => cmdInput.focus(), 50);
+    }
+
+    function closePalette() {
+        cmdModal.classList.remove('open');
+        cmdModal.setAttribute('aria-hidden', 'true');
+    }
+
+    // Key listeners
+    document.addEventListener('keydown', (e) => {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            if (cmdModal.classList.contains('open')) {
+                closePalette();
+            } else {
+                openPalette();
+            }
+        } else if (e.key === 'Escape' && cmdModal.classList.contains('open')) {
+            closePalette();
+        }
+    });
+
+    if (cmdBtn) cmdBtn.addEventListener('click', openPalette);
+    if (cmdClose) cmdClose.addEventListener('click', closePalette);
+
+    cmdModal.addEventListener('click', (e) => {
+        if (e.target === cmdModal) closePalette();
+    });
+
+    // Search Filtering
+    cmdInput.addEventListener('input', (e) => {
+        filterItems(e.target.value.toLowerCase().trim());
+    });
+
+    function filterItems(query) {
+        let visibleCount = 0;
+        cmdItems.forEach(item => {
+            const text = item.textContent.toLowerCase();
+            if (!query || text.includes(query)) {
+                item.style.display = 'flex';
+                visibleCount++;
+            } else {
+                item.style.display = 'none';
+            }
+            item.classList.remove('selected');
+        });
+        selectedIndex = -1;
+    }
+
+    // Keyboard Arrow Navigation inside Palette
+    cmdInput.addEventListener('keydown', (e) => {
+        const visibleItems = Array.from(cmdItems).filter(item => item.style.display !== 'none');
+        if (visibleItems.length === 0) return;
+
+        if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            selectedIndex = (selectedIndex + 1) % visibleItems.length;
+            updateSelection(visibleItems);
+        } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            selectedIndex = (selectedIndex - 1 + visibleItems.length) % visibleItems.length;
+            updateSelection(visibleItems);
+        } else if (e.key === 'Enter') {
+            e.preventDefault();
+            if (selectedIndex >= 0 && visibleItems[selectedIndex]) {
+                visibleItems[selectedIndex].click();
+            } else if (visibleItems.length > 0) {
+                visibleItems[0].click();
+            }
+        }
+    });
+
+    function updateSelection(visibleItems) {
+        visibleItems.forEach((item, idx) => {
+            if (idx === selectedIndex) {
+                item.classList.add('selected');
+                item.scrollIntoView({ block: 'nearest' });
+            } else {
+                item.classList.remove('selected');
+            }
+        });
+    }
+
+    // Action Triggers
+    cmdItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const action = item.getAttribute('data-action');
+            const target = item.getAttribute('data-target');
+
+            closePalette();
+
+            if (action === 'navigate' && target) {
+                const sec = document.querySelector(target);
+                if (sec) sec.scrollIntoView({ behavior: 'smooth' });
+            } else if (action === 'external' && target) {
+                window.open(target, '_blank');
+            } else if (action === 'copy-email') {
+                navigator.clipboard.writeText('rajtejas.xyz@gmail.com');
+                const btn = document.querySelector('.copy-email-btn');
+                if (btn) btn.click();
+            }
+        });
+    });
+}
+
+// 4. Architecture Viewer Modals
+function initArchitectureModals() {
+    const archBtns = document.querySelectorAll('.open-arch-modal');
+    const archModal = document.getElementById('arch-modal');
+    const archClose = document.getElementById('arch-close');
+    const archTitle = document.getElementById('arch-title');
+    const archBody = document.getElementById('arch-body');
+
+    if (!archModal || !archBody) return;
+
+    const diagrams = {
+        kv: {
+            title: "Distributed Key-Value Engine Architecture",
+            diagram: `
++-----------------------------------------------------------------------------------+
+|                              CLIENT CLUSTER / stress testing                      |
++-----------------------------------------------------------------------------------+
+                                         |
+                                (Consistent Hashing)
+                                         v
++-----------------------------------------------------------------------------------+
+|                        RING PARTITIONING & NODE TOPOLOGY                          |
+|                                                                                   |
+|  +-------------------+        Gossip Protocol       +-------------------+         |
+|  |   NODE 1 (Leader) | <--------------------------> |   NODE 2 (Replica)|         |
+|  | - std::shared_m   |                              | - std::shared_m   |         |
+|  | - WAL Engine      |        Quorum (N, W, R)      | - WAL Engine      |         |
+|  +-------------------+ <--------------------------> +-------------------+         |
+|           |                                                  |                    |
+|           +------------------------+-------------------------+                    |
+|                                    |                                              |
+|                                    v                                              |
+|                          +-------------------+                                    |
+|                          |   NODE 3 (Replica)|                                    |
+|                          | - WAL Engine      |                                    |
+|                          +-------------------+                                    |
++-----------------------------------------------------------------------------------+
+                                     |
+                          (WAL Replay & Disk Persistence)
+                                     v
++-----------------------------------------------------------------------------------+
+|                     CRASH RECOVERY ENGINE & MEMORY STORAGE                        |
++-----------------------------------------------------------------------------------+`
+        },
+        ai: {
+            title: "AI Career Intelligence Platform Architecture",
+            diagram: `
++-----------------------------------------------------------------------------------+
+|                            CLIENT APP (React.js SPA)                              |
++-----------------------------------------------------------------------------------+
+                                         |
+                                   (REST API Async)
+                                         v
++-----------------------------------------------------------------------------------+
+|                              FASTAPI API GATEWAY                                  |
+|                                                                                   |
+|  +---------------------+                       +-------------------------------+  |
+|  | Vector Math Engine  |                       | Active-Model Fallback Engine  |  |
+|  | (scikit-learn TFIDF)|                       | (Groq LLM -> LangChain -> API)|  |
+|  +---------------------+                       +-------------------------------+  |
++-----------------------------------------------------------------------------------+
+         |                                                       |
+         | (Dispatch Async Job)                                  | (Persist Results)
+         v                                                       v
++-----------------------+                               +-----------------------+
+|  REDIS TASK BROKER    |                               |  POSTGRESQL DATABASE  |
+|   + Celery Workers    |                               |  Candidate Profiling  |
++-----------------------+                               +-----------------------+`
+        }
+    };
+
+    archBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const key = btn.getAttribute('data-arch');
+            const data = diagrams[key];
+            if (data) {
+                archTitle.textContent = data.title;
+                archBody.innerHTML = `<div class="arch-diagram-box">${escapeHtml(data.diagram)}</div>`;
+                archModal.classList.add('open');
+                archModal.setAttribute('aria-hidden', 'false');
+            }
+        });
+    });
+
+    if (archClose) {
+        archClose.addEventListener('click', () => {
+            archModal.classList.remove('open');
+            archModal.setAttribute('aria-hidden', 'true');
+        });
+    }
+
+    archModal.addEventListener('click', (e) => {
+        if (e.target === archModal) {
+            archModal.classList.remove('open');
+            archModal.setAttribute('aria-hidden', 'true');
+        }
+    });
+
+    function escapeHtml(text) {
+        return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    }
+}
+
+// 5. Mobile Navigation Menu Toggle
+function initMobileMenu() {
+    const mobileToggle = document.getElementById('mobile-toggle');
+    const navMenu = document.getElementById('nav-menu');
+
+    if (mobileToggle && navMenu) {
+        mobileToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('open');
+        });
+
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('open');
+            });
+        });
+    }
+}
+
+// 6. Impact Metrics Counter Animation (Triggers once on Viewport Entry)
+function initMetricsObserver() {
+    const metricNumbers = document.querySelectorAll('.metric-number');
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const el = entry.target;
+                const target = parseInt(el.getAttribute('data-target'), 10);
+                if (target && !el.classList.contains('counted')) {
+                    el.classList.add('counted');
+                    animateNumber(el, target);
+                }
+                observer.unobserve(el);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    metricNumbers.forEach(num => observer.observe(num));
+
+    function animateNumber(el, target) {
+        let current = 0;
+        const duration = 1000;
+        const stepTime = 30;
+        const steps = duration / stepTime;
+        const increment = target / steps;
+
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+                current = target;
+                clearInterval(timer);
+                if (target === 10 || target === 4 || target === 1400) {
+                    el.textContent = `${target}+`;
+                } else {
+                    el.textContent = target.toString();
+                }
+            } else {
+                el.textContent = Math.floor(current).toString();
+            }
+        }, stepTime);
+    }
+}
