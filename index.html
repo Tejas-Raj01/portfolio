@@ -211,36 +211,56 @@
                             <span class="badge date-badge">Upstream Contributor • 9 Merged PRs • React & PHP Microservices</span>
                         </div>
                         <div class="tech-stack">
-                            <span class="tech-tag">TypeScript</span>
-                            <span class="tech-tag">React.js</span>
                             <span class="tech-tag">PHP</span>
+                            <span class="tech-tag">React.js</span>
+                            <span class="tech-tag">WordPress</span>
+                            <span class="tech-tag">TypeScript</span>
                             <span class="tech-tag">REST API</span>
-                            <span class="tech-tag">Accessibility</span>
                         </div>
                         <ul class="bullet-list">
                             <li>
-                                <strong>Gutenberg Block Editor Crash Fixes:</strong> Resolved block editor crash during standard Gallery to Slideshow transformations and Tiled Gallery conversion by safely recovering nested image data from <code>innerBlocks</code>. 
-                                <a href="https://github.com/Automattic/jetpack/pull/50035" target="_blank" class="highlight">[Merged PR #50035]</a> 
-                                <a href="https://github.com/Automattic/jetpack/pull/50025" target="_blank" class="highlight">[Merged PR #50025]</a>
+                                <strong>Accessibility & UX (Carousel):</strong> Normalized event target in <code>shouldOpenModal</code> for Jetpack Carousel to ensure consistent behavior across keyboard and mouse interactions for attachment links. 
+                                <a href="https://github.com/Automattic/jetpack/pull/50220" target="_blank" class="highlight">[Merged PR #50220]</a>
                             </li>
                             <br>
                             <li>
-                                <strong>Accessibility & DOM EXIF List Optimization:</strong> Normalized DOM event target in <code>shouldOpenModal</code> for Jetpack Carousel keyboard/mouse consistency, dynamically rendered EXIF lists to eliminate empty element screen reader warnings, and updated heading hierarchy tags. 
-                                <a href="https://github.com/Automattic/jetpack/pull/50220" target="_blank" class="highlight">[Merged PR #50220]</a> 
-                                <a href="https://github.com/Automattic/jetpack/pull/50201" target="_blank" class="highlight">[Merged PR #50201]</a> 
-                                <a href="https://github.com/Automattic/jetpack/pull/50199" target="_blank" class="highlight">[Merged PR #50199]</a> 
+                                <strong>Accessibility (Carousel):</strong> Dynamically render and position the EXIF data <code>&lt;ul&gt;</code> list in JavaScript to resolve accessibility scanner warnings for empty list elements while preserving layout styling. 
+                                <a href="https://github.com/Automattic/jetpack/pull/50201" target="_blank" class="highlight">[Merged PR #50201]</a>
+                            </li>
+                            <br>
+                            <li>
+                                <strong>Accessibility & SEO (Carousel):</strong> Changed empty <code>&lt;h2&gt;</code> and <code>&lt;h3&gt;</code> tags to <code>&lt;div&gt;</code> tags in the Carousel HTML skeleton to resolve SEO and accessibility warnings. 
+                                <a href="https://github.com/Automattic/jetpack/pull/50199" target="_blank" class="highlight">[Merged PR #50199]</a>
+                            </li>
+                            <br>
+                            <li>
+                                <strong>Accessibility (Carousel):</strong> Added an <code>aria-label</code> attribute to the hidden download link in the Carousel module to provide a descriptive label for screen readers. 
                                 <a href="https://github.com/Automattic/jetpack/pull/50181" target="_blank" class="highlight">[Merged PR #50181]</a>
                             </li>
                             <br>
                             <li>
-                                <strong>REST API Schema & Redux Type Safety:</strong> Refactored Jetpack Publicize REST API connection status schema using <code>oneOf</code> to prevent OpenAPI parser failures, and replaced string IDs with actual store objects across Redux hooks to preserve TypeScript types. 
-                                <a href="https://github.com/Automattic/jetpack/pull/50030" target="_blank" class="highlight">[Merged PR #50030]</a> 
-                                <a href="https://github.com/Automattic/jetpack/pull/49810" target="_blank" class="highlight">[Merged PR #49810]</a>
+                                <strong>Editor Stability (Slideshow):</strong> Resolved a block editor crash during standard Gallery to Slideshow transformations by safely extracting image data from nested <code>innerBlocks</code>. 
+                                <a href="https://github.com/Automattic/jetpack/pull/50035" target="_blank" class="highlight">[Merged PR #50035]</a>
                             </li>
                             <br>
                             <li>
-                                <strong>Social Image Generator Filter:</strong> Introduced the <code>jetpack_social_image_generator_disable_text</code> filter to allow easy disabling of text overlay on generated social images. 
+                                <strong>API Schema Reliability:</strong> Updated the Jetpack Publicize REST API connection status schema to utilize <code>oneOf</code> to prevent strict OpenAPI parser failures. 
+                                <a href="https://github.com/Automattic/jetpack/pull/50030" target="_blank" class="highlight">[Merged PR #50030]</a>
+                            </li>
+                            <br>
+                            <li>
+                                <strong>Social Image Generator:</strong> Introduced the <code>jetpack_social_image_generator_disable_text</code> filter to easily disable the text overlay on generated social images. 
                                 <a href="https://github.com/Automattic/jetpack/pull/50029" target="_blank" class="highlight">[Merged PR #50029]</a>
+                            </li>
+                            <br>
+                            <li>
+                                <strong>Editor Stability (Tiled Gallery):</strong> Resolved an editor crash when transforming a Gallery block back to a Tiled Gallery by safely recovering the images attribute. 
+                                <a href="https://github.com/Automattic/jetpack/pull/50025" target="_blank" class="highlight">[Merged PR #50025]</a>
+                            </li>
+                            <br>
+                            <li>
+                                <strong>Architecture Refactoring:</strong> Replaced the usage of string IDs with the actual store object in <code>useSelect</code> and <code>useDispatch</code> calls across shared stores to preserve TypeScript types. 
+                                <a href="https://github.com/Automattic/jetpack/pull/49810" target="_blank" class="highlight">[Merged PR #49810]</a>
                             </li>
                         </ul>
                     </div>
@@ -509,8 +529,8 @@
                     <button class="btn btn-accent open-resume-modal">
                         <i class="fas fa-eye"></i> View Resume Preview
                     </button>
-                    <a href="https://raw.githubusercontent.com/Tejas-Raj01/portfolio/main/public/download.png" download="Tejas_Raj_Resume.png" target="_blank" class="btn btn-accent-lg">
-                        <i class="fas fa-download"></i> Download Resume File
+                    <a href="/resume.pdf" download="Tejas_Raj_Resume.pdf" target="_blank" class="btn btn-accent-lg">
+                        <i class="fas fa-download"></i> Download Resume PDF
                     </a>
                 </div>
             </div>
@@ -593,14 +613,14 @@
             <div class="resume-modal-header">
                 <h3>Tejas Raj — Software Engineer Resume</h3>
                 <div class="resume-modal-actions">
-                    <a href="https://raw.githubusercontent.com/Tejas-Raj01/portfolio/main/public/download.png" download="Tejas_Raj_Resume.png" target="_blank" class="btn btn-accent-sm">
-                        <i class="fas fa-download"></i> Download File
+                    <a href="/resume.pdf" download="Tejas_Raj_Resume.pdf" target="_blank" class="btn btn-accent-sm">
+                        <i class="fas fa-download"></i> Download PDF
                     </a>
                     <button id="resume-close" class="cmd-close-btn">&times;</button>
                 </div>
             </div>
             <div class="resume-modal-body">
-                <img src="https://raw.githubusercontent.com/Tejas-Raj01/portfolio/main/public/download.png" alt="Tejas Raj Resume Preview" class="resume-preview-img">
+                <iframe src="/resume.pdf" class="resume-pdf-frame" title="Tejas Raj Resume Preview"></iframe>
             </div>
         </div>
     </div>
