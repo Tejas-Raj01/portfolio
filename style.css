@@ -713,13 +713,15 @@ main {
     overflow-y: auto;
     display: flex;
     justify-content: center;
-    background: #000;
+    background: #0a0a0a;
 }
 
 .resume-preview-img {
-    max-width: 100%;
+    width: 100%;
+    max-width: 780px;
     height: auto;
     border: 1px solid var(--border);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
 }
 
 .resume-pdf-frame {
