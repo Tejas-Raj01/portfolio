@@ -23,9 +23,11 @@
     box-sizing: border-box;
 }
 
-html {
+html, body {
     scroll-behavior: smooth;
     font-size: 14px;
+    overflow-x: hidden;
+    width: 100%;
 }
 
 body {
@@ -680,12 +682,14 @@ main {
 .resume-modal-card {
     background: var(--bg-color);
     border: 1px solid var(--accent);
-    width: 100%;
-    max-width: 800px;
-    max-height: 90vh;
+    width: 92%;
+    max-width: 860px;
+    height: 85vh;
+    max-height: 85vh;
     display: flex;
     flex-direction: column;
     box-shadow: 0 0 25px rgba(0, 255, 65, 0.3);
+    overflow: hidden;
 }
 
 .cmd-header, .arch-header, .resume-modal-header {
@@ -695,6 +699,7 @@ main {
     padding: 12px 16px;
     border-bottom: 1px solid var(--border);
     gap: 10px;
+    flex-shrink: 0;
 }
 
 .resume-modal-header h3 {
@@ -709,11 +714,13 @@ main {
 }
 
 .resume-modal-body {
+    flex: 1;
     padding: 16px;
     overflow-y: auto;
     display: flex;
     justify-content: center;
-    background: #0a0a0a;
+    align-items: flex-start;
+    background: #0d0d0d;
 }
 
 .resume-preview-img {
@@ -721,7 +728,8 @@ main {
     max-width: 780px;
     height: auto;
     border: 1px solid var(--border);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.8);
+    display: block;
 }
 
 .resume-pdf-frame {
