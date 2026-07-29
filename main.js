@@ -1,22 +1,88 @@
-// Tejas Raj Portfolio — Main Logic & Micro-Interactions
+// Tejas Raj Portfolio — Dark Hacker Terminal Logic & Interactivity
 
 document.addEventListener('DOMContentLoaded', () => {
+    initMatrixBackground();
+    initOpenSourceTabs();
     initScrollSpyAndProgress();
     initCopyEmailButtons();
     initCommandPalette();
     initArchitectureModals();
-    initMobileMenu();
     initMetricsObserver();
 });
 
-// 1. Reading Progress Bar & ScrollSpy Navigation
+// 1. Matrix Background Animation
+function initMatrixBackground() {
+    const canvas = document.getElementById('matrix-bg');
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const matrixLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()_+';
+    const characters = matrixLetters.split('');
+    const fontSize = 14;
+    const columns = canvas.width / fontSize;
+    const drops = [];
+
+    for (let x = 0; x < columns; x++) {
+        drops[x] = 1;
+    }
+
+    function drawMatrix() {
+        ctx.fillStyle = 'rgba(10, 10, 10, 0.05)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.fillStyle = '#00ff41'; // Hacky Green
+        ctx.font = fontSize + 'px monospace';
+
+        for (let i = 0; i < drops.length; i++) {
+            const text = characters[Math.floor(Math.random() * characters.length)];
+            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                drops[i] = 0;
+            }
+            drops[i]++;
+        }
+    }
+
+    setInterval(drawMatrix, 50);
+
+    window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    });
+}
+
+// 2. Open Source Interactive Tab Switching
+function initOpenSourceTabs() {
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabPanes = document.querySelectorAll('.tab-pane');
+
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const targetId = btn.getAttribute('data-target');
+
+            tabBtns.forEach(b => b.classList.remove('active'));
+            tabPanes.forEach(p => p.classList.remove('active'));
+
+            btn.classList.add('active');
+            const targetPane = document.getElementById(targetId);
+            if (targetPane) {
+                targetPane.classList.add('active');
+            }
+        });
+    });
+}
+
+// 3. ScrollSpy & Progress Bar
 function initScrollSpyAndProgress() {
     const progressBar = document.getElementById('progress-bar');
-    const navLinks = document.querySelectorAll('.nav-link');
+    const navItems = document.querySelectorAll('.nav-item');
     const sections = document.querySelectorAll('section[id]');
 
     window.addEventListener('scroll', () => {
-        // Reading Progress
         const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
         const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
         const scrolled = (winScroll / height) * 100;
@@ -24,7 +90,6 @@ function initScrollSpyAndProgress() {
             progressBar.style.width = `${scrolled}%`;
         }
 
-        // Active Section ScrollSpy
         let currentSectionId = '';
         sections.forEach(section => {
             const sectionTop = section.offsetTop - 100;
@@ -35,17 +100,17 @@ function initScrollSpyAndProgress() {
         });
 
         if (currentSectionId) {
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${currentSectionId}`) {
-                    link.classList.add('active');
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href') === `#${currentSectionId}`) {
+                    item.classList.add('active');
                 }
             });
         }
     }, { passive: true });
 }
 
-// 2. Copy Email Toast Notification
+// 4. Copy Email & Toast Notification
 function initCopyEmailButtons() {
     const copyBtns = document.querySelectorAll('.copy-email-btn');
     const toastContainer = document.getElementById('toast-container');
@@ -56,16 +121,15 @@ function initCopyEmailButtons() {
             const email = btn.getAttribute('data-email') || 'rajtejas.xyz@gmail.com';
             
             navigator.clipboard.writeText(email).then(() => {
-                showToast(`Email copied: ${email}`);
+                showToast(`[OK] Copied email to clipboard: ${email}`);
             }).catch(() => {
-                // Fallback copy
                 const tempInput = document.createElement('input');
                 tempInput.value = email;
                 document.body.appendChild(tempInput);
                 tempInput.select();
                 document.execCommand('copy');
                 document.body.removeChild(tempInput);
-                showToast(`Email copied: ${email}`);
+                showToast(`[OK] Copied email to clipboard: ${email}`);
             });
         });
     });
@@ -74,25 +138,23 @@ function initCopyEmailButtons() {
         if (!toastContainer) return;
         const toast = document.createElement('div');
         toast.className = 'toast';
-        toast.innerHTML = `<i class="fas fa-check-circle"></i> <span>${message}</span>`;
+        toast.textContent = message;
         toastContainer.appendChild(toast);
 
         setTimeout(() => {
             toast.style.opacity = '0';
-            toast.style.transform = 'translateY(10px)';
-            toast.style.transition = 'all 0.25s ease-out';
-            setTimeout(() => toast.remove(), 250);
+            toast.style.transition = 'all 0.3s ease';
+            setTimeout(() => toast.remove(), 300);
         }, 3000);
     }
 }
 
-// 3. Command Palette (Cmd+K / Ctrl+K) Modal
+// 5. Command Palette (Cmd+K / Ctrl+K)
 function initCommandPalette() {
     const cmdBtn = document.getElementById('cmd-palette-btn');
     const cmdModal = document.getElementById('cmd-modal');
     const cmdClose = document.getElementById('cmd-close');
     const cmdInput = document.getElementById('cmd-input');
-    const cmdResults = document.getElementById('cmd-results');
     const cmdItems = document.querySelectorAll('.cmd-item');
 
     if (!cmdModal || !cmdInput) return;
@@ -112,7 +174,6 @@ function initCommandPalette() {
         cmdModal.setAttribute('aria-hidden', 'true');
     }
 
-    // Key listeners
     document.addEventListener('keydown', (e) => {
         if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
             e.preventDefault();
@@ -133,18 +194,15 @@ function initCommandPalette() {
         if (e.target === cmdModal) closePalette();
     });
 
-    // Search Filtering
     cmdInput.addEventListener('input', (e) => {
         filterItems(e.target.value.toLowerCase().trim());
     });
 
     function filterItems(query) {
-        let visibleCount = 0;
         cmdItems.forEach(item => {
             const text = item.textContent.toLowerCase();
             if (!query || text.includes(query)) {
-                item.style.display = 'flex';
-                visibleCount++;
+                item.style.display = 'block';
             } else {
                 item.style.display = 'none';
             }
@@ -153,7 +211,6 @@ function initCommandPalette() {
         selectedIndex = -1;
     }
 
-    // Keyboard Arrow Navigation inside Palette
     cmdInput.addEventListener('keydown', (e) => {
         const visibleItems = Array.from(cmdItems).filter(item => item.style.display !== 'none');
         if (visibleItems.length === 0) return;
@@ -187,7 +244,6 @@ function initCommandPalette() {
         });
     }
 
-    // Action Triggers
     cmdItems.forEach(item => {
         item.addEventListener('click', () => {
             const action = item.getAttribute('data-action');
@@ -201,15 +257,14 @@ function initCommandPalette() {
             } else if (action === 'external' && target) {
                 window.open(target, '_blank');
             } else if (action === 'copy-email') {
-                navigator.clipboard.writeText('rajtejas.xyz@gmail.com');
-                const btn = document.querySelector('.copy-email-btn');
-                if (btn) btn.click();
+                const copyBtn = document.querySelector('.copy-email-btn');
+                if (copyBtn) copyBtn.click();
             }
         });
     });
 }
 
-// 4. Architecture Viewer Modals
+// 6. Architecture Diagram Modals
 function initArchitectureModals() {
     const archBtns = document.querySelectorAll('.open-arch-modal');
     const archModal = document.getElementById('arch-modal');
@@ -221,7 +276,7 @@ function initArchitectureModals() {
 
     const diagrams = {
         kv: {
-            title: "Distributed Key-Value Engine Architecture",
+            title: "Distributed Key-Value Storage Architecture",
             diagram: `
 +-----------------------------------------------------------------------------------+
 |                              CLIENT CLUSTER / stress testing                      |
@@ -312,25 +367,7 @@ function initArchitectureModals() {
     }
 }
 
-// 5. Mobile Navigation Menu Toggle
-function initMobileMenu() {
-    const mobileToggle = document.getElementById('mobile-toggle');
-    const navMenu = document.getElementById('nav-menu');
-
-    if (mobileToggle && navMenu) {
-        mobileToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('open');
-        });
-
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('open');
-            });
-        });
-    }
-}
-
-// 6. Impact Metrics Counter Animation (Triggers once on Viewport Entry)
+// 7. Impact Metrics Counter Animation
 function initMetricsObserver() {
     const metricNumbers = document.querySelectorAll('.metric-number');
 
@@ -352,7 +389,7 @@ function initMetricsObserver() {
 
     function animateNumber(el, target) {
         let current = 0;
-        const duration = 1000;
+        const duration = 800;
         const stepTime = 30;
         const steps = duration / stepTime;
         const increment = target / steps;
