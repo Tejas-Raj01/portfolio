@@ -319,25 +319,25 @@ function initArchitectureModals() {
             title: "AI Career Intelligence Platform Architecture",
             diagram: `
 +-----------------------------------------------------------------------------------+
-|                            CLIENT APP (React.js SPA)                              |
+|                            CLIENT APP (React 19 SPA)                              |
 +-----------------------------------------------------------------------------------+
                                          |
                                    (REST API Async)
                                          v
 +-----------------------------------------------------------------------------------+
-|                              FASTAPI API GATEWAY                                  |
+|                            LARAVEL 13 REST API BACKEND                            |
 |                                                                                   |
 |  +---------------------+                       +-------------------------------+  |
 |  | Vector Math Engine  |                       | Active-Model Fallback Engine  |  |
-|  | (scikit-learn TFIDF)|                       | (Groq LLM -> LangChain -> API)|  |
+|  | (Custom TF Cosine)  |                       | (Groq LLM -> Auto-Fallback)   |  |
 |  +---------------------+                       +-------------------------------+  |
 +-----------------------------------------------------------------------------------+
          |                                                       |
          | (Dispatch Async Job)                                  | (Persist Results)
          v                                                       v
 +-----------------------+                               +-----------------------+
-|  REDIS TASK BROKER    |                               |  POSTGRESQL DATABASE  |
-|   + Celery Workers    |                               |  Candidate Profiling  |
+|  REDIS QUEUE BROKER   |                               |  POSTGRESQL DATABASE  |
+|   + Laravel Queues    |                               |  Candidate Profiling  |
 +-----------------------+                               +-----------------------+`
         }
     };
