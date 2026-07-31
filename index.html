@@ -188,12 +188,12 @@
                         </div>
                         <ul class="bullet-list">
                             <li>
-                                <strong>FX Schema Type Annotations:</strong> Resolved strict static type checker failures by dynamically constructing proper tuple type annotations using <code>tuple.__class_getitem__</code> for operations returning multiple tensors in PyTorch <code>fx</code> operator schemas. 
+                                <strong>Static Typing (FX):</strong> Fixed incorrect <code>return_annotation</code> for tuple-returning ops in PyTorch FX operator schemas, resolving static type-checker failures. 
                                 <a href="https://github.com/pytorch/pytorch/pull/189142" target="_blank" class="highlight">[Merged PR #189142]</a>
                             </li>
                             <br>
                             <li>
-                                <strong>Sparse Tensor Floating Point Exception:</strong> Fixed a hard Floating Point Exception (Division by Zero) crash in <code>sparse_compressed_to_dense</code> for malformed BSR tensors by implementing strict C++ dimension bounds and blocksize validation. 
+                                <strong>Tensor Core Stability:</strong> Fixed a hard division-by-zero crash in <code>sparse_compressed_to_dense</code> for malformed BSR tensors; added regression test coverage. 
                                 <a href="https://github.com/pytorch/pytorch/pull/190191" target="_blank" class="highlight">[Merged PR #190191]</a>
                             </li>
                         </ul>
@@ -273,12 +273,12 @@
                         </div>
                         <ul class="bullet-list">
                             <li>
-                                <strong>Core Framework Linter Base Detection:</strong> Resolved hardcoded fallbacks in framework linters by dynamically passing <code>build_base</code> parameters across Linux package build pipelines, ensuring accurate base detection for complex Snap packages. 
+                                <strong>Build Pipeline Reliability:</strong> Resolved hardcoded fallbacks in framework linters via dynamic <code>build_base</code> resolution across Linux package build pipelines. 
                                 <a href="https://github.com/canonical/snapcraft/pull/6272" target="_blank" class="highlight">[Merged PR #6272]</a>
                             </li>
                             <br>
                             <li>
-                                <strong>Documentation Update:</strong> Added manual connection notes and approval warnings for the <code>personal-files</code> interface in the Snapcraft tutorial. 
+                                <strong>Documentation & DX:</strong> Added manual connection notes and approval warnings for the <code>personal-files</code> interface in the Snapcraft tutorial. 
                                 <a href="https://github.com/canonical/snapcraft/pull/6269" target="_blank" class="highlight">[Merged PR #6269]</a>
                             </li>
                         </ul>
@@ -367,7 +367,7 @@
                         <ul class="bullet-list">
                             <li><strong>Problem & Architecture:</strong> Solved single-node database write bottlenecks and fault tolerance by engineering a decentralized P2P key-value store in C++ using Consistent Hashing for data remapping and Gossip Protocol for membership.</li>
                             <li><strong>Concurrency & Reliability:</strong> Engineered a concurrent engine using <code>std::shared_mutex</code> for multi-threaded read/write synchronization. Implemented Write-Ahead Logging (WAL) for instant crash recovery and tunable Quorum Replication (N, W, R).</li>
-                            <li><strong>Performance & Testing:</strong> Developed a React.js stress testing dashboard with Ngrok tunneling for chaos engineering validation, achieving 10,000+ ops/sec at &lt;2ms latency.</li>
+                            <li><strong>Performance & Benchmarks:</strong> Built a thread-safe storage engine (<code>std::shared_mutex</code>, O(1) LRU eviction) and a disk-backed Write-Ahead Log for crash recovery — sustained 33,685 requests/sec at ~2.97ms avg latency under 100 concurrent threads (Apache ab).</li>
                         </ul>
                     </div>
                 </div>
