@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tejas Raj — Software Engineer & Open Source Contributor</title>
-    <meta name="description" content="Portfolio of Tejas Raj, Computer Science student at NIT Durgapur. PyTorch, Jetpack & Snapcraft open-source contributor, 1800+ CodeChef, systems & full-stack software engineer.">
+    <meta name="description" content="Portfolio of Tejas Raj, Computer Science student at NIT Durgapur. vLLM, PyTorch, Jetpack & Snapcraft open-source contributor, 1800+ CodeChef, systems & full-stack software engineer.">
     <meta name="author" content="Tejas Raj">
     <meta name="google-site-verification" content="a9-iU5UiYVAJds2UBEvNfWLYOTJyv6qjf8v8l1L1Zhc">
     <link rel="canonical" href="https://portfolio-liart-eta-34.vercel.app/">
@@ -27,14 +27,14 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://portfolio-liart-eta-34.vercel.app/">
     <meta property="og:title" content="Tejas Raj — Software Engineer & Open Source Contributor">
-    <meta property="og:description" content="PyTorch & Open Source Contributor, CodeChef 1804 (4★), B.Tech CSE @ NIT Durgapur. Scalable systems, C++, Python, React, Distributed Systems.">
+    <meta property="og:description" content="vLLM, PyTorch & Open Source Contributor, CodeChef 1804 (4★), B.Tech CSE @ NIT Durgapur. Scalable systems, C++, Python, React, Distributed Systems.">
     <meta property="og:image" content="https://portfolio-liart-eta-34.vercel.app/og-image.png">
 
     <!-- Twitter Meta -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://portfolio-liart-eta-34.vercel.app/">
     <meta name="twitter:title" content="Tejas Raj — Software Engineer & Open Source Contributor">
-    <meta name="twitter:description" content="PyTorch & Open Source Contributor, CodeChef 1804 (4★), B.Tech CSE @ NIT Durgapur. Scalable systems, C++, Python, React, Distributed Systems.">
+    <meta name="twitter:description" content="vLLM, PyTorch & Open Source Contributor, CodeChef 1804 (4★), B.Tech CSE @ NIT Durgapur. Scalable systems, C++, Python, React, Distributed Systems.">
     <meta name="twitter:image" content="https://portfolio-liart-eta-34.vercel.app/og-image.png">
 
     <!-- JSON-LD Structured Data -->
@@ -48,7 +48,7 @@
         "@type": "CollegeOrUniversity",
         "name": "National Institute of Technology Durgapur"
       },
-      "knowsAbout": ["Software Engineering", "C++", "Python", "PyTorch", "Distributed Systems", "Competitive Programming", "React.js"],
+      "knowsAbout": ["Software Engineering", "C++", "Python", "vLLM", "PyTorch", "Distributed Systems", "Competitive Programming", "React.js"],
       "url": "https://portfolio-liart-eta-34.vercel.app/",
       "sameAs": [
         "https://github.com/Tejas-Raj01",
@@ -115,6 +115,7 @@
                     <div class="neofetch-row"><span class="neofetch-key">Tagline:</span><span>Building scalable developer tools & production software.</span></div>
                     <div class="neofetch-row"><span class="neofetch-key">Highlights:</span></div>
                     <ul class="hero-bullet-list">
+                        <li>Core Scheduler Contributor to <strong>vLLM</strong> (`vllm-project/vllm`)</li>
                         <li>Merged core contributions to <strong>PyTorch</strong> (`pytorch/pytorch`)</li>
                         <li>Core Contributor to <strong>CP Editor</strong> (`cpeditor/cpeditor`)</li>
                         <li><strong>CodeChef 1804</strong> (4★)</li>
@@ -137,7 +138,7 @@
                 <div class="metric-card glass-card">
                     <div class="metric-number" data-target="10">10+</div>
                     <div class="metric-label">Merged Open Source PRs</div>
-                    <div class="metric-sub">vLLM, PyTorch, Jetpack, Snapcraft</div>
+                    <div class="metric-sub">vLLM, PyTorch, Jetpack, Snapcraft, CP Editor</div>
                 </div>
 
                 <div class="metric-card glass-card">
@@ -178,19 +179,20 @@
                     <div id="vllm" class="tab-pane active glass-card">
                         <div class="card-header">
                             <h3>vllm-project / vllm <a href="https://github.com/vllm-project/vllm" target="_blank" class="github-link"><i class="fab fa-github"></i></a></h3>
-                            <span class="badge date-badge">Upstream Contributor • LLM Serving Engine • Python & C++</span>
+                            <span class="badge date-badge">Upstream Contributor • LLM Inference Engine & Scheduler</span>
                         </div>
                         <div class="tech-stack">
                             <span class="tech-tag">Python</span>
-                            <span class="tech-tag">C++</span>
-                            <span class="tech-tag">LLM Serving</span>
+                            <span class="tech-tag">vLLM Engine</span>
                             <span class="tech-tag">PRIORITY Scheduling</span>
-                            <span class="tech-tag">KV Cache Pressure</span>
+                            <span class="tech-tag">Preemption Bookkeeping</span>
+                            <span class="tech-tag">KV Cache</span>
+                            <span class="tech-tag">PyTest Regression</span>
                         </div>
                         <ul class="bullet-list">
                             <li>
-                                <strong>PRIORITY Scheduler Preemption & Request Skipping Fix:</strong> Resolved a critical logic bug in <code>SchedulingPolicy.PRIORITY</code> preemption path where preempted requests appearing prior to the iteration cursor corrupted <code>req_index</code> bookkeeping, causing subsequent requests to be silently skipped for the iteration step; implemented comprehensive regression test in <code>tests/v1/core/test_priority_preemption_bug.py</code> simulating request skipping under sustained KV pressure.
-                                <a href="https://github.com/vllm-project/vllm/pull/49206" target="_blank" class="highlight">[PR #49206]</a>
+                                <strong>PRIORITY Scheduling & Preemption Fix:</strong> Resolved a logic bug in <code>SchedulingPolicy.PRIORITY</code> preemption path where request index bookkeeping (<code>req_index</code>) was not adjusted when preempting requests earlier in <code>self.running</code>, causing subsequent requests to be silently skipped during KV cache pressure. Added comprehensive regression tests in <code>tests/v1/core/test_priority_preemption_bug.py</code>. 
+                                <a href="https://github.com/vllm-project/vllm/pull/49206" target="_blank" class="highlight">[PR #49206 — Approved & Auto-Merge]</a>
                             </li>
                         </ul>
                     </div>
@@ -346,7 +348,7 @@
                 <ul class="bullet-list">
                     <li>
                         <strong>Open Source Software Engineer (2024 — Present):</strong> vLLM, PyTorch, Automattic Jetpack, Canonical Snapcraft, CP Editor. 
-                        Engineered core fixes in vLLM priority scheduler preemption, PyTorch FX (type annotations, floating point exception crash), authored 9 PRs into Jetpack microservices (block editor transformation crash, accessibility, REST API OpenAPI schema), patched Canonical Snapcraft linter engines, and automated LLM localization pipelines in CP Editor.
+                        Engineered core LLM inference scheduling fixes in vLLM (PRIORITY preemption request skipping), C++ & Python fixes in PyTorch FX (type annotations, floating point exception crash), authored 9 PRs into Jetpack microservices (block editor transformation crash, accessibility, REST API OpenAPI schema), patched Canonical Snapcraft linter engines, and automated LLM localization pipelines in CP Editor.
                     </li>
                     <br>
                     <li>
@@ -470,6 +472,7 @@
                     <div class="skill-tags">
                         <span class="tag">Distributed Systems</span>
                         <span class="tag">Multithreading</span>
+                        <span class="tag">vLLM Engine</span>
                         <span class="tag">React.js</span>
                         <span class="tag">Node.js / Express</span>
                         <span class="tag">Laravel 13</span>
