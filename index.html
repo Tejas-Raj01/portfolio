@@ -137,7 +137,7 @@
                 <div class="metric-card glass-card">
                     <div class="metric-number" data-target="10">10+</div>
                     <div class="metric-label">Merged Open Source PRs</div>
-                    <div class="metric-sub">PyTorch, Jetpack, Snapcraft, CP Editor</div>
+                    <div class="metric-sub">vLLM, PyTorch, Jetpack, Snapcraft</div>
                 </div>
 
                 <div class="metric-card glass-card">
@@ -166,15 +166,37 @@
             
             <div class="tabs-container">
                 <div class="tabs-sidebar">
-                    <button class="tab-btn active" data-target="pytorch"><i class="fas fa-fire"></i> PyTorch</button>
+                    <button class="tab-btn active" data-target="vllm"><i class="fas fa-microchip"></i> vLLM</button>
+                    <button class="tab-btn" data-target="pytorch"><i class="fas fa-fire"></i> PyTorch</button>
                     <button class="tab-btn" data-target="automattic"><i class="fab fa-wordpress"></i> Automattic</button>
                     <button class="tab-btn" data-target="canonical"><i class="fab fa-ubuntu"></i> Canonical</button>
                     <button class="tab-btn" data-target="cpeditor"><i class="fas fa-laptop-code"></i> CP Editor</button>
                 </div>
                 
                 <div class="tabs-content">
+                    <!-- vLLM Tab -->
+                    <div id="vllm" class="tab-pane active glass-card">
+                        <div class="card-header">
+                            <h3>vllm-project / vllm <a href="https://github.com/vllm-project/vllm" target="_blank" class="github-link"><i class="fab fa-github"></i></a></h3>
+                            <span class="badge date-badge">Upstream Contributor • LLM Serving Engine • Python & C++</span>
+                        </div>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">C++</span>
+                            <span class="tech-tag">LLM Serving</span>
+                            <span class="tech-tag">PRIORITY Scheduling</span>
+                            <span class="tech-tag">KV Cache Pressure</span>
+                        </div>
+                        <ul class="bullet-list">
+                            <li>
+                                <strong>PRIORITY Scheduler Preemption & Request Skipping Fix:</strong> Resolved a critical logic bug in <code>SchedulingPolicy.PRIORITY</code> preemption path where preempted requests appearing prior to the iteration cursor corrupted <code>req_index</code> bookkeeping, causing subsequent requests to be silently skipped for the iteration step; implemented comprehensive regression test in <code>tests/v1/core/test_priority_preemption_bug.py</code> simulating request skipping under sustained KV pressure.
+                                <a href="https://github.com/vllm-project/vllm/pull/49206" target="_blank" class="highlight">[PR #49206]</a>
+                            </li>
+                        </ul>
+                    </div>
+
                     <!-- PyTorch Tab -->
-                    <div id="pytorch" class="tab-pane active glass-card">
+                    <div id="pytorch" class="tab-pane glass-card">
                         <div class="card-header">
                             <h3>pytorch / pytorch <a href="https://github.com/pytorch/pytorch" target="_blank" class="github-link"><i class="fab fa-github"></i></a></h3>
                             <span class="badge date-badge">Upstream Contributor • Python & C++ Engine</span>
@@ -323,8 +345,8 @@
             <div class="card glass-card">
                 <ul class="bullet-list">
                     <li>
-                        <strong>Open Source Software Engineer (2024 — Present):</strong> PyTorch, Automattic Jetpack, Canonical Snapcraft, CP Editor. 
-                        Engineered core C++ & Python fixes in PyTorch FX (type annotations, floating point exception crash), authored 9 PRs into Jetpack microservices (block editor transformation crash, accessibility, REST API OpenAPI schema), patched Canonical Snapcraft linter engines, and automated LLM localization pipelines in CP Editor.
+                        <strong>Open Source Software Engineer (2024 — Present):</strong> vLLM, PyTorch, Automattic Jetpack, Canonical Snapcraft, CP Editor. 
+                        Engineered core fixes in vLLM priority scheduler preemption, PyTorch FX (type annotations, floating point exception crash), authored 9 PRs into Jetpack microservices (block editor transformation crash, accessibility, REST API OpenAPI schema), patched Canonical Snapcraft linter engines, and automated LLM localization pipelines in CP Editor.
                     </li>
                     <br>
                     <li>
@@ -490,7 +512,7 @@
                     <a href="https://github.com/Tejas-Raj01" target="_blank" class="highlight">[github.com/Tejas-Raj01]</a>
                 </div>
                 <div class="gh-body">
-                    <p>Primary Contributor to <strong>PyTorch</strong>, <strong>Automattic Jetpack</strong>, <strong>Canonical Snapcraft</strong>, and <strong>CP Editor</strong>.</p>
+                    <p>Primary Contributor to <strong>vLLM</strong>, <strong>PyTorch</strong>, <strong>Automattic Jetpack</strong>, <strong>Canonical Snapcraft</strong>, and <strong>CP Editor</strong>.</p>
                     <ul class="bullet-list" style="margin-top: 10px;">
                         <li><strong>Pinned Repo:</strong> <code>distributed-system</code> — Decentralized C++ Key-Value Database</li>
                         <li><strong>Pinned Repo:</strong> <code>ai-job-platform</code> — Laravel 13 &amp; React 19 AI Resume Engine</li>
@@ -505,7 +527,7 @@
             <div class="card glass-card">
                 <h3>Recruiter Verification Checklist:</h3>
                 <ul class="bullet-list" style="margin-top: 10px; margin-bottom: 20px;">
-                    <li>✓ Open Source Contributor (PyTorch, Jetpack, Snapcraft, CP Editor)</li>
+                    <li>✓ Open Source Contributor (vLLM, PyTorch, Jetpack, Snapcraft, CP Editor)</li>
                     <li>✓ CodeChef 1804 (4★)</li>
                     <li>✓ C++ Systems & Multi-threaded Engine Developer</li>
                     <li>✓ Laravel 13 &amp; React 19 Full-Stack Architect</li>
