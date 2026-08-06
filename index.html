@@ -208,14 +208,9 @@
                         </div>
                         <ul class="bullet-list">
                             <li>
-                                <strong>PRIORITY Scheduling & Preemption Fix:</strong> Resolved a logic bug in
-                                <code>SchedulingPolicy.PRIORITY</code> preemption path where request index bookkeeping
-                                (<code>req_index</code>) was not adjusted when preempting requests earlier in
-                                <code>self.running</code>, causing subsequent requests to be silently skipped during KV
-                                cache pressure. Added comprehensive regression tests in
-                                <code>tests/v1/core/test_priority_preemption_bug.py</code>.
+                                <strong>PRIORITY Scheduling Bug:</strong> Fixed request index misalignment during preemption in <code>SchedulingPolicy.PRIORITY</code> to prevent silent request skipping under KV cache pressure; added regression tests.
                                 <a href="https://github.com/vllm-project/vllm/pull/49206" target="_blank"
-                                    class="highlight">[Merged PR #49206]</a>
+                                    class="highlight">[PR #49206]</a>
                             </li>
                         </ul>
                     </div>
