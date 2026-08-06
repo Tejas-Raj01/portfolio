@@ -208,9 +208,11 @@
                         </div>
                         <ul class="bullet-list">
                             <li>
-                                <strong>PRIORITY Scheduling Bug:</strong> Fixed request index misalignment during preemption in <code>SchedulingPolicy.PRIORITY</code> to prevent silent request skipping under KV cache pressure; added regression tests.
+                                <strong>PRIORITY Scheduling Bug:</strong> Fixed request index misalignment during
+                                preemption in <code>SchedulingPolicy.PRIORITY</code> to prevent silent request skipping
+                                under KV cache pressure; added regression tests.
                                 <a href="https://github.com/vllm-project/vllm/pull/49206" target="_blank"
-                                    class="highlight">[PR #49206]</a>
+                                    class="highlight">[Merged PR #49206]</a>
                             </li>
                         </ul>
                     </div>
@@ -476,7 +478,8 @@
                             <li><strong>Concurrency & Reliability:</strong> Engineered a concurrent engine using
                                 <code>std::shared_mutex</code> for multi-threaded read/write synchronization.
                                 Implemented Write-Ahead Logging (WAL) for instant crash recovery and tunable Quorum
-                                Replication (N, W, R).</li>
+                                Replication (N, W, R).
+                            </li>
                             <li><strong>Performance & Benchmarks:</strong> Built a thread-safe storage engine
                                 (<code>std::shared_mutex</code>, O(1) LRU eviction) and a disk-backed Write-Ahead Log
                                 for crash recovery — sustained 33,685 requests/sec at ~2.97ms avg latency under 100
