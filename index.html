@@ -3,23 +3,23 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tejas Raj — AI Engineer | Generative AI &amp; Agent Infrastructure</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>Tejas — AI Engineer</title>
     <meta name="description"
-        content="Tejas Raj is an AI engineer focused on generative AI, agent infrastructure, inference systems, and open-source software. Contributor to PyTorch and vLLM. Exploring OpenClaw.">
+        content="Tejas Raj is an AI Engineer focused on Generative AI, Agent Infrastructure, LLM Inference, and Open Source Software. Contributor to PyTorch and vLLM. Exploring OpenClaw.">
     <meta name="author" content="Tejas Raj">
     <meta name="google-site-verification" content="a9-iU5UiYVAJds2UBEvNfWLYOTJyv6qjf8v8l1L1Zhc">
     <link rel="canonical" href="https://portfolio-liart-eta-34.vercel.app/">
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml"
-        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='16' fill='%23080a0e' stroke='%2300e5ff' stroke-width='6'/><text x='18' y='68' font-family='monospace' font-weight='900' font-size='52' fill='%2300e5ff'>&gt;</text><text x='54' y='68' font-family='monospace' font-weight='900' font-size='52' fill='%23ffffff'>_</text></svg>">
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%2308090d' stroke='%233b82f6' stroke-width='6'/><text x='20' y='68' font-family='sans-serif' font-weight='900' font-size='50' fill='%233b82f6'>T</text><text x='54' y='68' font-family='sans-serif' font-weight='900' font-size='50' fill='%23ffffff'>_</text></svg>">
 
-    <!-- Fonts: Fira Code, Inter, Outfit -->
+    <!-- Google Fonts: Inter & Outfit -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@600;700;800&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap"
         rel="stylesheet">
 
     <!-- FontAwesome 6 -->
@@ -27,14 +27,6 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
-
-    <!-- Open Graph Meta -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://portfolio-liart-eta-34.vercel.app/">
-    <meta property="og:title" content="Tejas Raj — AI Engineer | Generative AI &amp; Agent Infrastructure">
-    <meta property="og:description"
-        content="Tejas Raj is an AI engineer focused on generative AI, agent infrastructure, inference systems, and open-source software. Contributor to PyTorch and vLLM.">
-    <meta property="og:image" content="https://portfolio-liart-eta-34.vercel.app/og-image.png">
 
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
@@ -61,400 +53,122 @@
     </script>
 </head>
 
-<body>
-    <!-- Reading Progress Bar -->
-    <div id="progress-bar" class="progress-bar"></div>
-
+<body class="ai-native-body">
     <!-- Toast Notification Container -->
     <div id="toast-container" class="toast-container"></div>
 
-    <!-- Header Navbar -->
-    <header class="navbar" id="navbar">
-        <div class="nav-content">
-            <a href="#hero" class="logo">
-                <span class="logo-name">TEJAS</span>
+    <!-- MINIMAL TOP HEADER NAV -->
+    <header class="top-nav">
+        <div class="nav-container">
+            <a href="/" class="brand-logo">
+                <span class="logo-text">TEJAS</span>
             </a>
-            <nav class="nav-links" id="nav-links" aria-label="Main Navigation">
-                <a href="#work" class="nav-item">Work</a>
-                <a href="#open-source" class="nav-item">Open Source</a>
-                <a href="#agents" class="nav-item">Agents</a>
-                <a href="#systems" class="nav-item">Systems</a>
-                <a href="#about" class="nav-item">About</a>
-                <a href="#contact" class="nav-item">Contact</a>
-            </nav>
-            <div class="nav-actions">
-                <button class="nav-ext-link btn-link open-resume-modal">Resume <i class="fas fa-file-pdf"></i></button>
-                <button id="cmd-palette-btn" class="cmd-btn" aria-label="Open Command Palette (Ctrl+K)">
-                    <i class="fas fa-terminal"></i> <span class="cmd-key">⌘K</span>
+
+            <div class="nav-right-actions">
+                <a href="https://github.com/Tejas-Raj01" target="_blank" class="nav-link-btn" title="GitHub">
+                    <i class="fab fa-github"></i> <span class="desktop-only">GitHub</span>
+                </a>
+                <button class="nav-link-btn open-resume-modal" title="Resume PDF">
+                    <i class="fas fa-file-pdf"></i> <span class="desktop-only">Resume</span>
+                </button>
+                <a href="https://www.linkedin.com/in/tejas-raj-09aa4a236/" target="_blank" class="nav-link-btn" title="LinkedIn">
+                    <i class="fab fa-linkedin"></i> <span class="desktop-only">LinkedIn</span>
+                </a>
+                <button class="nav-link-btn copy-email-btn" data-email="rajtejas.xyz@gmail.com" title="Email Tejas">
+                    <i class="fas fa-envelope"></i> <span class="desktop-only">Contact</span>
                 </button>
             </div>
         </div>
     </header>
 
-    <main id="main-content">
-        <!-- 1. CENTERED HERO SECTION & CHAT GATEWAY -->
-        <section id="hero" class="hero-centered-section">
-            <div class="hero-header-group">
-                <h1 class="hero-greeting">Hey, I'm Tejas.</h1>
-                <h2 class="hero-title">AI ENGINEER</h2>
-                <h3 class="hero-focus">Generative AI · Agent Infrastructure · Open Source</h3>
+    <!-- AI CONVERSATIONAL PORTFOLIO HOMEPAGE -->
+    <main class="conversational-viewport">
+        <div class="centered-hero-wrapper">
+
+            <!-- 1. IDENTITY HEADER -->
+            <div class="identity-header">
+                <h1 class="hero-name">TEJAS 👋</h1>
+                <h2 class="hero-role">AI ENGINEER</h2>
+                <p class="hero-tagline">Generative AI &nbsp;·&nbsp; Agent Infrastructure &nbsp;·&nbsp; Open Source</p>
             </div>
 
-            <!-- CENTERED AI AGENT VISUAL CORE -->
-            <div class="agent-visual-centerpiece">
-                <div class="agent-core-ring outer-ring"></div>
-                <div class="agent-core-ring inner-ring"></div>
-                <div class="agent-core-center">
-                    <i class="fas fa-brain agent-node-icon"></i>
+            <!-- 2. AI AVATAR CORE -->
+            <div class="avatar-container" id="ai-avatar-container" title="Tejas's AI Assistant Visual">
+                <div class="avatar-ring outer-ring"></div>
+                <div class="avatar-ring middle-ring"></div>
+                <div class="avatar-ring inner-ring"></div>
+                <div class="avatar-visual-core">
+                    <svg viewBox="0 0 100 100" class="avatar-svg" aria-hidden="true">
+                        <defs>
+                            <linearGradient id="avatarGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#3b82f6" />
+                                <stop offset="50%" stop-color="#8b5cf6" />
+                                <stop offset="100%" stop-color="#10b981" />
+                            </linearGradient>
+                        </defs>
+                        <!-- Glowing AI Core Graphic -->
+                        <circle cx="50" cy="50" r="38" fill="none" stroke="url(#avatarGlow)" stroke-width="2.5" class="core-circle" />
+                        <polygon points="50,22 74,36 74,64 50,78 26,64 26,36" fill="none" stroke="url(#avatarGlow)" stroke-width="1.8" class="hex-core" />
+                        <circle cx="50" cy="50" r="10" fill="url(#avatarGlow)" class="center-node" />
+                        <!-- Neural Orbit Nodes -->
+                        <circle cx="50" cy="22" r="3" fill="#3b82f6" />
+                        <circle cx="74" cy="36" r="3" fill="#8b5cf6" />
+                        <circle cx="74" cy="64" r="3" fill="#10b981" />
+                        <circle cx="50" cy="78" r="3" fill="#3b82f6" />
+                        <circle cx="26" cy="64" r="3" fill="#8b5cf6" />
+                        <circle cx="26" cy="36" r="3" fill="#10b981" />
+                    </svg>
+                </div>
+                <div class="avatar-status-badge" id="avatar-status-badge">
+                    <span class="status-dot"></span> Ready
                 </div>
             </div>
 
-            <!-- CHAT GATEWAY INPUT INTERFACE -->
-            <div class="ai-gateway-container">
-                <div class="chat-input-row">
-                    <span class="prompt-symbol">&gt;</span>
-                    <input type="text" id="ai-prompt-input" placeholder="Ask me anything..." autocomplete="off">
-                    <button id="ai-submit-btn" class="chat-send-btn" aria-label="Send Query"><i class="fas fa-paper-plane"></i></button>
-                </div>
-
-                <!-- QUICK CONTEXTUAL NAVIGATION BUTTONS -->
-                <div class="quick-nav-buttons">
-                    <button class="quick-btn" data-query="Work"><i class="fas fa-robot"></i> Work</button>
-                    <button class="quick-btn" data-query="Open Source"><i class="fab fa-github"></i> Open Source</button>
-                    <button class="quick-btn" data-query="Agent Systems"><i class="fas fa-network-wired"></i> Agent Systems</button>
-                    <button class="quick-btn" data-query="Systems"><i class="fas fa-server"></i> Systems</button>
-                    <button class="quick-btn" data-query="About"><i class="fas fa-user"></i> About</button>
-                    <button class="quick-btn" data-query="Contact"><i class="fas fa-envelope"></i> Contact</button>
-                </div>
-
-                <!-- CHAT ROUTING OUTPUT TERMINAL -->
-                <div id="ai-response-terminal" class="ai-response-terminal">
-                    <div class="response-line response-intro">
-                        <span class="ai-prefix">[AI Interface]:</span> Ask anything above or select a navigation button to explore Tejas's work, open-source evidence, agent infrastructure, and systems.
-                    </div>
-                </div>
+            <!-- 3. CHAT PROMPT BAR -->
+            <div class="chat-input-wrapper">
+                <form id="chat-form" class="chat-form-box">
+                    <input type="text" id="chat-prompt-input" placeholder="Ask me anything..." autocomplete="off" spellcheck="false" />
+                    <button type="submit" id="chat-send-btn" aria-label="Send question">
+                        <i class="fas fa-arrow-up"></i>
+                    </button>
+                </form>
             </div>
 
-            <!-- MINIMAL CREDIBILITY STRIP -->
-            <div class="credibility-strip">
-                <span class="cred-label">OPEN SOURCE</span>
-                <span class="cred-items">vLLM &nbsp;·&nbsp; PyTorch &nbsp;·&nbsp; Jetpack &nbsp;·&nbsp; Snapcraft &nbsp;·&nbsp; CP Editor</span>
-            </div>
-        </section>
-
-        <!-- 2. /work — SELECTED AI & SYSTEMS WORK -->
-        <section id="work" class="section">
-            <div class="section-header">
-                <h2 class="section-title">Work</h2>
-                <p class="section-subtitle">Systems and infrastructure I'm building around AI.</p>
+            <!-- 4. QUICK QUESTION BUTTONS -->
+            <div class="quick-questions-container">
+                <button class="quick-chip" data-query="Me"><i class="fas fa-user"></i> Me</button>
+                <button class="quick-chip" data-query="Open Source"><i class="fab fa-github"></i> Open Source</button>
+                <button class="quick-chip" data-query="AI Work"><i class="fas fa-brain"></i> AI Work</button>
+                <button class="quick-chip" data-query="Systems"><i class="fas fa-server"></i> Systems</button>
+                <button class="quick-chip" data-query="Contact"><i class="fas fa-paper-plane"></i> Contact</button>
             </div>
 
-            <div class="work-cards-grid">
-                <!-- 01 — vLLM -->
-                <article class="work-card">
-                    <div class="card-title-row">
-                        <span class="card-num">01</span>
-                        <div class="title-meta">
-                            <h3 class="card-name">vLLM</h3>
-                            <span class="card-sub">Open-source LLM inference infrastructure</span>
-                        </div>
-                        <span class="badge badge-ai">LLM Inference</span>
+            <!-- 5. CONVERSATIONAL STREAM CONTAINER -->
+            <div id="conversation-stream" class="conversation-stream">
+                <!-- Welcome Line -->
+                <div class="chat-bubble ai-bubble welcome-bubble">
+                    <div class="bubble-header">
+                        <span class="badge-ai">TEJAS AI</span>
                     </div>
-                    <p class="card-desc">
-                        Worked inside an open-source LLM inference codebase and fixed request index preemption misalignment in <code>SchedulingPolicy.PRIORITY</code> under KV cache memory pressure.
-                    </p>
-                    <div class="card-footer">
-                        <div class="card-tags">
-                            <span class="tag tag-ai">Python</span>
-                            <span class="tag tag-ai">PyTorch</span>
-                            <span class="tag tag-ai">LLM Inference</span>
-                        </div>
-                        <a href="https://github.com/vllm-project/vllm/pull/49206" target="_blank" class="action-btn">View PR #49206 <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </article>
-
-                <!-- 02 — PyTorch -->
-                <article class="work-card">
-                    <div class="card-title-row">
-                        <span class="card-num">02</span>
-                        <div class="title-meta">
-                            <h3 class="card-name">PyTorch</h3>
-                            <span class="card-sub">Core open-source ML framework</span>
-                        </div>
-                        <span class="badge badge-ai">ML Framework</span>
-                    </div>
-                    <p class="card-desc">
-                        Fixed FX operator schema return type annotations (PR #189142) and resolved C++ sparse compressed tensor floating-point division-by-zero crashes (PR #190191).
-                    </p>
-                    <div class="card-footer">
-                        <div class="card-tags">
-                            <span class="tag tag-ai">C++</span>
-                            <span class="tag tag-ai">Python</span>
-                            <span class="tag">FX Graph Tracer</span>
-                        </div>
-                        <a href="https://github.com/pytorch/pytorch/pull/189142" target="_blank" class="action-btn">View PRs <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </article>
-
-                <!-- 03 — Tejas-DB -->
-                <article class="work-card">
-                    <div class="card-title-row">
-                        <span class="card-num">03</span>
-                        <div class="title-meta">
-                            <h3 class="card-name">Tejas-DB</h3>
-                            <span class="card-sub">Distributed key-value infrastructure built in C++</span>
-                        </div>
-                        <span class="badge badge-systems">Systems Foundation</span>
-                    </div>
-                    <p class="card-desc">
-                        A systems project exploring distributed storage, concurrency, and performance — the foundation behind my interest in AI infrastructure.
-                    </p>
-                    <div class="bench-metrics-row">
-                        <span class="bench-badge"><strong>33,685</strong> req/s</span>
-                        <span class="bench-badge"><strong>~2.97 ms</strong> avg latency</span>
-                        <span class="bench-badge"><strong>100</strong> concurrent threads</span>
-                    </div>
-                    <div class="card-footer">
-                        <div class="card-tags">
-                            <span class="tag tag-systems">C++17</span>
-                            <span class="tag tag-systems">Distributed Systems</span>
-                            <span class="tag">WAL Engine</span>
-                        </div>
-                        <a href="https://github.com/Tejas-Raj01/distributed-system" target="_blank" class="action-btn">View Project <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </article>
-            </div>
-        </section>
-
-        <!-- 3. /open-source — OPEN SOURCE ACTIVITY STREAM -->
-        <section id="open-source" class="section">
-            <div class="section-header">
-                <h2 class="section-title">Open Source</h2>
-                <p class="section-subtitle">I prefer learning systems by working inside the codebases that build them.</p>
-            </div>
-
-            <div class="oss-activity-stream">
-                <div class="stream-year-header">2026</div>
-
-                <div class="stream-item">
-                    <div class="stream-item-header">
-                        <strong>vLLM</strong>
-                        <span class="badge badge-ai">LLM Inference Infrastructure</span>
-                    </div>
-                    <p class="stream-desc">Fixed request queue preemption re-indexing under KV cache memory pressure.</p>
-                    <div class="stream-footer">
-                        <span class="stream-tech">Python · PyTorch · AI Infrastructure</span>
-                        <a href="https://github.com/vllm-project/vllm/pull/49206" target="_blank" class="cred-link">View PR #49206 <i class="fas fa-arrow-up-right-from-square"></i></a>
-                    </div>
-                </div>
-
-                <div class="stream-item">
-                    <div class="stream-item-header">
-                        <strong>PyTorch</strong>
-                        <span class="badge badge-ai">Core ML Infrastructure</span>
-                    </div>
-                    <p class="stream-desc">2 merged contributions addressing FX tracer return schemas &amp; sparse tensor division-by-zero.</p>
-                    <div class="stream-footer">
-                        <span class="stream-tech">C++ · Python · Testing</span>
-                        <a href="https://github.com/pytorch/pytorch/pull/189142" target="_blank" class="cred-link">View PRs <i class="fas fa-arrow-up-right-from-square"></i></a>
-                    </div>
-                </div>
-
-                <div class="stream-item">
-                    <div class="stream-item-header">
-                        <strong>Automattic Jetpack</strong>
-                        <span class="badge badge-secondary">9 Merged Contributions</span>
-                    </div>
-                    <p class="stream-desc">Multiple merged PRs across block editor stability, REST API schemas, and accessibility.</p>
-                    <div class="stream-footer">
-                        <span class="stream-tech">TypeScript · REST APIs</span>
-                        <a href="https://github.com/Automattic/jetpack/pulls?q=is%3Apr+author%3ATejas-Raj01" target="_blank" class="cred-link">View Work <i class="fas fa-arrow-up-right-from-square"></i></a>
-                    </div>
-                </div>
-
-                <div class="stream-item">
-                    <div class="stream-item-header">
-                        <strong>Canonical Snapcraft</strong>
-                        <span class="badge badge-secondary">Linux Tooling</span>
-                    </div>
-                    <p class="stream-desc">Dynamic build base linter resolution across package build pipelines.</p>
-                    <div class="stream-footer">
-                        <span class="stream-tech">Python · CLI Tooling</span>
-                        <a href="https://github.com/canonical/snapcraft/pull/6272" target="_blank" class="cred-link">View Work <i class="fas fa-arrow-up-right-from-square"></i></a>
-                    </div>
-                </div>
-
-                <div class="stream-item">
-                    <div class="stream-item-header">
-                        <strong>CP Editor</strong>
-                        <span class="badge badge-secondary">Developer Tooling</span>
-                    </div>
-                    <p class="stream-desc">C++ Qt desktop software controls &amp; automated translation pipeline.</p>
-                    <div class="stream-footer">
-                        <span class="stream-tech">C++ · Qt</span>
-                        <a href="https://github.com/cpeditor/cpeditor/pull/1501" target="_blank" class="cred-link">View Work <i class="fas fa-arrow-up-right-from-square"></i></a>
+                    <div class="bubble-body">
+                        Welcome to my portfolio! Ask me anything about my <strong>open-source contributions</strong>, <strong>AI &amp; inference work</strong>, or <strong>systems engineering</strong>.
                     </div>
                 </div>
             </div>
 
-            <div class="cta-center-row">
-                <a href="/opensource.html" class="btn btn-secondary"><i class="fas fa-code-pull-request"></i> Explore Detailed /open-source Page</a>
-            </div>
-        </section>
-
-        <!-- 4. /agents — AGENT INFRASTRUCTURE & OPENCLAW -->
-        <section id="agents" class="section">
-            <div class="section-header">
-                <h2 class="section-title">Agent Infrastructure</h2>
-                <p class="section-subtitle">Building toward systems where models can reason, use tools, remember context, and act.</p>
-            </div>
-
-            <!-- ELEGANT AGENT SYSTEM DIAGRAM -->
-            <div class="agent-architecture-diagram">
-                <div class="diagram-title"><i class="fas fa-diagram-project ai-accent-icon"></i> AGENT INFRASTRUCTURE SYSTEM MODEL</div>
-                
-                <div class="diagram-flow">
-                    <div class="diag-node node-model">MODEL</div>
-                    <div class="diag-arrow">↓</div>
-                    <div class="diag-node node-agent">AGENT RUNTIME</div>
-                    
-                    <div class="diag-branches">
-                        <div class="diag-branch-node">TOOLS &amp; SKILLS</div>
-                        <div class="diag-branch-node">SESSIONS &amp; MEMORY</div>
-                        <div class="diag-branch-node">PLANNING &amp; ROUTING</div>
-                    </div>
-
-                    <div class="diag-arrow">↓</div>
-                    <div class="diag-node node-execution">EXECUTION GATEWAY</div>
-                    <div class="diag-arrow">↓</div>
-                    <div class="diag-node node-result">VERIFIED RESULT</div>
-                </div>
-            </div>
-
-            <!-- OPENCLAW FOCUS BOX -->
-            <div class="openclaw-focus-box" style="margin-top: 24px;">
-                <div class="focus-box-header">
-                    <h3>OPEN SOURCE FOCUS: OpenClaw</h3>
-                    <span class="badge badge-ai">Agent Infrastructure</span>
-                </div>
-                <p class="focus-desc">
-                    Exploring and contributing toward open-source agent infrastructure (<a href="https://openclaw.ai/" target="_blank" class="highlight">openclaw.ai</a> &amp; <a href="https://docs.openclaw.ai/" target="_blank" class="highlight">docs.openclaw.ai</a>). Focused on agent runtimes, tool schemas, memory retrieval, and multi-agent routing.
-                </p>
-                <div class="agent-modules-list">
-                    <code>Agent Runtime · Tools · Skills · Memory · Sessions · Multi-Agent Systems</code>
-                </div>
-            </div>
-        </section>
-
-        <!-- 5. /systems — SYSTEMS ENGINEERING -->
-        <section id="systems" class="section">
-            <div class="section-header">
-                <h2 class="section-title">Systems</h2>
-                <p class="section-subtitle">The engineering foundation behind my AI infrastructure work.</p>
-            </div>
-
-            <div class="systems-concepts-grid">
-                <div class="sys-concept-card">
-                    <i class="fas fa-terminal concept-icon"></i>
-                    <strong>C++ &amp; Performance</strong>
-                    <span>Memory management, lock granularity, and hardware concurrency</span>
-                </div>
-
-                <div class="sys-concept-card">
-                    <i class="fas fa-network-wired concept-icon"></i>
-                    <strong>Distributed Storage</strong>
-                    <span>Write-Ahead Logging (WAL), Gossip cluster protocol, and Quorum consensus</span>
-                </div>
-
-                <div class="sys-concept-card">
-                    <i class="fas fa-microchip concept-icon"></i>
-                    <strong>LLM Serving Systems</strong>
-                    <span>Paged KV cache management, priority request scheduling, and preemption</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- 6. /about — SHORT PROFESSIONAL PROFILE -->
-        <section id="about" class="section">
-            <div class="section-header">
-                <h2 class="section-title">About</h2>
-            </div>
-
-            <div class="about-profile-box">
-                <p class="profile-paragraph">
-                    I build systems around AI.
-                </p>
-                <p class="profile-paragraph">
-                    My interests sit at the intersection of generative AI, agent infrastructure, distributed systems, and open source.
-                </p>
-                <p class="profile-paragraph">
-                    I enjoy working inside complex codebases, understanding how they work, and contributing improvements upstream.
-                </p>
-
-                <div class="current-focus-chips">
-                    <span class="focus-chip-label">CURRENT FOCUS:</span>
-                    <span class="tag tag-ai">Generative AI</span>
-                    <span class="tag tag-ai">Agent Infrastructure</span>
-                    <span class="tag tag-ai">Open Source</span>
-                    <span class="tag tag-systems">Systems</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- 7. /contact — MINIMAL CONTACT -->
-        <section id="contact" class="section">
-            <div class="section-header">
-                <h2 class="section-title">Let's build something.</h2>
-            </div>
-
-            <div class="contact-actions-row">
-                <button class="btn btn-primary copy-email-btn" data-email="rajtejas.xyz@gmail.com">
-                    <i class="fas fa-copy"></i> rajtejas.xyz@gmail.com
-                </button>
-                <a href="https://github.com/Tejas-Raj01" target="_blank" class="btn btn-secondary"><i class="fab fa-github"></i> GitHub</a>
-                <a href="https://www.linkedin.com/in/tejas-raj-09aa4a236/" target="_blank" class="btn btn-secondary"><i class="fab fa-linkedin"></i> LinkedIn</a>
-                <button class="btn btn-secondary open-resume-modal"><i class="fas fa-file-pdf"></i> Resume PDF</button>
-            </div>
-        </section>
+        </div>
     </main>
 
-    <!-- Command Palette Modal (Ctrl+K / ⌘K) -->
-    <div id="cmd-modal" class="modal-overlay" aria-hidden="true">
-        <div class="cmd-modal-card">
-            <div class="cmd-header">
-                <span class="prompt-text">tejas@ai-infra:~$</span>
-                <input type="text" id="cmd-input" placeholder="Search / Navigate e.g. /work, /open-source, /agents, /systems..." autocomplete="off">
-                <button id="cmd-close" class="cmd-close-btn">&times;</button>
-            </div>
-            <div class="cmd-results" id="cmd-results">
-                <div class="cmd-group-title">Navigation Routes</div>
-                <button class="cmd-item" data-action="navigate" data-target="#work">→ Work (/work)</button>
-                <button class="cmd-item" data-action="navigate" data-target="#open-source">→ Open Source (/open-source)</button>
-                <button class="cmd-item" data-action="navigate" data-target="#agents">→ Agent Infrastructure (/agents)</button>
-                <button class="cmd-item" data-action="navigate" data-target="#systems">→ Systems (/systems)</button>
-                <button class="cmd-item" data-action="navigate" data-target="#about">→ About (/about)</button>
-                <button class="cmd-item" data-action="navigate" data-target="#contact">→ Contact (/contact)</button>
-
-                <div class="cmd-group-title">Actions</div>
-                <button class="cmd-item" data-action="external" data-target="/opensource.html">View Detailed /opensource Page</button>
-                <button class="cmd-item" data-action="copy-email">Copy Email Address (rajtejas.xyz@gmail.com)</button>
-                <button class="cmd-item" data-action="open-resume">View Resume Preview</button>
-                <button class="cmd-item" data-action="external" data-target="https://github.com/Tejas-Raj01">GitHub Profile</button>
-                <button class="cmd-item" data-action="external" data-target="https://www.linkedin.com/in/tejas-raj-09aa4a236/">LinkedIn Profile</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Resume Viewer Modal -->
+    <!-- RESUME MODAL -->
     <div id="resume-modal" class="modal-overlay" aria-hidden="true">
         <div class="resume-modal-card">
             <div class="resume-modal-header">
-                <h3>Tejas Raj — Resume Preview</h3>
+                <h3>Tejas Raj — Resume</h3>
                 <div class="resume-modal-actions">
-                    <a href="/resume.pdf" download="Tejas_Raj_Resume.pdf" target="_blank" class="btn btn-primary-sm">
+                    <a href="/resume.pdf" download="Tejas_Raj_Resume.pdf" target="_blank" class="btn-download">
                         <i class="fas fa-download"></i> Download PDF
                     </a>
-                    <button id="resume-close" class="cmd-close-btn">&times;</button>
+                    <button id="resume-close" class="btn-modal-close">&times;</button>
                 </div>
             </div>
             <div class="resume-modal-body">
@@ -463,12 +177,7 @@
         </div>
     </div>
 
-    <footer>
-        <div class="footer-content">
-            <p>Tejas Raj &copy; 2026. AI Engineer — Generative AI &amp; Agent Infrastructure.</p>
-        </div>
-    </footer>
-
+    <!-- MAIN MODULE SCRIPT -->
     <script type="module" src="/main.js"></script>
 </body>
 

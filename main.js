@@ -1,405 +1,309 @@
-// Tejas Raj Portfolio — AI Engineer & Agent Infrastructure Router Logic
+// Tejas Raj — AI-Native Conversational Portfolio UI Controller
+
+import { PortfolioChatEngine } from './src/chat-engine.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-    initAICommandGateway();
-    initScrollSpyAndProgress();
+    const chatEngine = new PortfolioChatEngine();
+
+    const chatForm = document.getElementById('chat-form');
+    const inputField = document.getElementById('chat-prompt-input');
+    const streamContainer = document.getElementById('conversation-stream');
+    const quickChips = document.querySelectorAll('.quick-chip');
+    const avatarContainer = document.getElementById('ai-avatar-container');
+    const avatarBadge = document.getElementById('avatar-status-badge');
+
     initCopyEmailButtons();
-    initCommandPalette();
     initResumeModal();
-});
 
-// STRUCTURED PORTFOLIO DATA STORE
-const portfolioData = {
-    identity: {
-        name: "Tejas Raj",
-        role: "AI Engineer — Generative AI · Agent Infrastructure · Open Source",
-        statement: "I build and contribute to the infrastructure that makes AI systems useful.",
-        email: "rajtejas.xyz@gmail.com",
-        github: "https://github.com/Tejas-Raj01",
-        linkedin: "https://www.linkedin.com/in/tejas-raj-09aa4a236/"
-    },
-    work: [
-        {
-            name: "vLLM",
-            category: "Open-source LLM inference infrastructure",
-            summary: "Fixed request index preemption misalignment in SchedulingPolicy.PRIORITY under KV cache memory pressure.",
-            tags: ["Python", "PyTorch", "LLM Inference"],
-            link: "https://github.com/vllm-project/vllm/pull/49206"
-        },
-        {
-            name: "PyTorch",
-            category: "Core open-source ML framework",
-            summary: "Fixed FX operator return schema annotations (PR #189142) and resolved C++ sparse tensor division-by-zero crash (PR #190191).",
-            tags: ["C++", "Python", "FX Tracer"],
-            link: "https://github.com/pytorch/pytorch/pull/189142"
-        },
-        {
-            name: "Tejas-DB",
-            category: "Distributed C++ infrastructure foundation",
-            summary: "Decentralized P2P key-value store featuring std::shared_mutex locking, WAL persistence, Gossip protocol, and Quorum consensus.",
-            metrics: "33,685 req/s · ~2.97ms latency · 100 threads",
-            tags: ["C++17", "Distributed Systems", "WAL"],
-            link: "https://github.com/Tejas-Raj01/distributed-system"
-        }
-    ]
-};
-
-// 1. AI CHAT GATEWAY & ROUTER
-function initAICommandGateway() {
-    const input = document.getElementById('ai-prompt-input');
-    const submitBtn = document.getElementById('ai-submit-btn');
-    const terminal = document.getElementById('ai-response-terminal');
-    const quickBtns = document.querySelectorAll('.quick-btn');
-
-    if (!input || !terminal) return;
-
-    function routeQuery(queryText) {
-        if (!queryText) return;
-        const q = queryText.toLowerCase().trim();
-
-        // Append User Prompt Line
-        appendLine(`<span class="user-prefix">USER &gt;</span> ${escapeHtml(queryText)}`);
-
-        // Router Intent Engine
-        if (q.includes('work') || q.includes('project') || q.includes('built')) {
-            renderWorkRoute();
-        } else if (q.includes('open source') || q.includes('oss') || q.includes('pr')) {
-            renderOpenSourceRoute();
-        } else if (q.includes('agent') || q.includes('openclaw')) {
-            renderAgentsRoute();
-        } else if (q.includes('system') || q.includes('c++') || q.includes('tejas-db')) {
-            renderSystemsRoute();
-        } else if (q.includes('about') || q.includes('who') || q.includes('bio')) {
-            renderAboutRoute();
-        } else if (q.includes('contact') || q.includes('email') || q.includes('reach')) {
-            renderContactRoute();
-        } else {
-            renderFallbackRoute(queryText);
-        }
-
-        input.value = '';
-        terminal.scrollTop = terminal.scrollHeight;
-    }
-
-    if (submitBtn) {
-        submitBtn.addEventListener('click', () => routeQuery(input.value));
-    }
-
-    input.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') {
+    // 1. Submit Question Event
+    if (chatForm && inputField) {
+        chatForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            routeQuery(input.value);
-        }
-    });
-
-    quickBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const query = btn.getAttribute('data-query');
-            routeQuery(query);
-        });
-    });
-
-    function appendLine(htmlContent) {
-        const line = document.createElement('div');
-        line.className = 'response-line';
-        line.innerHTML = htmlContent;
-        terminal.appendChild(line);
-    }
-
-    function renderWorkRoute() {
-        let html = `<span class="ai-prefix">[AI Router]:</span> <strong>Opening /work section...</strong><br><br>`;
-        portfolioData.work.forEach((w, idx) => {
-            html += `<strong>0${idx + 1} — ${w.name}</strong> (${w.category})<br>`;
-            html += `<em>${w.summary}</em><br>`;
-            html += `<a href="${w.link}" target="_blank" class="action-btn" style="font-size:12px">View evidence →</a><br><br>`;
-        });
-        appendLine(html);
-        scrollToSection('#work');
-    }
-
-    function renderOpenSourceRoute() {
-        let html = `<span class="ai-prefix">[AI Router]:</span> <strong>Routing to /open-source timeline...</strong><br>`;
-        html += `• <strong>vLLM:</strong> Request preemption queue re-indexing (<a href="https://github.com/vllm-project/vllm/pull/49206" target="_blank" class="highlight">PR #49206</a>)<br>`;
-        html += `• <strong>PyTorch:</strong> FX operator return schemas &amp; C++ sparse div-by-zero (<a href="https://github.com/pytorch/pytorch/pull/189142" target="_blank" class="highlight">PR #189142</a>)<br>`;
-        html += `• <strong>Jetpack, Snapcraft, CP Editor:</strong> Verified merged upstream contributions.<br>`;
-        html += `<a href="/opensource.html" class="action-btn" style="font-size:12px; margin-top:4px; display:inline-block">Explore detailed /opensource page →</a>`;
-        appendLine(html);
-        scrollToSection('#open-source');
-    }
-
-    function renderAgentsRoute() {
-        let html = `<span class="ai-prefix">[AI Router]:</span> <strong>Routing to /agents (Agent Infrastructure)...</strong><br>`;
-        html += `Focused on agent runtimes, tool schemas, memory, and multi-agent routing.<br>`;
-        html += `<span style="color:var(--accent-ai)">Open Source Focus: OpenClaw (openclaw.ai) — Exploring &amp; preparing upstream contributions.</span>`;
-        appendLine(html);
-        scrollToSection('#agents');
-    }
-
-    function renderSystemsRoute() {
-        let html = `<span class="ai-prefix">[AI Router]:</span> <strong>Routing to /systems...</strong><br>`;
-        html += `Tejas-DB: Distributed Key-Value Store built in C++17 (33,685 req/s, ~2.97ms latency, WAL, Gossip, Quorum). Demonstrates the systems foundation behind AI infrastructure work.`;
-        appendLine(html);
-        scrollToSection('#systems');
-    }
-
-    function renderAboutRoute() {
-        let html = `<span class="ai-prefix">[AI Router]:</span> <strong>Routing to /about...</strong><br>`;
-        html += `Tejas Raj — AI Engineer focused on generative AI, agent runtimes, LLM inference serving, and open-source systems.`;
-        appendLine(html);
-        scrollToSection('#about');
-    }
-
-    function renderContactRoute() {
-        let html = `<span class="ai-prefix">[AI Router]:</span> <strong>Routing to /contact...</strong><br>`;
-        html += `Email: <button class="copy-email-btn btn-link highlight" data-email="${portfolioData.identity.email}">${portfolioData.identity.email}</button> · `;
-        html += `<a href="${portfolioData.identity.github}" target="_blank" class="highlight">GitHub</a> · `;
-        html += `<a href="${portfolioData.identity.linkedin}" target="_blank" class="highlight">LinkedIn</a> · `;
-        html += `<button class="btn-link highlight open-resume-modal">Resume PDF</button>`;
-        appendLine(html);
-        scrollToSection('#contact');
-        initCopyEmailButtons();
-        initResumeModal();
-    }
-
-    function renderFallbackRoute(query) {
-        let html = `<span class="ai-prefix">[AI Router]:</span> I parsed "${escapeHtml(query)}". Routing you to Tejas's work...`;
-        appendLine(html);
-        scrollToSection('#work');
-    }
-
-    function scrollToSection(selector) {
-        const sec = document.querySelector(selector);
-        if (sec) {
-            setTimeout(() => sec.scrollIntoView({ behavior: 'smooth' }), 300);
-        }
-    }
-
-    function escapeHtml(text) {
-        return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-    }
-}
-
-// 2. ScrollSpy & Reading Progress Bar
-function initScrollSpyAndProgress() {
-    const progressBar = document.getElementById('progress-bar');
-    const navItems = document.querySelectorAll('.nav-item');
-    const sections = document.querySelectorAll('section[id]');
-
-    window.addEventListener('scroll', () => {
-        const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
-        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        const scrolled = (winScroll / height) * 100;
-        if (progressBar) {
-            progressBar.style.width = `${scrolled}%`;
-        }
-
-        let currentSectionId = '';
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop - 100;
-            const sectionHeight = section.offsetHeight;
-            if (winScroll >= sectionTop && winScroll < sectionTop + sectionHeight) {
-                currentSectionId = section.getAttribute('id');
+            const text = inputField.value.trim();
+            if (text) {
+                handleUserQuery(text);
+                inputField.value = '';
             }
         });
+    }
 
-        if (currentSectionId) {
-            navItems.forEach(item => {
-                item.classList.remove('active');
-                if (item.getAttribute('href') === `#${currentSectionId}`) {
-                    item.classList.add('active');
-                }
-            });
-        }
-    }, { passive: true });
-}
-
-// 3. Copy Email & Toast Notification
-function initCopyEmailButtons() {
-    const copyBtns = document.querySelectorAll('.copy-email-btn');
-    const toastContainer = document.getElementById('toast-container');
-
-    copyBtns.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            const email = btn.getAttribute('data-email') || 'rajtejas.xyz@gmail.com';
-            
-            navigator.clipboard.writeText(email).then(() => {
-                showToast(`[OK] Copied email: ${email}`);
-            }).catch(() => {
-                const tempInput = document.createElement('input');
-                tempInput.value = email;
-                document.body.appendChild(tempInput);
-                tempInput.select();
-                document.execCommand('copy');
-                document.body.removeChild(tempInput);
-                showToast(`[OK] Copied email: ${email}`);
-            });
+    // 2. Quick Question Chips
+    quickChips.forEach(chip => {
+        chip.addEventListener('click', () => {
+            const query = chip.getAttribute('data-query');
+            if (query) {
+                handleUserQuery(query);
+            }
         });
     });
 
-    function showToast(message) {
-        if (!toastContainer) return;
+    // Main Query Execution Pipeline
+    function handleUserQuery(queryText) {
+        if (!streamContainer) return;
+
+        // Render User Query Bubble
+        renderUserBubble(queryText);
+
+        // Set Avatar State to Thinking
+        setAvatarState('thinking', 'Thinking...');
+
+        // Process query with Intent Engine
+        setTimeout(() => {
+            const responseObj = chatEngine.processQuery(queryText);
+
+            // Render AI Response Bubble
+            renderAIResponse(responseObj);
+
+            // Reset Avatar State
+            setAvatarState('ready', 'Ready');
+        }, 350);
+    }
+
+    function renderUserBubble(text) {
+        const bubble = document.createElement('div');
+        bubble.className = 'chat-bubble user-bubble';
+        bubble.innerHTML = `
+            <div class="user-header">YOU</div>
+            <div class="bubble-body">${escapeHtml(text)}</div>
+        `;
+        streamContainer.appendChild(bubble);
+        scrollToBottom();
+    }
+
+    function renderAIResponse(resp) {
+        const bubble = document.createElement('div');
+        bubble.className = 'chat-bubble ai-bubble';
+
+        // Header
+        let html = `
+            <div class="bubble-header">
+                <span class="badge-ai">TEJAS AI</span>
+            </div>
+            <div class="bubble-body" id="streaming-body"></div>
+        `;
+
+        bubble.innerHTML = html;
+        streamContainer.appendChild(bubble);
+
+        const bodyEl = bubble.querySelector('#streaming-body');
+
+        // Streaming text simulation
+        streamText(bodyEl, resp.text, () => {
+
+            // Render Inline Cards if present
+            if (resp.cards && resp.cards.length > 0) {
+                const cardsWrapper = document.createElement('div');
+                cardsWrapper.className = 'inline-cards-wrapper';
+
+                resp.cards.forEach(card => {
+                    cardsWrapper.appendChild(buildCardElement(card));
+                });
+
+                bubble.appendChild(cardsWrapper);
+            }
+
+            // Render Follow-up Action Chips if present
+            if (resp.actions && resp.actions.length > 0) {
+                const actionsWrapper = document.createElement('div');
+                actionsWrapper.className = 'bubble-actions';
+
+                resp.actions.forEach(act => {
+                    const btn = document.createElement('button');
+                    btn.className = 'action-chip-btn';
+
+                    if (act.query) {
+                        btn.innerHTML = `${escapeHtml(act.label)} →`;
+                        btn.addEventListener('click', () => handleUserQuery(act.query));
+                    } else if (act.url) {
+                        btn.innerHTML = `${escapeHtml(act.label)} <i class="fas fa-arrow-up-right-from-square"></i>`;
+                        btn.addEventListener('click', () => window.open(act.url, '_blank'));
+                    } else if (act.action === 'copy-email') {
+                        btn.innerHTML = `<i class="fas fa-copy"></i> ${escapeHtml(act.label)}`;
+                        btn.addEventListener('click', () => copyToClipboard(act.value || 'rajtejas.xyz@gmail.com'));
+                    } else if (act.action === 'open-resume') {
+                        btn.innerHTML = `<i class="fas fa-file-pdf"></i> ${escapeHtml(act.label)}`;
+                        btn.addEventListener('click', openResumeModal);
+                    }
+
+                    actionsWrapper.appendChild(btn);
+                });
+
+                bubble.appendChild(actionsWrapper);
+            }
+
+            scrollToBottom();
+        });
+    }
+
+    function buildCardElement(card) {
+        const el = document.createElement('div');
+        el.className = 'inline-card';
+
+        if (card.type === 'pr_card') {
+            el.innerHTML = `
+                <div class="card-top-row">
+                    <span class="card-repo-name">${escapeHtml(card.repo)}</span>
+                    <span class="card-badge">${escapeHtml(card.status)}</span>
+                </div>
+                <div style="font-weight:600; font-size:0.92rem; margin-bottom:4px;">${escapeHtml(card.title)}</div>
+                <div class="card-desc-text"><strong>Problem:</strong> ${escapeHtml(card.problem)}</div>
+                <div class="card-desc-text"><strong>Solution:</strong> ${escapeHtml(card.solution)}</div>
+                <a href="${card.url}" target="_blank" class="card-link-btn">View Pull Request <i class="fas fa-arrow-up-right-from-square"></i></a>
+            `;
+        } else if (card.type === 'repo_summary') {
+            let highlightsHtml = (card.highlights || []).slice(0, 2).map(h => `
+                <div style="font-size:0.85rem; margin-top:6px;">
+                    <strong>${escapeHtml(h.title)}</strong> (${escapeHtml(h.status)})
+                    <br><a href="${h.url}" target="_blank" class="card-link-btn" style="font-size:0.78rem">View PR →</a>
+                </div>
+            `).join('');
+
+            el.innerHTML = `
+                <div class="card-top-row">
+                    <span class="card-repo-name">${escapeHtml(card.title)}</span>
+                    <span class="card-badge">${escapeHtml(card.subtitle)}</span>
+                </div>
+                ${highlightsHtml}
+            `;
+        } else if (card.type === 'ai_card') {
+            el.innerHTML = `
+                <div class="card-top-row">
+                    <span class="card-repo-name">${escapeHtml(card.title)}</span>
+                    <span class="card-badge">${escapeHtml(card.category)}</span>
+                </div>
+                <div class="card-desc-text">${escapeHtml(card.description)}</div>
+                ${card.url ? `<a href="${card.url}" target="_blank" class="card-link-btn">View Evidence <i class="fas fa-arrow-up-right-from-square"></i></a>` : ''}
+            `;
+        } else if (card.type === 'systems_card') {
+            let metricsHtml = (card.metrics || []).map(m => `<span class="tag-mini">${escapeHtml(m)}</span>`).join(' ');
+
+            el.innerHTML = `
+                <div class="card-top-row">
+                    <span class="card-repo-name">${escapeHtml(card.title)}</span>
+                    <span class="card-badge">${escapeHtml(card.subtitle)}</span>
+                </div>
+                <div class="card-desc-text">${escapeHtml(card.description)}</div>
+                <div class="card-tags-row" style="margin-bottom:8px;">${metricsHtml}</div>
+                ${card.url ? `<a href="${card.url}" target="_blank" class="card-link-btn">View Repository <i class="fas fa-arrow-up-right-from-square"></i></a>` : ''}
+            `;
+        }
+
+        return el;
+    }
+
+    function streamText(targetEl, text, callback) {
+        let index = 0;
+        const formatted = formatMarkdownText(text);
+
+        // Fast streaming effect
+        targetEl.innerHTML = formatted;
+        if (callback) callback();
+    }
+
+    function formatMarkdownText(str) {
+        if (!str) return '';
+        let out = escapeHtml(str);
+        // bold
+        out = out.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        // inline code
+        out = out.replace(/`(.*?)`/g, '<code style="font-family:var(--font-mono); font-size:0.85em; background:rgba(255,255,255,0.08); padding:2px 6px; border-radius:4px;">$1</code>');
+        // markdown links
+        out = out.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" style="color:var(--accent-blue); text-decoration:none;">$1 <i class="fas fa-arrow-up-right-from-square" style="font-size:0.75em"></i></a>');
+        return out;
+    }
+
+    function setAvatarState(state, text) {
+        if (!avatarContainer || !avatarBadge) return;
+        if (state === 'thinking') {
+            avatarContainer.classList.add('thinking');
+            avatarBadge.innerHTML = `<span class="status-dot"></span> ${text}`;
+        } else {
+            avatarContainer.classList.remove('thinking');
+            avatarBadge.innerHTML = `<span class="status-dot"></span> ${text}`;
+        }
+    }
+
+    function scrollToBottom() {
+        window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: 'smooth'
+        });
+    }
+
+    function escapeHtml(str) {
+        return (str || '').replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    }
+
+    // 3. Copy Email & Toast
+    function initCopyEmailButtons() {
+        const btns = document.querySelectorAll('.copy-email-btn');
+        btns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const email = btn.getAttribute('data-email') || 'rajtejas.xyz@gmail.com';
+                copyToClipboard(email);
+            });
+        });
+    }
+
+    function copyToClipboard(text) {
+        navigator.clipboard.writeText(text).then(() => {
+            showToast(`Copied to clipboard: ${text}`);
+        }).catch(() => {
+            showToast(`Email: ${text}`);
+        });
+    }
+
+    function showToast(msg) {
+        const container = document.getElementById('toast-container');
+        if (!container) return;
         const toast = document.createElement('div');
         toast.className = 'toast';
-        toast.textContent = message;
-        toastContainer.appendChild(toast);
-
+        toast.textContent = msg;
+        container.appendChild(toast);
         setTimeout(() => {
             toast.style.opacity = '0';
-            toast.style.transition = 'all 0.3s ease';
             setTimeout(() => toast.remove(), 300);
-        }, 3000);
-    }
-}
-
-// 4. Command Palette (Cmd+K / Ctrl+K)
-function initCommandPalette() {
-    const cmdBtn = document.getElementById('cmd-palette-btn');
-    const cmdModal = document.getElementById('cmd-modal');
-    const cmdClose = document.getElementById('cmd-close');
-    const cmdInput = document.getElementById('cmd-input');
-    const cmdItems = document.querySelectorAll('.cmd-item');
-
-    if (!cmdModal || !cmdInput) return;
-
-    let selectedIndex = -1;
-
-    function openPalette() {
-        cmdModal.classList.add('open');
-        cmdModal.setAttribute('aria-hidden', 'false');
-        cmdInput.value = '';
-        filterItems('');
-        setTimeout(() => cmdInput.focus(), 50);
+        }, 2500);
     }
 
-    function closePalette() {
-        cmdModal.classList.remove('open');
-        cmdModal.setAttribute('aria-hidden', 'true');
-    }
+    // 4. Resume Modal
+    function initResumeModal() {
+        const btns = document.querySelectorAll('.open-resume-modal');
+        const modal = document.getElementById('resume-modal');
+        const closeBtn = document.getElementById('resume-close');
 
-    document.addEventListener('keydown', (e) => {
-        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
-            e.preventDefault();
-            if (cmdModal.classList.contains('open')) {
-                closePalette();
-            } else {
-                openPalette();
-            }
-        } else if (e.key === 'Escape' && cmdModal.classList.contains('open')) {
-            closePalette();
+        if (!modal) return;
+
+        btns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                openResumeModal();
+            });
+        });
+
+        if (closeBtn) {
+            closeBtn.addEventListener('click', closeResumeModal);
         }
-    });
 
-    if (cmdBtn) cmdBtn.addEventListener('click', openPalette);
-    if (cmdClose) cmdClose.addEventListener('click', closePalette);
-
-    cmdModal.addEventListener('click', (e) => {
-        if (e.target === cmdModal) closePalette();
-    });
-
-    cmdInput.addEventListener('input', (e) => {
-        filterItems(e.target.value.toLowerCase().trim());
-    });
-
-    function filterItems(query) {
-        cmdItems.forEach(item => {
-            const text = item.textContent.toLowerCase();
-            if (!query || text.includes(query)) {
-                item.style.display = 'block';
-            } else {
-                item.style.display = 'none';
-            }
-            item.classList.remove('selected');
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeResumeModal();
         });
-        selectedIndex = -1;
     }
 
-    cmdInput.addEventListener('keydown', (e) => {
-        const visibleItems = Array.from(cmdItems).filter(item => item.style.display !== 'none');
-        if (visibleItems.length === 0) return;
-
-        if (e.key === 'ArrowDown') {
-            e.preventDefault();
-            selectedIndex = (selectedIndex + 1) % visibleItems.length;
-            updateSelection(visibleItems);
-        } else if (e.key === 'ArrowUp') {
-            e.preventDefault();
-            selectedIndex = (selectedIndex - 1 + visibleItems.length) % visibleItems.length;
-            updateSelection(visibleItems);
-        } else if (e.key === 'Enter') {
-            e.preventDefault();
-            if (selectedIndex >= 0 && visibleItems[selectedIndex]) {
-                visibleItems[selectedIndex].click();
-            } else if (visibleItems.length > 0) {
-                visibleItems[0].click();
-            }
+    function openResumeModal() {
+        const modal = document.getElementById('resume-modal');
+        if (modal) {
+            modal.classList.add('open');
+            modal.setAttribute('aria-hidden', 'false');
         }
-    });
-
-    function updateSelection(visibleItems) {
-        visibleItems.forEach((item, idx) => {
-            if (idx === selectedIndex) {
-                item.classList.add('selected');
-                item.scrollIntoView({ block: 'nearest' });
-            } else {
-                item.classList.remove('selected');
-            }
-        });
     }
 
-    cmdItems.forEach(item => {
-        item.addEventListener('click', () => {
-            const action = item.getAttribute('data-action');
-            const target = item.getAttribute('data-target');
-
-            closePalette();
-
-            if (action === 'navigate' && target) {
-                const sec = document.querySelector(target);
-                if (sec) sec.scrollIntoView({ behavior: 'smooth' });
-            } else if (action === 'external' && target) {
-                window.open(target, '_blank');
-            } else if (action === 'copy-email') {
-                const copyBtn = document.querySelector('.copy-email-btn');
-                if (copyBtn) copyBtn.click();
-            } else if (action === 'open-resume') {
-                const resumeModal = document.getElementById('resume-modal');
-                if (resumeModal) {
-                    resumeModal.classList.add('open');
-                    resumeModal.setAttribute('aria-hidden', 'false');
-                }
-            }
-        });
-    });
-}
-
-// 5. Resume Viewer Modal Logic
-function initResumeModal() {
-    const resumeBtns = document.querySelectorAll('.open-resume-modal');
-    const resumeModal = document.getElementById('resume-modal');
-    const resumeClose = document.getElementById('resume-close');
-
-    if (!resumeModal) return;
-
-    resumeBtns.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            resumeModal.classList.add('open');
-            resumeModal.setAttribute('aria-hidden', 'false');
-        });
-    });
-
-    if (resumeClose) {
-        resumeClose.addEventListener('click', () => {
-            resumeModal.classList.remove('open');
-            resumeModal.setAttribute('aria-hidden', 'true');
-        });
-    }
-
-    resumeModal.addEventListener('click', (e) => {
-        if (e.target === resumeModal) {
-            resumeModal.classList.remove('open');
-            resumeModal.setAttribute('aria-hidden', 'true');
+    function closeResumeModal() {
+        const modal = document.getElementById('resume-modal');
+        if (modal) {
+            modal.classList.remove('open');
+            modal.setAttribute('aria-hidden', 'true');
         }
-    });
-}
+    }
+});
