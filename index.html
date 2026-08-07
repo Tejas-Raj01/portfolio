@@ -13,7 +13,7 @@
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml"
-        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='16' fill='%23090b10' stroke='%2300e5ff' stroke-width='6'/><text x='18' y='68' font-family='monospace' font-weight='900' font-size='52' fill='%2300e5ff'>&gt;</text><text x='54' y='68' font-family='monospace' font-weight='900' font-size='52' fill='%23ffffff'>_</text></svg>">
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='16' fill='%23080a0e' stroke='%2300e5ff' stroke-width='6'/><text x='18' y='68' font-family='monospace' font-weight='900' font-size='52' fill='%2300e5ff'>&gt;</text><text x='54' y='68' font-family='monospace' font-weight='900' font-size='52' fill='%23ffffff'>_</text></svg>">
 
     <!-- Fonts: Fira Code, Inter, Outfit -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -72,18 +72,17 @@
     <header class="navbar" id="navbar">
         <div class="nav-content">
             <a href="#hero" class="logo">
-                <span class="logo-name">Tejas Raj</span>
-                <span class="logo-tag">// AI Infrastructure</span>
+                <span class="logo-name">TEJAS</span>
             </a>
             <nav class="nav-links" id="nav-links" aria-label="Main Navigation">
-                <a href="#ai-work" class="nav-item">Work</a>
-                <a href="#openclaw" class="nav-item">OpenClaw</a>
-                <a href="#opensource" class="nav-item">Open Source</a>
-                <a href="#why" class="nav-item">Why Infrastructure?</a>
+                <a href="#work" class="nav-item">Work</a>
+                <a href="#open-source" class="nav-item">Open Source</a>
+                <a href="#agents" class="nav-item">Agents</a>
+                <a href="#systems" class="nav-item">Systems</a>
+                <a href="#about" class="nav-item">About</a>
+                <a href="#contact" class="nav-item">Contact</a>
             </nav>
             <div class="nav-actions">
-                <a href="https://github.com/Tejas-Raj01" target="_blank" class="nav-ext-link">GitHub <i class="fas fa-arrow-up-right-from-square"></i></a>
-                <a href="https://www.linkedin.com/in/tejas-raj-09aa4a236/" target="_blank" class="nav-ext-link">LinkedIn <i class="fas fa-arrow-up-right-from-square"></i></a>
                 <button class="nav-ext-link btn-link open-resume-modal">Resume <i class="fas fa-file-pdf"></i></button>
                 <button id="cmd-palette-btn" class="cmd-btn" aria-label="Open Command Palette (Ctrl+K)">
                     <i class="fas fa-terminal"></i> <span class="cmd-key">⌘K</span>
@@ -93,172 +92,133 @@
     </header>
 
     <main id="main-content">
-        <!-- 1. HERO COMMAND INTERFACE -->
-        <section id="hero" class="hero-section">
-            <div class="hero-identity">
-                <h1 class="hero-name">TEJAS</h1>
-                <h2 class="hero-role">AI Engineer</h2>
-                <h3 class="hero-subtext">Generative AI · Agent Infrastructure · Open Source</h3>
-                <p class="hero-core-statement">
-                    I build and contribute to the infrastructure that makes AI systems useful.
-                </p>
+        <!-- 1. CENTERED HERO SECTION & CHAT GATEWAY -->
+        <section id="hero" class="hero-centered-section">
+            <div class="hero-header-group">
+                <h1 class="hero-greeting">Hey, I'm Tejas.</h1>
+                <h2 class="hero-title">AI ENGINEER</h2>
+                <h3 class="hero-focus">Generative AI · Agent Infrastructure · Open Source</h3>
             </div>
 
-            <!-- PERSONAL AI COMMAND INTERFACE BOX -->
-            <div class="ai-command-box">
-                <div class="command-box-header">
-                    <div class="header-dots">
-                        <span class="dot red"></span>
-                        <span class="dot yellow"></span>
-                        <span class="dot green"></span>
-                    </div>
-                    <span class="box-title"><i class="fas fa-microchip ai-accent-icon"></i> personal_ai_command_interface_v1.0</span>
-                    <span class="box-status"><span class="pulse-dot"></span> READY</span>
+            <!-- CENTERED AI AGENT VISUAL CORE -->
+            <div class="agent-visual-centerpiece">
+                <div class="agent-core-ring outer-ring"></div>
+                <div class="agent-core-ring inner-ring"></div>
+                <div class="agent-core-center">
+                    <i class="fas fa-brain agent-node-icon"></i>
+                </div>
+            </div>
+
+            <!-- CHAT GATEWAY INPUT INTERFACE -->
+            <div class="ai-gateway-container">
+                <div class="chat-input-row">
+                    <span class="prompt-symbol">&gt;</span>
+                    <input type="text" id="ai-prompt-input" placeholder="Ask me anything..." autocomplete="off">
+                    <button id="ai-submit-btn" class="chat-send-btn" aria-label="Send Query"><i class="fas fa-paper-plane"></i></button>
                 </div>
 
-                <div class="command-input-container">
-                    <span class="prompt-icon">&gt;</span>
-                    <input type="text" id="ai-prompt-input" placeholder="What do you want to know? (e.g. 'Show AI work', 'OpenClaw', 'Open source')..." autocomplete="off">
-                    <button id="ai-submit-btn" class="prompt-submit-btn"><i class="fas fa-paper-plane"></i></button>
+                <!-- QUICK CONTEXTUAL NAVIGATION BUTTONS -->
+                <div class="quick-nav-buttons">
+                    <button class="quick-btn" data-query="Work"><i class="fas fa-robot"></i> Work</button>
+                    <button class="quick-btn" data-query="Open Source"><i class="fab fa-github"></i> Open Source</button>
+                    <button class="quick-btn" data-query="Agent Systems"><i class="fas fa-network-wired"></i> Agent Systems</button>
+                    <button class="quick-btn" data-query="Systems"><i class="fas fa-server"></i> Systems</button>
+                    <button class="quick-btn" data-query="About"><i class="fas fa-user"></i> About</button>
+                    <button class="quick-btn" data-query="Contact"><i class="fas fa-envelope"></i> Contact</button>
                 </div>
 
-                <!-- SUGGESTED PROMPT CHIPS -->
-                <div class="suggested-prompts-row">
-                    <span class="chip-label">Ask:</span>
-                    <button class="prompt-chip" data-query="Show AI work"><i class="fas fa-robot"></i> Show AI Work</button>
-                    <button class="prompt-chip" data-query="Open source"><i class="fab fa-github"></i> Open Source</button>
-                    <button class="prompt-chip" data-query="OpenClaw"><i class="fas fa-network-wired"></i> Focus: OpenClaw</button>
-                    <button class="prompt-chip" data-query="Why infrastructure?"><i class="fas fa-lightbulb"></i> Why Infrastructure?</button>
-                    <button class="prompt-chip" data-query="Contact"><i class="fas fa-envelope"></i> Contact</button>
-                </div>
-
-                <!-- LIVE RESPONSE TERMINAL WINDOW -->
+                <!-- CHAT ROUTING OUTPUT TERMINAL -->
                 <div id="ai-response-terminal" class="ai-response-terminal">
                     <div class="response-line response-intro">
-                        <span class="ai-prefix">[AI Interface]:</span> Welcome. Ask anything above or select a prompt chip to inspect Tejas's work, systems, and open-source evidence.
+                        <span class="ai-prefix">[AI Interface]:</span> Ask anything above or select a navigation button to explore Tejas's work, open-source evidence, agent infrastructure, and systems.
                     </div>
                 </div>
+            </div>
+
+            <!-- MINIMAL CREDIBILITY STRIP -->
+            <div class="credibility-strip">
+                <span class="cred-label">OPEN SOURCE</span>
+                <span class="cred-items">vLLM &nbsp;·&nbsp; PyTorch &nbsp;·&nbsp; Jetpack &nbsp;·&nbsp; Snapcraft &nbsp;·&nbsp; CP Editor</span>
             </div>
         </section>
 
-        <!-- 2. SYSTEMS BUILT FOR AI -->
-        <section id="ai-work" class="section">
+        <!-- 2. /work — SELECTED AI & SYSTEMS WORK -->
+        <section id="work" class="section">
             <div class="section-header">
-                <h2 class="section-title">Systems I've Built for AI</h2>
-                <p class="section-subtitle">Infrastructure, inference engines, and core framework engineering.</p>
+                <h2 class="section-title">Work</h2>
+                <p class="section-subtitle">Systems and infrastructure I'm building around AI.</p>
             </div>
 
-            <div class="ai-systems-list">
+            <div class="work-cards-grid">
                 <!-- 01 — vLLM -->
-                <article class="ai-system-card">
-                    <div class="card-header-row">
-                        <span class="sys-index">01</span>
-                        <div class="sys-title-group">
-                            <h3 class="sys-name">vLLM</h3>
-                            <span class="sys-sub">Open-source LLM inference infrastructure</span>
+                <article class="work-card">
+                    <div class="card-title-row">
+                        <span class="card-num">01</span>
+                        <div class="title-meta">
+                            <h3 class="card-name">vLLM</h3>
+                            <span class="card-sub">Open-source LLM inference infrastructure</span>
                         </div>
-                        <span class="badge badge-ai">Inference &amp; Scheduling</span>
+                        <span class="badge badge-ai">LLM Inference</span>
                     </div>
-
-                    <!-- AI REASONING -> TOOL -> RESULT FLOW MOTIF -->
-                    <div class="reasoning-flow-bar">
-                        <span class="flow-step">BUG DETECTED</span>
-                        <span class="flow-arrow">→</span>
-                        <span class="flow-step">PREEMPTION RE-INDEXING</span>
-                        <span class="flow-arrow">→</span>
-                        <span class="flow-step">PYTEST REGRESSION</span>
-                        <span class="flow-arrow">→</span>
-                        <span class="flow-step status-merged">MERGED UPSTREAM</span>
-                    </div>
-
-                    <p class="sys-desc">
+                    <p class="card-desc">
                         Worked inside an open-source LLM inference codebase and fixed request index preemption misalignment in <code>SchedulingPolicy.PRIORITY</code> under KV cache memory pressure.
                     </p>
-
-                    <div class="sys-footer">
-                        <div class="sys-tags">
+                    <div class="card-footer">
+                        <div class="card-tags">
                             <span class="tag tag-ai">Python</span>
                             <span class="tag tag-ai">PyTorch</span>
                             <span class="tag tag-ai">LLM Inference</span>
-                            <span class="tag">Paged KV Cache</span>
                         </div>
                         <a href="https://github.com/vllm-project/vllm/pull/49206" target="_blank" class="action-btn">View PR #49206 <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </article>
 
                 <!-- 02 — PyTorch -->
-                <article class="ai-system-card">
-                    <div class="card-header-row">
-                        <span class="sys-index">02</span>
-                        <div class="sys-title-group">
-                            <h3 class="sys-name">PyTorch</h3>
-                            <span class="sys-sub">Core open-source machine learning framework</span>
+                <article class="work-card">
+                    <div class="card-title-row">
+                        <span class="card-num">02</span>
+                        <div class="title-meta">
+                            <h3 class="card-name">PyTorch</h3>
+                            <span class="card-sub">Core open-source ML framework</span>
                         </div>
-                        <span class="badge badge-ai">ML Framework Internals</span>
+                        <span class="badge badge-ai">ML Framework</span>
                     </div>
-
-                    <div class="reasoning-flow-bar">
-                        <span class="flow-step">FX SCHEMAS</span>
-                        <span class="flow-arrow">→</span>
-                        <span class="flow-step">SPARSE C++ CONVERSION</span>
-                        <span class="flow-arrow">→</span>
-                        <span class="flow-step">DIV-BY-ZERO FIX</span>
-                        <span class="flow-arrow">→</span>
-                        <span class="flow-step status-merged">MERGED UPSTREAM</span>
-                    </div>
-
-                    <p class="sys-desc">
-                        Contributed fixes to PyTorch FX operator return type annotations (PR #189142) and resolved C++ sparse compressed tensor floating-point division-by-zero crashes (PR #190191).
+                    <p class="card-desc">
+                        Fixed FX operator schema return type annotations (PR #189142) and resolved C++ sparse compressed tensor floating-point division-by-zero crashes (PR #190191).
                     </p>
-
-                    <div class="sys-footer">
-                        <div class="sys-tags">
+                    <div class="card-footer">
+                        <div class="card-tags">
                             <span class="tag tag-ai">C++</span>
                             <span class="tag tag-ai">Python</span>
                             <span class="tag">FX Graph Tracer</span>
-                            <span class="tag">Sparse Tensors</span>
                         </div>
                         <a href="https://github.com/pytorch/pytorch/pull/189142" target="_blank" class="action-btn">View PRs <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </article>
 
-                <!-- 03 — Tejas-DB (DISTRIBUTED INFRASTRUCTURE FOUNDATION) -->
-                <article class="ai-system-card">
-                    <div class="card-header-row">
-                        <span class="sys-index">03</span>
-                        <div class="sys-title-group">
-                            <h3 class="sys-name">Tejas-DB</h3>
-                            <span class="sys-sub">Distributed infrastructure foundation for AI storage</span>
+                <!-- 03 — Tejas-DB -->
+                <article class="work-card">
+                    <div class="card-title-row">
+                        <span class="card-num">03</span>
+                        <div class="title-meta">
+                            <h3 class="card-name">Tejas-DB</h3>
+                            <span class="card-sub">Distributed key-value infrastructure built in C++</span>
                         </div>
-                        <span class="badge badge-systems">Distributed Systems</span>
+                        <span class="badge badge-systems">Systems Foundation</span>
                     </div>
-
-                    <p class="sys-desc">
-                        A decentralized P2P key-value store built in C++17 featuring <code>std::shared_mutex</code> concurrent locking, Write-Ahead Logging (WAL) for durability, Gossip protocol, and Quorum consensus. Demonstrates the low-level systems foundation behind my AI infrastructure work.
+                    <p class="card-desc">
+                        A systems project exploring distributed storage, concurrency, and performance — the foundation behind my interest in AI infrastructure.
                     </p>
-
-                    <div class="benchmark-grid">
-                        <div class="bench-card">
-                            <span class="bench-val">33,685</span>
-                            <span class="bench-sub">requests / sec</span>
-                        </div>
-                        <div class="bench-card">
-                            <span class="bench-val">~2.97ms</span>
-                            <span class="bench-sub">average latency</span>
-                        </div>
-                        <div class="bench-card">
-                            <span class="bench-val">100</span>
-                            <span class="bench-sub">concurrent threads</span>
-                        </div>
+                    <div class="bench-metrics-row">
+                        <span class="bench-badge"><strong>33,685</strong> req/s</span>
+                        <span class="bench-badge"><strong>~2.97 ms</strong> avg latency</span>
+                        <span class="bench-badge"><strong>100</strong> concurrent threads</span>
                     </div>
-
-                    <div class="sys-footer">
-                        <div class="sys-tags">
+                    <div class="card-footer">
+                        <div class="card-tags">
                             <span class="tag tag-systems">C++17</span>
                             <span class="tag tag-systems">Distributed Systems</span>
                             <span class="tag">WAL Engine</span>
-                            <span class="tag">Gossip</span>
-                            <span class="tag">Quorum</span>
                         </div>
                         <a href="https://github.com/Tejas-Raj01/distributed-system" target="_blank" class="action-btn">View Project <i class="fas fa-arrow-right"></i></a>
                     </div>
@@ -266,143 +226,188 @@
             </div>
         </section>
 
-        <!-- 3. OPENCLAW & AGENT INFRASTRUCTURE SPOTLIGHT -->
-        <section id="openclaw" class="section">
+        <!-- 3. /open-source — OPEN SOURCE ACTIVITY STREAM -->
+        <section id="open-source" class="section">
             <div class="section-header">
-                <h2 class="section-title">Focus: OpenClaw &amp; Agent Infrastructure</h2>
-                <p class="section-subtitle">Open-source, self-hosted AI agent system (<a href="https://openclaw.ai/" target="_blank" class="highlight">openclaw.ai</a>).</p>
+                <h2 class="section-title">Open Source</h2>
+                <p class="section-subtitle">I prefer learning systems by working inside the codebases that build them.</p>
             </div>
 
-            <div class="openclaw-spotlight-box">
-                <div class="spotlight-header-row">
-                    <div class="spotlight-title">
-                        <i class="fas fa-network-wired ai-accent-icon"></i>
-                        <h3>Agent Infrastructure Architecture</h3>
-                    </div>
-                    <span class="badge badge-focus">Focus: OpenClaw</span>
-                </div>
+            <div class="oss-activity-stream">
+                <div class="stream-year-header">2026</div>
 
-                <p class="spotlight-text">
-                    I am actively focusing my open-source initiatives around <strong>OpenClaw</strong> (<a href="https://docs.openclaw.ai/" target="_blank" class="highlight">docs.openclaw.ai</a>) and agent infrastructure, exploring self-hosted agent execution, tool-use protocols, and multi-agent routing.
-                </p>
-
-                <!-- OPENCLAW ARCHITECTURE MODULES -->
-                <div class="agent-concepts-grid">
-                    <div class="concept-card">
-                        <i class="fas fa-server concept-icon"></i>
-                        <strong>Agent Runtime</strong>
-                        <span>Stateful agent loop &amp; execution lifecycle</span>
-                    </div>
-
-                    <div class="concept-card">
-                        <i class="fas fa-screwdriver-wrench concept-icon"></i>
-                        <strong>Tools &amp; Skills</strong>
-                        <span>Dynamic tool calling &amp; schema execution</span>
-                    </div>
-
-                    <div class="concept-card">
-                        <i class="fas fa-brain concept-icon"></i>
-                        <strong>Sessions &amp; Memory</strong>
-                        <span>Context window management &amp; retrieval</span>
-                    </div>
-
-                    <div class="concept-card">
-                        <i class="fas fa-diagram-project concept-icon"></i>
-                        <strong>Multi-Agent Gateway</strong>
-                        <span>Channel messaging &amp; agent orchestration</span>
-                    </div>
-                </div>
-
-                <div class="spotlight-status-note">
-                    <span class="mono-label"><i class="fas fa-info-circle ai-accent-icon"></i> STATUS:</span>
-                    <span>Exploring and preparing upstream agent infrastructure contributions. Built for seamless live update as pull requests merge.</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- 4. OPEN SOURCE CREDIBILITY LAYER -->
-        <section id="opensource" class="section">
-            <div class="section-header">
-                <h2 class="section-title">Open Source Credibility</h2>
-                <p class="section-subtitle">I've worked inside real AI and developer infrastructure codebases.</p>
-            </div>
-
-            <div class="oss-credibility-grid">
-                <div class="oss-cred-card">
-                    <div class="cred-header">
+                <div class="stream-item">
+                    <div class="stream-item-header">
                         <strong>vLLM</strong>
-                        <span class="badge badge-ai">LLM Inference</span>
+                        <span class="badge badge-ai">LLM Inference Infrastructure</span>
                     </div>
-                    <p>Scheduler priority queue preemption fix under KV cache memory pressure.</p>
-                    <a href="https://github.com/vllm-project/vllm/pull/49206" target="_blank" class="cred-link">PR #49206 <i class="fas fa-arrow-up-right-from-square"></i></a>
+                    <p class="stream-desc">Fixed request queue preemption re-indexing under KV cache memory pressure.</p>
+                    <div class="stream-footer">
+                        <span class="stream-tech">Python · PyTorch · AI Infrastructure</span>
+                        <a href="https://github.com/vllm-project/vllm/pull/49206" target="_blank" class="cred-link">View PR #49206 <i class="fas fa-arrow-up-right-from-square"></i></a>
+                    </div>
                 </div>
 
-                <div class="oss-cred-card">
-                    <div class="cred-header">
+                <div class="stream-item">
+                    <div class="stream-item-header">
                         <strong>PyTorch</strong>
-                        <span class="badge badge-ai">ML Framework</span>
+                        <span class="badge badge-ai">Core ML Infrastructure</span>
                     </div>
-                    <p>FX return schema annotation fix &amp; C++ sparse tensor division-by-zero fix.</p>
-                    <a href="https://github.com/pytorch/pytorch/pull/189142" target="_blank" class="cred-link">PR #189142 <i class="fas fa-arrow-up-right-from-square"></i></a>
+                    <p class="stream-desc">2 merged contributions addressing FX tracer return schemas &amp; sparse tensor division-by-zero.</p>
+                    <div class="stream-footer">
+                        <span class="stream-tech">C++ · Python · Testing</span>
+                        <a href="https://github.com/pytorch/pytorch/pull/189142" target="_blank" class="cred-link">View PRs <i class="fas fa-arrow-up-right-from-square"></i></a>
+                    </div>
                 </div>
 
-                <div class="oss-cred-card">
-                    <div class="cred-header">
+                <div class="stream-item">
+                    <div class="stream-item-header">
                         <strong>Automattic Jetpack</strong>
-                        <span class="badge badge-secondary">9 Merged PRs</span>
+                        <span class="badge badge-secondary">9 Merged Contributions</span>
                     </div>
-                    <p>Block editor stability, OpenAPI schemas, and TypeScript refactoring.</p>
-                    <a href="https://github.com/Automattic/jetpack/pulls?q=is%3Apr+author%3ATejas-Raj01" target="_blank" class="cred-link">9 Merged PRs <i class="fas fa-arrow-up-right-from-square"></i></a>
+                    <p class="stream-desc">Multiple merged PRs across block editor stability, REST API schemas, and accessibility.</p>
+                    <div class="stream-footer">
+                        <span class="stream-tech">TypeScript · REST APIs</span>
+                        <a href="https://github.com/Automattic/jetpack/pulls?q=is%3Apr+author%3ATejas-Raj01" target="_blank" class="cred-link">View Work <i class="fas fa-arrow-up-right-from-square"></i></a>
+                    </div>
                 </div>
 
-                <div class="oss-cred-card">
-                    <div class="cred-header">
+                <div class="stream-item">
+                    <div class="stream-item-header">
                         <strong>Canonical Snapcraft</strong>
                         <span class="badge badge-secondary">Linux Tooling</span>
                     </div>
-                    <p>Dynamic build base linter resolution for Linux package build pipelines.</p>
-                    <a href="https://github.com/canonical/snapcraft/pull/6272" target="_blank" class="cred-link">PR #6272 <i class="fas fa-arrow-up-right-from-square"></i></a>
-                </div>
-
-                <div class="oss-cred-card">
-                    <div class="cred-header">
-                        <strong>CP Editor</strong>
-                        <span class="badge badge-secondary">Qt / C++ App</span>
+                    <p class="stream-desc">Dynamic build base linter resolution across package build pipelines.</p>
+                    <div class="stream-footer">
+                        <span class="stream-tech">Python · CLI Tooling</span>
+                        <a href="https://github.com/canonical/snapcraft/pull/6272" target="_blank" class="cred-link">View Work <i class="fas fa-arrow-up-right-from-square"></i></a>
                     </div>
-                    <p>C++ Qt desktop software controls &amp; automated translation pipeline.</p>
-                    <a href="https://github.com/cpeditor/cpeditor/pull/1501" target="_blank" class="cred-link">PR #1501 <i class="fas fa-arrow-up-right-from-square"></i></a>
+                </div>
+
+                <div class="stream-item">
+                    <div class="stream-item-header">
+                        <strong>CP Editor</strong>
+                        <span class="badge badge-secondary">Developer Tooling</span>
+                    </div>
+                    <p class="stream-desc">C++ Qt desktop software controls &amp; automated translation pipeline.</p>
+                    <div class="stream-footer">
+                        <span class="stream-tech">C++ · Qt</span>
+                        <a href="https://github.com/cpeditor/cpeditor/pull/1501" target="_blank" class="cred-link">View Work <i class="fas fa-arrow-up-right-from-square"></i></a>
+                    </div>
                 </div>
             </div>
 
-            <div class="section-cta-center" style="margin-top: 20px;">
-                <a href="/opensource.html" class="btn btn-secondary"><i class="fas fa-code-pull-request"></i> Explore Detailed /opensource Page</a>
+            <div class="cta-center-row">
+                <a href="/opensource.html" class="btn btn-secondary"><i class="fas fa-code-pull-request"></i> Explore Detailed /open-source Page</a>
             </div>
         </section>
 
-        <!-- 5. WHY INFRASTRUCTURE? -->
-        <section id="why" class="section">
+        <!-- 4. /agents — AGENT INFRASTRUCTURE & OPENCLAW -->
+        <section id="agents" class="section">
             <div class="section-header">
-                <h2 class="section-title">Why Infrastructure?</h2>
+                <h2 class="section-title">Agent Infrastructure</h2>
+                <p class="section-subtitle">Building toward systems where models can reason, use tools, remember context, and act.</p>
             </div>
 
-            <div class="why-quote-card">
-                <p class="why-statement">
-                    "The interesting part of AI isn't only the model. It's everything around it — inference, memory, tools, orchestration, evaluation, and reliability."
+            <!-- ELEGANT AGENT SYSTEM DIAGRAM -->
+            <div class="agent-architecture-diagram">
+                <div class="diagram-title"><i class="fas fa-diagram-project ai-accent-icon"></i> AGENT INFRASTRUCTURE SYSTEM MODEL</div>
+                
+                <div class="diagram-flow">
+                    <div class="diag-node node-model">MODEL</div>
+                    <div class="diag-arrow">↓</div>
+                    <div class="diag-node node-agent">AGENT RUNTIME</div>
+                    
+                    <div class="diag-branches">
+                        <div class="diag-branch-node">TOOLS &amp; SKILLS</div>
+                        <div class="diag-branch-node">SESSIONS &amp; MEMORY</div>
+                        <div class="diag-branch-node">PLANNING &amp; ROUTING</div>
+                    </div>
+
+                    <div class="diag-arrow">↓</div>
+                    <div class="diag-node node-execution">EXECUTION GATEWAY</div>
+                    <div class="diag-arrow">↓</div>
+                    <div class="diag-node node-result">VERIFIED RESULT</div>
+                </div>
+            </div>
+
+            <!-- OPENCLAW FOCUS BOX -->
+            <div class="openclaw-focus-box" style="margin-top: 24px;">
+                <div class="focus-box-header">
+                    <h3>OPEN SOURCE FOCUS: OpenClaw</h3>
+                    <span class="badge badge-ai">Agent Infrastructure</span>
+                </div>
+                <p class="focus-desc">
+                    Exploring and contributing toward open-source agent infrastructure (<a href="https://openclaw.ai/" target="_blank" class="highlight">openclaw.ai</a> &amp; <a href="https://docs.openclaw.ai/" target="_blank" class="highlight">docs.openclaw.ai</a>). Focused on agent runtimes, tool schemas, memory retrieval, and multi-agent routing.
                 </p>
-                <div class="why-sub-text">
-                    My background in C++, distributed systems (Tejas-DB), and competitive programming provides the systems foundation required to build and optimize AI agent runtimes and inference infrastructure.
+                <div class="agent-modules-list">
+                    <code>Agent Runtime · Tools · Skills · Memory · Sessions · Multi-Agent Systems</code>
                 </div>
             </div>
         </section>
 
-        <!-- 6. CONTACT SECTION -->
+        <!-- 5. /systems — SYSTEMS ENGINEERING -->
+        <section id="systems" class="section">
+            <div class="section-header">
+                <h2 class="section-title">Systems</h2>
+                <p class="section-subtitle">The engineering foundation behind my AI infrastructure work.</p>
+            </div>
+
+            <div class="systems-concepts-grid">
+                <div class="sys-concept-card">
+                    <i class="fas fa-terminal concept-icon"></i>
+                    <strong>C++ &amp; Performance</strong>
+                    <span>Memory management, lock granularity, and hardware concurrency</span>
+                </div>
+
+                <div class="sys-concept-card">
+                    <i class="fas fa-network-wired concept-icon"></i>
+                    <strong>Distributed Storage</strong>
+                    <span>Write-Ahead Logging (WAL), Gossip cluster protocol, and Quorum consensus</span>
+                </div>
+
+                <div class="sys-concept-card">
+                    <i class="fas fa-microchip concept-icon"></i>
+                    <strong>LLM Serving Systems</strong>
+                    <span>Paged KV cache management, priority request scheduling, and preemption</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. /about — SHORT PROFESSIONAL PROFILE -->
+        <section id="about" class="section">
+            <div class="section-header">
+                <h2 class="section-title">About</h2>
+            </div>
+
+            <div class="about-profile-box">
+                <p class="profile-paragraph">
+                    I build systems around AI.
+                </p>
+                <p class="profile-paragraph">
+                    My interests sit at the intersection of generative AI, agent infrastructure, distributed systems, and open source.
+                </p>
+                <p class="profile-paragraph">
+                    I enjoy working inside complex codebases, understanding how they work, and contributing improvements upstream.
+                </p>
+
+                <div class="current-focus-chips">
+                    <span class="focus-chip-label">CURRENT FOCUS:</span>
+                    <span class="tag tag-ai">Generative AI</span>
+                    <span class="tag tag-ai">Agent Infrastructure</span>
+                    <span class="tag tag-ai">Open Source</span>
+                    <span class="tag tag-systems">Systems</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. /contact — MINIMAL CONTACT -->
         <section id="contact" class="section">
             <div class="section-header">
-                <h2 class="section-title">Get in Touch</h2>
-                <p class="section-subtitle">Interested in working on AI infrastructure, agents, or systems software?</p>
+                <h2 class="section-title">Let's build something.</h2>
             </div>
 
-            <div class="contact-card-center">
+            <div class="contact-actions-row">
                 <button class="btn btn-primary copy-email-btn" data-email="rajtejas.xyz@gmail.com">
                     <i class="fas fa-copy"></i> rajtejas.xyz@gmail.com
                 </button>
@@ -418,16 +423,17 @@
         <div class="cmd-modal-card">
             <div class="cmd-header">
                 <span class="prompt-text">tejas@ai-infra:~$</span>
-                <input type="text" id="cmd-input" placeholder="Type a route e.g. /work, /openclaw, /opensource, /why, /contact..." autocomplete="off">
+                <input type="text" id="cmd-input" placeholder="Search / Navigate e.g. /work, /open-source, /agents, /systems..." autocomplete="off">
                 <button id="cmd-close" class="cmd-close-btn">&times;</button>
             </div>
             <div class="cmd-results" id="cmd-results">
-                <div class="cmd-group-title">Command Routes</div>
-                <button class="cmd-item" data-action="query" data-query="Show AI work">/work — Systems Built for AI (vLLM / PyTorch / Tejas-DB)</button>
-                <button class="cmd-item" data-action="query" data-query="OpenClaw">/openclaw — Focus: OpenClaw Agent Infrastructure</button>
-                <button class="cmd-item" data-action="query" data-query="Open source">/opensource — Upstream Open Source Evidence</button>
-                <button class="cmd-item" data-action="query" data-query="Why infrastructure?">/why — Why AI Infrastructure?</button>
-                <button class="cmd-item" data-action="query" data-query="Contact">/contact — Direct Contact &amp; Links</button>
+                <div class="cmd-group-title">Navigation Routes</div>
+                <button class="cmd-item" data-action="navigate" data-target="#work">→ Work (/work)</button>
+                <button class="cmd-item" data-action="navigate" data-target="#open-source">→ Open Source (/open-source)</button>
+                <button class="cmd-item" data-action="navigate" data-target="#agents">→ Agent Infrastructure (/agents)</button>
+                <button class="cmd-item" data-action="navigate" data-target="#systems">→ Systems (/systems)</button>
+                <button class="cmd-item" data-action="navigate" data-target="#about">→ About (/about)</button>
+                <button class="cmd-item" data-action="navigate" data-target="#contact">→ Contact (/contact)</button>
 
                 <div class="cmd-group-title">Actions</div>
                 <button class="cmd-item" data-action="external" data-target="/opensource.html">View Detailed /opensource Page</button>

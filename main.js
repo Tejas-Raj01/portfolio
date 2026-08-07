@@ -1,7 +1,7 @@
-// Tejas Raj Portfolio — Personal AI Command Interface Logic
+// Tejas Raj Portfolio — AI Engineer & Agent Infrastructure Router Logic
 
 document.addEventListener('DOMContentLoaded', () => {
-    initAICommandInterface();
+    initAICommandGateway();
     initScrollSpyAndProgress();
     initCopyEmailButtons();
     initCommandPalette();
@@ -41,48 +41,40 @@ const portfolioData = {
             tags: ["C++17", "Distributed Systems", "WAL"],
             link: "https://github.com/Tejas-Raj01/distributed-system"
         }
-    ],
-    openclaw: {
-        title: "Focus: OpenClaw Agent Infrastructure",
-        url: "https://openclaw.ai/",
-        docs: "https://docs.openclaw.ai/",
-        summary: "Exploring and contributing to self-hosted AI agent runtimes, tool calling schemas, session memory, and multi-agent gateway routing.",
-        modules: ["Agent Runtime", "Tools & Skills", "Sessions & Memory", "Multi-Agent Gateway"]
-    },
-    why: "The interesting part of AI isn't only the model. It's everything around it — inference, memory, tools, orchestration, evaluation, and reliability."
+    ]
 };
 
-// 1. PERSONAL AI COMMAND INTERFACE ROUTER
-function initAICommandInterface() {
+// 1. AI CHAT GATEWAY & ROUTER
+function initAICommandGateway() {
     const input = document.getElementById('ai-prompt-input');
     const submitBtn = document.getElementById('ai-submit-btn');
     const terminal = document.getElementById('ai-response-terminal');
-    const chips = document.querySelectorAll('.prompt-chip');
+    const quickBtns = document.querySelectorAll('.quick-btn');
 
     if (!input || !terminal) return;
 
-    function handleQuery(userQuery) {
-        if (!userQuery) return;
-        const q = userQuery.toLowerCase().trim();
+    function routeQuery(queryText) {
+        if (!queryText) return;
+        const q = queryText.toLowerCase().trim();
 
-        // Render user prompt line
-        appendLine(`<span class="user-prefix">USER &gt;</span> ${escapeHtml(userQuery)}`);
+        // Append User Prompt Line
+        appendLine(`<span class="user-prefix">USER &gt;</span> ${escapeHtml(queryText)}`);
 
-        // Router Intent Matching
-        if (q.includes('work') || q.includes('built') || q.includes('project') || q.includes('system')) {
-            renderWorkResponse();
-        } else if (q.includes('openclaw') || q.includes('agent')) {
-            renderOpenClawResponse();
-        } else if (q.includes('open source') || q.includes('oss') || q.includes('pr') || q.includes('contribution')) {
-            renderOpenSourceResponse();
-        } else if (q.includes('why') || q.includes('infra')) {
-            renderWhyResponse();
-        } else if (q.includes('contact') || q.includes('email') || q.includes('reach') || q.includes('hire')) {
-            renderContactResponse();
-        } else if (q.includes('who') || q.includes('about') || q.includes('tejas')) {
-            renderIdentityResponse();
+        // Router Intent Engine
+        if (q.includes('work') || q.includes('project') || q.includes('built')) {
+            renderWorkRoute();
+        } else if (q.includes('open source') || q.includes('oss') || q.includes('pr')) {
+            renderOpenSourceRoute();
+        } else if (q.includes('agent') || q.includes('openclaw')) {
+            renderAgentsRoute();
+        } else if (q.includes('system') || q.includes('c++') || q.includes('tejas-db')) {
+            renderSystemsRoute();
+        } else if (q.includes('about') || q.includes('who') || q.includes('bio')) {
+            renderAboutRoute();
+        } else if (q.includes('contact') || q.includes('email') || q.includes('reach')) {
+            renderContactRoute();
         } else {
-            renderFallbackResponse(userQuery);
+            renderFallbackRoute(queryText);
         }
 
         input.value = '';
@@ -90,20 +82,20 @@ function initAICommandInterface() {
     }
 
     if (submitBtn) {
-        submitBtn.addEventListener('click', () => handleQuery(input.value));
+        submitBtn.addEventListener('click', () => routeQuery(input.value));
     }
 
     input.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
             e.preventDefault();
-            handleQuery(input.value);
+            routeQuery(input.value);
         }
     });
 
-    chips.forEach(chip => {
-        chip.addEventListener('click', () => {
-            const query = chip.getAttribute('data-query');
-            handleQuery(query);
+    quickBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const query = btn.getAttribute('data-query');
+            routeQuery(query);
         });
     });
 
@@ -114,67 +106,72 @@ function initAICommandInterface() {
         terminal.appendChild(line);
     }
 
-    function renderWorkResponse() {
-        let html = `<span class="ai-prefix">[AI Interface]:</span> <strong>Three key systems representing Tejas's AI &amp; infrastructure work:</strong><br><br>`;
+    function renderWorkRoute() {
+        let html = `<span class="ai-prefix">[AI Router]:</span> <strong>Opening /work section...</strong><br><br>`;
         portfolioData.work.forEach((w, idx) => {
             html += `<strong>0${idx + 1} — ${w.name}</strong> (${w.category})<br>`;
             html += `<em>${w.summary}</em><br>`;
-            if (w.metrics) html += `<span style="color:var(--accent-ai)">[Metrics]: ${w.metrics}</span><br>`;
             html += `<a href="${w.link}" target="_blank" class="action-btn" style="font-size:12px">View evidence →</a><br><br>`;
         });
         appendLine(html);
+        scrollToSection('#work');
     }
 
-    function renderOpenClawResponse() {
-        let html = `<span class="ai-prefix">[AI Interface]:</span> <strong>Focus: OpenClaw &amp; Agent Infrastructure</strong> (<a href="${portfolioData.openclaw.url}" target="_blank" class="highlight">openclaw.ai</a>)<br>`;
-        html += `${portfolioData.openclaw.summary}<br><br>`;
-        html += `<strong>Core Modules:</strong> ${portfolioData.openclaw.modules.join(" · ")}<br>`;
-        html += `<span style="color:var(--fg-muted)">[Status]: Exploring and preparing upstream contributions. Built for live addition as PRs merge.</span>`;
+    function renderOpenSourceRoute() {
+        let html = `<span class="ai-prefix">[AI Router]:</span> <strong>Routing to /open-source timeline...</strong><br>`;
+        html += `• <strong>vLLM:</strong> Request preemption queue re-indexing (<a href="https://github.com/vllm-project/vllm/pull/49206" target="_blank" class="highlight">PR #49206</a>)<br>`;
+        html += `• <strong>PyTorch:</strong> FX operator return schemas &amp; C++ sparse div-by-zero (<a href="https://github.com/pytorch/pytorch/pull/189142" target="_blank" class="highlight">PR #189142</a>)<br>`;
+        html += `• <strong>Jetpack, Snapcraft, CP Editor:</strong> Verified merged upstream contributions.<br>`;
+        html += `<a href="/opensource.html" class="action-btn" style="font-size:12px; margin-top:4px; display:inline-block">Explore detailed /opensource page →</a>`;
         appendLine(html);
+        scrollToSection('#open-source');
     }
 
-    function renderOpenSourceResponse() {
-        let html = `<span class="ai-prefix">[AI Interface]:</span> <strong>Upstream Open Source Credibility:</strong><br>`;
-        html += `• <strong>vLLM:</strong> Inference scheduler request preemption fix (<a href="https://github.com/vllm-project/vllm/pull/49206" target="_blank" class="highlight">PR #49206</a>)<br>`;
-        html += `• <strong>PyTorch:</strong> FX operator return schema &amp; sparse C++ div-by-zero fixes (<a href="https://github.com/pytorch/pytorch/pull/189142" target="_blank" class="highlight">PR #189142</a>)<br>`;
-        html += `• <strong>Jetpack:</strong> 9 merged PRs addressing block editor stability &amp; REST API schemas<br>`;
-        html += `• <strong>Snapcraft:</strong> Linux package build linter resolution (<a href="https://github.com/canonical/snapcraft/pull/6272" target="_blank" class="highlight">PR #6272</a>)<br>`;
-        html += `<a href="/opensource.html" class="action-btn" style="font-size:12px; margin-top:6px; display:inline-block">Explore detailed /opensource page →</a>`;
+    function renderAgentsRoute() {
+        let html = `<span class="ai-prefix">[AI Router]:</span> <strong>Routing to /agents (Agent Infrastructure)...</strong><br>`;
+        html += `Focused on agent runtimes, tool schemas, memory, and multi-agent routing.<br>`;
+        html += `<span style="color:var(--accent-ai)">Open Source Focus: OpenClaw (openclaw.ai) — Exploring &amp; preparing upstream contributions.</span>`;
         appendLine(html);
+        scrollToSection('#agents');
     }
 
-    function renderWhyResponse() {
-        let html = `<span class="ai-prefix">[AI Interface]:</span> <strong>Why Infrastructure?</strong><br>`;
-        html += `"${portfolioData.why}"<br><br>`;
-        html += `Tejas's C++ and distributed systems foundation (Tejas-DB) provides the systems reliability needed to optimize AI inference and agent runtimes.`;
+    function renderSystemsRoute() {
+        let html = `<span class="ai-prefix">[AI Router]:</span> <strong>Routing to /systems...</strong><br>`;
+        html += `Tejas-DB: Distributed Key-Value Store built in C++17 (33,685 req/s, ~2.97ms latency, WAL, Gossip, Quorum). Demonstrates the systems foundation behind AI infrastructure work.`;
         appendLine(html);
+        scrollToSection('#systems');
     }
 
-    function renderContactResponse() {
-        let html = `<span class="ai-prefix">[AI Interface]:</span> <strong>Direct Contact Details:</strong><br>`;
-        html += `• Email: <button class="copy-email-btn btn-link highlight" data-email="${portfolioData.identity.email}">${portfolioData.identity.email}</button><br>`;
-        html += `• GitHub: <a href="${portfolioData.identity.github}" target="_blank" class="highlight">github.com/Tejas-Raj01</a><br>`;
-        html += `• LinkedIn: <a href="${portfolioData.identity.linkedin}" target="_blank" class="highlight">linkedin.com/in/tejas-raj-09aa4a236</a><br>`;
-        html += `• Resume: <button class="btn-link highlight open-resume-modal">View Resume Preview PDF</button>`;
+    function renderAboutRoute() {
+        let html = `<span class="ai-prefix">[AI Router]:</span> <strong>Routing to /about...</strong><br>`;
+        html += `Tejas Raj — AI Engineer focused on generative AI, agent runtimes, LLM inference serving, and open-source systems.`;
         appendLine(html);
+        scrollToSection('#about');
+    }
 
-        // Re-bind email buttons
+    function renderContactRoute() {
+        let html = `<span class="ai-prefix">[AI Router]:</span> <strong>Routing to /contact...</strong><br>`;
+        html += `Email: <button class="copy-email-btn btn-link highlight" data-email="${portfolioData.identity.email}">${portfolioData.identity.email}</button> · `;
+        html += `<a href="${portfolioData.identity.github}" target="_blank" class="highlight">GitHub</a> · `;
+        html += `<a href="${portfolioData.identity.linkedin}" target="_blank" class="highlight">LinkedIn</a> · `;
+        html += `<button class="btn-link highlight open-resume-modal">Resume PDF</button>`;
+        appendLine(html);
+        scrollToSection('#contact');
         initCopyEmailButtons();
         initResumeModal();
     }
 
-    function renderIdentityResponse() {
-        let html = `<span class="ai-prefix">[AI Interface]:</span> <strong>Tejas Raj — ${portfolioData.identity.role}</strong><br>`;
-        html += `"${portfolioData.identity.statement}"<br><br>`;
-        html += `Focused on generative AI, agent runtimes, LLM inference serving, and open-source infrastructure.`;
+    function renderFallbackRoute(query) {
+        let html = `<span class="ai-prefix">[AI Router]:</span> I parsed "${escapeHtml(query)}". Routing you to Tejas's work...`;
         appendLine(html);
+        scrollToSection('#work');
     }
 
-    function renderFallbackResponse(query) {
-        let html = `<span class="ai-prefix">[AI Interface]:</span> I parsed "${escapeHtml(query)}". Here is a quick overview of Tejas's identity:<br>`;
-        html += `<strong>Tejas Raj — AI Engineer</strong> (Generative AI · Agent Infrastructure · Open Source).<br>`;
-        html += `Select a prompt chip above (Work, Open Source, OpenClaw, Contact) or ask specifically about vLLM, PyTorch, or Tejas-DB.`;
-        appendLine(html);
+    function scrollToSection(selector) {
+        const sec = document.querySelector(selector);
+        if (sec) {
+            setTimeout(() => sec.scrollIntoView({ behavior: 'smooth' }), 300);
+        }
     }
 
     function escapeHtml(text) {
@@ -354,19 +351,12 @@ function initCommandPalette() {
         item.addEventListener('click', () => {
             const action = item.getAttribute('data-action');
             const target = item.getAttribute('data-target');
-            const query = item.getAttribute('data-query');
 
             closePalette();
 
-            if (action === 'query' && query) {
-                const promptInput = document.getElementById('ai-prompt-input');
-                const submitBtn = document.getElementById('ai-submit-btn');
-                if (promptInput && submitBtn) {
-                    promptInput.value = query;
-                    submitBtn.click();
-                    const heroSec = document.getElementById('hero');
-                    if (heroSec) heroSec.scrollIntoView({ behavior: 'smooth' });
-                }
+            if (action === 'navigate' && target) {
+                const sec = document.querySelector(target);
+                if (sec) sec.scrollIntoView({ behavior: 'smooth' });
             } else if (action === 'external' && target) {
                 window.open(target, '_blank');
             } else if (action === 'copy-email') {
