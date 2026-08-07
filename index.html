@@ -4,22 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tejas Raj — Software Engineer | Open Source &amp; Systems</title>
+    <title>tejas-raj/ — Software Engineer | Open Source &amp; Systems</title>
     <meta name="description"
-        content="Tejas Raj is a software engineer focused on systems, C++, Python, distributed systems, and open source. Contributor to PyTorch, vLLM, Jetpack, Snapcraft, and CP Editor. Computer Science @ NIT Durgapur.">
+        content="Tejas Raj personal engineering codebase (tejas-raj/). Software engineer working on systems, C++, Python, distributed systems, and open source. Contributor to PyTorch, vLLM, Jetpack, Snapcraft, CP Editor. Computer Science @ NIT Durgapur.">
     <meta name="author" content="Tejas Raj">
     <meta name="google-site-verification" content="a9-iU5UiYVAJds2UBEvNfWLYOTJyv6qjf8v8l1L1Zhc">
     <link rel="canonical" href="https://portfolio-liart-eta-34.vercel.app/">
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml"
-        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='16' fill='%23090a0c' stroke='%2300ff41' stroke-width='6'/><text x='18' y='68' font-family='monospace' font-weight='900' font-size='52' fill='%2300ff41'>&gt;</text><text x='54' y='68' font-family='monospace' font-weight='900' font-size='52' fill='%23ffffff'>_</text></svg>">
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='16' fill='%230a0c10' stroke='%2300ff41' stroke-width='6'/><text x='18' y='68' font-family='monospace' font-weight='900' font-size='52' fill='%2300ff41'>&gt;</text><text x='54' y='68' font-family='monospace' font-weight='900' font-size='52' fill='%23ffffff'>_</text></svg>">
 
-    <!-- Fonts: Inter, Fira Code, Outfit -->
+    <!-- Fonts: Fira Code, Inter, Outfit -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@600;700;800&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@600;700;800&display=swap"
         rel="stylesheet">
 
     <!-- FontAwesome 6 -->
@@ -31,18 +31,10 @@
     <!-- Open Graph Meta -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://portfolio-liart-eta-34.vercel.app/">
-    <meta property="og:title" content="Tejas Raj — Software Engineer | Open Source &amp; Systems">
+    <meta property="og:title" content="tejas-raj/ — Software Engineer | Open Source &amp; Systems">
     <meta property="og:description"
-        content="Tejas Raj is a software engineer focused on systems, C++, Python, distributed systems, and open source. Contributor to PyTorch and vLLM. Computer Science @ NIT Durgapur.">
+        content="Tejas Raj personal engineering codebase (tejas-raj/). Software engineer working on systems, C++, Python, distributed systems, and open source. Contributor to PyTorch and vLLM.">
     <meta property="og:image" content="https://portfolio-liart-eta-34.vercel.app/og-image.png">
-
-    <!-- Twitter Meta -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://portfolio-liart-eta-34.vercel.app/">
-    <meta name="twitter:title" content="Tejas Raj — Software Engineer | Open Source &amp; Systems">
-    <meta name="twitter:description"
-        content="Tejas Raj is a software engineer focused on systems, C++, Python, distributed systems, and open source. Contributor to PyTorch and vLLM. Computer Science @ NIT Durgapur.">
-    <meta name="twitter:image" content="https://portfolio-liart-eta-34.vercel.app/og-image.png">
 
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
@@ -81,276 +73,503 @@
     <!-- Toast Notification Container -->
     <div id="toast-container" class="toast-container"></div>
 
-    <!-- Header Navbar -->
-    <header class="navbar" id="navbar">
-        <div class="nav-content">
-            <a href="#hero" class="logo">Tejas Raj</a>
-            <nav class="nav-links" id="nav-links" aria-label="Main Navigation">
-                <a href="#work" class="nav-item">Work</a>
-                <a href="#opensource" class="nav-item">Open Source</a>
-                <a href="#about" class="nav-item">About</a>
-            </nav>
-            <div class="nav-actions">
-                <a href="https://github.com/Tejas-Raj01" target="_blank" class="nav-ext-link">GitHub <i class="fas fa-arrow-up-right-from-square"></i></a>
-                <a href="https://www.linkedin.com/in/tejas-raj-09aa4a236/" target="_blank" class="nav-ext-link">LinkedIn <i class="fas fa-arrow-up-right-from-square"></i></a>
-                <button class="nav-ext-link btn-link open-resume-modal">Resume <i class="fas fa-file-pdf"></i></button>
-                <button id="cmd-palette-btn" class="cmd-btn" aria-label="Open Command Palette (Ctrl+K)">
+    <!-- Repository Top Header Bar -->
+    <header class="repo-header" id="navbar">
+        <div class="repo-header-content">
+            <a href="#readme" class="repo-title">
+                <i class="fas fa-folder-tree repo-folder-icon"></i>
+                <span class="repo-owner">tejas-raj</span><span class="repo-slash">/</span>
+            </a>
+
+            <!-- Branch & Status Badge -->
+            <div class="repo-branch-badge">
+                <i class="fas fa-code-branch branch-icon"></i>
+                <span>main</span>
+                <span class="commit-hash">(d22e7c9)</span>
+            </div>
+
+            <!-- Header Quick Actions -->
+            <div class="repo-nav-actions">
+                <a href="https://github.com/Tejas-Raj01" target="_blank" class="repo-link-btn" title="GitHub Profile">
+                    <i class="fab fa-github"></i> <span class="hide-mobile">GitHub</span>
+                </a>
+                <a href="https://www.linkedin.com/in/tejas-raj-09aa4a236/" target="_blank" class="repo-link-btn" title="LinkedIn Profile">
+                    <i class="fab fa-linkedin"></i> <span class="hide-mobile">LinkedIn</span>
+                </a>
+                <button class="repo-link-btn btn-link open-resume-modal" title="View Resume PDF">
+                    <i class="fas fa-file-pdf"></i> <span class="hide-mobile">Resume</span>
+                </button>
+                <button id="cmd-palette-btn" class="repo-cmd-btn" aria-label="Open Command Palette (Ctrl+K)">
                     <i class="fas fa-search"></i> <span class="cmd-key">⌘K</span>
                 </button>
             </div>
         </div>
     </header>
 
-    <main id="main-content">
-        <!-- HERO SECTION -->
-        <section id="hero" class="hero-section">
-            <h1 class="hero-title">Tejas Raj</h1>
-            <h2 class="hero-subtitle">Software Engineer</h2>
-            <h3 class="hero-focus">Open Source · Systems · C++</h3>
-            
-            <p class="hero-tagline">
-                I like understanding how things work, fixing what doesn't, and contributing upstream.
-            </p>
-
-            <div class="status-line">
-                <span class="pulse-indicator"></span>
-                <code>currently: building + contributing + solving</code>
+    <!-- Codebase Main Layout Grid -->
+    <div class="codebase-wrapper">
+        <!-- Sidebar File Explorer -->
+        <aside class="file-explorer" id="file-explorer">
+            <div class="explorer-header">
+                <i class="fas fa-chevron-down"></i> REPOSITORY FILES
             </div>
+            <nav class="file-tree" aria-label="Codebase File Explorer">
+                <a href="#readme" class="file-item active" data-file="readme">
+                    <i class="fas fa-file-code file-icon icon-markdown"></i> README.md
+                </a>
+                <a href="#contributions" class="file-item" data-file="contributions">
+                    <i class="fas fa-folder file-icon icon-folder"></i> CONTRIBUTIONS/
+                </a>
+                <a href="#systems" class="file-item" data-file="systems">
+                    <i class="fas fa-folder file-icon icon-folder"></i> SYSTEMS/
+                </a>
+                <a href="#history" class="file-item" data-file="history">
+                    <i class="fas fa-code-commit file-icon icon-commit"></i> GIT_HISTORY.log
+                </a>
+                <a href="#cp" class="file-item" data-file="cp">
+                    <i class="fas fa-folder file-icon icon-folder"></i> CP/
+                </a>
+                <a href="#about" class="file-item" data-file="about">
+                    <i class="fas fa-file-lines file-icon icon-markdown"></i> ABOUT.md
+                </a>
+                <a href="#contact" class="file-item" data-file="contact">
+                    <i class="fas fa-file-lines file-icon icon-markdown"></i> CONTACT.md
+                </a>
+            </nav>
 
-            <div class="hero-cta-row">
-                <button class="btn btn-primary open-resume-modal"><i class="fas fa-file-pdf"></i> View Resume</button>
-                <a href="https://github.com/Tejas-Raj01" target="_blank" class="btn btn-secondary"><i class="fab fa-github"></i> GitHub</a>
-                <a href="https://www.linkedin.com/in/tejas-raj-09aa4a236/" target="_blank" class="btn btn-secondary"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            <!-- Merged Signature Area in Sidebar -->
+            <div class="sidebar-merged-box">
+                <span class="merged-box-title"><i class="fas fa-check-double accent-icon"></i> MERGED UPSTREAM</span>
+                <div class="merged-badges-list">
+                    <span class="merged-badge">PyTorch <i class="fas fa-check"></i></span>
+                    <span class="merged-badge">vLLM <i class="fas fa-check"></i></span>
+                    <span class="merged-badge">Jetpack <i class="fas fa-check"></i></span>
+                    <span class="merged-badge">Snapcraft <i class="fas fa-check"></i></span>
+                    <span class="merged-badge">CP Editor <i class="fas fa-check"></i></span>
+                </div>
             </div>
-        </section>
+        </aside>
 
-        <!-- SELECTED WORK (STRICTLY THREE MAJOR PIECES) -->
-        <section id="work" class="section">
-            <div class="section-header">
-                <h2 class="section-heading">Selected Work</h2>
-                <p class="section-subtext">A few things I've built and contributed to.</p>
-            </div>
+        <!-- Main Codebase Content Area -->
+        <main id="main-content" class="codebase-main">
 
-            <div class="project-editorial-list">
-                <!-- 01 — vLLM -->
-                <article class="project-editorial-item">
-                    <div class="project-num">01</div>
-                    <div class="project-body">
-                        <div class="project-title-row">
-                            <h3 class="project-name">vLLM</h3>
-                            <span class="project-label">Open-source LLM inference infrastructure</span>
-                        </div>
-                        <p class="project-desc">
-                            Fixed request index preemption misalignment in scheduler priority queue under KV cache memory pressure.
-                        </p>
-                        <div class="project-footer">
-                            <div class="tag-row">
-                                <span class="tag">Python</span>
-                                <span class="tag">PyTorch</span>
-                                <span class="tag">C++</span>
+            <!-- 1. README.md (HERO & INTRODUCTION) -->
+            <section id="readme" class="code-file-section">
+                <div class="file-tab-bar">
+                    <span class="tab-item active"><i class="fas fa-file-code icon-markdown"></i> README.md</span>
+                </div>
+
+                <div class="file-content-body">
+                    <div class="readme-header">
+                        <span class="mono-comment">// tejas-raj/README.md</span>
+                        <h1 class="hero-name">Tejas Raj</h1>
+                        <h2 class="hero-role">Software Engineer</h2>
+                        <h3 class="hero-focus">Open Source · Systems · C++</h3>
+                    </div>
+
+                    <p class="hero-tagline">
+                        I like understanding how things work, fixing what doesn't, and contributing upstream.
+                    </p>
+
+                    <div class="status-line">
+                        <span class="pulse-indicator"></span>
+                        <code>currently: building + contributing + solving</code>
+                    </div>
+
+                    <div class="hero-cta-group">
+                        <button class="btn btn-primary open-resume-modal"><i class="fas fa-file-pdf"></i> Resume PDF</button>
+                        <a href="https://github.com/Tejas-Raj01" target="_blank" class="btn btn-secondary"><i class="fab fa-github"></i> GitHub</a>
+                        <a href="https://www.linkedin.com/in/tejas-raj-09aa4a236/" target="_blank" class="btn btn-secondary"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. SELECTED WORK & CONTRIBUTIONS (vLLM, PyTorch, Tejas-DB) -->
+            <section id="contributions" class="code-file-section">
+                <div class="file-tab-bar">
+                    <span class="tab-item active"><i class="fas fa-folder icon-folder"></i> CONTRIBUTIONS/ &amp; Featured Work</span>
+                    <a href="/opensource.html" class="tab-ext-link">Explore /opensource page <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="file-content-body">
+                    <div class="section-title-box">
+                        <h2 class="code-section-title"><span class="prompt-symbol">#</span> Selected Engineering Work</h2>
+                        <p class="code-section-sub">Three major pieces representing upstream contributions and systems development.</p>
+                    </div>
+
+                    <div class="project-codebase-list">
+                        <!-- 01 — vLLM -->
+                        <article class="project-codebase-card">
+                            <div class="card-top-bar">
+                                <span class="project-num-tag">01</span>
+                                <h3 class="project-title">vLLM</h3>
+                                <span class="badge badge-tech">LLM Inference Infrastructure</span>
                             </div>
-                            <a href="https://github.com/vllm-project/vllm/pull/49206" target="_blank" class="editorial-link">View contribution <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- 02 — PyTorch -->
-                <article class="project-editorial-item">
-                    <div class="project-num">02</div>
-                    <div class="project-body">
-                        <div class="project-title-row">
-                            <h3 class="project-name">PyTorch</h3>
-                            <span class="project-label">Contributions to a major open-source ML framework</span>
-                        </div>
-                        <p class="project-desc">
-                            Fixed FX operator schema return type annotations &amp; resolved C++ sparse compressed tensor floating-point division-by-zero crash.
-                        </p>
-                        <div class="project-footer">
-                            <div class="tag-row">
-                                <span class="tag">C++</span>
-                                <span class="tag">Python</span>
-                                <span class="tag">Testing</span>
+                            <p class="project-desc-text">
+                                Fixed request index preemption misalignment in scheduler priority queue under KV cache memory pressure.
+                            </p>
+                            <div class="card-bottom-bar">
+                                <div class="tag-list">
+                                    <span class="tag tag-primary">Python</span>
+                                    <span class="tag tag-primary">PyTorch</span>
+                                    <span class="tag tag-primary">C++</span>
+                                </div>
+                                <a href="https://github.com/vllm-project/vllm/pull/49206" target="_blank" class="action-link-btn">View contribution <i class="fas fa-arrow-right"></i></a>
                             </div>
-                            <a href="https://github.com/pytorch/pytorch/pull/189142" target="_blank" class="editorial-link">View contributions <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </article>
+                        </article>
 
-                <!-- 03 — Tejas-DB -->
-                <article class="project-editorial-item">
-                    <div class="project-num">03</div>
-                    <div class="project-body">
-                        <div class="project-title-row">
-                            <h3 class="project-name">Tejas-DB</h3>
-                            <span class="project-label">A distributed key-value store built in C++</span>
-                        </div>
-                        <p class="project-desc">
-                            Decentralized P2P key-value database featuring <code>std::shared_mutex</code> concurrent locking, Write-Ahead Logging (WAL) for crash durability, Gossip cluster protocol, and Quorum consensus.
-                        </p>
-                        <div class="benchmark-pills-row">
-                            <span class="bench-pill"><strong>33,685</strong> req/s</span>
-                            <span class="bench-pill"><strong>~2.97 ms</strong> avg latency</span>
-                            <span class="bench-pill"><strong>100</strong> concurrent threads</span>
-                        </div>
-                        <div class="project-footer">
-                            <div class="tag-row">
-                                <span class="tag">C++17</span>
-                                <span class="tag">Distributed Systems</span>
-                                <span class="tag">WAL</span>
-                                <span class="tag">Gossip</span>
-                                <span class="tag">Quorum</span>
+                        <!-- 02 — PyTorch -->
+                        <article class="project-codebase-card">
+                            <div class="card-top-bar">
+                                <span class="project-num-tag">02</span>
+                                <h3 class="project-title">PyTorch</h3>
+                                <span class="badge badge-tech">Core Open-Source ML Framework</span>
                             </div>
-                            <a href="https://github.com/Tejas-Raj01/distributed-system" target="_blank" class="editorial-link">View project <i class="fas fa-arrow-right"></i></a>
+                            <p class="project-desc-text">
+                                Fixed FX operator schema return type annotations &amp; resolved C++ sparse compressed tensor floating-point division-by-zero crash.
+                            </p>
+                            <div class="card-bottom-bar">
+                                <div class="tag-list">
+                                    <span class="tag tag-primary">C++</span>
+                                    <span class="tag tag-primary">Python</span>
+                                    <span class="tag">Testing</span>
+                                </div>
+                                <a href="https://github.com/pytorch/pytorch/pull/189142" target="_blank" class="action-link-btn">View contributions <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </article>
+
+                        <!-- 03 — Tejas-DB -->
+                        <article class="project-codebase-card">
+                            <div class="card-top-bar">
+                                <span class="project-num-tag">03</span>
+                                <h3 class="project-title">Tejas-DB</h3>
+                                <span class="badge badge-tech">Distributed Key-Value Store</span>
+                            </div>
+                            <p class="project-desc-text">
+                                Decentralized P2P key-value database built in C++17 featuring <code>std::shared_mutex</code> concurrent locking, Write-Ahead Logging (WAL) for durability, Gossip cluster protocol, and Quorum consensus.
+                            </p>
+                            <div class="benchmark-row">
+                                <span class="bench-tag"><strong>33,685</strong> req/s</span>
+                                <span class="bench-tag"><strong>~2.97 ms</strong> avg latency</span>
+                                <span class="bench-tag"><strong>100</strong> concurrent threads</span>
+                            </div>
+                            <div class="card-bottom-bar">
+                                <div class="tag-list">
+                                    <span class="tag tag-primary">C++17</span>
+                                    <span class="tag tag-primary">Distributed Systems</span>
+                                    <span class="tag">WAL</span>
+                                    <span class="tag">Gossip</span>
+                                    <span class="tag">Quorum</span>
+                                </div>
+                                <a href="https://github.com/Tejas-Raj01/distributed-system" target="_blank" class="action-link-btn">View project <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- Open Source Directory Overview -->
+                    <div class="oss-dir-box" style="margin-top: 32px;">
+                        <h4 class="oss-dir-title"><i class="fas fa-folder-open accent-icon"></i> CONTRIBUTIONS/ Codebases Overview</h4>
+                        <div class="oss-dir-grid">
+                            <a href="https://github.com/vllm-project/vllm" target="_blank" class="dir-item">
+                                <i class="fas fa-code-pull-request accent-icon"></i>
+                                <div>
+                                    <strong>vLLM</strong>
+                                    <span>LLM Inference Engine</span>
+                                </div>
+                            </a>
+                            <a href="https://github.com/pytorch/pytorch" target="_blank" class="dir-item">
+                                <i class="fas fa-code-pull-request accent-icon"></i>
+                                <div>
+                                    <strong>PyTorch</strong>
+                                    <span>Deep Learning Framework</span>
+                                </div>
+                            </a>
+                            <a href="https://github.com/Automattic/jetpack" target="_blank" class="dir-item">
+                                <i class="fas fa-code-pull-request accent-icon"></i>
+                                <div>
+                                    <strong>Automattic Jetpack</strong>
+                                    <span>9 Merged PRs</span>
+                                </div>
+                            </a>
+                            <a href="https://github.com/canonical/snapcraft" target="_blank" class="dir-item">
+                                <i class="fas fa-code-pull-request accent-icon"></i>
+                                <div>
+                                    <strong>Canonical Snapcraft</strong>
+                                    <span>Linux Package Tooling</span>
+                                </div>
+                            </a>
+                            <a href="https://github.com/cpeditor/cpeditor" target="_blank" class="dir-item">
+                                <i class="fas fa-code-pull-request accent-icon"></i>
+                                <div>
+                                    <strong>CP Editor</strong>
+                                    <span>Qt/C++ Desktop App</span>
+                                </div>
+                            </a>
+                        </div>
+                        <a href="/opensource.html" class="editorial-link-lg" style="margin-top: 14px; display: inline-flex;">View detailed /opensource contribution history <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. GIT HISTORY AS MY ENGINEERING JOURNEY -->
+            <section id="history" class="code-file-section">
+                <div class="file-tab-bar">
+                    <span class="tab-item active"><i class="fas fa-code-commit icon-commit"></i> GIT_HISTORY.log</span>
+                </div>
+
+                <div class="file-content-body">
+                    <div class="section-title-box">
+                        <h2 class="code-section-title"><span class="prompt-symbol">#</span> Engineering Commit Timeline</h2>
+                        <p class="code-section-sub">Conceptual Git history mapping my real open-source milestones and engineering journey.</p>
+                    </div>
+
+                    <div class="git-timeline-container">
+                        <!-- Node 1: vLLM -->
+                        <div class="git-commit-node" data-node="vllm">
+                            <div class="node-marker"><i class="fas fa-circle-dot"></i></div>
+                            <div class="node-content">
+                                <div class="node-header">
+                                    <span class="commit-year">2026 / upstream contribution</span>
+                                    <span class="commit-repo">vllm-project / vllm</span>
+                                </div>
+                                <h4 class="node-title">Fix request index preemption misalignment in SchedulingPolicy.PRIORITY</h4>
+                                <p class="node-desc">Corrected request queue re-indexing under KV cache memory pressure. Merged upstream in PR #49206.</p>
+                                <a href="https://github.com/vllm-project/vllm/pull/49206" target="_blank" class="node-pr-link">View PR #49206 <i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+
+                        <!-- Node 2: PyTorch -->
+                        <div class="git-commit-node" data-node="pytorch">
+                            <div class="node-marker"><i class="fas fa-circle-dot"></i></div>
+                            <div class="node-content">
+                                <div class="node-header">
+                                    <span class="commit-year">2026 / upstream contribution</span>
+                                    <span class="commit-repo">pytorch / pytorch</span>
+                                </div>
+                                <h4 class="node-title">FX return annotation schema fix &amp; sparse tensor C++ crash fix</h4>
+                                <p class="node-desc">Updated FX operator return type annotations (PR #189142) and fixed C++ floating-point division-by-zero (PR #190191).</p>
+                                <a href="https://github.com/pytorch/pytorch/pull/189142" target="_blank" class="node-pr-link">View PR #189142 <i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+
+                        <!-- Node 3: Snapcraft -->
+                        <div class="git-commit-node" data-node="snapcraft">
+                            <div class="node-marker"><i class="fas fa-circle-dot"></i></div>
+                            <div class="node-content">
+                                <div class="node-header">
+                                    <span class="commit-year">2025 / developer tooling</span>
+                                    <span class="commit-repo">canonical / snapcraft</span>
+                                </div>
+                                <h4 class="node-title">Dynamic build base linter resolution for Linux package pipelines</h4>
+                                <p class="node-desc">Resolved hardcoded fallback linters via dynamic build_base resolution in Canonical Snapcraft (PR #6272).</p>
+                                <a href="https://github.com/canonical/snapcraft/pull/6272" target="_blank" class="node-pr-link">View PR #6272 <i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+
+                        <!-- Node 4: Jetpack -->
+                        <div class="git-commit-node" data-node="jetpack">
+                            <div class="node-marker"><i class="fas fa-circle-dot"></i></div>
+                            <div class="node-content">
+                                <div class="node-header">
+                                    <span class="commit-year">2025 / open source ecosystem</span>
+                                    <span class="commit-repo">Automattic / jetpack</span>
+                                </div>
+                                <h4 class="node-title">9 Merged PRs: Block editor stability, REST API schemas &amp; TypeScript</h4>
+                                <p class="node-desc">Resolved nested innerBlocks gallery transformation crashes and OpenAPI schema parser failures.</p>
+                                <a href="https://github.com/Automattic/jetpack/pulls?q=is%3Apr+author%3ATejas-Raj01" target="_blank" class="node-pr-link">View 9 Merged PRs <i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+
+                        <!-- Node 5: CP Editor -->
+                        <div class="git-commit-node" data-node="cpeditor">
+                            <div class="node-marker"><i class="fas fa-circle-dot"></i></div>
+                            <div class="node-content">
+                                <div class="node-header">
+                                    <span class="commit-year">2025 / C++ desktop tooling</span>
+                                    <span class="commit-repo">cpeditor / cpeditor</span>
+                                </div>
+                                <h4 class="node-title">C++ Qt desktop software controls &amp; translation pipeline</h4>
+                                <p class="node-desc">Translated 3,600+ UI strings, fixed duplicated search keyword index bug, and added Ctrl+Scroll font scaling toggle.</p>
+                                <a href="https://github.com/cpeditor/cpeditor/pull/1501" target="_blank" class="node-pr-link">View PR #1501 <i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+
+                        <!-- Node 6: Tejas-DB -->
+                        <div class="git-commit-node" data-node="tejas-db">
+                            <div class="node-marker"><i class="fas fa-circle-dot"></i></div>
+                            <div class="node-content">
+                                <div class="node-header">
+                                    <span class="commit-year">2025 / systems project</span>
+                                    <span class="commit-repo">Tejas-Raj01 / distributed-system</span>
+                                </div>
+                                <h4 class="node-title">Tejas-DB: C++17 Distributed Key-Value Storage Engine</h4>
+                                <p class="node-desc">Engineered WAL disk persistence, Gossip cluster protocol, Quorum replication, and Consistent Hashing (33,685 req/s).</p>
+                                <a href="https://github.com/Tejas-Raj01/distributed-system" target="_blank" class="node-pr-link">View Repository <i class="fas fa-external-link-alt"></i></a>
+                            </div>
                         </div>
                     </div>
-                </article>
-            </div>
-        </section>
+                </div>
+            </section>
 
-        <!-- OPEN SOURCE SECTION -->
-        <section id="opensource" class="section">
-            <div class="section-header">
-                <h2 class="section-heading">Open Source</h2>
-                <p class="section-subtext">Code I've contributed upstream.</p>
-            </div>
-
-            <div class="oss-summary-box">
-                <p class="oss-summary-text">
-                    5 codebases &nbsp;·&nbsp; multiple merged contributions upstream
-                </p>
-                <div class="oss-codebase-grid">
-                    <a href="https://github.com/vllm-project/vllm" target="_blank" class="codebase-item">
-                        <strong>vLLM</strong>
-                        <span>LLM Inference Engine</span>
-                    </a>
-                    <a href="https://github.com/pytorch/pytorch" target="_blank" class="codebase-item">
-                        <strong>PyTorch</strong>
-                        <span>Deep Learning Framework</span>
-                    </a>
-                    <a href="https://github.com/Automattic/jetpack" target="_blank" class="codebase-item">
-                        <strong>Automattic Jetpack</strong>
-                        <span>9 Merged PRs</span>
-                    </a>
-                    <a href="https://github.com/canonical/snapcraft" target="_blank" class="codebase-item">
-                        <strong>Canonical Snapcraft</strong>
-                        <span>Linux Package Tooling</span>
-                    </a>
-                    <a href="https://github.com/cpeditor/cpeditor" target="_blank" class="codebase-item">
-                        <strong>CP Editor</strong>
-                        <span>C++ Qt Desktop App</span>
-                    </a>
+            <!-- 4. OPEN ISSUES (ACTIVE TRAJECTORY TRACKER) -->
+            <section id="open-issues" class="code-file-section">
+                <div class="file-tab-bar">
+                    <span class="tab-item active"><i class="fas fa-circle-dot accent-icon"></i> OPEN ISSUES &amp; Active Trajectory</span>
                 </div>
 
-                <div class="oss-action-row">
-                    <a href="/opensource.html" class="editorial-link-lg">View all contributions <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-        </section>
-
-        <!-- ABOUT SECTION -->
-        <section id="about" class="section">
-            <div class="section-header">
-                <h2 class="section-heading">About</h2>
-            </div>
-
-            <div class="about-text-content">
-                <p>
-                    I’m a Computer Science student at NIT Durgapur, graduating in 2027. I’m interested in systems, C++, open source and the engineering behind reliable software.
-                </p>
-                <p>
-                    Outside of projects, I spend a lot of time on competitive programming and CSES.
-                </p>
-                
-                <div class="about-facts-row">
-                    <div class="fact-chip">
-                        <span class="fact-label">Institution</span>
-                        <strong>NIT Durgapur (B.Tech CSE '27)</strong>
+                <div class="file-content-body">
+                    <div class="section-title-box">
+                        <h2 class="code-section-title"><span class="prompt-symbol">#</span> Open Issues</h2>
+                        <p class="code-section-sub">Active initiatives and engineering trajectory.</p>
                     </div>
-                    <div class="fact-chip">
-                        <span class="fact-label">Academics</span>
-                        <strong>CGPA 7.06</strong>
-                    </div>
-                    <div class="fact-chip">
-                        <span class="fact-label">Competitive Programming</span>
-                        <a href="https://www.codechef.com/users/tejas_2341" target="_blank" class="highlight"><strong>CodeChef 1804 (4★)</strong></a>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <!-- SKILLS SECTION -->
-        <section id="skills" class="section">
-            <div class="section-header">
-                <h2 class="section-heading">Skills</h2>
-            </div>
+                    <div class="issues-grid">
+                        <div class="issue-card">
+                            <div class="issue-header">
+                                <span class="issue-id">#001</span>
+                                <span class="issue-status status-open">OPEN</span>
+                            </div>
+                            <h4 class="issue-title">Become stronger at systems engineering</h4>
+                            <p class="issue-desc">Deepening knowledge in concurrent lock-free primitives, POSIX system calls, and distributed consensus algorithms.</p>
+                        </div>
 
-            <div class="skills-grouped-grid">
-                <div class="skill-group">
-                    <span class="group-title">Core</span>
-                    <div class="group-tags">
-                        <span class="tag tag-primary">C++</span>
-                        <span class="tag tag-primary">Python</span>
-                        <span class="tag tag-primary">Linux</span>
-                        <span class="tag tag-primary">Distributed Systems</span>
+                        <div class="issue-card">
+                            <div class="issue-header">
+                                <span class="issue-id">#002</span>
+                                <span class="issue-status status-open">OPEN</span>
+                            </div>
+                            <h4 class="issue-title">Contribute deeper to AI infrastructure</h4>
+                            <p class="issue-desc">Optimizing request scheduler priority queues and memory eviction policies in LLM inference engines (vLLM, PyTorch).</p>
+                        </div>
+
+                        <div class="issue-card">
+                            <div class="issue-header">
+                                <span class="issue-id">#003</span>
+                                <span class="issue-status status-open">OPEN</span>
+                            </div>
+                            <h4 class="issue-title">Keep solving harder algorithmic problems</h4>
+                            <p class="issue-desc">Maintaining active practice on CSES Problem Set and competitive programming platforms (CodeChef 1804 4★).</p>
+                        </div>
+
+                        <div class="issue-card">
+                            <div class="issue-header">
+                                <span class="issue-id">#004</span>
+                                <span class="issue-status status-target">TARGET: 2027</span>
+                            </div>
+                            <h4 class="issue-title">Graduate NIT Durgapur B.Tech CSE</h4>
+                            <p class="issue-desc">Completing B.Tech in Computer Science &amp; Engineering at National Institute of Technology Durgapur.</p>
+                        </div>
                     </div>
                 </div>
+            </section>
 
-                <div class="skill-group">
-                    <span class="group-title">Infrastructure / Open Source</span>
-                    <div class="group-tags">
-                        <span class="tag">PyTorch</span>
-                        <span class="tag">vLLM</span>
-                        <span class="tag">Git</span>
-                        <span class="tag">Snapcraft</span>
-                    </div>
+            <!-- 5. CP/ (COMPETITIVE PROGRAMMING) -->
+            <section id="cp" class="code-file-section">
+                <div class="file-tab-bar">
+                    <span class="tab-item active"><i class="fas fa-folder icon-folder"></i> CP/ (Competitive Programming)</span>
                 </div>
 
-                <div class="skill-group">
-                    <span class="group-title">Other</span>
-                    <div class="group-tags">
-                        <span class="tag">React</span>
-                        <span class="tag">TypeScript</span>
-                        <span class="tag">PostgreSQL</span>
-                        <span class="tag">Redis</span>
+                <div class="file-content-body">
+                    <div class="section-title-box">
+                        <h2 class="code-section-title"><span class="prompt-symbol">#</span> Competitive Programming</h2>
+                    </div>
+
+                    <div class="cp-info-box">
+                        <div class="cp-stat-badge">
+                            <span class="cp-val">1804</span>
+                            <span class="cp-label">CodeChef 4★ (Max Rating)</span>
+                        </div>
+                        <p class="cp-desc-text">
+                            Competitive programming is where I developed my problem-solving foundation, algorithmic intuition, and efficient C++ optimization habits.
+                        </p>
+                        <a href="https://www.codechef.com/users/tejas_2341" target="_blank" class="editorial-link">View CodeChef Profile <i class="fas fa-external-link-alt"></i></a>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- CONTACT SECTION -->
-        <section id="contact" class="section">
-            <div class="section-header">
-                <h2 class="section-heading">Want to talk engineering?</h2>
-                <p class="section-subtext">I'm interested in software engineering, systems and open-source work.</p>
-            </div>
+            <!-- 6. ABOUT.md -->
+            <section id="about" class="code-file-section">
+                <div class="file-tab-bar">
+                    <span class="tab-item active"><i class="fas fa-file-lines icon-markdown"></i> ABOUT.md</span>
+                </div>
 
-            <div class="contact-actions-row">
-                <button class="btn btn-primary copy-email-btn" data-email="rajtejas.xyz@gmail.com">
-                    <i class="fas fa-copy"></i> rajtejas.xyz@gmail.com
-                </button>
-                <a href="https://github.com/Tejas-Raj01" target="_blank" class="btn btn-secondary"><i class="fab fa-github"></i> GitHub</a>
-                <a href="https://www.linkedin.com/in/tejas-raj-09aa4a236/" target="_blank" class="btn btn-secondary"><i class="fab fa-linkedin"></i> LinkedIn</a>
-                <button class="btn btn-secondary open-resume-modal"><i class="fas fa-file-pdf"></i> Resume PDF</button>
-            </div>
-        </section>
-    </main>
+                <div class="file-content-body">
+                    <div class="section-title-box">
+                        <h2 class="code-section-title"><span class="prompt-symbol">#</span> About</h2>
+                    </div>
+
+                    <div class="about-readme-box">
+                        <p>
+                            I'm a Computer Science student at National Institute of Technology Durgapur, graduating in 2027. I enjoy working on systems, C++, open source, and difficult software problems.
+                        </p>
+                        <p>
+                            Currently focused on competitive programming, systems engineering, and open-source contributions.
+                        </p>
+
+                        <div class="about-facts-grid">
+                            <div class="fact-item">
+                                <span class="fact-key">Institution</span>
+                                <span class="fact-val">National Institute of Technology Durgapur</span>
+                            </div>
+                            <div class="fact-item">
+                                <span class="fact-key">Degree</span>
+                                <span class="fact-val">B.Tech Computer Science &amp; Engineering ('27)</span>
+                            </div>
+                            <div class="fact-item">
+                                <span class="fact-key">CGPA</span>
+                                <span class="fact-val">7.06</span>
+                            </div>
+                            <div class="fact-item">
+                                <span class="fact-key">Rating</span>
+                                <span class="fact-val">CodeChef 1804 (4★)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 7. CONTACT.md -->
+            <section id="contact" class="code-file-section">
+                <div class="file-tab-bar">
+                    <span class="tab-item active"><i class="fas fa-file-lines icon-markdown"></i> CONTACT.md</span>
+                </div>
+
+                <div class="file-content-body">
+                    <div class="section-title-box">
+                        <h2 class="code-section-title"><span class="prompt-symbol">#</span> Interested in working together?</h2>
+                        <p class="code-section-sub">I'm interested in software engineering, systems, and open-source roles.</p>
+                    </div>
+
+                    <div class="contact-actions-box">
+                        <button class="btn btn-primary copy-email-btn" data-email="rajtejas.xyz@gmail.com">
+                            <i class="fas fa-copy"></i> rajtejas.xyz@gmail.com
+                        </button>
+                        <a href="https://github.com/Tejas-Raj01" target="_blank" class="btn btn-secondary"><i class="fab fa-github"></i> GitHub</a>
+                        <a href="https://www.linkedin.com/in/tejas-raj-09aa4a236/" target="_blank" class="btn btn-secondary"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                        <button class="btn btn-secondary open-resume-modal"><i class="fas fa-file-pdf"></i> Resume PDF</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
 
     <!-- Command Palette Modal (Ctrl+K / ⌘K) -->
     <div id="cmd-modal" class="modal-overlay" aria-hidden="true">
         <div class="cmd-modal-card">
             <div class="cmd-header">
-                <span class="prompt-text">tejas@systems:~$</span>
-                <input type="text" id="cmd-input" placeholder="Search sections or actions..." autocomplete="off">
+                <span class="prompt-text">tejas-raj/main:~$</span>
+                <input type="text" id="cmd-input" placeholder="Jump to file or action..." autocomplete="off">
                 <button id="cmd-close" class="cmd-close-btn">&times;</button>
             </div>
             <div class="cmd-results" id="cmd-results">
-                <div class="cmd-group-title">Navigation</div>
-                <button class="cmd-item" data-action="navigate" data-target="#hero">Hero</button>
-                <button class="cmd-item" data-action="navigate" data-target="#work">Selected Work (vLLM / PyTorch / Tejas-DB)</button>
-                <button class="cmd-item" data-action="navigate" data-target="#opensource">Open Source</button>
-                <button class="cmd-item" data-action="navigate" data-target="#about">About</button>
-                <button class="cmd-item" data-action="navigate" data-target="#skills">Skills</button>
-                <button class="cmd-item" data-action="navigate" data-target="#contact">Contact</button>
+                <div class="cmd-group-title">Repository Files</div>
+                <button class="cmd-item" data-action="navigate" data-target="#readme">README.md</button>
+                <button class="cmd-item" data-action="navigate" data-target="#contributions">CONTRIBUTIONS/ (vLLM / PyTorch / Tejas-DB)</button>
+                <button class="cmd-item" data-action="navigate" data-target="#history">GIT_HISTORY.log</button>
+                <button class="cmd-item" data-action="navigate" data-target="#open-issues">OPEN ISSUES</button>
+                <button class="cmd-item" data-action="navigate" data-target="#cp">CP/</button>
+                <button class="cmd-item" data-action="navigate" data-target="#about">ABOUT.md</button>
+                <button class="cmd-item" data-action="navigate" data-target="#contact">CONTACT.md</button>
 
                 <div class="cmd-group-title">Actions</div>
                 <button class="cmd-item" data-action="external" data-target="/opensource.html">View Detailed /opensource Page</button>
@@ -380,9 +599,13 @@
         </div>
     </div>
 
-    <footer>
-        <div class="footer-content">
-            <p>Tejas Raj &copy; 2026. Software Engineer — Open Source &amp; Systems.</p>
+    <!-- Bottom Repository Status Bar -->
+    <footer class="repo-status-bar">
+        <div class="status-bar-content">
+            <span class="status-item"><i class="fas fa-code-branch"></i> main (d22e7c9)</span>
+            <span class="status-item"><i class="fas fa-circle-check accent-icon"></i> 0 errors, 0 warnings</span>
+            <span class="status-item hide-mobile">UTF-8 · C++ / Python / Systems</span>
+            <span class="status-item" style="margin-left: auto;">Tejas Raj &copy; 2026</span>
         </div>
     </footer>
 

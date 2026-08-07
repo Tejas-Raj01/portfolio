@@ -1,17 +1,51 @@
-// Tejas Raj Portfolio — Editorial Developer Portfolio Interactivity
+// Tejas Raj Portfolio — Codebase Repository (tejas-raj/) Logic
 
 document.addEventListener('DOMContentLoaded', () => {
+    initFileTreeNavigation();
+    initGitTimelineInteractivity();
     initScrollSpyAndProgress();
     initCopyEmailButtons();
     initCommandPalette();
     initResumeModal();
 });
 
-// 1. ScrollSpy & Reading Progress Bar
+// 1. Sidebar File Tree Navigation & Smooth Scroll
+function initFileTreeNavigation() {
+    const fileItems = document.querySelectorAll('.file-item');
+
+    fileItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+            const href = item.getAttribute('href');
+            if (href && href.startsWith('#')) {
+                e.preventDefault();
+                const targetSec = document.querySelector(href);
+                if (targetSec) {
+                    fileItems.forEach(f => f.classList.remove('active'));
+                    item.classList.add('active');
+                    targetSec.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        });
+    });
+}
+
+// 2. Git History Commit Timeline Interactivity
+function initGitTimelineInteractivity() {
+    const commitNodes = document.querySelectorAll('.git-commit-node');
+
+    commitNodes.forEach(node => {
+        node.addEventListener('mouseenter', () => {
+            commitNodes.forEach(n => n.classList.remove('active-node'));
+            node.classList.add('active-node');
+        });
+    });
+}
+
+// 3. ScrollSpy & Reading Progress Bar
 function initScrollSpyAndProgress() {
     const progressBar = document.getElementById('progress-bar');
-    const navItems = document.querySelectorAll('.nav-item');
-    const sections = document.querySelectorAll('section[id]');
+    const fileItems = document.querySelectorAll('.file-item');
+    const sections = document.querySelectorAll('.code-file-section[id]');
 
     window.addEventListener('scroll', () => {
         const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
@@ -23,7 +57,7 @@ function initScrollSpyAndProgress() {
 
         let currentSectionId = '';
         sections.forEach(section => {
-            const sectionTop = section.offsetTop - 100;
+            const sectionTop = section.offsetTop - 120;
             const sectionHeight = section.offsetHeight;
             if (winScroll >= sectionTop && winScroll < sectionTop + sectionHeight) {
                 currentSectionId = section.getAttribute('id');
@@ -31,7 +65,7 @@ function initScrollSpyAndProgress() {
         });
 
         if (currentSectionId) {
-            navItems.forEach(item => {
+            fileItems.forEach(item => {
                 item.classList.remove('active');
                 if (item.getAttribute('href') === `#${currentSectionId}`) {
                     item.classList.add('active');
@@ -41,7 +75,7 @@ function initScrollSpyAndProgress() {
     }, { passive: true });
 }
 
-// 2. Copy Email & Toast Notification
+// 4. Copy Email & Toast Notification
 function initCopyEmailButtons() {
     const copyBtns = document.querySelectorAll('.copy-email-btn');
     const toastContainer = document.getElementById('toast-container');
@@ -80,7 +114,7 @@ function initCopyEmailButtons() {
     }
 }
 
-// 3. Command Palette (Cmd+K / Ctrl+K)
+// 5. Command Palette (Cmd+K / Ctrl+K)
 function initCommandPalette() {
     const cmdBtn = document.getElementById('cmd-palette-btn');
     const cmdModal = document.getElementById('cmd-modal');
@@ -201,7 +235,7 @@ function initCommandPalette() {
     });
 }
 
-// 4. Resume Viewer Modal Logic
+// 6. Resume Viewer Modal Logic
 function initResumeModal() {
     const resumeBtns = document.querySelectorAll('.open-resume-modal');
     const resumeModal = document.getElementById('resume-modal');
