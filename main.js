@@ -1,14 +1,16 @@
-// Tejas Raj Portfolio — Dark Hacker Terminal Logic & Interactivity
+// Tejas Raj Portfolio — Personal Engineering Lab Logic & Interactivity
 
 document.addEventListener('DOMContentLoaded', () => {
     initMatrixBackground();
+    initHeroGraphCanvas();
     initOpenSourceTabs();
+    initProblemToMergeStepper();
+    initTopologyTooltips();
     initScrollSpyAndProgress();
     initCopyEmailButtons();
     initCommandPalette();
     initArchitectureModals();
     initResumeModal();
-    initMetricsObserver();
 });
 
 // 1. Matrix Background Animation
@@ -34,7 +36,7 @@ function initMatrixBackground() {
         ctx.fillStyle = 'rgba(10, 10, 10, 0.05)';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        ctx.fillStyle = '#00ff41'; // Hacky Green
+        ctx.fillStyle = '#00ff41'; // Terminal Green
         ctx.font = fontSize + 'px monospace';
 
         for (let i = 0; i < drops.length; i++) {
@@ -56,7 +58,101 @@ function initMatrixBackground() {
     });
 }
 
-// 2. Open Source Interactive Tab Switching
+// 2. Interactive Hero System Graph Canvas
+function initHeroGraphCanvas() {
+    const canvas = document.getElementById('hero-graph-canvas');
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    let width = (canvas.width = canvas.offsetWidth);
+    let height = (canvas.height = 180);
+
+    const labels = [
+        'C++', 'Python', 'vLLM', 'PyTorch', 
+        'Linux', 'Distributed Systems', 'Open Source', 'WAL Engine'
+    ];
+
+    const nodes = labels.map((label, idx) => {
+        const angle = (idx / labels.length) * Math.PI * 2;
+        const radius = Math.min(width, height) * 0.32;
+        return {
+            label,
+            x: width / 2 + Math.cos(angle) * radius,
+            y: height / 2 + Math.sin(angle) * radius,
+            vx: (Math.random() - 0.5) * 0.4,
+            vy: (Math.random() - 0.5) * 0.4,
+            radius: 5
+        };
+    });
+
+    let mouse = { x: -1000, y: -1000 };
+
+    canvas.addEventListener('mousemove', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        mouse.x = e.clientX - rect.left;
+        mouse.y = e.clientY - rect.top;
+    });
+
+    canvas.addEventListener('mouseleave', () => {
+        mouse.x = -1000;
+        mouse.y = -1000;
+    });
+
+    function animateGraph() {
+        ctx.clearRect(0, 0, width, height);
+
+        // Update positions
+        nodes.forEach(node => {
+            node.x += node.vx;
+            node.y += node.vy;
+
+            if (node.x < 30 || node.x > width - 30) node.vx *= -1;
+            if (node.y < 20 || node.y > height - 20) node.vy *= -1;
+        });
+
+        // Draw connections
+        for (let i = 0; i < nodes.length; i++) {
+            for (let j = i + 1; j < nodes.length; j++) {
+                const dist = Math.hypot(nodes[i].x - nodes[j].x, nodes[i].y - nodes[j].y);
+                if (dist < 160) {
+                    ctx.strokeStyle = `rgba(0, 255, 65, ${1 - dist / 160})`;
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    ctx.moveTo(nodes[i].x, nodes[i].y);
+                    ctx.lineTo(nodes[j].x, nodes[j].y);
+                    ctx.stroke();
+                }
+            }
+        }
+
+        // Draw nodes & labels
+        nodes.forEach(node => {
+            const distMouse = Math.hypot(mouse.x - node.x, mouse.y - node.y);
+            const isHovered = distMouse < 50;
+
+            ctx.fillStyle = isHovered ? '#ffffff' : '#00ff41';
+            ctx.beginPath();
+            ctx.arc(node.x, node.y, isHovered ? 7 : 5, 0, Math.PI * 2);
+            ctx.fill();
+
+            ctx.fillStyle = isHovered ? '#00ff41' : '#e5e5e5';
+            ctx.font = isHovered ? 'bold 12px Fira Code' : '11px Fira Code';
+            ctx.fillText(node.label, node.x + 8, node.y + 4);
+        });
+
+        requestAnimationFrame(animateGraph);
+    }
+
+    animateGraph();
+
+    window.addEventListener('resize', () => {
+        if (!canvas) return;
+        width = canvas.width = canvas.offsetWidth;
+        height = canvas.height = 180;
+    });
+}
+
+// 3. Open Source Interactive Tab Switching
 function initOpenSourceTabs() {
     const tabBtns = document.querySelectorAll('.tab-btn');
     const tabPanes = document.querySelectorAll('.tab-pane');
@@ -77,7 +173,48 @@ function initOpenSourceTabs() {
     });
 }
 
-// 3. ScrollSpy & Progress Bar
+// 4. "From Problem to Merge" 5-Stage Stepper
+function initProblemToMergeStepper() {
+    const stepBtns = document.querySelectorAll('.step-btn');
+    const stepPanes = document.querySelectorAll('.step-pane');
+
+    stepBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const stepNum = btn.getAttribute('data-step');
+
+            stepBtns.forEach(b => b.classList.remove('active'));
+            stepPanes.forEach(p => p.classList.remove('active'));
+
+            btn.classList.add('active');
+            const targetPane = document.getElementById(`step-pane-${stepNum}`);
+            if (targetPane) {
+                targetPane.classList.add('active');
+            }
+        });
+    });
+}
+
+// 5. Tejas-DB Interactive Topology Tooltips
+function initTopologyTooltips() {
+    const topoNodes = document.querySelectorAll('.topo-node');
+    const tooltipBox = document.getElementById('topology-tooltip-box');
+
+    if (!tooltipBox) return;
+
+    topoNodes.forEach(node => {
+        node.addEventListener('mouseenter', () => {
+            topoNodes.forEach(n => n.classList.remove('active-topo'));
+            node.classList.add('active-topo');
+
+            const text = node.getAttribute('data-tooltip');
+            if (text) {
+                tooltipBox.innerHTML = `<i class="fas fa-check-circle accent-icon"></i> ${text}`;
+            }
+        });
+    });
+}
+
+// 6. ScrollSpy & Progress Bar
 function initScrollSpyAndProgress() {
     const progressBar = document.getElementById('progress-bar');
     const navItems = document.querySelectorAll('.nav-item');
@@ -111,7 +248,7 @@ function initScrollSpyAndProgress() {
     }, { passive: true });
 }
 
-// 4. Copy Email & Toast Notification
+// 7. Copy Email & Toast Notification
 function initCopyEmailButtons() {
     const copyBtns = document.querySelectorAll('.copy-email-btn');
     const toastContainer = document.getElementById('toast-container');
@@ -150,7 +287,7 @@ function initCopyEmailButtons() {
     }
 }
 
-// 5. Command Palette (Cmd+K / Ctrl+K)
+// 8. Command Palette (Cmd+K / Ctrl+K)
 function initCommandPalette() {
     const cmdBtn = document.getElementById('cmd-palette-btn');
     const cmdModal = document.getElementById('cmd-modal');
@@ -271,7 +408,7 @@ function initCommandPalette() {
     });
 }
 
-// 6. Architecture Diagram Modals
+// 9. Architecture Diagram Modals
 function initArchitectureModals() {
     const archBtns = document.querySelectorAll('.open-arch-modal');
     const archModal = document.getElementById('arch-modal');
@@ -314,31 +451,6 @@ function initArchitectureModals() {
 +-----------------------------------------------------------------------------------+
 |                     CRASH RECOVERY ENGINE & MEMORY STORAGE                        |
 +-----------------------------------------------------------------------------------+`
-        },
-        ai: {
-            title: "AI Career Intelligence Platform Architecture",
-            diagram: `
-+-----------------------------------------------------------------------------------+
-|                            CLIENT APP (React 19 SPA)                              |
-+-----------------------------------------------------------------------------------+
-                                         |
-                                   (REST API Async)
-                                         v
-+-----------------------------------------------------------------------------------+
-|                            LARAVEL 13 REST API BACKEND                            |
-|                                                                                   |
-|  +---------------------+                       +-------------------------------+  |
-|  | Vector Math Engine  |                       | Active-Model Fallback Engine  |  |
-|  | (Custom TF Cosine)  |                       | (Groq LLM -> Auto-Fallback)   |  |
-|  +---------------------+                       +-------------------------------+  |
-+-----------------------------------------------------------------------------------+
-         |                                                       |
-         | (Dispatch Async Job)                                  | (Persist Results)
-         v                                                       v
-+-----------------------+                               +-----------------------+
-|  REDIS QUEUE BROKER   |                               |  POSTGRESQL DATABASE  |
-|   + Laravel Queues    |                               |  Candidate Profiling  |
-+-----------------------+                               +-----------------------+`
         }
     };
 
@@ -374,7 +486,7 @@ function initArchitectureModals() {
     }
 }
 
-// 7. Resume Viewer Modal Logic
+// 10. Resume Viewer Modal Logic
 function initResumeModal() {
     const resumeBtns = document.querySelectorAll('.open-resume-modal');
     const resumeModal = document.getElementById('resume-modal');
@@ -403,48 +515,4 @@ function initResumeModal() {
             resumeModal.setAttribute('aria-hidden', 'true');
         }
     });
-}
-
-// 8. Impact Metrics Counter Animation
-function initMetricsObserver() {
-    const metricNumbers = document.querySelectorAll('.metric-number');
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const el = entry.target;
-                const target = parseInt(el.getAttribute('data-target'), 10);
-                if (target && !el.classList.contains('counted')) {
-                    el.classList.add('counted');
-                    animateNumber(el, target);
-                }
-                observer.unobserve(el);
-            }
-        });
-    }, { threshold: 0.5 });
-
-    metricNumbers.forEach(num => observer.observe(num));
-
-    function animateNumber(el, target) {
-        let current = 0;
-        const duration = 800;
-        const stepTime = 30;
-        const steps = duration / stepTime;
-        const increment = target / steps;
-
-        const timer = setInterval(() => {
-            current += increment;
-            if (current >= target) {
-                current = target;
-                clearInterval(timer);
-                if (target === 10 || target === 4 || target === 1400) {
-                    el.textContent = `${target}+`;
-                } else {
-                    el.textContent = target.toString();
-                }
-            } else {
-                el.textContent = Math.floor(current).toString();
-            }
-        }, stepTime);
-    }
 }
