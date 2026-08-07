@@ -1,33 +1,53 @@
-// Tejas Raj — AI-Native Conversational Portfolio UI Controller
+// Tejas Raj — ChatGPT/Gemini-Style AI Portfolio Controller
 
 import { PortfolioChatEngine } from './src/chat-engine.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const chatEngine = new PortfolioChatEngine();
 
-    const chatForm = document.getElementById('chat-form');
-    const inputField = document.getElementById('chat-prompt-input');
-    const streamContainer = document.getElementById('conversation-stream');
+    const landingState = document.getElementById('landing-state');
+    const chatState = document.getElementById('chat-state');
+    const chatHistory = document.getElementById('chat-history');
+
+    const landingForm = document.getElementById('landing-form');
+    const landingInput = document.getElementById('landing-prompt-input');
+
+    const stickyForm = document.getElementById('sticky-chat-form');
+    const stickyInput = document.getElementById('sticky-prompt-input');
+
     const quickChips = document.querySelectorAll('.quick-chip');
-    const avatarContainer = document.getElementById('ai-avatar-container');
-    const avatarBadge = document.getElementById('avatar-status-badge');
+    const brandLogoBtn = document.getElementById('brand-logo-btn');
+
+    let hasStartedChat = false;
 
     initCopyEmailButtons();
     initResumeModal();
 
-    // 1. Submit Question Event
-    if (chatForm && inputField) {
-        chatForm.addEventListener('submit', (e) => {
+    // 1. Landing Form Submit (State A)
+    if (landingForm && landingInput) {
+        landingForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            const text = inputField.value.trim();
-            if (text) {
-                handleUserQuery(text);
-                inputField.value = '';
+            const query = landingInput.value.trim();
+            if (query) {
+                handleUserQuery(query);
+                landingInput.value = '';
             }
         });
     }
 
-    // 2. Quick Question Chips
+    // 2. Sticky Bottom Form Submit (State B)
+    if (stickyForm && stickyInput) {
+        stickyForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const query = stickyInput.value.trim();
+            if (query) {
+                handleUserQuery(query);
+                stickyInput.value = '';
+            }
+        });
+    }
+
+    // 3. Quick Suggested Prompt Chips
     quickChips.forEach(chip => {
         chip.addEventListener('click', () => {
             const query = chip.getAttribute('data-query');
@@ -37,102 +57,138 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Main Query Execution Pipeline
+    // 4. Brand Logo Click (Reset to Landing)
+    if (brandLogoBtn) {
+        brandLogoBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            resetToLandingState();
+        });
+    }
+
+    // Pipeline: Process Query & Render Turns
     function handleUserQuery(queryText) {
-        if (!streamContainer) return;
+        // Transition from State A -> State B on first query
+        if (!hasStartedChat) {
+            transitionToChatState();
+        }
 
-        // Render User Query Bubble
-        renderUserBubble(queryText);
+        // Render User Turn
+        renderUserMessage(queryText);
 
-        // Set Avatar State to Thinking
-        setAvatarState('thinking', 'Thinking...');
+        // Render Temporary AI Thinking Turn
+        const thinkingTurnEl = renderThinkingMessage();
 
-        // Process query with Intent Engine
-        setTimeout(() => {
-            const responseObj = chatEngine.processQuery(queryText);
-
-            // Render AI Response Bubble
-            renderAIResponse(responseObj);
-
-            // Reset Avatar State
-            setAvatarState('ready', 'Ready');
-        }, 350);
-    }
-
-    function renderUserBubble(text) {
-        const bubble = document.createElement('div');
-        bubble.className = 'chat-bubble user-bubble';
-        bubble.innerHTML = `
-            <div class="user-header">YOU</div>
-            <div class="bubble-body">${escapeHtml(text)}</div>
-        `;
-        streamContainer.appendChild(bubble);
         scrollToBottom();
-    }
 
-    function renderAIResponse(resp) {
-        const bubble = document.createElement('div');
-        bubble.className = 'chat-bubble ai-bubble';
+        // Process query via Intent Engine
+        setTimeout(() => {
+            const resp = chatEngine.processQuery(queryText);
 
-        // Header
-        let html = `
-            <div class="bubble-header">
-                <span class="badge-ai">TEJAS AI</span>
-            </div>
-            <div class="bubble-body" id="streaming-body"></div>
-        `;
-
-        bubble.innerHTML = html;
-        streamContainer.appendChild(bubble);
-
-        const bodyEl = bubble.querySelector('#streaming-body');
-
-        // Streaming text simulation
-        streamText(bodyEl, resp.text, () => {
-
-            // Render Inline Cards if present
-            if (resp.cards && resp.cards.length > 0) {
-                const cardsWrapper = document.createElement('div');
-                cardsWrapper.className = 'inline-cards-wrapper';
-
-                resp.cards.forEach(card => {
-                    cardsWrapper.appendChild(buildCardElement(card));
-                });
-
-                bubble.appendChild(cardsWrapper);
-            }
-
-            // Render Follow-up Action Chips if present
-            if (resp.actions && resp.actions.length > 0) {
-                const actionsWrapper = document.createElement('div');
-                actionsWrapper.className = 'bubble-actions';
-
-                resp.actions.forEach(act => {
-                    const btn = document.createElement('button');
-                    btn.className = 'action-chip-btn';
-
-                    if (act.query) {
-                        btn.innerHTML = `${escapeHtml(act.label)} →`;
-                        btn.addEventListener('click', () => handleUserQuery(act.query));
-                    } else if (act.url) {
-                        btn.innerHTML = `${escapeHtml(act.label)} <i class="fas fa-arrow-up-right-from-square"></i>`;
-                        btn.addEventListener('click', () => window.open(act.url, '_blank'));
-                    } else if (act.action === 'copy-email') {
-                        btn.innerHTML = `<i class="fas fa-copy"></i> ${escapeHtml(act.label)}`;
-                        btn.addEventListener('click', () => copyToClipboard(act.value || 'rajtejas.xyz@gmail.com'));
-                    } else if (act.action === 'open-resume') {
-                        btn.innerHTML = `<i class="fas fa-file-pdf"></i> ${escapeHtml(act.label)}`;
-                        btn.addEventListener('click', openResumeModal);
-                    }
-
-                    actionsWrapper.appendChild(btn);
-                });
-
-                bubble.appendChild(actionsWrapper);
-            }
+            // Replace Thinking Turn with AI Turn
+            replaceThinkingWithAIResponse(thinkingTurnEl, resp);
 
             scrollToBottom();
-        });
+
+            // Refocus Sticky Input
+            if (stickyInput) {
+                stickyInput.focus();
+            }
+        }, 300);
+    }
+
+    function transitionToChatState() {
+        hasStartedChat = true;
+        if (landingState) landingState.classList.add('hidden');
+        if (chatState) chatState.classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'instant' });
+    }
+
+    function resetToLandingState() {
+        hasStartedChat = false;
+        if (chatHistory) chatHistory.innerHTML = '';
+        if (chatState) chatState.classList.add('hidden');
+        if (landingState) landingState.classList.remove('hidden');
+        if (landingInput) {
+            landingInput.value = '';
+            landingInput.focus();
+        }
+        window.scrollTo({ top: 0, behavior: 'instant' });
+    }
+
+    function renderUserMessage(text) {
+        const turn = document.createElement('div');
+        turn.className = 'chat-message user-message';
+        turn.innerHTML = `
+            <div class="message-sender">You</div>
+            <div class="message-text">${escapeHtml(text)}</div>
+        `;
+        chatHistory.appendChild(turn);
+    }
+
+    function renderThinkingMessage() {
+        const turn = document.createElement('div');
+        turn.className = 'chat-message ai-message thinking-turn';
+        turn.innerHTML = `
+            <div class="message-sender">Tejas AI</div>
+            <div class="thinking-dots">
+                Thinking<span>.</span><span>.</span><span>.</span>
+            </div>
+        `;
+        chatHistory.appendChild(turn);
+        return turn;
+    }
+
+    function replaceThinkingWithAIResponse(thinkingEl, resp) {
+        thinkingEl.className = 'chat-message ai-message';
+        let bodyHtml = formatMarkdownText(resp.text);
+
+        let turnHtml = `
+            <div class="message-sender">Tejas AI</div>
+            <div class="message-text">${bodyHtml}</div>
+        `;
+
+        thinkingEl.innerHTML = turnHtml;
+
+        // Render Inline Evidence / PR Cards if present
+        if (resp.cards && resp.cards.length > 0) {
+            const cardsWrapper = document.createElement('div');
+            cardsWrapper.className = 'inline-cards-wrapper';
+
+            resp.cards.forEach(card => {
+                cardsWrapper.appendChild(buildCardElement(card));
+            });
+
+            thinkingEl.appendChild(cardsWrapper);
+        }
+
+        // Render Follow-up Action Chips if present
+        if (resp.actions && resp.actions.length > 0) {
+            const actionsWrapper = document.createElement('div');
+            actionsWrapper.className = 'bubble-actions';
+
+            resp.actions.forEach(act => {
+                const btn = document.createElement('button');
+                btn.className = 'action-chip-btn';
+
+                if (act.query) {
+                    btn.innerHTML = `${escapeHtml(act.label)} →`;
+                    btn.addEventListener('click', () => handleUserQuery(act.query));
+                } else if (act.url) {
+                    btn.innerHTML = `${escapeHtml(act.label)} <i class="fas fa-arrow-up-right-from-square"></i>`;
+                    btn.addEventListener('click', () => window.open(act.url, '_blank'));
+                } else if (act.action === 'copy-email') {
+                    btn.innerHTML = `<i class="fas fa-copy"></i> ${escapeHtml(act.label)}`;
+                    btn.addEventListener('click', () => copyToClipboard(act.value || 'rajtejas.xyz@gmail.com'));
+                } else if (act.action === 'open-resume') {
+                    btn.innerHTML = `<i class="fas fa-file-pdf"></i> ${escapeHtml(act.label)}`;
+                    btn.addEventListener('click', openResumeModal);
+                }
+
+                actionsWrapper.appendChild(btn);
+            });
+
+            thinkingEl.appendChild(actionsWrapper);
+        }
     }
 
     function buildCardElement(card) {
@@ -145,16 +201,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     <span class="card-repo-name">${escapeHtml(card.repo)}</span>
                     <span class="card-badge">${escapeHtml(card.status)}</span>
                 </div>
-                <div style="font-weight:600; font-size:0.92rem; margin-bottom:4px;">${escapeHtml(card.title)}</div>
+                <div style="font-weight:600; font-size:0.95rem; margin-bottom:6px; color:#ffffff;">${escapeHtml(card.title)}</div>
                 <div class="card-desc-text"><strong>Problem:</strong> ${escapeHtml(card.problem)}</div>
                 <div class="card-desc-text"><strong>Solution:</strong> ${escapeHtml(card.solution)}</div>
                 <a href="${card.url}" target="_blank" class="card-link-btn">View Pull Request <i class="fas fa-arrow-up-right-from-square"></i></a>
             `;
         } else if (card.type === 'repo_summary') {
             let highlightsHtml = (card.highlights || []).slice(0, 2).map(h => `
-                <div style="font-size:0.85rem; margin-top:6px;">
-                    <strong>${escapeHtml(h.title)}</strong> (${escapeHtml(h.status)})
-                    <br><a href="${h.url}" target="_blank" class="card-link-btn" style="font-size:0.78rem">View PR →</a>
+                <div style="font-size:0.88rem; margin-top:8px;">
+                    <strong style="color:#fff;">${escapeHtml(h.title)}</strong> (${escapeHtml(h.status)})
+                    <br><a href="${h.url}" target="_blank" class="card-link-btn" style="font-size:0.8rem">View PR →</a>
                 </div>
             `).join('');
 
@@ -191,15 +247,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return el;
     }
 
-    function streamText(targetEl, text, callback) {
-        let index = 0;
-        const formatted = formatMarkdownText(text);
-
-        // Fast streaming effect
-        targetEl.innerHTML = formatted;
-        if (callback) callback();
-    }
-
     function formatMarkdownText(str) {
         if (!str) return '';
         let out = escapeHtml(str);
@@ -210,17 +257,6 @@ document.addEventListener('DOMContentLoaded', () => {
         // markdown links
         out = out.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" style="color:var(--accent-blue); text-decoration:none;">$1 <i class="fas fa-arrow-up-right-from-square" style="font-size:0.75em"></i></a>');
         return out;
-    }
-
-    function setAvatarState(state, text) {
-        if (!avatarContainer || !avatarBadge) return;
-        if (state === 'thinking') {
-            avatarContainer.classList.add('thinking');
-            avatarBadge.innerHTML = `<span class="status-dot"></span> ${text}`;
-        } else {
-            avatarContainer.classList.remove('thinking');
-            avatarBadge.innerHTML = `<span class="status-dot"></span> ${text}`;
-        }
     }
 
     function scrollToBottom() {
@@ -234,7 +270,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return (str || '').replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
     }
 
-    // 3. Copy Email & Toast
+    // Copy Email Handler
     function initCopyEmailButtons() {
         const btns = document.querySelectorAll('.copy-email-btn');
         btns.forEach(btn => {
@@ -267,7 +303,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 2500);
     }
 
-    // 4. Resume Modal
+    // Resume Modal Handler
     function initResumeModal() {
         const btns = document.querySelectorAll('.open-resume-modal');
         const modal = document.getElementById('resume-modal');

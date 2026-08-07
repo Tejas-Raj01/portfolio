@@ -60,7 +60,7 @@
     <!-- MINIMAL TOP HEADER NAV -->
     <header class="top-nav">
         <div class="nav-container">
-            <a href="/" class="brand-logo">
+            <a href="/" class="brand-logo" id="brand-logo-btn">
                 <span class="logo-text">TEJAS</span>
             </a>
 
@@ -81,13 +81,13 @@
         </div>
     </header>
 
-    <!-- AI CONVERSATIONAL PORTFOLIO HOMEPAGE -->
-    <main class="conversational-viewport">
-        <div class="centered-hero-wrapper">
+    <!-- STATE A: CLEAN LANDING INTERFACE -->
+    <section id="landing-state" class="landing-viewport">
+        <div class="landing-content-wrapper">
 
             <!-- 1. IDENTITY HEADER -->
             <div class="identity-header">
-                <h1 class="hero-name">TEJAS 👋</h1>
+                <h1 class="hero-name">TEJAS</h1>
                 <h2 class="hero-role">AI ENGINEER</h2>
                 <p class="hero-tagline">Generative AI &nbsp;·&nbsp; Agent Infrastructure &nbsp;·&nbsp; Open Source</p>
             </div>
@@ -119,45 +119,49 @@
                         <circle cx="26" cy="36" r="3" fill="#10b981" />
                     </svg>
                 </div>
-                <div class="avatar-status-badge" id="avatar-status-badge">
-                    <span class="status-dot"></span> Ready
-                </div>
             </div>
 
-            <!-- 3. CHAT PROMPT BAR -->
+            <!-- 3. CENTERED PROMPT INPUT BAR -->
             <div class="chat-input-wrapper">
-                <form id="chat-form" class="chat-form-box">
-                    <input type="text" id="chat-prompt-input" placeholder="Ask me anything..." autocomplete="off" spellcheck="false" />
-                    <button type="submit" id="chat-send-btn" aria-label="Send question">
+                <form id="landing-form" class="chat-form-box">
+                    <input type="text" id="landing-prompt-input" placeholder="Ask me anything..." autocomplete="off" spellcheck="false" />
+                    <button type="submit" aria-label="Send question">
                         <i class="fas fa-arrow-up"></i>
                     </button>
                 </form>
             </div>
 
-            <!-- 4. QUICK QUESTION BUTTONS -->
+            <!-- 4. SUGGESTED PROMPT CHIPS -->
             <div class="quick-questions-container">
-                <button class="quick-chip" data-query="Me"><i class="fas fa-user"></i> Me</button>
-                <button class="quick-chip" data-query="Open Source"><i class="fab fa-github"></i> Open Source</button>
-                <button class="quick-chip" data-query="AI Work"><i class="fas fa-brain"></i> AI Work</button>
-                <button class="quick-chip" data-query="Systems"><i class="fas fa-server"></i> Systems</button>
-                <button class="quick-chip" data-query="Contact"><i class="fas fa-paper-plane"></i> Contact</button>
-            </div>
-
-            <!-- 5. CONVERSATIONAL STREAM CONTAINER -->
-            <div id="conversation-stream" class="conversation-stream">
-                <!-- Welcome Line -->
-                <div class="chat-bubble ai-bubble welcome-bubble">
-                    <div class="bubble-header">
-                        <span class="badge-ai">TEJAS AI</span>
-                    </div>
-                    <div class="bubble-body">
-                        Welcome to my portfolio! Ask me anything about my <strong>open-source contributions</strong>, <strong>AI &amp; inference work</strong>, or <strong>systems engineering</strong>.
-                    </div>
-                </div>
+                <button class="quick-chip" data-query="Tell me about yourself"><i class="fas fa-user"></i> Me</button>
+                <button class="quick-chip" data-query="Show me your open-source contributions"><i class="fab fa-github"></i> Open Source</button>
+                <button class="quick-chip" data-query="What is your AI work?"><i class="fas fa-brain"></i> AI Work</button>
+                <button class="quick-chip" data-query="What systems projects have you built?"><i class="fas fa-server"></i> Systems</button>
+                <button class="quick-chip" data-query="How can I contact you?"><i class="fas fa-paper-plane"></i> Contact</button>
             </div>
 
         </div>
-    </main>
+    </section>
+
+    <!-- STATE B: CHATGPT/GEMINI CONVERSATION INTERFACE (Initially Hidden) -->
+    <section id="chat-state" class="chat-viewport hidden">
+        <!-- Scrollable Conversation Feed -->
+        <div class="chat-feed-container">
+            <div id="chat-history" class="chat-history-wrapper"></div>
+        </div>
+
+        <!-- Sticky Bottom Chat Bar -->
+        <div class="sticky-bottom-bar">
+            <div class="sticky-bar-inner">
+                <form id="sticky-chat-form" class="chat-form-box">
+                    <input type="text" id="sticky-prompt-input" placeholder="Ask me anything..." autocomplete="off" spellcheck="false" />
+                    <button type="submit" aria-label="Send question">
+                        <i class="fas fa-arrow-up"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
 
     <!-- RESUME MODAL -->
     <div id="resume-modal" class="modal-overlay" aria-hidden="true">
