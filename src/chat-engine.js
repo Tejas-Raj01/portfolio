@@ -1,5 +1,5 @@
 // Tejas Raj — AI Engineer Portfolio Conversational Intent Engine
-// Principles: Single Intent -> Focused Response -> Relevant Evidence Only (No Cross-Topic Action Links)
+// Principles: Single Intent -> Focused Response -> Relevant Evidence Only
 
 import { portfolioData } from './portfolio-data.js';
 
@@ -15,7 +15,24 @@ export class PortfolioChatEngine {
     processQuery(rawQuery) {
         const q = (rawQuery || '').toLowerCase().trim();
 
-        // 1. PYTORCH (Strictly PyTorch only)
+        // 1. OPEN SOURCE OVERVIEW
+        // "pr tag m sirf company/project dikhayega aur uska sath link dega jo github k PR search page ka hoga"
+        if (this.matchesAny(q, ['open source', 'opensource', 'oss', 'contributions', 'prs', 'pull requests', 'github work'])) {
+            return {
+                intent: 'OPEN_SOURCE',
+                text: "I prefer learning systems by working inside the codebases that build them. Here are my verified upstream contributions across machine learning frameworks and developer infrastructure. Click any project to inspect my pull requests directly on GitHub:",
+                cards: this.data.openSource.map(repoGroup => ({
+                    type: 'repo_summary_card',
+                    title: repoGroup.repo,
+                    subtitle: repoGroup.category,
+                    summary: repoGroup.summary,
+                    count: repoGroup.highlights.length,
+                    prSearchUrl: repoGroup.prSearchUrl
+                }))
+            };
+        }
+
+        // 2. PYTORCH (Strictly PyTorch only)
         if (this.matchesAny(q, ['pytorch', 'fx', 'torch', 'sparse tensor', 'return_annotation'])) {
             const repoData = this.data.openSource.find(item => item.repo === 'PyTorch');
             return {
@@ -29,12 +46,13 @@ export class PortfolioChatEngine {
                     problem: h.problem,
                     solution: h.solution,
                     url: h.url,
+                    prSearchUrl: repoData.prSearchUrl,
                     tech: h.tech
                 })) : []
             };
         }
 
-        // 2. VLLM (Strictly vLLM only)
+        // 3. VLLM (Strictly vLLM only)
         if (this.matchesAny(q, ['vllm', 'vllm pr', 'inference engine', 'schedulingpolicy'])) {
             const repoData = this.data.openSource.find(item => item.repo === 'vLLM');
             return {
@@ -48,12 +66,13 @@ export class PortfolioChatEngine {
                     problem: h.problem,
                     solution: h.solution,
                     url: h.url,
+                    prSearchUrl: repoData.prSearchUrl,
                     tech: h.tech
                 })) : []
             };
         }
 
-        // 3. JETPACK (Strictly Jetpack only)
+        // 4. JETPACK (Strictly Jetpack only)
         if (this.matchesAny(q, ['jetpack', 'automattic'])) {
             const repoData = this.data.openSource.find(item => item.repo === 'Automattic Jetpack');
             return {
@@ -67,12 +86,13 @@ export class PortfolioChatEngine {
                     problem: h.problem,
                     solution: h.solution,
                     url: h.url,
+                    prSearchUrl: repoData.prSearchUrl,
                     tech: h.tech
                 })) : []
             };
         }
 
-        // 4. SNAPCRAFT (Strictly Snapcraft only)
+        // 5. SNAPCRAFT (Strictly Snapcraft only)
         if (this.matchesAny(q, ['snapcraft', 'canonical'])) {
             const repoData = this.data.openSource.find(item => item.repo === 'Canonical Snapcraft');
             return {
@@ -86,12 +106,13 @@ export class PortfolioChatEngine {
                     problem: h.problem,
                     solution: h.solution,
                     url: h.url,
+                    prSearchUrl: repoData.prSearchUrl,
                     tech: h.tech
                 })) : []
             };
         }
 
-        // 5. CP EDITOR (Strictly CP Editor only)
+        // 6. CP EDITOR (Strictly CP Editor only)
         if (this.matchesAny(q, ['cp editor', 'cpeditor'])) {
             const repoData = this.data.openSource.find(item => item.repo === 'CP Editor');
             return {
@@ -105,37 +126,48 @@ export class PortfolioChatEngine {
                     problem: h.problem,
                     solution: h.solution,
                     url: h.url,
+                    prSearchUrl: repoData.prSearchUrl,
                     tech: h.tech
                 })) : []
             };
         }
 
-        // 6. OPEN SOURCE OVERVIEW (All open source repos rendered with full PR cards)
-        if (this.matchesAny(q, ['open source', 'opensource', 'oss', 'contributions', 'prs', 'pull requests', 'github work'])) {
-            const allPrCards = [];
-            this.data.openSource.forEach(group => {
-                group.highlights.forEach(h => {
-                    allPrCards.push({
-                        type: 'pr_card',
-                        repo: group.repo,
-                        title: h.title,
-                        status: h.status,
-                        problem: h.problem,
-                        solution: h.solution,
-                        url: h.url,
-                        tech: h.tech
-                    });
-                });
-            });
-
+        // 7. SYSTEMS / TEJAS-DB & AI JOB PLATFORM (Strictly Systems projects)
+        if (this.matchesAny(q, ['systems', 'system', 'c++', 'tejas-db', 'database', 'job platform', 'ai job platform', 'kv store', 'storage'])) {
             return {
-                intent: 'OPEN_SOURCE',
-                text: "I prefer learning systems by working inside the codebases that build them. Here are my actual verified upstream contributions merged across machine learning frameworks and developer infrastructure:",
-                cards: allPrCards
+                intent: 'SYSTEMS',
+                text: "My systems and platform projects demonstrate the engineering foundation behind my work:",
+                cards: this.data.systems.map(sys => ({
+                    type: 'project_card',
+                    title: sys.title,
+                    subtitle: sys.subtitle,
+                    description: sys.description,
+                    metrics: sys.metrics,
+                    tech: sys.tech,
+                    githubUrl: sys.githubUrl,
+                    liveUrl: sys.liveUrl
+                }))
             };
         }
 
-        // 7. OPENCLAW (Strictly OpenClaw only)
+        // 8. AI WORK (Includes AI Job Platform, vLLM, PyTorch FX)
+        if (this.matchesAny(q, ['ai work', 'genai', 'llm', 'inference', 'agent infrastructure', 'agent runtimes'])) {
+            return {
+                intent: 'AI_WORK',
+                text: "My AI engineering work spans AI platforms, LLM inference infrastructure, and ML framework internals:",
+                cards: this.data.aiWork.map(item => ({
+                    type: 'ai_project_card',
+                    title: item.title,
+                    category: item.category,
+                    description: item.description,
+                    githubUrl: item.githubUrl,
+                    liveUrl: item.liveUrl,
+                    tags: item.tags
+                }))
+            };
+        }
+
+        // 9. OPENCLAW (Strictly OpenClaw only)
         if (this.matchesAny(q, ['openclaw', 'claw'])) {
             return {
                 intent: 'OPENCLAW',
@@ -143,63 +175,28 @@ export class PortfolioChatEngine {
             };
         }
 
-        // 8. SYSTEMS / TEJAS-DB (Strictly Systems only)
-        if (this.matchesAny(q, ['systems', 'system', 'c++', 'tejas-db', 'database', 'kv store', 'storage'])) {
+        // 10. STRONGEST ENGINEERING WORK
+        if (this.matchesAny(q, ['strongest', 'best work', 'top work', 'strongest work', 'key work', 'evidence'])) {
             return {
-                intent: 'SYSTEMS',
-                text: "My systems work demonstrates the engineering foundation behind my AI infrastructure direction:",
+                intent: 'STRONGEST_WORK',
+                text: "My strongest engineering evidence is centered on core AI infrastructure, open source, and distributed systems:\n\n" +
+                      "1. **vLLM (`vllm-project/vllm`)**: Fixed request preemption re-indexing in `SchedulingPolicy.PRIORITY` under KV cache pressure ([PR #49206](https://github.com/vllm-project/vllm/pull/49206)).\n\n" +
+                      "2. **PyTorch (`pytorch/pytorch`)**: Fixed FX operator return schema annotations ([PR #189142](https://github.com/pytorch/pytorch/pull/189142)) and C++ sparse tensor division-by-zero crash ([PR #190191](https://github.com/pytorch/pytorch/pull/190191)).\n\n" +
+                      "3. **Tejas-DB & AI Job Platform**: Distributed C++17 KV store (33,685 req/s) and AI talent matching engine.",
                 cards: this.data.systems.map(sys => ({
-                    type: 'systems_card',
+                    type: 'project_card',
                     title: sys.title,
                     subtitle: sys.subtitle,
                     description: sys.description,
                     metrics: sys.metrics,
                     tech: sys.tech,
-                    url: sys.url
+                    githubUrl: sys.githubUrl,
+                    liveUrl: sys.liveUrl
                 }))
             };
         }
 
-        // 9. AI WORK
-        if (this.matchesAny(q, ['ai work', 'genai', 'llm', 'inference', 'agent infrastructure', 'agent runtimes'])) {
-            return {
-                intent: 'AI_WORK',
-                text: "My AI engineering work is focused on inference infrastructure, ML frameworks, and agent runtimes:",
-                cards: this.data.aiWork.map(item => ({
-                    type: 'ai_card',
-                    title: item.title,
-                    category: item.category,
-                    description: item.description,
-                    url: item.evidenceUrl,
-                    tags: item.tags
-                }))
-            };
-        }
-
-        // 10. STRONGEST ENGINEERING WORK
-        if (this.matchesAny(q, ['strongest', 'best work', 'top work', 'strongest work', 'key work', 'evidence'])) {
-            return {
-                intent: 'STRONGEST_WORK',
-                text: "My strongest engineering evidence is centered on core AI infrastructure, open source, and low-level systems:\n\n" +
-                      "1. **vLLM (`vllm-project/vllm`)**: Fixed request preemption re-indexing in `SchedulingPolicy.PRIORITY` under KV cache pressure ([PR #49206](https://github.com/vllm-project/vllm/pull/49206)).\n\n" +
-                      "2. **PyTorch (`pytorch/pytorch`)**: Fixed FX operator return schema annotations ([PR #189142](https://github.com/pytorch/pytorch/pull/189142)) and C++ sparse tensor division-by-zero crash ([PR #190191](https://github.com/pytorch/pytorch/pull/190191)).\n\n" +
-                      "3. **Tejas-DB**: High-performance C++17 distributed KV store featuring 33,685 req/s throughput, Write-Ahead Logging (WAL), Gossip protocol, and Quorum consensus."
-            };
-        }
-
-        // 11. BUILDING TOWARD / FUTURE DIRECTION
-        if (this.matchesAny(q, ['building toward', 'future', 'direction', 'next', 'vision', 'roadmap'])) {
-            return {
-                intent: 'FUTURE_DIRECTION',
-                text: "**AI infrastructure and agentic systems.**\n\nSpecifically, I'm building toward:\n" +
-                      "• **LLM Inference Optimization**: High-throughput memory management & request scheduling\n" +
-                      "• **Agent Runtimes**: Execution gateways, tool schemas, and sandboxing\n" +
-                      "• **Persistent Context & Memory**: Long-term retrieval and session state\n" +
-                      "• **Multi-Agent Orchestration**: Decentralized routing and consensus"
-            };
-        }
-
-        // 12. IDENTITY / ME / ABOUT
+        // 11. IDENTITY / ME / ABOUT
         if (this.matchesAny(q, ['me', 'who are you', 'who is tejas', 'about', 'bio', 'intro', 'hey', 'hello', 'hi'])) {
             return {
                 intent: 'ABOUT',
@@ -207,7 +204,7 @@ export class PortfolioChatEngine {
             };
         }
 
-        // 13. CONTACT / RESUME / LINKS
+        // 12. CONTACT / RESUME / LINKS
         if (this.matchesAny(q, ['contact', 'email', 'reach', 'connect', 'resume', 'cv', 'github', 'linkedin'])) {
             return {
                 intent: 'CONTACT',
@@ -222,7 +219,7 @@ export class PortfolioChatEngine {
         // FALLBACK
         return {
             intent: 'GENERAL',
-            text: `I parsed "${this.escapeHtml(rawQuery)}". Feel free to ask about my PyTorch PRs, vLLM inference work, systems engineering, or open-source contributions.`
+            text: `I parsed "${this.escapeHtml(rawQuery)}". Feel free to ask about my PyTorch PRs, vLLM inference work, systems projects, or open-source contributions.`
         };
     }
 

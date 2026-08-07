@@ -14,7 +14,7 @@ export const portfolioData = {
 
     me: {
         headline: "AI Engineer focused on generative AI, agent infrastructure, and open source.",
-        description: "I enjoy working inside complex systems, solving deep engineering problems, and contributing improvements upstream. My work spans machine learning frameworks (PyTorch), LLM inference engines (vLLM), distributed key-value storage (Tejas-DB), and open-source developer tooling.",
+        description: "I enjoy working inside complex systems, solving deep engineering problems, and contributing improvements upstream. My work spans machine learning frameworks (PyTorch), LLM inference engines (vLLM), distributed key-value storage (Tejas-DB), AI Job Platform, and open-source developer tooling.",
         focusAreas: [
             "Generative AI & LLM Inference",
             "Agent Runtimes, Memory & Tool Schemas",
@@ -28,6 +28,8 @@ export const portfolioData = {
             repo: "vLLM",
             fullRepo: "vllm-project/vllm",
             category: "LLM Inference Infrastructure",
+            prSearchUrl: "https://github.com/vllm-project/vllm/pulls?q=is%3Apr+author%3ATejas-Raj01",
+            summary: "Fixed request preemption index misalignment in SchedulingPolicy.PRIORITY under KV cache memory pressure.",
             highlights: [
                 {
                     title: "Fix request index preemption misalignment in SchedulingPolicy.PRIORITY",
@@ -44,6 +46,8 @@ export const portfolioData = {
             repo: "PyTorch",
             fullRepo: "pytorch/pytorch",
             category: "Core Machine Learning Framework",
+            prSearchUrl: "https://github.com/pytorch/pytorch/pulls?q=is%3Apr+author%3ATejas-Raj01",
+            summary: "Contributed 2 merged PRs addressing PyTorch FX operator return annotations and C++ sparse tensor division-by-zero crashes.",
             highlights: [
                 {
                     title: "Fix return_annotation schema for tuple-returning operators in PyTorch FX",
@@ -69,6 +73,8 @@ export const portfolioData = {
             repo: "Automattic Jetpack",
             fullRepo: "Automattic/jetpack",
             category: "Open-Source Infrastructure (9 Merged PRs)",
+            prSearchUrl: "https://github.com/Automattic/jetpack/pulls?q=is%3Apr+author%3ATejas-Raj01",
+            summary: "Contributed 9 merged PRs across Gutenberg block editor stability, REST API schemas, and TypeScript refactoring.",
             highlights: [
                 {
                     title: "Editor Stability: Resolve block editor crash during Gallery to Slideshow transformations",
@@ -112,6 +118,8 @@ export const portfolioData = {
             repo: "Canonical Snapcraft",
             fullRepo: "canonical/snapcraft",
             category: "Linux Tooling",
+            prSearchUrl: "https://github.com/canonical/snapcraft/pulls?q=is%3Apr+author%3ATejas-Raj01",
+            summary: "Contributed merged PRs for dynamic build_base resolution across Linux package build pipelines.",
             highlights: [
                 {
                     title: "Resolve hardcoded linter fallbacks via dynamic build_base resolution across package pipelines",
@@ -137,6 +145,8 @@ export const portfolioData = {
             repo: "CP Editor",
             fullRepo: "cpeditor/cpeditor",
             category: "Developer Tooling",
+            prSearchUrl: "https://github.com/cpeditor/cpeditor/pulls?q=is%3Apr+author%3ATejas-Raj01",
+            summary: "Contributed 3 merged PRs for automated LLM translation pipelines, dynamic font scaling, and tab controls.",
             highlights: [
                 {
                     title: "Global Localization & Search Bug: Translate 3,600+ UI strings via LLM pipeline & fix duplicate search indexing",
@@ -171,24 +181,28 @@ export const portfolioData = {
 
     aiWork: [
         {
+            title: "AI Job Platform",
+            category: "AI Platform & Talent Intelligence",
+            description: "An end-to-end AI platform featuring automated resume parsing, LLM job matching, candidate scoring algorithms, and real-time application tracking pipelines.",
+            githubUrl: "https://github.com/Tejas-Raj01",
+            liveUrl: "https://portfolio-liart-eta-34.vercel.app/",
+            tags: ["Generative AI", "LLM Matching", "Resume Parsing", "Node.js/React"]
+        },
+        {
             title: "vLLM Request Preemption Fix",
             category: "LLM Inference Infrastructure",
             description: "Debugging and fixing priority queue re-indexing in vLLM's core scheduling policy during KV cache memory preemption.",
-            evidenceUrl: "https://github.com/vllm-project/vllm/pull/49206",
+            githubUrl: "https://github.com/vllm-project/vllm/pull/49206",
+            liveUrl: "https://github.com/vllm-project/vllm/pull/49206",
             tags: ["LLM Inference", "vLLM", "KV Cache", "Python/PyTorch"]
         },
         {
             title: "PyTorch FX Graph Operator Schemas",
             category: "ML Framework & Graph Tracing",
             description: "Fixing return type annotation schemas in PyTorch FX operator tracer for downstream compiler and static analysis tools.",
-            evidenceUrl: "https://github.com/pytorch/pytorch/pull/189142",
+            githubUrl: "https://github.com/pytorch/pytorch/pull/189142",
+            liveUrl: "https://github.com/pytorch/pytorch/pull/189142",
             tags: ["PyTorch", "FX Graph Tracer", "Compilers", "Python"]
-        },
-        {
-            title: "Agent Infrastructure Exploration",
-            category: "Agent Runtimes & Tooling",
-            description: "Designing and building runtime architectures for agentic AI: model orchestration, tool definitions, session persistence, and memory retrieval.",
-            tags: ["Agentic AI", "Tool Use", "Memory", "Orchestration"]
         }
     ],
 
@@ -203,7 +217,21 @@ export const portfolioData = {
                 "100 concurrent worker threads"
             ],
             tech: ["C++17", "Distributed Systems", "WAL Engine", "Gossip Protocol", "Quorum Consensus"],
-            url: "https://github.com/Tejas-Raj01/distributed-system"
+            githubUrl: "https://github.com/Tejas-Raj01/distributed-system",
+            liveUrl: "https://github.com/Tejas-Raj01/distributed-system"
+        },
+        {
+            title: "AI Job Platform",
+            subtitle: "AI-Powered Talent Matching & Application Engine",
+            description: "An end-to-end platform leveraging LLMs for candidate scoring, resume parsing, job recommendation algorithms, and high-throughput application event processing.",
+            metrics: [
+                "Automated LLM Parsing",
+                "Sub-second Candidate Scoring",
+                "Real-time Pipeline Tracking"
+            ],
+            tech: ["Node.js", "Generative AI", "React", "Vector Search"],
+            githubUrl: "https://github.com/Tejas-Raj01",
+            liveUrl: "https://portfolio-liart-eta-34.vercel.app/"
         }
     ],
 
