@@ -71,13 +71,40 @@ export const portfolioData = {
             category: "Open-Source Infrastructure (9 Merged PRs)",
             highlights: [
                 {
-                    title: "Editor Stability & REST API Schema fixes",
-                    status: "9 Merged PRs",
-                    prNumber: "50035+",
-                    problem: "Block editor crashes during transformations, REST API schema parsing failures, and TypeScript type safety gaps.",
-                    solution: "Resolved block transformations, updated Publicize REST API status using oneOf to prevent OpenAPI parser crashes, and refactored string IDs to store objects.",
-                    url: "https://github.com/Automattic/jetpack/pulls?q=is%3Apr+author%3ATejas-Raj01",
-                    tech: ["TypeScript", "REST APIs", "OpenAPI", "State Management"]
+                    title: "Editor Stability: Resolve block editor crash during Gallery to Slideshow transformations",
+                    status: "Merged PR #50035",
+                    prNumber: "50035",
+                    problem: "Block editor crash when attempting transformations from Gallery to Slideshow components.",
+                    solution: "Normalized event target handling and validated block attribute schemas during state transformations.",
+                    url: "https://github.com/Automattic/jetpack/pull/50035",
+                    tech: ["TypeScript", "Block Editor", "State Transformations"]
+                },
+                {
+                    title: "API Schema: Update Publicize REST API status schema using oneOf to prevent OpenAPI parser crashes",
+                    status: "Merged PR #50030",
+                    prNumber: "50030",
+                    problem: "Strict OpenAPI parsers crashed due to ambiguous Publicize REST API status schema definitions.",
+                    solution: "Refactored REST API schema definitions utilizing polymorphic oneOf schemas.",
+                    url: "https://github.com/Automattic/jetpack/pull/50030",
+                    tech: ["TypeScript", "REST APIs", "OpenAPI Schema"]
+                },
+                {
+                    title: "Editor Stability: Resolve block editor crash when transforming Gallery back to Tiled Gallery",
+                    status: "Merged PR #50025",
+                    prNumber: "50025",
+                    problem: "State mismatch when reverting Gallery blocks back to Tiled Gallery format.",
+                    solution: "Added fallback attribute validation and safe image queue conversion handlers.",
+                    url: "https://github.com/Automattic/jetpack/pull/50025",
+                    tech: ["TypeScript", "Gutenberg Editor", "UX Stability"]
+                },
+                {
+                    title: "TypeScript Refactoring: Replace string IDs with store objects in useSelect/useDispatch",
+                    status: "Merged PR #49810",
+                    prNumber: "49810",
+                    problem: "String-literal store IDs in Redux-like hooks caused silent runtime failures during store refactoring.",
+                    solution: "Updated hook invocations across package components to accept typed store descriptor objects.",
+                    url: "https://github.com/Automattic/jetpack/pull/49810",
+                    tech: ["TypeScript", "Redux Store", "Type Safety"]
                 }
             ]
         },
@@ -87,13 +114,22 @@ export const portfolioData = {
             category: "Linux Tooling",
             highlights: [
                 {
-                    title: "Dynamic build_base resolution across package pipelines",
+                    title: "Resolve hardcoded linter fallbacks via dynamic build_base resolution across package pipelines",
                     status: "Merged PR #6272",
                     prNumber: "6272",
-                    problem: "Hardcoded linter fallbacks across snapcraft packaging pipelines.",
+                    problem: "Hardcoded linter fallbacks in packaging pipelines led to build resolution failures on non-standard host environments.",
                     solution: "Implemented dynamic build_base resolution to detect environment targets dynamically.",
                     url: "https://github.com/canonical/snapcraft/pull/6272",
                     tech: ["Python", "CLI Tooling", "Linux Package Pipelines"]
+                },
+                {
+                    title: "Documentation: Add personal-files interface manual connection notes to Snapcraft tutorial",
+                    status: "Merged PR #6269",
+                    prNumber: "6269",
+                    problem: "Developers encountered permission issues with personal-files security interfaces.",
+                    solution: "Added comprehensive manual connection usage notes and security guidelines to official docs.",
+                    url: "https://github.com/canonical/snapcraft/pull/6269",
+                    tech: ["Documentation", "Linux Security Interfaces"]
                 }
             ]
         },
@@ -103,13 +139,31 @@ export const portfolioData = {
             category: "Developer Tooling",
             highlights: [
                 {
-                    title: "LLM Translation Pipeline, Dynamic Font Scaling & Tab Closure",
-                    status: "3 Merged PRs (#1501, #1499, #1498)",
+                    title: "Global Localization & Search Bug: Translate 3,600+ UI strings via LLM pipeline & fix duplicate search indexing",
+                    status: "Merged PR #1501",
                     prNumber: "1501",
-                    problem: "Missing internationalization strings, lack of zoom toggles, and rigid tab interactions.",
-                    solution: "Translated 3,600+ UI strings via automated LLM pipeline, added Ctrl+Scroll font scaling toggle, and added middle-click tab closure.",
+                    problem: "Untranslated internationalization strings and duplicate search indexing in desktop search panel.",
+                    solution: "Translated 3,600+ UI strings via automated LLM pipeline and deduplicated search indexers.",
                     url: "https://github.com/cpeditor/cpeditor/pull/1501",
-                    tech: ["C++", "Qt Framework", "LLM Pipeline", "Desktop UX"]
+                    tech: ["C++", "Qt Framework", "LLM Translation Pipeline"]
+                },
+                {
+                    title: "Ctrl+Scroll Dynamic Font Scaling: Add user configuration toggle in code editor view",
+                    status: "Merged PR #1499",
+                    prNumber: "1499",
+                    problem: "Code editor lacked user-configurable zoom accessibility shortcuts.",
+                    solution: "Added Ctrl+Scroll font scaling toggle with configurable sensitivity settings.",
+                    url: "https://github.com/cpeditor/cpeditor/pull/1499",
+                    tech: ["C++", "Qt Framework", "Editor UX"]
+                },
+                {
+                    title: "Tab Controls: Implement middle-click tab closure interaction logic",
+                    status: "Merged PR #1498",
+                    prNumber: "1498",
+                    problem: "Tab bar lacked intuitive middle-click close interaction.",
+                    solution: "Added mouse event filter handlers to trigger tab closure on middle-click.",
+                    url: "https://github.com/cpeditor/cpeditor/pull/1498",
+                    tech: ["C++", "Qt Event Filters"]
                 }
             ]
         }

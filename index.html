@@ -131,7 +131,7 @@
                 </form>
             </div>
 
-            <!-- 4. SUGGESTED PROMPT CHIPS -->
+            <!-- 4. SUGGESTED PROMPT CHIPS (STATE A) -->
             <div class="quick-questions-container">
                 <button class="quick-chip" data-query="Tell me about yourself"><i class="fas fa-user"></i> Me</button>
                 <button class="quick-chip" data-query="Show me your open-source contributions"><i class="fab fa-github"></i> Open Source</button>
@@ -153,6 +153,15 @@
         <!-- Sticky Bottom Chat Bar -->
         <div class="sticky-bottom-bar">
             <div class="sticky-bar-inner">
+                <!-- PERSISTENT PROMPT TAGS (NEVER DISAPPEAR) -->
+                <div class="persistent-tags-container">
+                    <button class="quick-chip" data-query="Tell me about yourself"><i class="fas fa-user"></i> Me</button>
+                    <button class="quick-chip" data-query="Show me your open-source contributions"><i class="fab fa-github"></i> Open Source</button>
+                    <button class="quick-chip" data-query="What is your AI work?"><i class="fas fa-brain"></i> AI Work</button>
+                    <button class="quick-chip" data-query="What systems projects have you built?"><i class="fas fa-server"></i> Systems</button>
+                    <button class="quick-chip" data-query="How can I contact you?"><i class="fas fa-paper-plane"></i> Contact</button>
+                </div>
+
                 <form id="sticky-chat-form" class="chat-form-box">
                     <input type="text" id="sticky-prompt-input" placeholder="Ask me anything..." autocomplete="off" spellcheck="false" />
                     <button type="submit" aria-label="Send question">
