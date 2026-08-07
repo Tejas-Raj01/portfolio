@@ -75,6 +75,7 @@ export const portfolioData = {
             category: "Open-Source Infrastructure (9 Merged PRs)",
             prSearchUrl: "https://github.com/Automattic/jetpack/pulls?q=is%3Apr+author%3ATejas-Raj01",
             summary: "Contributed 9 merged PRs across Gutenberg block editor stability, REST API schemas, and TypeScript refactoring.",
+            totalPrCount: 9,
             highlights: [
                 {
                     title: "Editor Stability: Resolve block editor crash during Gallery to Slideshow transformations",

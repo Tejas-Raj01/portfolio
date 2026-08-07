@@ -25,7 +25,7 @@ export class PortfolioChatEngine {
                     title: repoGroup.repo,
                     subtitle: repoGroup.category,
                     summary: repoGroup.summary,
-                    count: repoGroup.highlights.length,
+                    count: repoGroup.totalPrCount || repoGroup.highlights.length,
                     prSearchUrl: repoGroup.prSearchUrl
                 }))
             };
