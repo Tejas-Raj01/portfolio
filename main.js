@@ -1,4 +1,4 @@
-// Tejas Raj Portfolio — High-End Minimalist Systems Engineer Logic
+// Tejas Raj Portfolio — Editorial Developer Portfolio Interactivity
 
 document.addEventListener('DOMContentLoaded', () => {
     initScrollSpyAndProgress();
