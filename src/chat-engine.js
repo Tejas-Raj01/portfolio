@@ -16,7 +16,6 @@ export class PortfolioChatEngine {
         const q = (rawQuery || '').toLowerCase().trim();
 
         // 1. OPEN SOURCE OVERVIEW
-        // "pr tag m sirf company/project dikhayega aur uska sath link dega jo github k PR search page ka hoga"
         if (this.matchesAny(q, ['open source', 'opensource', 'oss', 'contributions', 'prs', 'pull requests', 'github work'])) {
             return {
                 intent: 'OPEN_SOURCE',
@@ -132,11 +131,11 @@ export class PortfolioChatEngine {
             };
         }
 
-        // 7. SYSTEMS / TEJAS-DB & AI JOB PLATFORM (Strictly Systems projects)
-        if (this.matchesAny(q, ['systems', 'system', 'c++', 'tejas-db', 'database', 'job platform', 'ai job platform', 'kv store', 'storage'])) {
+        // 7. SYSTEMS (Strictly Distributed Key-Value Pair - Tejas-DB ONLY)
+        if (this.matchesAny(q, ['systems', 'system', 'c++', 'tejas-db', 'database', 'kv store', 'storage', 'key value'])) {
             return {
                 intent: 'SYSTEMS',
-                text: "My systems and platform projects demonstrate the engineering foundation behind my work:",
+                text: "My systems work demonstrates the low-level engineering foundation behind my AI infrastructure direction:",
                 cards: this.data.systems.map(sys => ({
                     type: 'project_card',
                     title: sys.title,
@@ -150,11 +149,11 @@ export class PortfolioChatEngine {
             };
         }
 
-        // 8. AI WORK (Includes AI Job Platform, vLLM, PyTorch FX)
-        if (this.matchesAny(q, ['ai work', 'genai', 'llm', 'inference', 'agent infrastructure', 'agent runtimes'])) {
+        // 8. AI WORK (Strictly AI Job Platform ONLY)
+        if (this.matchesAny(q, ['ai work', 'genai', 'llm', 'inference', 'job platform', 'ai job platform', 'agent infrastructure', 'agent runtimes'])) {
             return {
                 intent: 'AI_WORK',
-                text: "My AI engineering work spans AI platforms, LLM inference infrastructure, and ML framework internals:",
+                text: "My AI engineering work focuses on intelligent platform architectures and LLM application pipelines:",
                 cards: this.data.aiWork.map(item => ({
                     type: 'ai_project_card',
                     title: item.title,
@@ -179,20 +178,10 @@ export class PortfolioChatEngine {
         if (this.matchesAny(q, ['strongest', 'best work', 'top work', 'strongest work', 'key work', 'evidence'])) {
             return {
                 intent: 'STRONGEST_WORK',
-                text: "My strongest engineering evidence is centered on core AI infrastructure, open source, and distributed systems:\n\n" +
+                text: "My strongest engineering evidence is centered on core AI infrastructure, open source, and low-level systems:\n\n" +
                       "1. **vLLM (`vllm-project/vllm`)**: Fixed request preemption re-indexing in `SchedulingPolicy.PRIORITY` under KV cache pressure ([PR #49206](https://github.com/vllm-project/vllm/pull/49206)).\n\n" +
                       "2. **PyTorch (`pytorch/pytorch`)**: Fixed FX operator return schema annotations ([PR #189142](https://github.com/pytorch/pytorch/pull/189142)) and C++ sparse tensor division-by-zero crash ([PR #190191](https://github.com/pytorch/pytorch/pull/190191)).\n\n" +
-                      "3. **Tejas-DB & AI Job Platform**: Distributed C++17 KV store (33,685 req/s) and AI talent matching engine.",
-                cards: this.data.systems.map(sys => ({
-                    type: 'project_card',
-                    title: sys.title,
-                    subtitle: sys.subtitle,
-                    description: sys.description,
-                    metrics: sys.metrics,
-                    tech: sys.tech,
-                    githubUrl: sys.githubUrl,
-                    liveUrl: sys.liveUrl
-                }))
+                      "3. **Tejas-DB & AI Job Platform**: Distributed C++17 KV store (33,685 req/s) and AI Job Platform."
             };
         }
 

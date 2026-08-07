@@ -179,59 +179,33 @@ export const portfolioData = {
         }
     ],
 
+    // AI Work: Strictly AI Job Platform ONLY
     aiWork: [
         {
             title: "AI Job Platform",
-            category: "AI Platform & Talent Intelligence",
-            description: "An end-to-end AI platform featuring automated resume parsing, LLM job matching, candidate scoring algorithms, and real-time application tracking pipelines.",
+            subtitle: "AI-Powered Career Intelligence Platform",
+            category: "AI Platform & Career Intelligence",
+            description: "Architected a decoupled, scalable AI-integrated software platform utilizing FastAPI and React.js, processing unstructured resumes and automating real-time job discovery via async Celery workers and Redis. Engineered a memory-optimized semantic matching engine evaluating results using scikit-learn TF-IDF and Cosine Similarity to calculate precise compatibility in milliseconds. Developed fault-tolerant engineering solutions using Groq API and LangChain with dynamic active-model fallback loops.",
             githubUrl: "https://github.com/Tejas-Raj01",
             liveUrl: "https://portfolio-liart-eta-34.vercel.app/",
-            tags: ["Generative AI", "LLM Matching", "Resume Parsing", "Node.js/React"]
-        },
-        {
-            title: "vLLM Request Preemption Fix",
-            category: "LLM Inference Infrastructure",
-            description: "Debugging and fixing priority queue re-indexing in vLLM's core scheduling policy during KV cache memory preemption.",
-            githubUrl: "https://github.com/vllm-project/vllm/pull/49206",
-            liveUrl: "https://github.com/vllm-project/vllm/pull/49206",
-            tags: ["LLM Inference", "vLLM", "KV Cache", "Python/PyTorch"]
-        },
-        {
-            title: "PyTorch FX Graph Operator Schemas",
-            category: "ML Framework & Graph Tracing",
-            description: "Fixing return type annotation schemas in PyTorch FX operator tracer for downstream compiler and static analysis tools.",
-            githubUrl: "https://github.com/pytorch/pytorch/pull/189142",
-            liveUrl: "https://github.com/pytorch/pytorch/pull/189142",
-            tags: ["PyTorch", "FX Graph Tracer", "Compilers", "Python"]
+            tags: ["Python", "FastAPI", "React", "PostgreSQL", "Celery/Redis", "scikit-learn TF-IDF", "LangChain/Groq"]
         }
     ],
 
+    // Systems Work: Strictly Distributed Key-Value Database (Tejas-DB) ONLY
     systems: [
         {
-            title: "Tejas-DB",
-            subtitle: "Distributed Key-Value Store built in C++17",
-            description: "A high-performance decentralized storage system featuring fine-grained C++ concurrency control, Write-Ahead Logging (WAL) for durability, Gossip protocol for cluster membership, and Quorum consensus for distributed reads and writes.",
+            title: "Distributed Key-Value Database (Tejas-DB)",
+            subtitle: "Decentralized Storage Engine built in C++17",
+            description: "Architected a decentralized, peer-to-peer key-value storage solution in C++, leveraging Consistent Hashing for balanced data partitioning and a Gossip Protocol for autonomous node discovery. Engineered a high-performance concurrent engine using multi-threading and std::shared_mutex. Implemented tunable Quorum Replication (N, W, R) for customizable consistency levels and Write-Ahead Log (WAL) crash recovery. Developed a real-time React.js visualization tool integrated with Ngrok tunneling to execute stress tests and Chaos Engineering validation.",
             metrics: [
                 "33,685 req/s throughput",
                 "~2.97 ms average latency",
                 "100 concurrent worker threads"
             ],
-            tech: ["C++17", "Distributed Systems", "WAL Engine", "Gossip Protocol", "Quorum Consensus"],
+            tech: ["C++17", "React.js", "Multithreading", "Networking", "WAL Engine", "Gossip Protocol", "Quorum Consensus"],
             githubUrl: "https://github.com/Tejas-Raj01/distributed-system",
             liveUrl: "https://github.com/Tejas-Raj01/distributed-system"
-        },
-        {
-            title: "AI Job Platform",
-            subtitle: "AI-Powered Talent Matching & Application Engine",
-            description: "An end-to-end platform leveraging LLMs for candidate scoring, resume parsing, job recommendation algorithms, and high-throughput application event processing.",
-            metrics: [
-                "Automated LLM Parsing",
-                "Sub-second Candidate Scoring",
-                "Real-time Pipeline Tracking"
-            ],
-            tech: ["Node.js", "Generative AI", "React", "Vector Search"],
-            githubUrl: "https://github.com/Tejas-Raj01",
-            liveUrl: "https://portfolio-liart-eta-34.vercel.app/"
         }
     ],
 
