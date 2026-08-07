@@ -617,12 +617,18 @@ html, body {
     padding: 20px;
     display: flex;
     justify-content: center;
+    align-items: flex-start;
 }
 
 .resume-preview-img {
-    max-width: 100%;
-    height: auto;
+    width: 100%;
+    max-width: 760px;
+    height: auto !important;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
     border-radius: var(--radius-sm);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 }
 
 /* Toast */
