@@ -149,14 +149,34 @@ export class PortfolioChatEngine {
             };
         }
 
-        // 8. AI WORK (Strictly AI Job Platform ONLY)
-        if (this.matchesAny(q, ['ai work', 'genai', 'llm', 'inference', 'job platform', 'ai job platform', 'agent infrastructure', 'agent runtimes'])) {
+        // 8. DEALLENS (AI Investment Research & Due-Diligence Engine)
+        if (this.matchesAny(q, ['deallens', 'due diligence', 'investment research', 'citationverifier', 'financial rag', 'rrf', '7-step dag'])) {
+            const item = this.data.aiWork.find(i => i.title === 'DealLens');
+            return {
+                intent: 'DEALLENS',
+                text: "DealLens is an enterprise-grade asynchronous AI investment research & due-diligence workflow engine:",
+                cards: item ? [{
+                    type: 'ai_project_card',
+                    title: item.title,
+                    subtitle: item.subtitle,
+                    category: item.category,
+                    description: item.description,
+                    githubUrl: item.githubUrl,
+                    liveUrl: item.liveUrl,
+                    tags: item.tags
+                }] : []
+            };
+        }
+
+        // 9. AI WORK (AI Engines & Systems)
+        if (this.matchesAny(q, ['ai work', 'genai', 'llm', 'inference', 'job platform', 'ai job platform', 'agent infrastructure', 'agent runtimes', 'rag', 'pgvector', 'hybrid search'])) {
             return {
                 intent: 'AI_WORK',
-                text: "My AI engineering work focuses on intelligent platform architectures and LLM application pipelines:",
+                text: "My AI engineering work focuses on production AI workflow engines, hybrid RAG search architectures, and intelligent platform pipelines:",
                 cards: this.data.aiWork.map(item => ({
                     type: 'ai_project_card',
                     title: item.title,
+                    subtitle: item.subtitle,
                     category: item.category,
                     description: item.description,
                     githubUrl: item.githubUrl,
@@ -166,7 +186,7 @@ export class PortfolioChatEngine {
             };
         }
 
-        // 9. OPENCLAW (Strictly OpenClaw only)
+        // 10. OPENCLAW (Strictly OpenClaw only)
         if (this.matchesAny(q, ['openclaw', 'claw'])) {
             return {
                 intent: 'OPENCLAW',
@@ -174,18 +194,18 @@ export class PortfolioChatEngine {
             };
         }
 
-        // 10. STRONGEST ENGINEERING WORK
+        // 11. STRONGEST ENGINEERING WORK
         if (this.matchesAny(q, ['strongest', 'best work', 'top work', 'strongest work', 'key work', 'evidence'])) {
             return {
                 intent: 'STRONGEST_WORK',
-                text: "My strongest engineering evidence is centered on core AI infrastructure, open source, and low-level systems:\n\n" +
+                text: "My strongest engineering evidence is centered on core AI infrastructure, financial RAG backends, open source, and low-level systems:\n\n" +
                       "1. **vLLM (`vllm-project/vllm`)**: Fixed request preemption re-indexing in `SchedulingPolicy.PRIORITY` under KV cache pressure ([PR #49206](https://github.com/vllm-project/vllm/pull/49206)).\n\n" +
                       "2. **PyTorch (`pytorch/pytorch`)**: Fixed FX operator return schema annotations ([PR #189142](https://github.com/pytorch/pytorch/pull/189142)) and C++ sparse tensor division-by-zero crash ([PR #190191](https://github.com/pytorch/pytorch/pull/190191)).\n\n" +
-                      "3. **Tejas-DB & AI Job Platform**: Distributed C++17 KV store (33,685 req/s) and AI Job Platform."
+                      "3. **DealLens & Tejas-DB**: Asynchronous AI due-diligence engine with 7-step deterministic DAG & hybrid pgvector RAG (RRF); and distributed C++17 KV store (33,685 req/s)."
             };
         }
 
-        // 11. IDENTITY / ME / ABOUT
+        // 12. IDENTITY / ME / ABOUT
         if (this.matchesAny(q, ['me', 'who are you', 'who is tejas', 'about', 'bio', 'intro', 'hey', 'hello', 'hi'])) {
             return {
                 intent: 'ABOUT',
@@ -193,7 +213,7 @@ export class PortfolioChatEngine {
             };
         }
 
-        // 12. CONTACT / RESUME / LINKS
+        // 13. CONTACT / RESUME / LINKS
         if (this.matchesAny(q, ['contact', 'email', 'reach', 'connect', 'resume', 'cv', 'github', 'linkedin'])) {
             return {
                 intent: 'CONTACT',
@@ -208,7 +228,7 @@ export class PortfolioChatEngine {
         // FALLBACK
         return {
             intent: 'GENERAL',
-            text: `I parsed "${this.escapeHtml(rawQuery)}". Feel free to ask about my PyTorch PRs, vLLM inference work, systems projects, or open-source contributions.`
+            text: `I parsed "${this.escapeHtml(rawQuery)}". Feel free to ask about my DealLens financial RAG engine, PyTorch PRs, vLLM inference work, systems projects, or open-source contributions.`
         };
     }
 

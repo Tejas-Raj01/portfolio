@@ -14,7 +14,7 @@ export const portfolioData = {
 
     me: {
         headline: "AI Engineer focused on generative AI, agent infrastructure, and open source.",
-        description: "I enjoy working inside complex systems, solving deep engineering problems, and contributing improvements upstream. My work spans machine learning frameworks (PyTorch), LLM inference engines (vLLM), distributed key-value storage (Tejas-DB), AI Job Platform, and open-source developer tooling.",
+        description: "I enjoy working inside complex systems, solving deep engineering problems, and contributing improvements upstream. My work spans machine learning frameworks (PyTorch), LLM inference engines (vLLM), production financial RAG workflow engines (DealLens), distributed key-value storage (Tejas-DB), AI Job Platform, and open-source developer tooling.",
         focusAreas: [
             "Generative AI & LLM Inference",
             "Agent Runtimes, Memory & Tool Schemas",
@@ -180,8 +180,17 @@ export const portfolioData = {
         }
     ],
 
-    // AI Work: Strictly AI Job Platform ONLY
+    // AI Work: Production AI Engines & Platforms
     aiWork: [
+        {
+            title: "DealLens",
+            subtitle: "AI Investment Research & Due-Diligence Workflow Engine",
+            category: "AI & Financial RAG Engine",
+            description: "Architected a production-grade asynchronous AI backend for automated corporate investment due-diligence and financial document research (10-Ks, Annual Reports, Pitch Decks). Engineered a deterministic 7-step DAG workflow state machine (Validation → Entity Extraction → Financial Performance → Risk Analysis → Evidence Retrieval → Claim Verification → Report Generation) replacing fragile agent loops. Built a PostgreSQL 16 + pgvector hybrid search engine combining dense Cosine Distance embeddings and sparse tsvector keyword search via Reciprocal Rank Fusion (RRF). Implemented page-aware 1-indexed PDF chunking, S3/MinIO deduplication, and a custom CitationVerifier guardrail to eliminate LLM hallucinations with strict source provenance.",
+            githubUrl: "https://github.com/Tejas-Raj01/DealLens",
+            liveUrl: "https://github.com/Tejas-Raj01/DealLens",
+            tags: ["Python 3.11", "FastAPI", "PostgreSQL 16 / pgvector", "Hybrid RAG (RRF)", "Celery 5 / Redis 7", "7-Step Workflow DAG", "MinIO / AWS S3", "CitationVerifier"]
+        },
         {
             title: "AI Job Platform",
             subtitle: "AI-Powered Career Intelligence Platform",
