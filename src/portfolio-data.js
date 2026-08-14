@@ -120,8 +120,17 @@ export const portfolioData = {
             fullRepo: "canonical/snapcraft",
             category: "Linux Tooling",
             prSearchUrl: "https://github.com/canonical/snapcraft/pulls?q=is%3Apr+author%3ATejas-Raj01",
-            summary: "Contributed merged PRs for dynamic build_base resolution across Linux package build pipelines.",
+            summary: "Contributed merged PRs for dynamic build_base resolution and preventing file deletion during self-linking in package build pipelines.",
             highlights: [
+                {
+                    title: "Prevent file deletion during self-linking in link_or_copy",
+                    status: "Merged PR #1628",
+                    prNumber: "1628",
+                    problem: "In link_or_copy (craft-parts / snapcraft build pipeline), if source and destination resolved to the same physical file (e.g. via a staged symlink), catching EEXIST and unlinking destination accidentally deleted the source file itself.",
+                    solution: "Added a samefile() check in craft_parts/utils/file_utils.py to return early and safely ignore self-linking collisions without crashing or deleting the source file (fixes canonical/snapcraft#6168).",
+                    url: "https://github.com/canonical/craft-parts/pull/1628",
+                    tech: ["Python", "CLI Tooling", "Linux Packaging", "Symlinks & File Systems"]
+                },
                 {
                     title: "Resolve hardcoded linter fallbacks via dynamic build_base resolution across package pipelines",
                     status: "Merged PR #6272",

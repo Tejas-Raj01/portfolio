@@ -91,15 +91,15 @@ export class PortfolioChatEngine {
             };
         }
 
-        // 5. SNAPCRAFT (Strictly Snapcraft only)
-        if (this.matchesAny(q, ['snapcraft', 'canonical'])) {
+        // 5. SNAPCRAFT & CRAFT PARTS (Strictly Canonical Snapcraft & Craft Parts)
+        if (this.matchesAny(q, ['snapcraft', 'canonical', 'craft-parts', 'craft parts', '1628', '6168', 'link_or_copy', 'self-linking'])) {
             const repoData = this.data.openSource.find(item => item.repo === 'Canonical Snapcraft');
             return {
                 intent: 'SNAPCRAFT',
-                text: "I've contributed merged pull requests to Canonical Snapcraft (`canonical/snapcraft`):",
+                text: "I've contributed merged pull requests to Canonical Snapcraft & Craft Parts (`canonical/snapcraft` & `canonical/craft-parts`):",
                 cards: repoData ? repoData.highlights.map(h => ({
                     type: 'pr_card',
-                    repo: 'Canonical Snapcraft',
+                    repo: 'Canonical (Snapcraft & Craft Parts)',
                     title: h.title,
                     status: h.status,
                     problem: h.problem,
