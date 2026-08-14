@@ -91,23 +91,37 @@ export class PortfolioChatEngine {
             };
         }
 
-        // 5. SNAPCRAFT & CRAFT PARTS (Strictly Canonical Snapcraft & Craft Parts)
+        // 5. CANONICAL (Craft Parts & Snapcraft)
         if (this.matchesAny(q, ['snapcraft', 'canonical', 'craft-parts', 'craft parts', '1628', '6168', 'link_or_copy', 'self-linking'])) {
-            const repoData = this.data.openSource.find(item => item.repo === 'Canonical Snapcraft');
+            const craftPartsData = this.data.openSource.find(item => item.repo === 'Canonical Craft Parts');
+            const snapcraftData = this.data.openSource.find(item => item.repo === 'Canonical Snapcraft');
+
+            let matchingRepos = [];
+            if (this.matchesAny(q, ['craft-parts', 'craft parts', '1628', 'link_or_copy', 'self-linking'])) {
+                if (craftPartsData) matchingRepos.push(craftPartsData);
+            } else if (this.matchesAny(q, ['snapcraft', '6272', '6269'])) {
+                if (snapcraftData) matchingRepos.push(snapcraftData);
+            } else {
+                if (craftPartsData) matchingRepos.push(craftPartsData);
+                if (snapcraftData) matchingRepos.push(snapcraftData);
+            }
+
+            const cards = matchingRepos.flatMap(repoData => repoData.highlights.map(h => ({
+                type: 'pr_card',
+                repo: repoData.repo,
+                title: h.title,
+                status: h.status,
+                problem: h.problem,
+                solution: h.solution,
+                url: h.url,
+                prSearchUrl: repoData.prSearchUrl,
+                tech: h.tech
+            })));
+
             return {
-                intent: 'SNAPCRAFT',
-                text: "I've contributed merged pull requests to Canonical Snapcraft & Craft Parts (`canonical/snapcraft` & `canonical/craft-parts`):",
-                cards: repoData ? repoData.highlights.map(h => ({
-                    type: 'pr_card',
-                    repo: 'Canonical (Snapcraft & Craft Parts)',
-                    title: h.title,
-                    status: h.status,
-                    problem: h.problem,
-                    solution: h.solution,
-                    url: h.url,
-                    prSearchUrl: repoData.prSearchUrl,
-                    tech: h.tech
-                })) : []
+                intent: 'CANONICAL',
+                text: "I've contributed merged pull requests across Canonical upstream projects (`canonical/craft-parts` and `canonical/snapcraft`):",
+                cards: cards
             };
         }
 
