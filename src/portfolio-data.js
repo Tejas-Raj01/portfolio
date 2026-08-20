@@ -72,11 +72,20 @@ export const portfolioData = {
         {
             repo: "Automattic Jetpack",
             fullRepo: "Automattic/jetpack",
-            category: "Open-Source Infrastructure (9 Merged PRs)",
+            category: "Open-Source Infrastructure (10 Merged PRs)",
             prSearchUrl: "https://github.com/Automattic/jetpack/pulls?q=is%3Apr+author%3ATejas-Raj01",
-            summary: "Contributed 9 merged PRs across Gutenberg block editor stability, REST API schemas, and TypeScript refactoring.",
-            totalPrCount: 9,
+            summary: "Contributed 10 merged PRs across Gutenberg block editor stability, REST API schemas, and TypeScript refactoring.",
+            totalPrCount: 10,
             highlights: [
+                {
+                    title: "Map Block: Add wide and full width alignment support",
+                    status: "Merged PR #50818",
+                    prNumber: "50818",
+                    problem: "No alignment controls were available for the Map block toolbar, preventing users from making the map span wider or fully across the page content area.",
+                    solution: "Added wide and full alignment support to the Map block by updating its block.json file to expose UI controls in the editor.",
+                    url: "https://github.com/Automattic/jetpack/pull/50818",
+                    tech: ["WordPress Block Editor", "JSON", "block.json"]
+                },
                 {
                     title: "Editor Stability: Resolve block editor crash during Gallery to Slideshow transformations",
                     status: "Merged PR #50035",
