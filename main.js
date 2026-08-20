@@ -1,321 +1,228 @@
-// Tejas Raj — ChatGPT/Gemini-Style AI Portfolio Controller
-
-import { PortfolioChatEngine } from './src/chat-engine.js';
+import { portfolioData } from './src/portfolio-data.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-    const chatEngine = new PortfolioChatEngine();
-
-    const landingState = document.getElementById('landing-state');
-    const chatState = document.getElementById('chat-state');
-    const chatHistory = document.getElementById('chat-history');
-
-    const landingForm = document.getElementById('landing-form');
-    const landingInput = document.getElementById('landing-prompt-input');
-
-    const stickyForm = document.getElementById('sticky-chat-form');
-    const stickyInput = document.getElementById('sticky-prompt-input');
-
-    const quickChips = document.querySelectorAll('.quick-chip');
-    const brandLogoBtn = document.getElementById('brand-logo-btn');
-
-    let hasStartedChat = false;
-
-    initCopyEmailButtons();
-    initResumeModal();
-
-    // 1. Landing Form Submit (State A)
-    if (landingForm && landingInput) {
-        landingForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const query = landingInput.value.trim();
-            if (query) {
-                handleUserQuery(query, false);
-                landingInput.value = '';
-            }
-        });
-    }
-
-    // 2. Sticky Bottom Form Submit (State B)
-    if (stickyForm && stickyInput) {
-        stickyForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const query = stickyInput.value.trim();
-            if (query) {
-                handleUserQuery(query, false);
-                stickyInput.value = '';
-            }
-        });
-    }
-
-    // 3. Quick Suggested Prompt Chips (Tag Clicks)
-    // "agr mene ek tag baad dusre tag pr click kiya to purane tag k data htakr new tag k data ana chahiye"
-    quickChips.forEach(chip => {
-        chip.addEventListener('click', () => {
-            const query = chip.getAttribute('data-query');
-            if (query) {
-                handleUserQuery(query, true); // isTagClick = true -> clear previous tag data!
-            }
-        });
-    });
-
-    // 4. Brand Logo Click (Reset to Landing)
-    if (brandLogoBtn) {
-        brandLogoBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            resetToLandingState();
-        });
-    }
-
-    // Pipeline: Process Query & Render Turns
-    function handleUserQuery(queryText, isTagClick = false) {
-        // Transition from State A -> State B on first query
-        if (!hasStartedChat) {
-            transitionToChatState();
-        }
-
-        // If tag clicked after previous turns exist, replace previous tag output!
-        if (isTagClick && chatHistory) {
-            chatHistory.innerHTML = '';
-        }
-
-        // Render User Turn
-        renderUserMessage(queryText);
-
-        // Render Temporary AI Thinking Turn
-        const thinkingTurnEl = renderThinkingMessage();
-
-        scrollToBottom();
-
-        // Process query via Intent Engine
-        setTimeout(() => {
-            const resp = chatEngine.processQuery(queryText);
-
-            // Replace Thinking Turn with AI Turn
-            replaceThinkingWithAIResponse(thinkingTurnEl, resp);
-
-            scrollToBottom();
-
-            // Refocus Sticky Input
-            if (stickyInput) {
-                stickyInput.focus();
-            }
-        }, 250);
-    }
-
-    function transitionToChatState() {
-        hasStartedChat = true;
-        if (landingState) landingState.classList.add('hidden');
-        if (chatState) chatState.classList.remove('hidden');
-        window.scrollTo({ top: 0, behavior: 'instant' });
-    }
-
-    function resetToLandingState() {
-        hasStartedChat = false;
-        if (chatHistory) chatHistory.innerHTML = '';
-        if (chatState) chatState.classList.add('hidden');
-        if (landingState) landingState.classList.remove('hidden');
-        if (landingInput) {
-            landingInput.value = '';
-            landingInput.focus();
-        }
-        window.scrollTo({ top: 0, behavior: 'instant' });
-    }
-
-    function renderUserMessage(text) {
-        const turn = document.createElement('div');
-        turn.className = 'chat-message user-message';
-        turn.innerHTML = `
-            <div class="message-sender">You</div>
-            <div class="message-text">${escapeHtml(text)}</div>
+    
+    // 1. Render Hero Section
+    const heroSec = document.getElementById('hero-section');
+    if (heroSec) {
+        heroSec.innerHTML = `
+            <div class="hero-image-wrapper">
+                <div class="hero-image-bg"></div>
+                <!-- Assuming download.png is the profile image -->
+                <img src="/download.png" alt="${portfolioData.identity.name}" class="hero-image" />
+            </div>
+            
+            <h1 class="hero-name">${portfolioData.identity.name}</h1>
+            
+            <div class="hero-subtitle-bar">
+                <span>/tɛ-dʒəs/</span>
+                <span class="hero-dot">•</span>
+                <span>noun</span>
+                <span class="hero-dot">•</span>
+                <div style="width: 20px;"></div>
+                <span class="hero-dot">•</span>
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <button class="lofi-btn" id="play-lofi" aria-label="Play Lofi Music">
+                        <span>LOFI</span>
+                        <i class="fa-solid fa-music text-xs"></i>
+                    </button>
+                    <audio id="lofi-audio" src="https://streams.fluxfm.de/Chillhop/mp3-128/streams.fluxfm.de/" preload="none"></audio>
+                </div>
+            </div>
+            
+            <div class="hero-tagline">${portfolioData.identity.tagline}</div>
         `;
-        chatHistory.appendChild(turn);
     }
 
-    function renderThinkingMessage() {
-        const turn = document.createElement('div');
-        turn.className = 'chat-message ai-message thinking-turn';
-        turn.innerHTML = `
-            <div class="message-sender">Tejas AI</div>
-            <div class="thinking-dots">
-                Thinking<span>.</span><span>.</span><span>.</span>
+    // 2. Render Summary Section
+    const summarySec = document.getElementById('summary-section');
+    if (summarySec) {
+        // Convert focusAreas to li elements
+        const listItems = portfolioData.me.focusAreas.map(item => {
+            // we split the item if there's a natural split, or just render it
+            return `<li><strong class="text-foreground">${item}</strong></li>`;
+        }).join('');
+
+        summarySec.innerHTML = `
+            <h2 class="section-title">Professional Summary</h2>
+            <div class="text-muted-foreground" style="margin-bottom:1rem; line-height:1.6; font-size:1rem;">
+                ${portfolioData.me.headline} ${portfolioData.me.description}
+            </div>
+            <ul class="summary-list">
+                ${listItems}
+            </ul>
+        `;
+    }
+
+    // 3. Render Open Source Section
+    const osSec = document.getElementById('opensource-section');
+    if (osSec) {
+        let osHtml = `<h2 class="section-title">Open Source Contributions</h2><div style="display:flex; flex-direction:column; gap:4rem;">`;
+        
+        portfolioData.openSource.forEach(proj => {
+            let prsHtml = proj.highlights.map(pr => {
+                const badgeClass = pr.status.toLowerCase().includes('merged') ? 'badge-merged' : 
+                                  pr.status.toLowerCase().includes('open') ? 'badge-open' : 'badge-closed';
+                
+                return `
+                <div class="pr-item fade-up">
+                    <div class="pr-timeline-dot"></div>
+                    <div class="pr-header">
+                        <a href="${pr.url}" target="_blank" class="pr-link-btn">
+                            <i class="fa-solid fa-code-pull-request"></i> PR #${pr.prNumber}
+                        </a>
+                        <span class="badge ${badgeClass}">${pr.status.split(' ')[0]}</span>
+                    </div>
+                    <div class="pr-content">
+                        <ul>
+                            <li><strong class="text-foreground font-semibold">${pr.title}</strong></li>
+                            <li>${pr.problem}</li>
+                            <li>${pr.solution}</li>
+                        </ul>
+                    </div>
+                </div>`;
+            }).join('');
+
+            osHtml += `
+            <div class="os-project">
+                <div class="os-project-header">
+                    <h3 class="os-project-title">${proj.repo}</h3>
+                    <span class="os-project-role">${proj.category}</span>
+                </div>
+                <div class="pr-list-container">
+                    ${prsHtml}
+                </div>
+            </div>`;
+        });
+        
+        osHtml += `</div>`;
+        osSec.innerHTML = osHtml;
+    }
+
+    // 4. Render Achievements Section
+    const achieveSec = document.getElementById('achievements-section');
+    if (achieveSec) {
+        achieveSec.innerHTML = `
+            <h2 class="section-title" style="justify-content:center; margin-bottom:3rem;">Achievements</h2>
+            <div class="stats-grid">
+                <div class="stat-item fade-up">
+                    <span class="stat-number">4+</span>
+                    <span class="stat-label">Years Coding</span>
+                    <span class="stat-desc">Self Taught</span>
+                </div>
+                <div class="stat-item fade-up">
+                    <span class="stat-number">15+</span>
+                    <span class="stat-label">Merged PRs</span>
+                    <span class="stat-desc">vLLM, PyTorch, Canonical</span>
+                </div>
+                <div class="stat-item fade-up">
+                    <span class="stat-number">2+</span>
+                    <span class="stat-label">Major Projects</span>
+                    <span class="stat-desc">DealLens, Tejas-DB</span>
+                </div>
+                <div class="stat-item fade-up">
+                    <span class="stat-number">24/7</span>
+                    <span class="stat-label">Learning</span>
+                    <span class="stat-desc">Exploring Agent Infra</span>
+                </div>
             </div>
         `;
-        chatHistory.appendChild(turn);
-        return turn;
     }
 
-    function replaceThinkingWithAIResponse(thinkingEl, resp) {
-        thinkingEl.className = 'chat-message ai-message';
-        let bodyHtml = formatMarkdownText(resp.text);
+    // 5. Render Star Projects Section
+    const projSec = document.getElementById('projects-section');
+    if (projSec) {
+        let projHtml = `<h2 class="section-title"><i class="fa-solid fa-star text-foreground" style="color:#eab308;"></i> Star Projects</h2><div style="display:flex; flex-direction:column; gap:4rem;">`;
+        
+        const allProjects = [...portfolioData.aiWork, ...portfolioData.systems];
+        
+        allProjects.forEach(proj => {
+            const tags = proj.tags || proj.tech || [];
+            const tagHtml = tags.map(t => `<span class="pc-tag">${t}</span>`).join('');
+            
+            // split description into sentences for bullet points if it's long, or just render
+            // DealLens description is very long, let's split it by period.
+            const sentences = proj.description.split('. ').filter(s => s.length > 0).map(s => s + (s.endsWith('.') ? '' : '.'));
+            
+            const descHtml = sentences.map(s => `<li>${s}</li>`).join('');
 
-        let turnHtml = `
-            <div class="message-sender">Tejas AI</div>
-            <div class="message-text">${bodyHtml}</div>
-        `;
-
-        thinkingEl.innerHTML = turnHtml;
-
-        // Render Inline Evidence / PR Cards / Projects if present
-        if (resp.cards && resp.cards.length > 0) {
-            const cardsWrapper = document.createElement('div');
-            cardsWrapper.className = 'inline-cards-wrapper';
-
-            resp.cards.forEach(card => {
-                cardsWrapper.appendChild(buildCardElement(card));
-            });
-
-            thinkingEl.appendChild(cardsWrapper);
-        }
-    }
-
-    function buildCardElement(card) {
-        const el = document.createElement('div');
-        el.className = 'inline-card';
-
-        // 1. Repo Summary Card for Open Source Tag
-        // "pr tag m sirf company/project dikhayega aur uska sath link dega jo github k PR search URL ka hoga"
-        if (card.type === 'repo_summary_card') {
-            el.innerHTML = `
-                <div class="card-top-row">
-                    <span class="card-repo-name">${escapeHtml(card.title)}</span>
-                    <span class="card-badge">${escapeHtml(card.subtitle)}</span>
+            projHtml += `
+            <div class="project-card fade-up">
+                <div class="pc-header">
+                    <h3 class="pc-title">${proj.title}</h3>
+                    <span class="pc-subtitle">${proj.subtitle || proj.category}</span>
                 </div>
-                <div class="card-desc-text">${escapeHtml(card.summary || '')}</div>
-                <a href="${card.prSearchUrl}" target="_blank" class="card-link-btn" style="font-weight:600;">
-                    <i class="fab fa-github"></i> View My PRs on GitHub (${card.count}) <i class="fas fa-arrow-up-right-from-square"></i>
-                </a>
+                <div class="pc-meta">
+                    <span class="pc-year">2024</span>
+                    <div class="pc-tags">${tagHtml}</div>
+                </div>
+                <ul class="pc-desc-list">
+                    ${descHtml}
+                </ul>
+                <div class="pc-links">
+                    ${proj.githubUrl ? `<a href="${proj.githubUrl}" target="_blank" class="pc-link-out">View Repo <i class="fa-solid fa-arrow-up-right-from-square"></i></a>` : ''}
+                    ${proj.liveUrl && proj.liveUrl !== proj.githubUrl ? `<a href="${proj.liveUrl}" target="_blank" class="pc-link-out">Live Demo <i class="fa-solid fa-arrow-up-right-from-square"></i></a>` : ''}
+                </div>
+            </div>
             `;
-        }
-        // 2. Specific PR Card
-        else if (card.type === 'pr_card') {
-            el.innerHTML = `
-                <div class="card-top-row">
-                    <span class="card-repo-name">${escapeHtml(card.repo)}</span>
-                    <span class="card-badge">${escapeHtml(card.status)}</span>
-                </div>
-                <div style="font-weight:600; font-size:0.95rem; margin-bottom:6px; color:#ffffff;">${escapeHtml(card.title)}</div>
-                <div class="card-desc-text"><strong>Problem:</strong> ${escapeHtml(card.problem)}</div>
-                <div class="card-desc-text"><strong>Solution:</strong> ${escapeHtml(card.solution)}</div>
-                <div style="display:flex; gap:12px; margin-top:6px; flex-wrap:wrap;">
-                    <a href="${card.url}" target="_blank" class="card-link-btn">View Pull Request <i class="fas fa-arrow-up-right-from-square"></i></a>
-                    ${card.prSearchUrl ? `<a href="${card.prSearchUrl}" target="_blank" class="card-link-btn" style="color:var(--text-muted);"><i class="fab fa-github"></i> All ${escapeHtml(card.repo)} PRs <i class="fas fa-arrow-up-right-from-square"></i></a>` : ''}
-                </div>
-            `;
-        }
-        // 3. Systems & AI Projects Card (contains BOTH GitHub & Live URLs!)
-        else if (card.type === 'project_card' || card.type === 'ai_project_card') {
-            let metricsHtml = (card.metrics || card.tags || []).map(m => `<span class="tag-mini">${escapeHtml(m)}</span>`).join(' ');
-
-            el.innerHTML = `
-                <div class="card-top-row">
-                    <span class="card-repo-name">${escapeHtml(card.title)}</span>
-                    <span class="card-badge">${escapeHtml(card.subtitle || card.category || 'Project')}</span>
-                </div>
-                <div class="card-desc-text">${escapeHtml(card.description)}</div>
-                <div class="card-tags-row" style="margin-bottom:10px;">${metricsHtml}</div>
-                <div style="display:flex; gap:14px; margin-top:6px; flex-wrap:wrap;">
-                    ${card.githubUrl ? `<a href="${card.githubUrl}" target="_blank" class="card-link-btn"><i class="fab fa-github"></i> GitHub Repo <i class="fas fa-arrow-up-right-from-square"></i></a>` : ''}
-                    ${card.liveUrl ? `<a href="${card.liveUrl}" target="_blank" class="card-link-btn" style="color:var(--accent-emerald);"><i class="fas fa-globe"></i> Live Website <i class="fas fa-arrow-up-right-from-square"></i></a>` : ''}
-                </div>
-            `;
-        }
-
-        return el;
+        });
+        
+        projHtml += `</div>`;
+        projSec.innerHTML = projHtml;
     }
 
-    function formatMarkdownText(str) {
-        if (!str) return '';
-        let out = escapeHtml(str);
-        // bold
-        out = out.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-        // inline code
-        out = out.replace(/`(.*?)`/g, '<code style="font-family:var(--font-mono); font-size:0.85em; background:rgba(255,255,255,0.08); padding:2px 6px; border-radius:4px;">$1</code>');
-        // markdown links
-        out = out.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" style="color:var(--accent-blue); text-decoration:none;">$1 <i class="fas fa-arrow-up-right-from-square" style="font-size:0.75em"></i></a>');
-        return out;
-    }
+    // --- Interactivity ---
 
-    function scrollToBottom() {
-        window.scrollTo({
-            top: document.body.scrollHeight,
-            behavior: 'smooth'
+    // Lofi Audio Player
+    const playLofiBtn = document.getElementById('play-lofi');
+    const lofiAudio = document.getElementById('lofi-audio');
+    let isPlaying = false;
+    
+    if (playLofiBtn && lofiAudio) {
+        playLofiBtn.addEventListener('click', () => {
+            if (isPlaying) {
+                lofiAudio.pause();
+                playLofiBtn.style.color = 'var(--muted-foreground)';
+            } else {
+                lofiAudio.play();
+                playLofiBtn.style.color = 'var(--foreground)';
+            }
+            isPlaying = !isPlaying;
         });
     }
 
-    function escapeHtml(str) {
-        return (str || '').replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-    }
+    // Scroll Animations using Intersection Observer
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.15
+    };
 
-    // Copy Email Handler
-    function initCopyEmailButtons() {
-        const btns = document.querySelectorAll('.copy-email-btn');
-        btns.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                const email = btn.getAttribute('data-email') || 'rajtejas.xyz@gmail.com';
-                copyToClipboard(email);
-            });
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                // Optional: stop observing once visible
+                // observer.unobserve(entry.target);
+            }
         });
-    }
+    }, observerOptions);
 
-    function copyToClipboard(text) {
-        navigator.clipboard.writeText(text).then(() => {
-            showToast(`Copied to clipboard: ${text}`);
-        }).catch(() => {
-            showToast(`Email: ${text}`);
-        });
-    }
+    // Initial animations for hero
+    setTimeout(() => {
+        const heroImg = document.querySelector('.hero-image-wrapper');
+        const heroName = document.querySelector('.hero-name');
+        const heroSub = document.querySelector('.hero-subtitle-bar');
+        const heroTag = document.querySelector('.hero-tagline');
+        
+        if (heroImg) { heroImg.style.opacity = '1'; heroImg.style.transform = 'scale(1)'; }
+        if (heroName) { heroName.style.transition = 'opacity 1s ease 0.2s'; heroName.style.opacity = '1'; }
+        if (heroSub) { heroSub.style.transition = 'opacity 1s ease 0.4s'; heroSub.style.opacity = '1'; }
+        if (heroTag) { heroTag.style.transition = 'opacity 1s ease 0.6s'; heroTag.style.opacity = '1'; }
+    }, 100);
 
-    function showToast(msg) {
-        const container = document.getElementById('toast-container');
-        if (!container) return;
-        const toast = document.createElement('div');
-        toast.className = 'toast';
-        toast.textContent = msg;
-        container.appendChild(toast);
-        setTimeout(() => {
-            toast.style.opacity = '0';
-            setTimeout(() => toast.remove(), 300);
-        }, 2500);
-    }
-
-    // Resume Modal Handler
-    function initResumeModal() {
-        const btns = document.querySelectorAll('.open-resume-modal');
-        const modal = document.getElementById('resume-modal');
-        const closeBtn = document.getElementById('resume-close');
-
-        if (!modal) return;
-
-        btns.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                openResumeModal();
-            });
-        });
-
-        if (closeBtn) {
-            closeBtn.addEventListener('click', closeResumeModal);
-        }
-
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) closeResumeModal();
-        });
-    }
-
-    function openResumeModal() {
-        const modal = document.getElementById('resume-modal');
-        if (modal) {
-            modal.classList.add('open');
-            modal.setAttribute('aria-hidden', 'false');
-        }
-    }
-
-    function closeResumeModal() {
-        const modal = document.getElementById('resume-modal');
-        if (modal) {
-            modal.classList.remove('open');
-            modal.setAttribute('aria-hidden', 'true');
-        }
-    }
+    // Observe all fade-up elements
+    document.querySelectorAll('.fade-up').forEach(el => {
+        observer.observe(el);
+    });
 });
