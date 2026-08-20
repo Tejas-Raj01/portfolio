@@ -237,30 +237,29 @@ a {
 
 .hero-image-wrapper {
     position: relative;
-    width: 160px;
-    height: 160px;
-    margin-bottom: 2rem;
-    filter: grayscale(100%);
+    width: 200px;
+    height: 200px;
+    margin-bottom: 1.5rem;
     transition: filter 0.5s ease, transform 0.5s ease;
     transform: scale(0.95);
     opacity: 0; /* JS will animate this */
 }
 @media (min-width: 640px) {
-    .hero-image-wrapper { width: 224px; height: 224px; }
-}
-
-.hero-image-wrapper:hover {
-    filter: grayscale(0%);
+    .hero-image-wrapper { width: 260px; height: 260px; }
 }
 
 .hero-image {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    object-position: top;
-    border-radius: var(--radius-lg);
-    mask-image: linear-gradient(to top, transparent, black 15%);
-    -webkit-mask-image: linear-gradient(to top, transparent, black 15%);
+    object-fit: contain;
+    object-position: center bottom;
+    mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
+    mix-blend-mode: screen;
+}
+
+:root[data-theme="light"] .hero-image {
+    mix-blend-mode: multiply;
 }
 
 .hero-name {

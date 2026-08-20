@@ -8,8 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
         heroSec.innerHTML = `
             <div class="hero-image-wrapper">
                 <div class="hero-image-bg"></div>
-                <!-- Assuming linkedin_profile_photo.jpeg is the profile image -->
-                <img src="/linkedin_profile_photo.jpeg" alt="${portfolioData.identity.name}" class="hero-image" />
+                <img src="/profile_cutout.png" alt="${portfolioData.identity.name}" class="hero-image" />
             </div>
             
             <h1 class="hero-name">${portfolioData.identity.name}</h1>
