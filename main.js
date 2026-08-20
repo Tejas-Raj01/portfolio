@@ -76,8 +76,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="pr-content">
                         <ul>
                             <li><strong class="text-foreground font-semibold">${pr.title}</strong></li>
-                            <li>${pr.problem}</li>
-                            <li>${pr.solution}</li>
+                            ${pr.problem ? `<li>${pr.problem}</li>` : ''}
+                            ${pr.solution ? `<li>${pr.solution}</li>` : ''}
                         </ul>
                     </div>
                 </div>`;
@@ -106,12 +106,17 @@ document.addEventListener('DOMContentLoaded', () => {
             <h2 class="section-title" style="justify-content:center; margin-bottom:3rem;">Achievements</h2>
             <div class="stats-grid">
                 <div class="stat-item fade-up">
+                    <span class="stat-number">4<i class="fa-solid fa-star text-sm" style="font-size: 0.5em; vertical-align: middle;"></i></span>
+                    <span class="stat-label">CodeChef</span>
+                    <span class="stat-desc">Competitive Programming</span>
+                </div>
+                <div class="stat-item fade-up">
                     <span class="stat-number">4+</span>
                     <span class="stat-label">Years Coding</span>
                     <span class="stat-desc">Self Taught</span>
                 </div>
                 <div class="stat-item fade-up">
-                    <span class="stat-number">15+</span>
+                    <span class="stat-number">20+</span>
                     <span class="stat-label">Merged PRs</span>
                     <span class="stat-desc">vLLM, PyTorch, Canonical</span>
                 </div>
@@ -119,11 +124,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     <span class="stat-number">2+</span>
                     <span class="stat-label">Major Projects</span>
                     <span class="stat-desc">DealLens, Tejas-DB</span>
-                </div>
-                <div class="stat-item fade-up">
-                    <span class="stat-number">24/7</span>
-                    <span class="stat-label">Learning</span>
-                    <span class="stat-desc">Exploring Agent Infra</span>
                 </div>
             </div>
         `;
