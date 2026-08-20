@@ -165,26 +165,8 @@ export const portfolioData = {
             fullRepo: "Automattic/jetpack",
             category: "Open-Source Infrastructure",
             prSearchUrl: "https://github.com/Automattic/jetpack/pulls?q=is%3Apr+author%3ATejas-Raj01",
-            summary: "Significant contributor with over 10 merged PRs improving Gutenberg block editor stability, REST APIs, and Map Block functionality.",
+            summary: "Significant contributor with 10 merged PRs improving Gutenberg block editor stability, REST APIs, and Map Block functionality.",
             highlights: [
-                {
-                    title: "Map Block: Add Enter key functionality to insert new blocks",
-                    status: "Open PR #51080",
-                    prNumber: "51080",
-                    url: "https://github.com/Automattic/jetpack/pull/51080"
-                },
-                {
-                    title: "Fix: Prevent Map block resizing in Write mode (#40712)",
-                    status: "Open PR #51058",
-                    prNumber: "51058",
-                    url: "https://github.com/Automattic/jetpack/pull/51058"
-                },
-                {
-                    title: "Fix Map block real-time resizing in editor (#40713)",
-                    status: "Open PR #50983",
-                    prNumber: "50983",
-                    url: "https://github.com/Automattic/jetpack/pull/50983"
-                },
                 {
                     title: "Map Block: Add wide and full width alignment support (#40715)",
                     status: "Merged PR #50818",
@@ -248,12 +230,6 @@ export const portfolioData = {
                     status: "Merged PR #50025",
                     prNumber: "50025",
                     url: "https://github.com/Automattic/jetpack/pull/50025"
-                },
-                {
-                    title: "Fix: Expose store objects instead of store ID strings for shared stores (#49752)",
-                    status: "Merged PR #49810",
-                    prNumber: "49810",
-                    url: "https://github.com/Automattic/jetpack/pull/49810"
                 }
             ]
         },
