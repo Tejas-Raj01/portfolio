@@ -174,7 +174,19 @@ export const portfolioData = {
                     url: "https://github.com/Automattic/jetpack/pull/51080"
                 },
                 {
-                    title: "Map Block: Add wide and full width alignment support",
+                    title: "Fix: Prevent Map block resizing in Write mode (#40712)",
+                    status: "Open PR #51058",
+                    prNumber: "51058",
+                    url: "https://github.com/Automattic/jetpack/pull/51058"
+                },
+                {
+                    title: "Fix Map block real-time resizing in editor (#40713)",
+                    status: "Open PR #50983",
+                    prNumber: "50983",
+                    url: "https://github.com/Automattic/jetpack/pull/50983"
+                },
+                {
+                    title: "Map Block: Add wide and full width alignment support (#40715)",
                     status: "Merged PR #50818",
                     prNumber: "50818",
                     problem: "No alignment controls were available for the Map block toolbar, preventing users from making the map span wider or fully across the page content area.",
@@ -182,18 +194,66 @@ export const portfolioData = {
                     url: "https://github.com/Automattic/jetpack/pull/50818"
                 },
                 {
-                    title: "Fix: Normalize event target for Carousel on attachment links",
+                    title: "Fix: Normalize event target for Carousel on attachment links (#39926)",
                     status: "Merged PR #50220",
                     prNumber: "50220",
                     url: "https://github.com/Automattic/jetpack/pull/50220"
                 },
                 {
-                    title: "Editor Stability: Resolve block editor crash during Gallery to Slideshow transformations",
+                    title: "Fix: Dynamically render EXIF ul list to resolve a11y warnings (#38839)",
+                    status: "Merged PR #50201",
+                    prNumber: "50201",
+                    url: "https://github.com/Automattic/jetpack/pull/50201"
+                },
+                {
+                    title: "Fix: Replace empty heading tags with divs in Carousel (#29141)",
+                    status: "Merged PR #50199",
+                    prNumber: "50199",
+                    url: "https://github.com/Automattic/jetpack/pull/50199"
+                },
+                {
+                    title: "Fix: Add aria-label to carousel download link for a11y (#33616)",
+                    status: "Merged PR #50181",
+                    prNumber: "50181",
+                    url: "https://github.com/Automattic/jetpack/pull/50181"
+                },
+                {
+                    title: "Fix: Prevent Slideshow block crash when converting from Gallery (#49606)",
                     status: "Merged PR #50035",
                     prNumber: "50035",
                     problem: "Block editor crash when attempting transformations from Gallery to Slideshow components.",
                     solution: "Normalized event target handling and validated block attribute schemas during state transformations.",
                     url: "https://github.com/Automattic/jetpack/pull/50035"
+                },
+                {
+                    title: "Publicize: Update connection status schema to use `oneOf`",
+                    status: "Merged PR #50030",
+                    prNumber: "50030",
+                    url: "https://github.com/Automattic/jetpack/pull/50030"
+                },
+                {
+                    title: "Enhancement: Add jetpack_social_image_generator_disable_text filter to disable SIG text overlay",
+                    status: "Merged PR #50029",
+                    prNumber: "50029",
+                    url: "https://github.com/Automattic/jetpack/pull/50029"
+                },
+                {
+                    title: "Fix: Enforce strict string type for status enum to prevent Gemini API crash (#49599)",
+                    status: "Merged PR #50028",
+                    prNumber: "50028",
+                    url: "https://github.com/Automattic/jetpack/pull/50028"
+                },
+                {
+                    title: "Fix: Prevent Tiled Gallery crash and add changelog entry (#49606)",
+                    status: "Merged PR #50025",
+                    prNumber: "50025",
+                    url: "https://github.com/Automattic/jetpack/pull/50025"
+                },
+                {
+                    title: "Fix: Expose store objects instead of store ID strings for shared stores (#49752)",
+                    status: "Merged PR #49810",
+                    prNumber: "49810",
+                    url: "https://github.com/Automattic/jetpack/pull/49810"
                 }
             ]
         },
