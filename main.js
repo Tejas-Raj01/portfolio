@@ -171,6 +171,119 @@ document.addEventListener('DOMContentLoaded', () => {
         projSec.innerHTML = projHtml;
     }
 
+    // 6. Render Education Section
+    const eduSec = document.getElementById('education-section');
+    if (eduSec) {
+        let eduHtml = `<h2 class="section-title">EDUCATION</h2><div style="display:flex; flex-direction:column; gap:2.5rem;">`;
+        portfolioData.education.forEach(edu => {
+            eduHtml += `
+            <div class="edu-item fade-up" style="display:flex; flex-direction:column; gap:4px;">
+                <div style="display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:8px;">
+                    <h3 class="text-foreground font-semibold" style="font-size:1.125rem;">${edu.institution}</h3>
+                    <span class="text-muted-foreground font-mono" style="font-size:0.875rem;"><i class="fa-regular fa-calendar" style="margin-right:6px;"></i>${edu.period}</span>
+                </div>
+                <div class="text-muted-foreground">${edu.degree}</div>
+                <div class="text-muted-foreground" style="font-size:0.875rem;">${edu.location}</div>
+            </div>`;
+        });
+        eduHtml += `</div>`;
+        eduSec.innerHTML = eduHtml;
+    }
+
+    // 7. Render Tech Stack Section
+    const techSec = document.getElementById('tech-section');
+    if (techSec) {
+        // Initial preview row
+        let techHtml = `
+            <h2 class="section-title" style="justify-content:center; letter-spacing:0.15em;">TECHNOLOGIES I WORK WITH</h2>
+            <div class="tech-preview-row fade-up">
+                <span class="tech-pill"><i class="fa-brands fa-python"></i> Python</span>
+                <span class="tech-pill"><i class="fa-solid fa-fire"></i> PyTorch</span>
+                <span class="tech-pill"><i class="fa-brands fa-react"></i> React</span>
+                <span class="tech-pill"><i class="fa-brands fa-docker"></i> Docker</span>
+                <span class="tech-pill"><i class="fa-brands fa-linux"></i> Linux</span>
+            </div>
+            
+            <div class="text-center fade-up" style="margin-top: 2rem;">
+                <button id="view-full-stack-btn" class="view-stack-btn">VIEW FULL STACK <i class="fa-solid fa-chevron-down"></i></button>
+            </div>
+            
+            <div id="full-stack-container" class="full-stack-container">
+                <div class="stack-grid">
+                    <div class="stack-col">
+                        <h4 class="stack-category">LANGUAGES</h4>
+                        <ul class="stack-list">
+                            ${portfolioData.skills.languages.map(s => `<li><i class="${s.icon}"></i> ${s.name}</li>`).join('')}
+                        </ul>
+                    </div>
+                    <div class="stack-col">
+                        <h4 class="stack-category">FRONTEND</h4>
+                        <ul class="stack-list">
+                            ${portfolioData.skills.frontend.map(s => `<li><i class="${s.icon}"></i> ${s.name}</li>`).join('')}
+                        </ul>
+                    </div>
+                    <div class="stack-col">
+                        <h4 class="stack-category">BACKEND & DB</h4>
+                        <ul class="stack-list">
+                            ${portfolioData.skills.backend.map(s => `<li><i class="${s.icon}"></i> ${s.name}</li>`).join('')}
+                        </ul>
+                    </div>
+                    <div class="stack-col">
+                        <h4 class="stack-category">INFRA & TOOLS</h4>
+                        <ul class="stack-list">
+                            ${portfolioData.skills.infra.map(s => `<li><i class="${s.icon}"></i> ${s.name}</li>`).join('')}
+                        </ul>
+                    </div>
+                    <div class="stack-col">
+                        <h4 class="stack-category">AI & ML</h4>
+                        <ul class="stack-list">
+                            ${portfolioData.skills.ai.map(s => `<li><i class="${s.icon}"></i> ${s.name}</li>`).join('')}
+                        </ul>
+                    </div>
+                </div>
+                <div class="text-center" style="margin-top: 3rem;">
+                    <button id="hide-full-stack-btn" class="view-stack-btn">SHOW LESS <i class="fa-solid fa-chevron-up"></i></button>
+                </div>
+            </div>
+        `;
+        techSec.innerHTML = techHtml;
+
+        // Tech stack toggle logic
+        const viewBtn = document.getElementById('view-full-stack-btn');
+        const hideBtn = document.getElementById('hide-full-stack-btn');
+        const fullStack = document.getElementById('full-stack-container');
+        
+        if (viewBtn && fullStack && hideBtn) {
+            viewBtn.addEventListener('click', () => {
+                fullStack.classList.add('expanded');
+                viewBtn.style.display = 'none';
+            });
+            hideBtn.addEventListener('click', () => {
+                fullStack.classList.remove('expanded');
+                viewBtn.style.display = 'inline-flex';
+                // Scroll back slightly
+                techSec.scrollIntoView({ behavior: 'smooth' });
+            });
+        }
+    }
+
+    // 8. Render About Section
+    const aboutSec = document.getElementById('about-section');
+    if (aboutSec) {
+        let aboutHtml = `
+            <h2 class="section-title fade-up">THING ABOUT ME</h2>
+            <div class="about-content fade-up" style="display:flex; flex-direction:column; gap:1.5rem; margin-bottom:4rem;">
+                ${portfolioData.about.paragraphs.map(p => `<p class="text-muted-foreground" style="line-height:1.75; font-size:1rem;">${p}</p>`).join('')}
+            </div>
+            
+            <h2 class="section-title fade-up">GET IN TOUCH</h2>
+            <div class="contact-links text-muted-foreground fade-up" style="font-size:1.125rem;">
+                Connect with me on <a href="${portfolioData.about.linkedin}" target="_blank" class="text-foreground" style="text-decoration:underline; text-underline-offset:4px;">LinkedIn</a> or shoot an <a href="mailto:${portfolioData.about.email}" class="text-foreground" style="text-decoration:underline; text-underline-offset:4px;">email</a>
+            </div>
+        `;
+        aboutSec.innerHTML = aboutHtml;
+    }
+
     // --- Interactivity ---
 
     // Theme Toggle Logic

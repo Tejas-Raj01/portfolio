@@ -23,6 +23,63 @@ export const portfolioData = {
         ]
     },
 
+    education: [
+        {
+            institution: "Newton School of Technology",
+            degree: "Bachelor of Technology in Computer Science",
+            location: "Pune, MH",
+            period: "Aug. 2024 – May 2028"
+        },
+        {
+            institution: "St. Karen's High School",
+            degree: "Senior Secondary (Class XII, CBSE)",
+            location: "Patna, BR",
+            period: "Aug. 2022 – May 2024"
+        }
+    ],
+
+    skills: {
+        languages: [
+            { name: "Python", icon: "fa-brands fa-python" },
+            { name: "C++", icon: "fa-solid fa-c" }, // No perfect C++ icon in FA free, use C or code
+            { name: "TypeScript", icon: "fa-brands fa-js" }, // TS doesn't have official FA free icon
+            { name: "JavaScript", icon: "fa-brands fa-js" },
+            { name: "SQL", icon: "fa-solid fa-database" }
+        ],
+        frontend: [
+            { name: "React", icon: "fa-brands fa-react" },
+            { name: "Next.js", icon: "fa-brands fa-react" },
+            { name: "Tailwind CSS", icon: "fa-solid fa-wind" }
+        ],
+        backend: [
+            { name: "FastAPI", icon: "fa-solid fa-bolt" },
+            { name: "Node.js", icon: "fa-brands fa-node-js" },
+            { name: "PostgreSQL", icon: "fa-solid fa-database" },
+            { name: "MongoDB", icon: "fa-solid fa-leaf" }
+        ],
+        infra: [
+            { name: "Docker", icon: "fa-brands fa-docker" },
+            { name: "Google Cloud", icon: "fa-brands fa-google" },
+            { name: "Linux", icon: "fa-brands fa-linux" },
+            { name: "Git", icon: "fa-brands fa-git-alt" },
+            { name: "GitHub", icon: "fa-brands fa-github" }
+        ],
+        ai: [
+            { name: "PyTorch", icon: "fa-solid fa-fire" },
+            { name: "vLLM", icon: "fa-solid fa-microchip" },
+            { name: "Hugging Face", icon: "fa-solid fa-face-smiling-hands" }
+        ]
+    },
+
+    about: {
+        paragraphs: [
+            "I am an AI Engineer focused on bridging the gap between cutting-edge generative AI research and industry-scale infrastructure. My experience centers on contributing directly to major open-source frameworks like PyTorch and vLLM, and building high-performance distributed systems.",
+            "I believe the most robust infrastructure is built through open collaboration and deep systems understanding. It's the unique combination of low-level optimization and scalable architecture that allows us to create AI runtimes that are both powerful and efficient."
+        ],
+        email: "your.email@example.com",
+        linkedin: "https://linkedin.com/in/tejas-raj"
+    },
+
     openSource: [
         {
             repo: "vLLM",
