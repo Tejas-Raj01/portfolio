@@ -3,9 +3,9 @@
 export const portfolioData = {
     identity: {
         name: "Tejas Raj",
-        role: "AI ENGINEER",
-        tagline: "Generative AI · Agent Infrastructure · Open Source",
-        bio: "I'm Tejas, an AI engineer focused on generative AI, agent infrastructure, and open source. I enjoy working inside complex systems, solving engineering problems, and contributing improvements upstream.",
+        role: "SOFTWARE ENGINEER & AI BUILDER",
+        tagline: "NIT Durgapur '27 · Open Source Contributor · 4★ CodeChef",
+        bio: "Computer Science & Engineering undergrad at NIT Durgapur ('27). Active open-source contributor to Canonical (Snapcraft) and CP Editor. 4★ Competitive Programmer on CodeChef.",
         email: "rajtejas.xyz@gmail.com",
         github: "https://github.com/Tejas-Raj01",
         linkedin: "https://www.linkedin.com/in/tejas-raj-09aa4a236/",
@@ -13,28 +13,22 @@ export const portfolioData = {
     },
 
     me: {
-        headline: "AI Engineer focused on generative AI, agent infrastructure, and open source.",
-        description: "I enjoy working inside complex systems, solving deep engineering problems, and contributing improvements upstream. My work spans machine learning frameworks (PyTorch), LLM inference engines (vLLM), production financial RAG workflow engines (DealLens), distributed key-value storage (Tejas-DB), AI Job Platform, and open-source developer tooling.",
+        headline: "B.Tech CSE @ NIT Durgapur '27 | Open Source Contributor (Canonical, CP Editor) | 4★ CodeChef",
+        description: "I am a Computer Science and Engineering undergrad at NIT Durgapur ('27), passionate about software architecture, distributed systems, and full-stack development. My work spans open-source frameworks (Canonical Snapcraft, CP Editor), machine learning frameworks (PyTorch), LLM inference engines (vLLM), production financial RAG workflow engines (DealLens), and distributed key-value storage (Tejas-DB).",
         focusAreas: [
-            "Generative AI & LLM Inference",
-            "Agent Runtimes, Memory & Tool Schemas",
-            "Distributed Storage & Systems Engineering",
-            "Upstream Open Source Infrastructure"
+            "Software Architecture & Distributed Systems",
+            "Open Source Infrastructure (Canonical, CP Editor)",
+            "Competitive Programming (4★ CodeChef, Max 1804)",
+            "Generative AI, Full-Stack & LLM Systems"
         ]
     },
 
     education: [
         {
-            institution: "Newton School of Technology",
-            degree: "Bachelor of Technology in Computer Science",
-            location: "Pune, MH",
-            period: "Aug. 2024 – May 2028"
-        },
-        {
-            institution: "St. Karen's High School",
-            degree: "Senior Secondary (Class XII, CBSE)",
-            location: "Patna, BR",
-            period: "Aug. 2022 – May 2024"
+            institution: "National Institute of Technology Durgapur",
+            degree: "Bachelor's degree, Computer Software Engineering (B.Tech CSE)",
+            location: "Durgapur, West Bengal, India",
+            period: "August 2023 – May 2027"
         }
     ],
 
@@ -65,19 +59,20 @@ export const portfolioData = {
             { name: "GitHub", icon: "fa-brands fa-github" }
         ],
         ai: [
+            { name: "Generative AI", icon: "fa-solid fa-wand-magic-sparkles" },
             { name: "PyTorch", icon: "fa-solid fa-fire" },
-            { name: "vLLM", icon: "fa-solid fa-microchip" },
-            { name: "Hugging Face", icon: "fa-solid fa-face-smiling-hands" }
+            { name: "Gemini API", icon: "fa-solid fa-brain" },
+            { name: "vLLM", icon: "fa-solid fa-microchip" }
         ]
     },
 
     about: {
         paragraphs: [
-            "I am an AI Engineer focused on bridging the gap between cutting-edge generative AI research and industry-scale infrastructure. My experience centers on contributing directly to major open-source frameworks like PyTorch and vLLM, and building high-performance distributed systems.",
-            "I believe the most robust infrastructure is built through open collaboration and deep systems understanding. It's the unique combination of low-level optimization and scalable architecture that allows us to create AI runtimes that are both powerful and efficient."
+            "I am a Computer Science and Engineering undergrad at NIT Durgapur ('27), passionate about software architecture, distributed systems, and full-stack development. I enjoy tackling complex challenges, from architecting peer-to-peer key-value storage solutions with multithreading to building scalable, AI-powered matching engines.",
+            "As an active open source contributor to Canonical (Snapcraft) and CP Editor, I work directly within Linux DevOps ecosystems and C++/Qt desktop frameworks — resolving hardcoded framework linter fallbacks, translating 3,600+ UI strings using Gemini API, and streamlining editor UX for competitive programmers."
         ],
-        email: "your.email@example.com",
-        linkedin: "https://linkedin.com/in/tejas-raj"
+        email: "rajtejas.xyz@gmail.com",
+        linkedin: "https://www.linkedin.com/in/tejas-raj-09aa4a236/"
     },
 
     openSource: [
