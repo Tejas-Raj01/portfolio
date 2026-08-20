@@ -8,8 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
         heroSec.innerHTML = `
             <div class="hero-image-wrapper">
                 <div class="hero-image-bg"></div>
-                <!-- Assuming download.png is the profile image -->
-                <img src="/download.png" alt="${portfolioData.identity.name}" class="hero-image" />
+                <!-- Assuming linkedin_profile_photo.jpeg is the profile image -->
+                <img src="/linkedin_profile_photo.jpeg" alt="${portfolioData.identity.name}" class="hero-image" />
             </div>
             
             <h1 class="hero-name">${portfolioData.identity.name}</h1>
@@ -172,6 +172,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- Interactivity ---
+
+    // Theme Toggle Logic
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    if (themeToggleBtn) {
+        // Check local storage for theme preference, default to dark
+        const currentTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', currentTheme);
+
+        themeToggleBtn.addEventListener('click', () => {
+            const newTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+    }
 
     // Lofi Audio Player
     const playLofiBtn = document.getElementById('play-lofi');

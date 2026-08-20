@@ -31,6 +31,57 @@
     --font-mono: 'JetBrains Mono', monospace;
 }
 
+/* Light Mode Variables */
+:root[data-theme="light"] {
+    --background: #ffffff;
+    --foreground: #09090b;
+    
+    --muted: #f4f4f5;
+    --muted-foreground: #71717a;
+    
+    --border: #e4e4e7;
+    --border-hover: rgba(9, 9, 11, 0.4);
+    
+    --primary: #09090b;
+    --primary-foreground: #fafafa;
+    
+    --secondary: #f4f4f5;
+    --secondary-foreground: #09090b;
+    
+    --accent: #f4f4f5;
+    --accent-foreground: #09090b;
+}
+
+/* Theme Toggle Button */
+.theme-toggle-btn {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    background: transparent;
+    border: none;
+    color: var(--muted-foreground);
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 100;
+    transition: color 0.2s ease;
+}
+
+.theme-toggle-btn:hover {
+    color: var(--foreground);
+}
+
+.theme-toggle-btn .light-icon {
+    display: none;
+}
+
+:root[data-theme="light"] .theme-toggle-btn .dark-icon {
+    display: none;
+}
+
+:root[data-theme="light"] .theme-toggle-btn .light-icon {
+    display: inline-block;
+}
+
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
