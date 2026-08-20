@@ -6,11 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const heroSec = document.getElementById('hero-section');
     if (heroSec) {
         heroSec.innerHTML = `
-            <div class="hero-image-wrapper">
-                <div class="hero-image-bg"></div>
-                <img src="/profile_cutout.png" alt="${portfolioData.identity.name}" class="hero-image" />
-            </div>
-            
             <h1 class="hero-name">${portfolioData.identity.name}</h1>
             
             <div class="hero-subtitle-bar">
