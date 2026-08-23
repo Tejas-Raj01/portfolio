@@ -88,12 +88,16 @@ export const portfolioData = {
                     title: "fix: resolve memory profiler under-prediction for GDN/Mamba hybrid models",
                     status: "Open PR #52935",
                     prNumber: "52935",
+                    problem: "Memory profiler under-predicted peak allocation for GDN/Mamba hybrid architectures, leading to OOM crashes during batch execution.",
+                    solution: "Adjusted state tensor memory overhead calculations during pre-allocation profiling.",
                     url: "https://github.com/vllm-project/vllm/pull/52935"
                 },
                 {
                     title: "[Core] Fix EngineDeadError on late KV transfer completion",
                     status: "Open PR #49278",
                     prNumber: "49278",
+                    problem: "Late completion of KV cache transfers between nodes triggered false-positive timeout exceptions, crashing the engine with EngineDeadError.",
+                    solution: "Added asynchronous callback handling for KV cache transfers to safely defer state checks.",
                     url: "https://github.com/vllm-project/vllm/pull/49278"
                 },
                 {
@@ -108,13 +112,9 @@ export const portfolioData = {
                     title: "[Bugfix] Fix MiniMax M3 index_topk kernel for non-power-of-2 num_idx_heads",
                     status: "Open PR #49199",
                     prNumber: "49199",
+                    problem: "The index_topk Triton/CUDA kernel threw invalid memory access errors when num_idx_heads was not a power of 2.",
+                    solution: "Added dynamic thread block padding and boundary guard checks in the topk indexing kernel.",
                     url: "https://github.com/vllm-project/vllm/pull/49199"
-                },
-                {
-                    title: "perf: Cache staging buffer in structured output to fix memory regression",
-                    status: "Merged PR #49168",
-                    prNumber: "49168",
-                    url: "https://github.com/vllm-project/vllm/pull/49168"
                 }
             ]
         },
@@ -137,12 +137,16 @@ export const portfolioData = {
                     title: "sparse: Fix ASan crash in sparse_compressed_to_dense for malformed CPU inputs",
                     status: "Merged PR #190067",
                     prNumber: "190067",
+                    problem: "AddressSanitizer (ASan) buffer overflow error when converting malformed CPU sparse tensors to dense representations.",
+                    solution: "Enforced strict array index validation on compressed column/row pointers.",
                     url: "https://github.com/pytorch/pytorch/pull/190067"
                 },
                 {
                     title: "inductor: Fall back to ATen for torch.cat with symbolic non-leading dims",
                     status: "Open PR #190034",
                     prNumber: "190034",
+                    problem: "PyTorch Inductor compiler failed to generate Triton code when torch.cat had symbolic shapes on non-leading dimensions.",
+                    solution: "Added fallback path to standard ATen execution for symbolic shape concatenation.",
                     url: "https://github.com/pytorch/pytorch/pull/190034"
                 },
                 {
@@ -157,6 +161,8 @@ export const portfolioData = {
                     title: "inductor: Fix non-deterministic gradients in slice_scatter backward fusion",
                     status: "Open PR #189129",
                     prNumber: "189129",
+                    problem: "Atomic additions during fused backward pass of slice_scatter caused floating-point gradient non-determinism.",
+                    solution: "Restructured fusion indexing to utilize deterministic reduction accumulators.",
                     url: "https://github.com/pytorch/pytorch/pull/189129"
                 }
             ]
@@ -180,24 +186,32 @@ export const portfolioData = {
                     title: "Fix: Normalize event target for Carousel on attachment links (#39926)",
                     status: "Merged PR #50220",
                     prNumber: "50220",
+                    problem: "Click events on Carousel attachment links failed to resolve correct image target IDs in nested DOM hierarchies.",
+                    solution: "Normalized event target traversal logic to reliably retrieve valid attachment IDs.",
                     url: "https://github.com/Automattic/jetpack/pull/50220"
                 },
                 {
                     title: "Fix: Dynamically render EXIF ul list to resolve a11y warnings (#38839)",
                     status: "Merged PR #50201",
                     prNumber: "50201",
+                    problem: "Static EXIF metadata wrappers emitted empty list tags causing accessibility (a11y) audit failures.",
+                    solution: "Made EXIF metadata list rendering conditional so empty tags are omitted.",
                     url: "https://github.com/Automattic/jetpack/pull/50201"
                 },
                 {
                     title: "Fix: Replace empty heading tags with divs in Carousel (#29141)",
                     status: "Merged PR #50199",
                     prNumber: "50199",
+                    problem: "Empty heading tags in Carousel blocks violated W3C semantics and broke screen reader navigation.",
+                    solution: "Replaced structural empty heading elements with styled generic div wrappers.",
                     url: "https://github.com/Automattic/jetpack/pull/50199"
                 },
                 {
                     title: "Fix: Add aria-label to carousel download link for a11y (#33616)",
                     status: "Merged PR #50181",
                     prNumber: "50181",
+                    problem: "Image download links in full-screen Carousel overlay lacked accessible textual labels.",
+                    solution: "Added dynamic localized aria-label attributes to download action controls.",
                     url: "https://github.com/Automattic/jetpack/pull/50181"
                 },
                 {
@@ -212,24 +226,32 @@ export const portfolioData = {
                     title: "Publicize: Update connection status schema to use `oneOf`",
                     status: "Merged PR #50030",
                     prNumber: "50030",
+                    problem: "Strict REST API schema validation rejected valid alternative connection response objects.",
+                    solution: "Updated OpenAPI schema definition to use `oneOf` for flexible connection status matching.",
                     url: "https://github.com/Automattic/jetpack/pull/50030"
                 },
                 {
                     title: "Enhancement: Add jetpack_social_image_generator_disable_text filter to disable SIG text overlay",
                     status: "Merged PR #50029",
                     prNumber: "50029",
+                    problem: "Site owners could not programmatically disable text overlay rendering on generated social sharing images.",
+                    solution: "Introduced a custom WordPress filter hook allowing full control over text overlay generation.",
                     url: "https://github.com/Automattic/jetpack/pull/50029"
                 },
                 {
                     title: "Fix: Enforce strict string type for status enum to prevent Gemini API crash (#49599)",
                     status: "Merged PR #50028",
                     prNumber: "50028",
+                    problem: "Integer or null enum status payloads caused uncaught runtime crashes in Gemini API client handlers.",
+                    solution: "Enforced strict string type casting for all enum values prior to API serialization.",
                     url: "https://github.com/Automattic/jetpack/pull/50028"
                 },
                 {
                     title: "Fix: Prevent Tiled Gallery crash and add changelog entry (#49606)",
                     status: "Merged PR #50025",
                     prNumber: "50025",
+                    problem: "Attempting block transformations between Gallery and Tiled Gallery resulted in undefined attribute crashes.",
+                    solution: "Added attribute sanitizer and fallback defaults for transformed gallery blocks.",
                     url: "https://github.com/Automattic/jetpack/pull/50025"
                 }
             ]
@@ -262,6 +284,8 @@ export const portfolioData = {
                     title: "feat(remote-build): add --project-dir argument to support build paths",
                     status: "Open PR #6372",
                     prNumber: "6372",
+                    problem: "Remote build commands assumed repository root as project path, failing for nested monorepo packages.",
+                    solution: "Added --project-dir flag to pass explicit relative or absolute project paths to remote build instances.",
                     url: "https://github.com/canonical/snapcraft/pull/6372"
                 },
                 {
@@ -301,6 +325,8 @@ export const portfolioData = {
                     title: "Ctrl+Scroll Dynamic Font Scaling: Add user configuration toggle in code editor view",
                     status: "Merged PR #1499",
                     prNumber: "1499",
+                    problem: "Ctrl+Scroll wheel font scaling was hardcoded without user preference toggles, causing accidental zoom level shifts.",
+                    solution: "Added configurable setting in Qt application preferences to enable or disable mouse wheel font resizing.",
                     url: "https://github.com/cpeditor/cpeditor/pull/1499"
                 }
             ]
@@ -316,12 +342,16 @@ export const portfolioData = {
                     title: "feat(alerts): add webhook notification support for user alerts",
                     status: "Open PR #2147",
                     prNumber: "2147",
+                    problem: "Platform alerts were confined to in-app dashboards with no external integration mechanism.",
+                    solution: "Built HTTP webhook dispatch system to trigger external user endpoints on alert events.",
                     url: "https://github.com/future-agi/future-agi/pull/2147"
                 },
                 {
                     title: "feat: Add DragonflyDB support as a Redis-compatible backend",
                     status: "Open PR #2142",
                     prNumber: "2142",
+                    problem: "Redis backend throughput bottlenecks during concurrent agent state caching.",
+                    solution: "Integrated DragonflyDB as a drop-in high-performance Redis protocol replacement.",
                     url: "https://github.com/future-agi/future-agi/pull/2142"
                 }
             ]
@@ -337,6 +367,8 @@ export const portfolioData = {
                     title: "Fix: Prevent Shift key from intercepting shortcuts in Web Custom Editors",
                     status: "Open PR #322680",
                     prNumber: "322680",
+                    problem: "Shift key modifier events in Web Custom Editors prevented custom extension keybindings from executing.",
+                    solution: "Patched web view keyboard event listener to delegate unhandled Shift shortcut events.",
                     url: "https://github.com/microsoft/vscode/pull/322680"
                 }
             ]
@@ -352,6 +384,8 @@ export const portfolioData = {
                     title: "fix(codex): verify thread liveness before deferring automatic compaction",
                     status: "Open PR #120545",
                     prNumber: "120545",
+                    problem: "Deferred context compaction routines were scheduled even when background worker threads had terminated.",
+                    solution: "Added thread liveness checking prior to scheduling async compaction tasks.",
                     url: "https://github.com/openclaw/openclaw/pull/120545"
                 }
             ]
