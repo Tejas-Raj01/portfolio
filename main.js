@@ -261,15 +261,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // 8. Render About Section
+    // 8. Render Contact Section
     const aboutSec = document.getElementById('about-section');
     if (aboutSec) {
         let aboutHtml = `
-            <h2 class="section-title fade-up">THING ABOUT ME</h2>
-            <div class="about-content fade-up" style="display:flex; flex-direction:column; gap:1.5rem; margin-bottom:4rem;">
-                ${portfolioData.about.paragraphs.map(p => `<p class="text-muted-foreground" style="line-height:1.75; font-size:1rem;">${p}</p>`).join('')}
-            </div>
-            
             <h2 class="section-title fade-up">GET IN TOUCH</h2>
             <div class="contact-links text-muted-foreground fade-up" style="font-size:1.125rem;">
                 Connect with me on <a href="${portfolioData.about.linkedin}" target="_blank" class="text-foreground" style="text-decoration:underline; text-underline-offset:4px;">LinkedIn</a> or shoot an <a href="mailto:${portfolioData.about.email}" class="text-foreground" style="text-decoration:underline; text-underline-offset:4px;">email</a>
