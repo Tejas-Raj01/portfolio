@@ -256,7 +256,7 @@ export const portfolioData = {
             fullRepo: "canonical/snapcraft",
             category: "Linux Tooling",
             prSearchUrl: "https://github.com/canonical/snapcraft/pulls?q=is%3Apr+author%3ATejas-Raj01",
-            summary: "Contributed merged PRs for dynamic build_base resolution and documentation improvements.",
+            summary: "Contributed 2 merged PRs for dynamic build_base resolution and security interface documentation.",
             highlights: [
                 {
                     title: "feat(remote-build): add --project-dir argument to support build paths",
@@ -271,6 +271,14 @@ export const portfolioData = {
                     problem: "Hardcoded linter fallbacks in packaging pipelines led to build resolution failures on non-standard host environments.",
                     solution: "Implemented dynamic build_base resolution to detect environment targets dynamically.",
                     url: "https://github.com/canonical/snapcraft/pull/6272"
+                },
+                {
+                    title: "docs: Add personal-files interface manual connection notes to Snapcraft tutorial",
+                    status: "Merged PR #6269",
+                    prNumber: "6269",
+                    problem: "Snapcraft tutorial lacked explicit manual connection instructions for personal-files security interface.",
+                    solution: "Updated tutorial documentation with personal-files security interface connection steps.",
+                    url: "https://github.com/canonical/snapcraft/pull/6269"
                 }
             ]
         },
