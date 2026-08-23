@@ -400,7 +400,7 @@ export const portfolioData = {
             category: "AI & Financial RAG Engine",
             description: "Architected a production-grade asynchronous AI backend for automated corporate investment due-diligence and financial document research (10-Ks, Annual Reports, Pitch Decks). Engineered a deterministic 7-step DAG workflow state machine (Validation → Entity Extraction → Financial Performance → Risk Analysis → Evidence Retrieval → Claim Verification → Report Generation) replacing fragile agent loops. Built a PostgreSQL 16 + pgvector hybrid search engine combining dense Cosine Distance embeddings and sparse tsvector keyword search via Reciprocal Rank Fusion (RRF). Implemented page-aware 1-indexed PDF chunking, S3/MinIO deduplication, and a custom CitationVerifier guardrail to eliminate LLM hallucinations with strict source provenance.",
             githubUrl: "https://github.com/Tejas-Raj01/DealLens",
-            liveUrl: "https://github.com/Tejas-Raj01/DealLens",
+            liveUrl: "https://deal-lens-orpin.vercel.app/",
             tags: ["Python 3.11", "FastAPI", "PostgreSQL 16 / pgvector", "Hybrid RAG (RRF)", "Celery 5 / Redis 7", "7-Step Workflow DAG", "MinIO / AWS S3", "CitationVerifier"]
         },
         {
@@ -427,7 +427,7 @@ export const portfolioData = {
             ],
             tech: ["C++17", "React.js", "Multithreading", "Networking", "WAL Engine", "Gossip Protocol", "Quorum Consensus"],
             githubUrl: "https://github.com/Tejas-Raj01/distributed-system",
-            liveUrl: "https://github.com/Tejas-Raj01/distributed-system"
+            liveUrl: "https://distributed-system-phi.vercel.app/"
         }
     ],
 
