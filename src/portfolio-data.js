@@ -4,8 +4,8 @@ export const portfolioData = {
     identity: {
         name: "Tejas Raj",
         role: "SOFTWARE ENGINEER & AI BUILDER",
-        tagline: "NIT Durgapur '27 · Open Source Contributor · 4★ CodeChef",
-        bio: "Computer Science & Engineering undergrad at NIT Durgapur ('27). Active open-source contributor to Canonical (Snapcraft) and CP Editor. 4★ Competitive Programmer on CodeChef.",
+        tagline: "NIT Durgapur '27 · Open-Source Infrastructure & LLM Systems · 4★ CodeChef",
+        bio: "Computer Science undergrad at NIT Durgapur ('27) contributing to core open-source infrastructure across LLM inference engines (vLLM), machine learning frameworks (PyTorch), Linux packaging toolchains (Canonical), and developer tooling (Automattic Jetpack, CP Editor). 4★ Competitive Programmer on CodeChef.",
         email: "rajtejas.xyz@gmail.com",
         github: "https://github.com/Tejas-Raj01",
         linkedin: "https://www.linkedin.com/in/tejas-raj-09aa4a236/",
@@ -13,13 +13,14 @@ export const portfolioData = {
     },
 
     me: {
-        headline: "B.Tech CSE @ NIT Durgapur '27 | Open Source Contributor (Canonical, CP Editor) | 4★ CodeChef",
-        description: "I am a Computer Science and Engineering undergrad at NIT Durgapur ('27), passionate about software architecture, distributed systems, and full-stack development. My work spans open-source frameworks (Canonical Snapcraft, CP Editor), machine learning frameworks (PyTorch), LLM inference engines (vLLM), production financial RAG workflow engines (DealLens), and distributed key-value storage (Tejas-DB).",
+        headline: "B.Tech CSE @ NIT Durgapur '27 | Open Source Contributor (vLLM, PyTorch, Canonical, Jetpack) | 4★ CodeChef (Max 1804)",
+        description: "Computer Science undergrad at NIT Durgapur ('27) contributing to core open-source infrastructure across LLM inference engines (vLLM), machine learning frameworks (PyTorch), Linux packaging toolchains (Canonical Snapcraft/Craft-Parts), and developer tooling (CP Editor, Automattic Jetpack). My work focuses on low-level memory safety, scheduler KV-cache preemption, C++ sparse matrix conversions, dynamic compiler graph tracing, and high-throughput distributed systems (Tejas-DB with 33k+ req/s Gossip/Quorum consensus).",
         focusAreas: [
-            "Software Architecture & Distributed Systems",
-            "Open Source Infrastructure (Canonical, CP Editor)",
-            "Competitive Programming (4★ CodeChef, Max 1804)",
-            "Generative AI, Full-Stack & LLM Systems"
+            "LLM Inference & ML Frameworks: Core contributions to vLLM (priority scheduling KV-cache preemption, memory profilers) and PyTorch (C++ sparse matrix memory safety, FX graph tracer schemas & Inductor fusions).",
+            "Linux & Open-Source Infrastructure: Production bug fixes across Canonical Snapcraft/Craft-Parts (inode file-linking safety, dynamic build resolution) and Automattic Jetpack (10 merged PRs across Gutenberg REST APIs & UI state transformations).",
+            "Distributed Systems & Storage Engines: Architected Tejas-DB in C++17 (Consistent Hashing, Gossip Protocol, Tunable Quorum consensus, WAL recovery) delivering 33k+ req/s throughput at ~2.97ms latency.",
+            "Production AI & Workflow Engines: Engineered DealLens (deterministic 7-step RAG DAG workflow engine with PostgreSQL 16 pgvector hybrid RRF search and hallucination guardrails).",
+            "Algorithms & Desktop Tooling: 4★ CodeChef (Max 1804) & CP Editor contributor (automated LLM localization pipelines translating 3,600+ UI strings & C++/Qt editor engine enhancements)."
         ]
     },
 
@@ -68,8 +69,8 @@ export const portfolioData = {
 
     about: {
         paragraphs: [
-            "I am a Computer Science and Engineering undergrad at NIT Durgapur ('27), passionate about software architecture, distributed systems, and full-stack development. I enjoy tackling complex challenges, from architecting peer-to-peer key-value storage solutions with multithreading to building scalable, AI-powered matching engines.",
-            "As an active open source contributor to Canonical (Snapcraft) and CP Editor, I work directly within Linux DevOps ecosystems and C++/Qt desktop frameworks — resolving hardcoded framework linter fallbacks, translating 3,600+ UI strings using Gemini API, and streamlining editor UX for competitive programmers."
+            "I am a Computer Science & Engineering undergrad at NIT Durgapur ('27), specializing in software architecture, LLM inference infrastructure, and distributed systems. Rather than viewing frameworks as black boxes, I actively debug and enhance core open-source systems — from resolving KV-cache preemption re-indexing in vLLM's priority scheduler to fixing C++ floating-point memory crashes in PyTorch's sparse tensor engine.",
+            "My open-source work spans Linux packaging infrastructure at Canonical (resolving inode unlinking safety and dynamic environment resolution in Snapcraft), Gutenberg REST API stability at Automattic Jetpack (10 merged PRs), and C++/Qt developer tooling for CP Editor (building LLM localization pipelines for 3,600+ strings). On the systems side, I built Tejas-DB — a C++17 distributed key-value store with Gossip discovery and Quorum consensus benchmarking at 33k+ req/s."
         ],
         email: "rajtejas.xyz@gmail.com",
         linkedin: "https://www.linkedin.com/in/tejas-raj-09aa4a236/"
