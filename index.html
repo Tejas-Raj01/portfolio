@@ -1,98 +1,145 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en" class="dark" data-theme="dark">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <title>Tejas Raj — Systems &amp; AI Engineer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Tejas Raj — Systems &amp; AI Infrastructure Engineer</title>
     <meta name="description"
-        content="Portfolio of Tejas Raj, Software Engineer & AI Builder. B.Tech CSE @ NIT Durgapur '27. Open Source Contributor (vLLM, PyTorch, Canonical, Jetpack), 4★ CodeChef.">
+        content="I fix things in the codebases the world runs on. Portfolio of Tejas Raj: open-source engineer contributing to vLLM, PyTorch, Canonical, and Automattic Jetpack. 4★ CodeChef.">
     <meta name="author" content="Tejas Raj">
+    <meta name="keywords" content="Tejas Raj, vLLM, PyTorch, Open Source, Distributed Systems, C++, Python, NIT Durgapur, CodeChef, Linux, AI Infrastructure">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#0a0a0f">
 
-    <!-- Open Graph / LinkedIn Preview Meta Tags -->
+    <!-- Open Graph Meta Tags -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Tejas Raj — Systems &amp; AI Engineer">
-    <meta property="og:description" content="Portfolio of Tejas Raj — Open Source Contributor (vLLM, PyTorch, Canonical, Jetpack) & B.Tech CSE @ NIT Durgapur '27. Core ML inference, Linux infrastructure & distributed systems.">
+    <meta property="og:site_name" content="Tejas Raj Portfolio">
+    <meta property="og:title" content="Tejas Raj — Systems &amp; AI Infrastructure Engineer">
+    <meta property="og:description"
+        content="I fix things in the codebases the world runs on. Contributor to vLLM, PyTorch, VS Code, Canonical Snapcraft, and Automattic Jetpack. 4★ CodeChef.">
     <meta property="og:image" content="https://tejas-raj01.github.io/portfolio/linkedin_profile_photo.jpeg">
+    <meta property="og:url" content="https://tejas-raj01.github.io/portfolio/">
 
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Tejas Raj — Systems &amp; AI Engineer">
-    <meta name="twitter:description" content="Portfolio of Tejas Raj — Open Source Contributor (vLLM, PyTorch, Canonical, Jetpack) & B.Tech CSE @ NIT Durgapur '27. Core ML inference, Linux infrastructure & distributed systems.">
+    <meta name="twitter:title" content="Tejas Raj — Systems &amp; AI Infrastructure Engineer">
+    <meta name="twitter:description"
+        content="I fix things in the codebases the world runs on. Upstream contributor to vLLM, PyTorch, Canonical & Automattic. 4★ CodeChef.">
     <meta name="twitter:image" content="https://tejas-raj01.github.io/portfolio/linkedin_profile_photo.jpeg">
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/download.png">
+    <link rel="apple-touch-icon" href="/download.png">
 
-    <!-- Google Fonts: Inter & JetBrains Mono -->
+    <!-- Google Fonts: Space Grotesk (Headings), JetBrains Mono (Code/Stats), Inter (UI/Body) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+        rel="stylesheet">
 
     <!-- FontAwesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Custom CSS -->
+    <!-- Stylesheet -->
     <link rel="stylesheet" href="/style.css">
+
+    <!-- JSON-LD Structured Data Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Tejas Raj",
+      "alternateName": "Tejas-Raj01",
+      "url": "https://tejas-raj01.github.io/portfolio/",
+      "image": "https://tejas-raj01.github.io/portfolio/linkedin_profile_photo.jpeg",
+      "jobTitle": "Systems & AI Infrastructure Engineer",
+      "description": "I fix things in the codebases the world runs on. Open-source contributor across vLLM, PyTorch, Canonical, and Automattic Jetpack.",
+      "sameAs": [
+        "https://github.com/Tejas-Raj01",
+        "https://www.linkedin.com/in/tejas-raj-09aa4a236/",
+        "https://www.codechef.com/users/tejas_raj_01"
+      ],
+      "alumniOf": {
+        "@type": "EducationalOrganization",
+        "name": "National Institute of Technology Durgapur"
+      },
+      "knowsAbout": [
+        "LLM Inference Optimization",
+        "vLLM",
+        "PyTorch",
+        "Distributed Key-Value Stores",
+        "C++17",
+        "Python",
+        "Linux Packaging Subsystems",
+        "Competitive Programming"
+      ]
+    }
+    </script>
 </head>
 
 <body class="antialiased">
-    <!-- Reading Progress Bar -->
-    <div id="scroll-progress-bar" class="scroll-progress-bar"></div>
+    <!-- Skip to Content Link for Accessibility -->
+    <a href="#main-content" class="skip-to-content">Skip to content</a>
 
-    <!-- Ambient Glow & Background Pattern -->
+    <!-- Top Reading Progress Indicator -->
+    <div id="scroll-progress-bar" class="scroll-progress-bar" aria-hidden="true"></div>
+
+    <!-- Atmospheric Mesh & Glow Background -->
     <div class="bg-ambient-layer" aria-hidden="true">
         <div class="bg-grid-mesh"></div>
-        <div class="ambient-orb orb-primary"></div>
-        <div class="ambient-orb orb-secondary"></div>
-        <div class="ambient-orb orb-tertiary"></div>
+        <div class="bg-noise"></div>
+        <div class="ambient-orb orb-violet"></div>
+        <div class="ambient-orb orb-cyan"></div>
+        <div class="ambient-cursor-glow" id="cursor-glow"></div>
     </div>
 
-    <!-- Toast Notification Container -->
-    <div id="toast-container" class="toast-container" aria-live="polite"></div>
+    <!-- Live Toast Container -->
+    <div id="toast-container" class="toast-container" aria-live="polite" aria-atomic="true"></div>
 
-    <!-- Floating Navigation Dock -->
-    <nav class="floating-dock" aria-label="Quick navigation and actions">
-        <a href="#hero-section" class="dock-item" data-tooltip="Home" aria-label="Scroll to Top">
+    <!-- Floating Quick Navigation Dock -->
+    <nav class="floating-dock" aria-label="Quick navigation and primary shortcuts">
+        <a href="#hero-section" class="dock-item" data-tooltip="Home" aria-label="Navigate to Top">
             <i class="fa-solid fa-house"></i>
         </a>
-        <a href="#summary-section" class="dock-item" data-tooltip="About" aria-label="Professional Summary">
-            <i class="fa-regular fa-user"></i>
-        </a>
-        <a href="#achievements-section" class="dock-item" data-tooltip="Stats" aria-label="Key Achievements">
+        <a href="#stats-section" class="dock-item" data-tooltip="Impact Stats" aria-label="Navigate to Impact Stats">
             <i class="fa-solid fa-chart-simple"></i>
         </a>
-        <a href="#projects-section" class="dock-item" data-tooltip="Projects" aria-label="Star Projects">
-            <i class="fa-solid fa-star"></i>
-        </a>
-        <a href="#opensource-section" class="dock-item" data-tooltip="Open Source" aria-label="Open Source Contributions">
+        <a href="#opensource-section" class="dock-item" data-tooltip="Open Source" aria-label="Navigate to Open Source Contributions">
             <i class="fa-solid fa-code-pull-request"></i>
         </a>
-        <a href="#tech-section" class="dock-item" data-tooltip="Skills" aria-label="Tech Stack">
+        <a href="#projects-section" class="dock-item" data-tooltip="Case Studies" aria-label="Navigate to Engineering Case Studies">
+            <i class="fa-solid fa-microchip"></i>
+        </a>
+        <a href="#competitive-programming-section" class="dock-item" data-tooltip="CodeChef 4★" aria-label="Navigate to Competitive Programming">
+            <i class="fa-solid fa-trophy"></i>
+        </a>
+        <a href="#current-focus-section" class="dock-item" data-tooltip="Current Focus" aria-label="Navigate to Current Focus">
+            <i class="fa-solid fa-compass"></i>
+        </a>
+        <a href="#skills-section" class="dock-item" data-tooltip="Skills" aria-label="Navigate to Skills">
             <i class="fa-solid fa-layer-group"></i>
         </a>
-        <a href="#about-section" class="dock-item" data-tooltip="Contact" aria-label="Get in Touch">
+        <a href="#contact-section" class="dock-item" data-tooltip="Contact" aria-label="Navigate to Contact">
             <i class="fa-regular fa-envelope"></i>
         </a>
 
-        <span class="dock-divider"></span>
+        <span class="dock-divider" aria-hidden="true"></span>
 
-        <a href="https://github.com/Tejas-Raj01" target="_blank" rel="noopener noreferrer" class="dock-item" data-tooltip="GitHub" aria-label="GitHub Profile">
+        <a href="https://github.com/Tejas-Raj01" target="_blank" rel="noopener noreferrer" class="dock-item" data-tooltip="GitHub Profile" aria-label="GitHub Profile">
             <i class="fa-brands fa-github"></i>
         </a>
-        <a href="https://www.linkedin.com/in/tejas-raj-09aa4a236/" target="_blank" rel="noopener noreferrer" class="dock-item" data-tooltip="LinkedIn" aria-label="LinkedIn Profile">
+        <a href="https://www.linkedin.com/in/tejas-raj-09aa4a236/" target="_blank" rel="noopener noreferrer" class="dock-item" data-tooltip="LinkedIn Profile" aria-label="LinkedIn Profile">
             <i class="fa-brands fa-linkedin-in"></i>
         </a>
-        <a href="https://www.codechef.com/users/tejas_raj_01" target="_blank" rel="noopener noreferrer" class="dock-item" data-tooltip="CodeChef (4★)" aria-label="CodeChef Profile">
-            <i class="fa-solid fa-bullseye"></i>
-        </a>
-        <button id="dock-resume-btn" class="dock-item" data-tooltip="Resume PDF" aria-label="Preview Resume">
+        <button id="dock-resume-btn" class="dock-item" data-tooltip="Resume PDF" aria-label="Open Resume Preview">
             <i class="fa-regular fa-file-pdf"></i>
         </button>
 
-        <span class="dock-divider"></span>
+        <span class="dock-divider" aria-hidden="true"></span>
 
-        <button id="theme-toggle" class="dock-theme-toggle" data-tooltip="Theme [T]" aria-label="Toggle Dark/Light Theme">
+        <button id="theme-toggle" class="dock-theme-toggle" data-tooltip="Theme [T]" aria-label="Toggle Theme">
             <span class="dock-theme-pill">
                 <i class="fa-solid fa-moon dark-icon"></i>
                 <i class="fa-solid fa-sun light-icon"></i>
@@ -100,58 +147,58 @@
         </button>
     </nav>
 
-    <!-- Main Content Container -->
+    <!-- Main Content Container (Semantic Sections in Strict Order) -->
     <main class="page-container" id="main-content">
-        
-        <!-- Hero Section -->
-        <section id="hero-section" class="section hero-section fade-up">
-            <!-- Content injected by main.js -->
+
+        <!-- 1. HERO SECTION -->
+        <section id="hero-section" class="section hero-section fade-up" aria-label="Introduction and positioning">
+            <!-- Dynamically populated by main.js -->
         </section>
 
-        <!-- Professional Summary -->
-        <section id="summary-section" class="section summary-section fade-up">
-            <!-- Content injected by main.js -->
+        <!-- 2. IMPACT STATS BAR -->
+        <section id="stats-section" class="section stats-section fade-up" aria-label="Impact and contribution statistics">
+            <!-- Dynamically computed from openSource data by main.js -->
         </section>
 
-        <!-- Achievements Bento -->
-        <section id="achievements-section" class="section achievements-section fade-up">
-             <!-- Content injected by main.js -->
+        <!-- 3. OPEN SOURCE (THE CENTERPIECE) -->
+        <section id="opensource-section" class="section opensource-section fade-up" aria-label="Open source contributions and upstream proof">
+            <!-- Dynamically populated by main.js: Marquee, Selected Work, Filters, Repo Grid -->
         </section>
 
-        <!-- Star Projects -->
-        <section id="projects-section" class="section projects-section fade-up">
-            <!-- Content injected by main.js -->
+        <!-- 4. PROJECTS (TWO IN-DEPTH CASE STUDIES) -->
+        <section id="projects-section" class="section projects-section fade-up" aria-label="Engineering case studies">
+            <!-- Dynamically populated by main.js: Tejas-DB & AI Job Platform -->
         </section>
 
-        <!-- Open Source Contributions -->
-        <section id="opensource-section" class="section opensource-section fade-up">
-            <!-- Content injected by main.js -->
+        <!-- 5. COMPETITIVE PROGRAMMING -->
+        <section id="competitive-programming-section" class="section competitive-programming-section fade-up" aria-label="Competitive programming profile and rating">
+            <!-- Dynamically populated by main.js -->
         </section>
 
-        <!-- Tech Stack -->
-        <section id="tech-section" class="section tech-section fade-up">
-            <!-- Content injected by main.js -->
+        <!-- 6. CURRENT FOCUS -->
+        <section id="current-focus-section" class="section current-focus-section fade-up" aria-label="Current technical focus and OpenClaw exploration">
+            <!-- Dynamically populated by main.js -->
         </section>
 
-        <!-- Education -->
-        <section id="education-section" class="section education-section fade-up">
-            <!-- Content injected by main.js -->
+        <!-- 7. SKILLS (GROUPED CHIPS) -->
+        <section id="skills-section" class="section skills-section fade-up" aria-label="Technical skills and frameworks">
+            <!-- Dynamically populated by main.js -->
         </section>
 
-        <!-- Contact Section -->
-        <section id="about-section" class="section about-section fade-up">
-            <!-- Content injected by main.js -->
+        <!-- 8. CONTACT & FOOTER -->
+        <section id="contact-section" class="section contact-section fade-up" aria-label="Contact information">
+            <!-- Dynamically populated by main.js -->
         </section>
 
         <!-- Site Footer -->
         <footer class="site-footer">
-            <div>
-                Tejas Raj &copy; 2026 · Crafted with precision &amp; minimalism
+            <div class="footer-left">
+                <span class="footer-name">Tejas Raj</span> &copy; 2026 · Crafted with precision for high-impact engineering teams.
             </div>
             <div class="footer-kbd-hints">
                 <span>Shortcuts:</span>
-                <span class="kbd-badge">T</span> Theme
-                <span class="kbd-badge">M</span> Lo-Fi
+                <kbd class="kbd-badge">T</kbd> Theme
+                <kbd class="kbd-badge">Esc</kbd> Close Modal
             </div>
         </footer>
 
@@ -161,18 +208,22 @@
     <div id="resume-modal" class="modal-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="resume-modal-title">
         <div class="resume-modal-card">
             <div class="resume-modal-header">
-                <h3 id="resume-modal-title" class="resume-modal-title">
-                    <i class="fa-regular fa-file-pdf" style="color:var(--accent-rose);"></i> Tejas Raj — Resume Preview
-                </h3>
+                <div class="resume-modal-title-group">
+                    <i class="fa-regular fa-file-pdf resume-modal-icon"></i>
+                    <div>
+                        <h2 id="resume-modal-title" class="resume-modal-title">Tejas Raj — Resume</h2>
+                        <span class="resume-modal-subtitle">Software Engineer · Open Source Infrastructure</span>
+                    </div>
+                </div>
                 <div class="resume-modal-actions">
-                    <a href="/resume.pdf" download="Tejas_Raj_Resume.pdf" target="_blank" rel="noopener noreferrer" class="btn-hero btn-hero-primary" style="padding: 6px 14px; font-size: 0.8125rem;">
+                    <a href="/resume.pdf" download="Tejas_Raj_Resume.pdf" target="_blank" rel="noopener noreferrer" class="btn-primary-action">
                         <i class="fa-solid fa-download"></i> Download PDF
                     </a>
-                    <button id="resume-modal-close" class="cmd-close-btn" aria-label="Close Resume Modal">&times;</button>
+                    <button id="resume-modal-close" class="modal-close-btn" aria-label="Close Resume Preview">&times;</button>
                 </div>
             </div>
             <div class="resume-modal-body">
-                <img src="/resume-preview.png" alt="Tejas Raj Resume Preview" class="resume-preview-img">
+                <img src="/resume-preview.png" alt="Preview of Tejas Raj's Resume" class="resume-preview-img" loading="lazy">
             </div>
         </div>
     </div>

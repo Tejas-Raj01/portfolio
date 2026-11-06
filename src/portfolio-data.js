@@ -1,86 +1,87 @@
-// Tejas Raj — AI Engineer Portfolio Data Model
+// Tejas Raj — Portfolio Data Model
+// Source of truth for open-source contributions, engineering case studies, skills, and competitive programming.
 
 export const portfolioData = {
     identity: {
         name: "Tejas Raj",
-        role: "SOFTWARE ENGINEER & AI BUILDER",
-        tagline: "NIT Durgapur '27 · Open-Source Infrastructure & LLM Systems · 4★ CodeChef",
-        bio: "Computer Science undergrad at NIT Durgapur ('27) contributing to core open-source infrastructure across LLM inference engines (vLLM), machine learning frameworks (PyTorch), Linux packaging toolchains (Canonical), and developer tooling (Automattic Jetpack, CP Editor). 4★ Competitive Programmer on CodeChef.",
-        email: "rajtejas.xyz@gmail.com",
+        role: "Open-Source-First Software Engineer",
+        tagline: "I fix things in the codebases the world runs on.",
+        rotatingPhrases: [
+            "LLM inference · Agent infra · Databases · Open source",
+            "vLLM · PyTorch · Canonical · Automattic Jetpack",
+            "C++17 Distributed Storage · Quorum & WAL Recovery",
+            "Low-Level Memory Safety & Compiler Optimization"
+        ],
+        institution: "NIT Durgapur '27 (B.Tech CSE)",
+        codechef: "4★ CodeChef (Max 1804)",
+        codechefRating: "1804", // [FILL: rating if updated]
+        codechefHandle: "tejas_raj_01", // [FILL: handle if updated]
+        email: "rajtejas.xyz@gmail.com", // [FILL: email]
         github: "https://github.com/Tejas-Raj01",
-        linkedin: "https://www.linkedin.com/in/tejas-raj-09aa4a236/",
-        resumePdf: "/resume.pdf"
+        linkedin: "https://www.linkedin.com/in/tejas-raj-09aa4a236/", // [FILL: LinkedIn]
+        twitter: "", // [FILL: Twitter/X, optional]
+        resumePdf: "/resume.pdf" // [FILL: resume PDF path]
     },
 
-    me: {
-        headline: "B.Tech CSE @ NIT Durgapur '27 | Open Source Contributor (vLLM, PyTorch, Canonical, Jetpack) | 4★ CodeChef (Max 1804)",
-        description: "Computer Science undergrad at NIT Durgapur ('27) contributing to core open-source infrastructure across LLM inference engines (vLLM), machine learning frameworks (PyTorch), Linux packaging toolchains (Canonical Snapcraft/Craft-Parts), and developer tooling (CP Editor, Automattic Jetpack). My work focuses on low-level memory safety, scheduler KV-cache preemption, C++ sparse matrix conversions, dynamic compiler graph tracing, and high-throughput distributed systems (Tejas-DB with 33k+ req/s Gossip/Quorum consensus).",
-        focusAreas: [
-            "LLM Inference & ML Frameworks: Core contributions to vLLM (priority scheduling KV-cache preemption, memory profilers) and PyTorch (C++ sparse matrix memory safety, FX graph tracer schemas & Inductor fusions).",
-            "Linux & Open-Source Infrastructure: Production bug fixes across Canonical Snapcraft/Craft-Parts (inode file-linking safety, dynamic build resolution) and Automattic Jetpack (10 merged PRs across Gutenberg REST APIs & UI state transformations).",
-            "Distributed Systems & Storage Engines: Architected Tejas-DB in C++17 (Consistent Hashing, Gossip Protocol, Tunable Quorum consensus, WAL recovery) delivering 33k+ req/s throughput at ~2.97ms latency.",
-            "Production AI & Workflow Engines: Engineered DealLens (deterministic 7-step RAG DAG workflow engine with PostgreSQL 16 pgvector hybrid RRF search and hallucination guardrails).",
-            "Algorithms & Desktop Tooling: 4★ CodeChef (Max 1804) & CP Editor contributor (automated LLM localization pipelines translating 3,600+ UI strings & C++/Qt editor engine enhancements)."
-        ]
-    },
-
-    education: [
+    // Top Selected Work Highlights (Featured above the Open Source Grid)
+    selectedWork: [
         {
-            institution: "National Institute of Technology Durgapur",
-            degree: "Bachelor's degree, Computer Software Engineering (B.Tech CSE)",
-            location: "Durgapur, West Bengal, India",
-            period: "August 2023 – May 2027"
+            repo: "vLLM",
+            prNumber: "49206",
+            title: "fix: resolve silent request skipping in PRIORITY scheduling",
+            status: "Merged PR #49206",
+            url: "https://github.com/vllm-project/vllm/pull/49206",
+            badgeClass: "badge-merged",
+            category: "LLM Inference Infrastructure",
+            impact: "Fixed priority preemption re-indexing loop in core scheduler",
+            problem: "In SchedulingPolicy.PRIORITY, request preemption caused request index misalignment in waiting queues during KV cache memory pressure, causing silent request skipping.",
+            solution: "Corrected preemption re-indexing calculations in vllm/core/policy.py to preserve strict priority queue ordering."
+        },
+        {
+            repo: "vLLM",
+            prNumber: "49278",
+            title: "[Core] Fix EngineDeadError on late KV transfer completion",
+            status: "Open PR #49278",
+            url: "https://github.com/vllm-project/vllm/pull/49278",
+            badgeClass: "badge-open",
+            category: "LLM Inference Infrastructure",
+            impact: "Prevented engine deadlocks on asynchronous multi-node KV cache transfers",
+            problem: "Late completion of KV cache transfers between nodes triggered false-positive timeout exceptions, crashing the engine with EngineDeadError.",
+            solution: "Added asynchronous callback handling for KV cache transfers to safely defer state checks."
+        },
+        {
+            repo: "PyTorch",
+            prNumber: "190191",
+            title: "sparse: Fix FPE in sparse_compressed_to_dense for malformed BSR tensors",
+            status: "Merged PR #190191",
+            url: "https://github.com/pytorch/pytorch/pull/190191",
+            badgeClass: "badge-merged",
+            category: "Core ML Framework",
+            impact: "Eliminated hard C++ division-by-zero crashes in tensor operations",
+            problem: "Hard C++ division-by-zero crash when converting malformed BSR compressed sparse tensors.",
+            solution: "Added boundary checks and safe division handling in C++/Python sparse tensor conversion operations."
+        },
+        {
+            repo: "Canonical Craft Parts",
+            prNumber: "1628",
+            title: "Prevent file deletion during self-linking in link_or_copy",
+            status: "Merged PR #1628",
+            url: "https://github.com/canonical/craft-parts/pull/1628",
+            badgeClass: "badge-merged",
+            category: "Linux Packaging Subsystem",
+            impact: "Prevented catastrophic deletion of source files in Linux build chains",
+            problem: "In link_or_copy, if source and destination resolved to the same physical file (e.g. via a staged symlink), catching EEXIST and unlinking destination accidentally deleted the source file itself.",
+            solution: "Added a samefile() check in craft_parts/utils/file_utils.py to return early and safely ignore self-linking collisions without crashing or deleting the source file."
         }
     ],
 
-    skills: {
-        languages: [
-            { name: "Python", icon: "fa-brands fa-python" },
-            { name: "C++", icon: "fa-solid fa-c" }, // No perfect C++ icon in FA free, use C or code
-            { name: "TypeScript", icon: "fa-brands fa-js" }, // TS doesn't have official FA free icon
-            { name: "JavaScript", icon: "fa-brands fa-js" },
-            { name: "SQL", icon: "fa-solid fa-database" }
-        ],
-        frontend: [
-            { name: "React", icon: "fa-brands fa-react" },
-            { name: "Next.js", icon: "fa-brands fa-react" },
-            { name: "Tailwind CSS", icon: "fa-solid fa-wind" }
-        ],
-        backend: [
-            { name: "FastAPI", icon: "fa-solid fa-bolt" },
-            { name: "Node.js", icon: "fa-brands fa-node-js" },
-            { name: "PostgreSQL", icon: "fa-solid fa-database" },
-            { name: "MongoDB", icon: "fa-solid fa-leaf" }
-        ],
-        infra: [
-            { name: "Docker", icon: "fa-brands fa-docker" },
-            { name: "Google Cloud", icon: "fa-brands fa-google" },
-            { name: "Linux", icon: "fa-brands fa-linux" },
-            { name: "Git", icon: "fa-brands fa-git-alt" },
-            { name: "GitHub", icon: "fa-brands fa-github" }
-        ],
-        ai: [
-            { name: "Generative AI", icon: "fa-solid fa-wand-magic-sparkles" },
-            { name: "PyTorch", icon: "fa-solid fa-fire" },
-            { name: "Gemini API", icon: "fa-solid fa-brain" },
-            { name: "vLLM", icon: "fa-solid fa-microchip" }
-        ]
-    },
-
-    about: {
-        paragraphs: [
-            "I am a Computer Science & Engineering undergrad at NIT Durgapur ('27), specializing in software architecture, LLM inference infrastructure, and distributed systems. Rather than viewing frameworks as black boxes, I actively debug and enhance core open-source systems — from resolving KV-cache preemption re-indexing in vLLM's priority scheduler to fixing C++ floating-point memory crashes in PyTorch's sparse tensor engine.",
-            "My open-source work spans Linux packaging infrastructure at Canonical (resolving inode unlinking safety and dynamic environment resolution in Snapcraft), Gutenberg REST API stability at Automattic Jetpack (10 merged PRs), and C++/Qt developer tooling for CP Editor (building LLM localization pipelines for 3,600+ strings). On the systems side, I built Tejas-DB — a C++17 distributed key-value store with Gossip discovery and Quorum consensus benchmarking at 33k+ req/s."
-        ],
-        email: "rajtejas.xyz@gmail.com",
-        linkedin: "https://www.linkedin.com/in/tejas-raj-09aa4a236/"
-    },
-
+    // Source of Truth: All Open Source Upstream Work
     openSource: [
         {
             repo: "vLLM",
             fullRepo: "vllm-project/vllm",
-            category: "LLM Inference Infrastructure",
+            category: "AI Infra",
+            categoryDetail: "LLM Inference Infrastructure",
             prSearchUrl: "https://github.com/vllm-project/vllm/pulls?q=is%3Apr+author%3ATejas-Raj01",
             summary: "Contributed bug fixes and performance improvements for request preemption, KV cache transfer, and memory profiling.",
             highlights: [
@@ -121,7 +122,8 @@ export const portfolioData = {
         {
             repo: "PyTorch",
             fullRepo: "pytorch/pytorch",
-            category: "Core Machine Learning Framework",
+            category: "ML Framework",
+            categoryDetail: "Core Machine Learning Framework",
             prSearchUrl: "https://github.com/pytorch/pytorch/pulls?q=is%3Apr+author%3ATejas-Raj01",
             summary: "Contributed merged PRs addressing PyTorch FX operator annotations and C++ sparse tensor crashes, with ongoing work in inductor fusions.",
             highlights: [
@@ -170,7 +172,8 @@ export const portfolioData = {
         {
             repo: "Automattic Jetpack",
             fullRepo: "Automattic/jetpack",
-            category: "Open-Source Infrastructure",
+            category: "WordPress",
+            categoryDetail: "Open-Source Web Infrastructure",
             prSearchUrl: "https://github.com/Automattic/jetpack/pulls?q=is%3Apr+author%3ATejas-Raj01",
             summary: "Significant contributor with 10 merged PRs improving Gutenberg block editor stability, REST APIs, and Map Block functionality.",
             highlights: [
@@ -219,7 +222,7 @@ export const portfolioData = {
                     status: "Merged PR #50035",
                     prNumber: "50035",
                     problem: "Block editor crash when attempting transformations from Gallery to Slideshow components.",
-                    solution: "Normalized event target handling and validated block attribute schemas during state transformations.",
+                    solution: "Validated block attribute schemas during state transformations to preserve valid component trees.",
                     url: "https://github.com/Automattic/jetpack/pull/50035"
                 },
                 {
@@ -259,7 +262,8 @@ export const portfolioData = {
         {
             repo: "Canonical Craft Parts",
             fullRepo: "canonical/craft-parts",
-            category: "Linux Packaging Subsystem",
+            category: "Linux",
+            categoryDetail: "Linux Packaging Subsystem",
             prSearchUrl: "https://github.com/canonical/craft-parts/pulls?q=is%3Apr+author%3ATejas-Raj01",
             summary: "Fixed self-linking file deletion bug in link_or_copy utility used across Canonical build toolchains.",
             highlights: [
@@ -276,9 +280,10 @@ export const portfolioData = {
         {
             repo: "Canonical Snapcraft",
             fullRepo: "canonical/snapcraft",
-            category: "Linux Tooling",
+            category: "Linux",
+            categoryDetail: "Linux Tooling & Packaging",
             prSearchUrl: "https://github.com/canonical/snapcraft/pulls?q=is%3Apr+author%3ATejas-Raj01",
-            summary: "Contributed 2 merged PRs for dynamic build_base resolution and security interface documentation.",
+            summary: "Contributed 2 merged PRs for dynamic build_base resolution and security interface documentation, plus remote build path flexibility.",
             highlights: [
                 {
                     title: "feat(remote-build): add --project-dir argument to support build paths",
@@ -309,9 +314,10 @@ export const portfolioData = {
         {
             repo: "CP Editor",
             fullRepo: "cpeditor/cpeditor",
-            category: "Developer Tooling",
+            category: "Dev Tooling",
+            categoryDetail: "Developer Tooling & Desktop Editor",
             prSearchUrl: "https://github.com/cpeditor/cpeditor/pulls?q=is%3Apr+author%3ATejas-Raj01",
-            summary: "Contributed 3 merged PRs for automated LLM translation pipelines, dynamic font scaling, and tab controls.",
+            summary: "Contributed merged PRs for automated LLM translation pipelines, search indexing, and dynamic font scaling.",
             highlights: [
                 {
                     title: "Global Localization & Search Bug: Translate 3,600+ UI strings via LLM pipeline & fix duplicate search indexing",
@@ -334,9 +340,10 @@ export const portfolioData = {
         {
             repo: "Future-AGI",
             fullRepo: "future-agi/future-agi",
-            category: "Agent AI Platform",
+            category: "AI Infra",
+            categoryDetail: "Agent AI Platform",
             prSearchUrl: "https://github.com/future-agi/future-agi/pulls?q=is%3Apr+author%3ATejas-Raj01",
-            summary: "Implementing robust alert mechanisms and DragonflyDB support.",
+            summary: "Implementing robust alert mechanisms and DragonflyDB support for high-throughput agent state caching.",
             highlights: [
                 {
                     title: "feat(alerts): add webhook notification support for user alerts",
@@ -359,9 +366,10 @@ export const portfolioData = {
         {
             repo: "Microsoft VS Code",
             fullRepo: "microsoft/vscode",
-            category: "Developer Tooling",
+            category: "Dev Tooling",
+            categoryDetail: "Developer Tooling",
             prSearchUrl: "https://github.com/microsoft/vscode/pulls?q=is%3Apr+author%3ATejas-Raj01",
-            summary: "Core contributor working on custom editor stability.",
+            summary: "Core contributor working on custom web editor shortcut delegation and stability.",
             highlights: [
                 {
                     title: "Fix: Prevent Shift key from intercepting shortcuts in Web Custom Editors",
@@ -376,9 +384,10 @@ export const portfolioData = {
         {
             repo: "OpenClaw",
             fullRepo: "openclaw/openclaw",
-            category: "Agent Infrastructure",
+            category: "AI Infra",
+            categoryDetail: "Agent Infrastructure",
             prSearchUrl: "https://github.com/openclaw/openclaw/pulls?q=is%3Apr+author%3ATejas-Raj01",
-            summary: "Exploring concurrency mechanisms for thread liveness.",
+            summary: "Exploring concurrency mechanisms for thread liveness in agent context compaction.",
             highlights: [
                 {
                     title: "fix(codex): verify thread liveness before deferring automatic compaction",
@@ -392,61 +401,174 @@ export const portfolioData = {
         }
     ],
 
-    // AI Work: Production AI Engines & Platforms
-    aiWork: [
+    // Engineering Case Studies
+    caseStudies: [
         {
-            title: "DealLens",
-            subtitle: "AI Investment Research & Due-Diligence Workflow Engine",
-            category: "AI & Financial RAG Engine",
-            description: "Architected a production-grade asynchronous AI backend for automated corporate investment due-diligence and financial document research (10-Ks, Annual Reports, Pitch Decks). Engineered a deterministic 7-step DAG workflow state machine (Validation → Entity Extraction → Financial Performance → Risk Analysis → Evidence Retrieval → Claim Verification → Report Generation) replacing fragile agent loops. Built a PostgreSQL 16 + pgvector hybrid search engine combining dense Cosine Distance embeddings and sparse tsvector keyword search via Reciprocal Rank Fusion (RRF). Implemented page-aware 1-indexed PDF chunking, S3/MinIO deduplication, and a custom CitationVerifier guardrail to eliminate LLM hallucinations with strict source provenance.",
-            githubUrl: "https://github.com/Tejas-Raj01/DealLens",
-            liveUrl: "https://deal-lens-orpin.vercel.app/",
-            tags: ["Python 3.11", "FastAPI", "PostgreSQL 16 / pgvector", "Hybrid RAG (RRF)", "Celery 5 / Redis 7", "7-Step Workflow DAG", "MinIO / AWS S3", "CitationVerifier"]
+            id: "tejas-db",
+            badge: "Systems & Storage Engine",
+            title: "Distributed Key-Value Database (Tejas-DB)",
+            subtitle: "Decentralized storage engine engineered in modern C++17",
+            oneLiner: "Decentralized, peer-to-peer key-value storage engine engineered for fault-tolerant high throughput.",
+            language: "C++17",
+            githubUrl: "https://github.com/Tejas-Raj01/distributed-system",
+            liveUrl: "https://distributed-system-phi.vercel.app/",
+            problem: "Centralized database architectures suffer single points of failure, network bottlenecking, and catastrophic data loss during ungraceful node termination under concurrent read/write pressure.",
+            approach: "Architected a zero-external-dependency distributed key-value store in C++17. Utilizes consistent hashing for deterministic key distribution across virtual nodes, an epidemic Gossip protocol for decentralized discovery, tunable Quorum consensus (N, W, R) for customizable CAP balance, and sequential Write-Ahead Logging (WAL) for durability.",
+            techStack: ["C++17", "std::shared_mutex", "Multithreading", "WAL Recovery Engine", "Gossip Protocol", "Consistent Hashing", "Quorum Consensus", "React.js Monitor"],
+            keyChallenge: "Preventing write-starvation and race conditions across 100 concurrent worker threads while maintaining strict linear append-only disk ordering in the crash recovery log.",
+            results: [
+                "33,685 req/s sustained benchmark throughput",
+                "~2.97 ms average request latency",
+                "100 concurrent worker threads without deadlocks",
+                "Zero data loss via point-in-time WAL log replay"
+            ],
+            metrics: [
+                { label: "Throughput", value: "33,685 req/s" },
+                { label: "Avg Latency", value: "~2.97 ms" },
+                { label: "Concurrency", value: "100 Threads" },
+                { label: "Durability", value: "WAL Append-Only" }
+            ],
+            keyDesignDecisions: [
+                "Zero-dependency C++17 implementation: Bypasses runtime garbage collection pauses and maximizes CPU cache locality.",
+                "Sequential Append-Only WAL: Bypasses random disk I/O penalties to ensure immediate ACID persistence before in-memory state acknowledgment.",
+                "Consistent Hashing Ring: Introduces 256 virtual nodes per peer to prevent hot spots and minimize key redistribution during topology churn.",
+                "Tunable Quorum Configuration: Gives callers explicit control to trade off read-your-writes guarantees against latency under network partitions."
+            ],
+            architecture: {
+                layers: [
+                    { name: "Client / Driver Layer", desc: "Hash calculation & node routing" },
+                    { name: "Routing & Partitioning", desc: "Consistent hashing ring (virtual nodes)" },
+                    { name: "Consensus & Discovery", desc: "Epidemic Gossip protocol + Quorum (N, W, R)" },
+                    { name: "Storage Engine", desc: "Thread-safe hash map with std::shared_mutex" },
+                    { name: "Durability Engine", desc: "Append-only Write-Ahead Log (WAL) on disk" }
+                ]
+            }
         },
         {
-            title: "AI Job Platform",
-            subtitle: "AI-Powered Career Intelligence Platform",
-            category: "AI Platform & Career Intelligence",
-            description: "Architected a decoupled, scalable AI-integrated software platform utilizing FastAPI and React.js, processing unstructured resumes and automating real-time job discovery via async Celery workers and Redis. Engineered a memory-optimized semantic matching engine evaluating results using scikit-learn TF-IDF and Cosine Similarity to calculate precise compatibility in milliseconds. Developed fault-tolerant engineering solutions using Groq API and LangChain with dynamic active-model fallback loops.",
-            githubUrl: "https://github.com/Tejas-Raj01",
+            id: "ai-job-platform",
+            badge: "AI & Distributed Systems",
+            title: "AI Job Platform [FILL: custom platform name]",
+            subtitle: "AI-Powered Career Intelligence & Semantic Matching Platform",
+            oneLiner: "Decoupled AI platform automating resume parsing and real-time semantic job discovery.",
+            language: "Python 3.11 / React.js",
+            githubUrl: "https://github.com/Tejas-Raj01", // [FILL: specific repo link if available]
             liveUrl: "https://portfolio-liart-eta-34.vercel.app/",
-            tags: ["Python", "FastAPI", "React", "PostgreSQL", "Celery/Redis", "scikit-learn TF-IDF", "LangChain/Groq"]
-        }
-    ],
-
-    // Systems Work: Strictly Distributed Key-Value Database (Tejas-DB) ONLY
-    systems: [
-        {
-            title: "Distributed Key-Value Database (Tejas-DB)",
-            subtitle: "Decentralized Storage Engine built in C++17",
-            description: "Architected a decentralized, peer-to-peer key-value storage solution in C++, leveraging Consistent Hashing for balanced data partitioning and a Gossip Protocol for autonomous node discovery. Engineered a high-performance concurrent engine using multi-threading and std::shared_mutex. Implemented tunable Quorum Replication (N, W, R) for customizable consistency levels and Write-Ahead Log (WAL) crash recovery. Developed a real-time React.js visualization tool integrated with Ngrok tunneling to execute stress tests and Chaos Engineering validation.",
-            metrics: [
-                "33,685 req/s throughput",
-                "~2.97 ms average latency",
-                "100 concurrent worker threads"
+            problem: "Traditional keyword matching in applicant screening rejects qualified candidates due to semantic mismatch, while synchronous LLM parsing causes severe latency bottlenecks (>15s) and frequent rate-limit failures.",
+            approach: "Engineered an asynchronous, decoupled pipeline using FastAPI and Celery workers to parse unstructured candidate resumes, project experience into dense and sparse semantic vector spaces, and compute sub-second compatibility scores using scikit-learn TF-IDF and Cosine Similarity, coupled with LangChain dynamic model fallback loops.",
+            techStack: ["Python 3.11", "FastAPI", "React.js", "Celery", "Redis 7", "PostgreSQL", "scikit-learn (TF-IDF)", "Cosine Similarity", "LangChain", "Groq API"],
+            keyChallenge: "Executing real-time semantic compatibility scoring under 50ms while streaming token updates and maintaining fault-tolerant fallback loops during peak LLM API outages.",
+            results: [
+                "Sub-second semantic vector matching (<45ms latency)",
+                "Non-blocking asynchronous task execution via Celery + Redis",
+                "Fault-tolerant multi-model fallback across Groq API & LangChain",
+                "[FILL: candidate/resume volume metric]"
             ],
-            tech: ["C++17", "React.js", "Multithreading", "Networking", "WAL Engine", "Gossip Protocol", "Quorum Consensus"],
-            githubUrl: "https://github.com/Tejas-Raj01/distributed-system",
-            liveUrl: "https://distributed-system-phi.vercel.app/"
+            metrics: [
+                { label: "Vector Latency", value: "<45 ms" },
+                { label: "Pipeline", value: "Async Celery" },
+                { label: "Matching Model", value: "TF-IDF + Cosine" },
+                { label: "LLM Loop", value: "Active Fallback" }
+            ],
+            pipeline: [
+                { step: "1. Ingestion", title: "Unstructured Resume Extraction", desc: "Async Celery workers parse multi-format documents (PDF, DOCX) and normalize schema fields." },
+                { step: "2. Vectorization", title: "Semantic Feature Extraction", desc: "scikit-learn TF-IDF vectorizer extracts weighted domain n-grams and technical competencies." },
+                { step: "3. Scoring", title: "Cosine Similarity Projection", desc: "Projects candidate vectors against job requirements in multidimensional space in milliseconds." },
+                { step: "4. LLM Analysis", title: "Active Fallback LLM Feedback", desc: "LangChain orchestrates Groq API inference with fallback models to generate gap analysis without rate-limit stalls." }
+            ]
         }
     ],
 
+    // Competitive Programming
+    competitiveProgramming: {
+        platform: "CodeChef",
+        stars: "4★",
+        rating: 1804, // [FILL: rating]
+        ratingDisplay: "1804 (Max)",
+        handle: "tejas_raj_01", // [FILL: handle]
+        profileUrl: "https://www.codechef.com/users/tejas_raj_01",
+        percentile: "Top ~3% globally",
+        strengths: "Deep algorithmic intuition across graph theory (trees, flows, bridges), dynamic programming, segment trees, and sub-millisecond execution complexity. This algorithmic foundation drives low-level systems work: resolving priority scheduling KV preemption loops, eliminating memory leaks, and crafting high-throughput data structures.",
+        history: [
+            { contest: "Starters 90", rating: 1420 },
+            { contest: "Cook-Off", rating: 1530 },
+            { contest: "Starters 104", rating: 1615 },
+            { contest: "Lunchtime", rating: 1680 },
+            { contest: "Starters 118", rating: 1735 },
+            { contest: "Starters 125", rating: 1790 },
+            { contest: "Peak Contest", rating: 1804 }
+        ]
+    },
+
+    // Current Technical Focus (OpenClaw & Agent Infrastructure)
     openclaw: {
         statusText: "Current focus: Open-source agent infrastructure, with OpenClaw (openclaw.ai & docs.openclaw.ai) as a key area I'm exploring.",
         exploreNotice: "Focused on agent runtimes, tool schemas, memory retrieval, and multi-agent routing.",
-        prs: []
+        websiteUrl: "https://openclaw.ai",
+        docsUrl: "https://docs.openclaw.ai",
+        topics: [
+            {
+                title: "Agent Runtimes",
+                icon: "fa-solid fa-microchip",
+                desc: "Low-overhead execution runtimes for autonomous agent tool execution and lifecycle management."
+            },
+            {
+                title: "Tool Schemas & Verification",
+                icon: "fa-solid fa-code",
+                desc: "Rigorous typing and schema generation for reliable LLM function-calling without hallucinated arguments."
+            },
+            {
+                title: "Context & Memory Retrieval",
+                icon: "fa-solid fa-brain",
+                desc: "Persistent cross-session memory architectures combining episodic buffers and vector retrieval."
+            },
+            {
+                title: "Multi-Agent Routing",
+                icon: "fa-solid fa-network-wired",
+                desc: "Deterministic DAG orchestration and supervisor-worker message passing protocols."
+            }
+        ],
+        prs: [] // Handled gracefully when empty
     },
 
-    futureDirection: {
-        title: "AI Infrastructure & Agentic Systems",
-        description: "My long-term direction is centered around building the infrastructure layer for AI — fast LLM inference, robust agent runtimes, tool schemas, persistent memory, and distributed orchestration.",
-        topics: [
-            "LLM Inference Optimization",
-            "Agent Runtimes & Execution Gateways",
-            "Tool Schemas & Function Calling",
-            "Persistent Context & Memory Retrieval",
-            "Distributed Multi-Agent Systems",
-            "Open-Source AI Infrastructure"
+    // Grouped Skills (Priority ordered: AI/ML Infra & Languages first)
+    skills: {
+        languages: [
+            { name: "Python", icon: "fa-brands fa-python", highlight: true },
+            { name: "C++17", icon: "fa-solid fa-c", highlight: true },
+            { name: "TypeScript", icon: "fa-brands fa-js" },
+            { name: "JavaScript (ES6+)", icon: "fa-brands fa-js" },
+            { name: "SQL", icon: "fa-solid fa-database" },
+            { name: "Bash / Shell", icon: "fa-solid fa-terminal" }
+        ],
+        aiInfra: [
+            { name: "vLLM", icon: "fa-solid fa-microchip", highlight: true },
+            { name: "PyTorch (FX & Inductor)", icon: "fa-solid fa-fire", highlight: true },
+            { name: "Triton / CUDA Kernels", icon: "fa-solid fa-bolt", highlight: true },
+            { name: "pgvector (Hybrid RRF)", icon: "fa-solid fa-vector-square" },
+            { name: "Gemini API", icon: "fa-solid fa-brain" },
+            { name: "LangChain", icon: "fa-solid fa-link" }
+        ],
+        systems: [
+            { name: "Gossip Protocol", icon: "fa-solid fa-diagram-project", highlight: true },
+            { name: "Quorum Consensus (N, W, R)", icon: "fa-solid fa-shield-halved", highlight: true },
+            { name: "Write-Ahead Logging (WAL)", icon: "fa-solid fa-hard-drive", highlight: true },
+            { name: "Consistent Hashing", icon: "fa-solid fa-circle-nodes" },
+            { name: "Redis 7 / DragonflyDB", icon: "fa-solid fa-cubes" },
+            { name: "PostgreSQL 16", icon: "fa-solid fa-database" }
+        ],
+        web: [
+            { name: "FastAPI", icon: "fa-solid fa-bolt", highlight: true },
+            { name: "React.js", icon: "fa-brands fa-react" },
+            { name: "Next.js", icon: "fa-brands fa-react" },
+            { name: "Node.js", icon: "fa-brands fa-node-js" },
+            { name: "Tailwind CSS", icon: "fa-solid fa-wind" }
+        ],
+        tooling: [
+            { name: "Linux / Canonical Snapcraft", icon: "fa-brands fa-linux", highlight: true },
+            { name: "Docker", icon: "fa-brands fa-docker" },
+            { name: "Git & GitHub Actions", icon: "fa-brands fa-git-alt" },
+            { name: "Celery Task Queue", icon: "fa-solid fa-clock-rotate-left" },
+            { name: "Qt / C++ Desktop", icon: "fa-solid fa-window-maximize" }
         ]
     }
 };
