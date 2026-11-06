@@ -3,12 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <title>Open Source Contributions — Tejas Raj</title>
     <meta name="description"
-        content="Open-source pull requests and engineering evidence by Tejas Raj across PyTorch, vLLM, Jetpack, Snapcraft, CP Editor, and OpenClaw.">
+        content="Open-source pull requests and engineering evidence by Tejas Raj across vLLM, PyTorch, Canonical Snapcraft, and Automattic Jetpack.">
     <meta name="author" content="Tejas Raj">
-    <link rel="canonical" href="https://portfolio-liart-eta-34.vercel.app/opensource.html">
 
     <!-- Open Graph / LinkedIn Preview Meta Tags -->
     <meta property="og:type" content="website">
@@ -25,230 +24,362 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/download.png">
 
-    <!-- Fonts: Fira Code, Inter, Outfit -->
+    <!-- Google Fonts: Inter & JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@600;700;800&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- FontAwesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/style.css">
 </head>
 
-<body>
+<body class="antialiased">
     <!-- Reading Progress Bar -->
-    <div id="progress-bar" class="progress-bar"></div>
+    <div id="scroll-progress-bar" class="scroll-progress-bar"></div>
 
-    <!-- Toast Container -->
-    <div id="toast-container" class="toast-container"></div>
+    <!-- Ambient Glow & Background Pattern -->
+    <div class="bg-ambient-layer" aria-hidden="true">
+        <div class="bg-grid-mesh"></div>
+        <div class="ambient-orb orb-primary"></div>
+        <div class="ambient-orb orb-secondary"></div>
+    </div>
 
-    <!-- Header Navbar -->
-    <header class="navbar" id="navbar">
-        <div class="nav-content">
-            <a href="/" class="logo">
-                <span class="logo-name">TEJAS</span>
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+    <!-- Top Navigation Header -->
+    <header class="oss-page-nav">
+        <a href="/" class="btn-hero btn-hero-secondary" style="font-size: 0.8125rem; padding: 6px 14px;">
+            <i class="fa-solid fa-arrow-left"></i> Back to Portfolio
+        </a>
+        <div style="display:flex; align-items:center; gap:10px;">
+            <a href="https://github.com/Tejas-Raj01" target="_blank" rel="noopener noreferrer" class="btn-hero btn-hero-secondary" style="font-size: 0.8125rem; padding: 6px 14px;">
+                <i class="fa-brands fa-github"></i> GitHub
             </a>
-            <nav class="nav-links" aria-label="Main Navigation">
-                <a href="/#work" class="nav-item">← Back to Work</a>
-                <a href="/#agents" class="nav-item">Agents</a>
-            </nav>
-            <div class="nav-actions">
-                <a href="https://github.com/Tejas-Raj01" target="_blank" class="nav-ext-link">GitHub <i class="fas fa-arrow-up-right-from-square"></i></a>
-                <button class="nav-ext-link btn-link open-resume-modal">Resume <i class="fas fa-file-pdf"></i></button>
-            </div>
+            <button id="dock-resume-btn" class="btn-hero btn-hero-pdf" style="font-size: 0.8125rem; padding: 6px 14px;">
+                <i class="fa-regular fa-file-pdf"></i> Resume
+            </button>
+            <button id="theme-toggle" class="dock-theme-toggle" aria-label="Toggle Theme" style="width:48px; height:28px;">
+                <span class="dock-theme-pill" style="width:20px; height:20px; font-size:0.7rem;">
+                    <i class="fa-solid fa-moon dark-icon"></i>
+                    <i class="fa-solid fa-sun light-icon"></i>
+                </span>
+            </button>
         </div>
     </header>
 
-    <main id="main-content">
-        <!-- OPEN SOURCE STORY HEADER -->
-        <section class="section">
-            <h1 class="hero-greeting">Open Source</h1>
-            <p class="section-subtitle" style="margin-top: 8px;">
-                I prefer learning systems by working inside the codebases that build them.
+    <main class="page-container" id="main-content" style="padding-top: 1rem;">
+        
+        <!-- Header Section -->
+        <section class="section fade-up" style="margin-bottom: 3rem;">
+            <div class="hero-status-pill">
+                <span class="status-dot-container">
+                    <span class="status-dot-core"></span>
+                </span>
+                <span>Verified Upstream Engineering Track Record</span>
+            </div>
+            <h1 class="oss-page-title">Open Source Evidence</h1>
+            <p class="section-subtitle-text" style="font-size: 1.05rem;">
+                I believe in understanding complex software systems by diagnosing their edge cases, fixing memory safety bugs, and landing production patches upstream.
             </p>
         </section>
 
-        <!-- FULL PR HISTORY LIST -->
+        <!-- Upstream PR History List -->
         <section class="section">
-            <div class="section-header">
-                <h2 class="section-title">Verified Upstream History</h2>
-                <p class="section-subtitle">Code merged upstream across machine learning frameworks, LLM inference engines, and developer infrastructure.</p>
-            </div>
 
             <!-- vLLM Group -->
-            <div class="oss-detail-group">
-                <div class="group-header-row">
-                    <h3>vLLM <a href="https://github.com/vllm-project/vllm" target="_blank" class="ext-repo-link"><i class="fab fa-github"></i> vllm-project/vllm</a></h3>
-                    <span class="badge badge-ai">LLM Inference Infrastructure</span>
-                </div>
-                <div class="pr-detail-card">
-                    <div class="pr-card-header">
-                        <h4>Fix request index preemption misalignment in SchedulingPolicy.PRIORITY</h4>
-                        <span class="badge badge-success">Merged PR #49206</span>
+            <div class="oss-project-group fade-up">
+                <div class="oss-group-header">
+                    <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+                        <h2 class="oss-group-title">
+                            <i class="fa-brands fa-github"></i> vLLM
+                        </h2>
+                        <a href="https://github.com/vllm-project/vllm" target="_blank" rel="noopener noreferrer" class="oss-repo-link">
+                            vllm-project/vllm <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
                     </div>
-                    <p class="pr-desc-text">
-                        <strong>Problem:</strong> In <code>SchedulingPolicy.PRIORITY</code>, request preemption caused request index misalignment in waiting queues during KV cache memory pressure, causing silent request skipping.
-                    </p>
-                    <p class="pr-desc-text">
-                        <strong>What I Changed:</strong> Corrected preemption re-indexing calculations in <code>vllm/core/policy.py</code> to preserve strict priority queue ordering.
-                    </p>
-                    <p class="pr-desc-text">
-                        <strong>Tests:</strong> Added PyTest regression test suite reproducing KV cache eviction under priority scheduling.
-                    </p>
-                    <a href="https://github.com/vllm-project/vllm/pull/49206" target="_blank" class="action-btn">View Pull Request #49206 <i class="fas fa-arrow-up-right-from-square"></i></a>
+                    <span class="badge badge-merged">LLM Inference Infrastructure</span>
+                </div>
+
+                <div class="pr-card spotlight-card">
+                    <div class="pr-card-header">
+                        <span class="badge badge-merged"><i class="fa-solid fa-code-merge"></i> Merged PR #49206</span>
+                        <a href="https://github.com/vllm-project/vllm/pull/49206" target="_blank" rel="noopener noreferrer" class="pr-num-link">
+                            View on GitHub <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                    <div class="pr-title-text">Fix request index preemption misalignment in SchedulingPolicy.PRIORITY</div>
+                    <div class="pr-details-box">
+                        <div class="pr-field">
+                            <span class="pr-field-label">Problem:</span> In <code>SchedulingPolicy.PRIORITY</code>, request preemption caused request index misalignment in waiting queues during KV cache memory pressure, causing silent request skipping.
+                        </div>
+                        <div class="pr-field">
+                            <span class="pr-field-label">What I Changed:</span> Corrected preemption re-indexing calculations in <code>vllm/core/policy.py</code> to preserve strict priority queue ordering.
+                        </div>
+                        <div class="pr-field">
+                            <span class="pr-field-label">Tests:</span> Added PyTest regression test suite reproducing KV cache eviction under priority scheduling.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pr-card spotlight-card">
+                    <div class="pr-card-header">
+                        <span class="badge badge-open"><i class="fa-solid fa-code-pull-request"></i> Open PR #52935</span>
+                        <a href="https://github.com/vllm-project/vllm/pull/52935" target="_blank" rel="noopener noreferrer" class="pr-num-link">
+                            View on GitHub <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                    <div class="pr-title-text">fix: resolve memory profiler under-prediction for GDN/Mamba hybrid models</div>
+                    <div class="pr-details-box">
+                        <div class="pr-field">
+                            <span class="pr-field-label">Problem:</span> Memory profiler under-predicted peak allocation for GDN/Mamba hybrid architectures, leading to OOM crashes during batch execution.
+                        </div>
+                        <div class="pr-field">
+                            <span class="pr-field-label">Solution:</span> Adjusted state tensor memory overhead calculations during pre-allocation profiling.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pr-card spotlight-card">
+                    <div class="pr-card-header">
+                        <span class="badge badge-open"><i class="fa-solid fa-code-pull-request"></i> Open PR #49278</span>
+                        <a href="https://github.com/vllm-project/vllm/pull/49278" target="_blank" rel="noopener noreferrer" class="pr-num-link">
+                            View on GitHub <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                    <div class="pr-title-text">[Core] Fix EngineDeadError on late KV transfer completion</div>
+                    <div class="pr-details-box">
+                        <div class="pr-field">
+                            <span class="pr-field-label">Problem:</span> Late completion of KV cache transfers between nodes triggered false-positive timeout exceptions, crashing the engine with EngineDeadError.
+                        </div>
+                        <div class="pr-field">
+                            <span class="pr-field-label">Solution:</span> Added asynchronous callback handling for KV cache transfers to safely defer state checks.
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <hr class="item-divider">
 
             <!-- PyTorch Group -->
-            <div class="oss-detail-group">
-                <div class="group-header-row">
-                    <h3>PyTorch <a href="https://github.com/pytorch/pytorch" target="_blank" class="ext-repo-link"><i class="fab fa-github"></i> pytorch/pytorch</a></h3>
-                    <span class="badge badge-ai">Core Machine Learning Framework</span>
+            <div class="oss-project-group fade-up">
+                <div class="oss-group-header">
+                    <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+                        <h2 class="oss-group-title">
+                            <i class="fa-brands fa-github"></i> PyTorch
+                        </h2>
+                        <a href="https://github.com/pytorch/pytorch" target="_blank" rel="noopener noreferrer" class="oss-repo-link">
+                            pytorch/pytorch <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                    <span class="badge badge-merged">Core Machine Learning Framework</span>
                 </div>
-                
-                <div class="pr-detail-card">
+
+                <div class="pr-card spotlight-card">
                     <div class="pr-card-header">
-                        <h4>Fix return_annotation schema for tuple-returning operators in PyTorch FX</h4>
-                        <span class="badge badge-success">Merged PR #189142</span>
+                        <span class="badge badge-merged"><i class="fa-solid fa-code-merge"></i> Merged PR #189142</span>
+                        <a href="https://github.com/pytorch/pytorch/pull/189142" target="_blank" rel="noopener noreferrer" class="pr-num-link">
+                            View on GitHub <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
                     </div>
-                    <p class="pr-desc-text">
-                        <strong>Problem:</strong> Incorrect <code>return_annotation</code> schema for tuple-returning ops in PyTorch FX graph tracer causing static type checker failures in downstream tools.
-                    </p>
-                    <p class="pr-desc-text">
-                        <strong>What I Changed:</strong> Updated FX operator schema definitions to accurately return tuple type annotations.
-                    </p>
-                    <a href="https://github.com/pytorch/pytorch/pull/189142" target="_blank" class="action-btn">View Pull Request #189142 <i class="fas fa-arrow-up-right-from-square"></i></a>
+                    <div class="pr-title-text">Fix return_annotation schema for tuple-returning operators in PyTorch FX</div>
+                    <div class="pr-details-box">
+                        <div class="pr-field">
+                            <span class="pr-field-label">Problem:</span> Incorrect <code>return_annotation</code> schema for tuple-returning ops in PyTorch FX graph tracer causing static type checker failures in downstream tools.
+                        </div>
+                        <div class="pr-field">
+                            <span class="pr-field-label">What I Changed:</span> Updated FX operator schema definitions to accurately return tuple type annotations.
+                        </div>
+                    </div>
                 </div>
 
-                <div class="pr-detail-card" style="margin-top: 16px;">
+                <div class="pr-card spotlight-card">
                     <div class="pr-card-header">
-                        <h4>Fix floating-point division-by-zero crash in sparse_compressed_to_dense</h4>
-                        <span class="badge badge-success">Merged PR #190191</span>
+                        <span class="badge badge-merged"><i class="fa-solid fa-code-merge"></i> Merged PR #190191</span>
+                        <a href="https://github.com/pytorch/pytorch/pull/190191" target="_blank" rel="noopener noreferrer" class="pr-num-link">
+                            View on GitHub <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
                     </div>
-                    <p class="pr-desc-text">
-                        <strong>Problem:</strong> Hard C++ division-by-zero crash when converting malformed BSR compressed sparse tensors.
-                    </p>
-                    <p class="pr-desc-text">
-                        <strong>What I Changed:</strong> Added boundary checks and safe division handling in C++/Python sparse tensor conversion operations.
-                    </p>
-                    <a href="https://github.com/pytorch/pytorch/pull/190191" target="_blank" class="action-btn">View Pull Request #190191 <i class="fas fa-arrow-up-right-from-square"></i></a>
+                    <div class="pr-title-text">Fix floating-point division-by-zero crash in sparse_compressed_to_dense</div>
+                    <div class="pr-details-box">
+                        <div class="pr-field">
+                            <span class="pr-field-label">Problem:</span> Hard C++ division-by-zero crash when converting malformed BSR compressed sparse tensors.
+                        </div>
+                        <div class="pr-field">
+                            <span class="pr-field-label">What I Changed:</span> Added boundary checks and safe division handling in C++/Python sparse tensor conversion operations.
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <hr class="item-divider">
-
-            <!-- Jetpack Group -->
-            <div class="oss-detail-group">
-                <div class="group-header-row">
-                    <h3>Automattic Jetpack <a href="https://github.com/Automattic/jetpack" target="_blank" class="ext-repo-link"><i class="fab fa-github"></i> Automattic/jetpack</a></h3>
-                    <span class="badge badge-secondary">9 Merged PRs</span>
-                </div>
-                <div class="pr-mini-list">
-                    <div class="mini-pr-item">
-                        <span>PR #50035 — Editor Stability: Resolve block editor crash during Gallery to Slideshow transformations</span>
-                        <a href="https://github.com/Automattic/jetpack/pull/50035" target="_blank" class="cred-link">View PR <i class="fas fa-arrow-up-right-from-square"></i></a>
+                <div class="pr-card spotlight-card">
+                    <div class="pr-card-header">
+                        <span class="badge badge-merged"><i class="fa-solid fa-code-merge"></i> Merged PR #190067</span>
+                        <a href="https://github.com/pytorch/pytorch/pull/190067" target="_blank" rel="noopener noreferrer" class="pr-num-link">
+                            View on GitHub <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
                     </div>
-                    <div class="mini-pr-item">
-                        <span>PR #50030 — API Schema: Update Publicize REST API status schema using oneOf to prevent OpenAPI parser crashes</span>
-                        <a href="https://github.com/Automattic/jetpack/pull/50030" target="_blank" class="cred-link">View PR <i class="fas fa-arrow-up-right-from-square"></i></a>
-                    </div>
-                    <div class="mini-pr-item">
-                        <span>PR #50025 — Editor Stability: Resolve block editor crash when transforming Gallery back to Tiled Gallery</span>
-                        <a href="https://github.com/Automattic/jetpack/pull/50025" target="_blank" class="cred-link">View PR <i class="fas fa-arrow-up-right-from-square"></i></a>
-                    </div>
-                    <div class="mini-pr-item">
-                        <span>PR #49810 — TypeScript Refactoring: Replace string IDs with store objects in useSelect/useDispatch</span>
-                        <a href="https://github.com/Automattic/jetpack/pull/49810" target="_blank" class="cred-link">View PR <i class="fas fa-arrow-up-right-from-square"></i></a>
-                    </div>
-                    <div class="mini-pr-item">
-                        <span>PR #50220, #50201, #50199, #50181 — Accessibility &amp; UX: Normalize event targets and fix skeleton HTML list warnings</span>
-                        <a href="https://github.com/Automattic/jetpack/pulls?q=is%3Apr+author%3ATejas-Raj01" target="_blank" class="cred-link">View PRs <i class="fas fa-arrow-up-right-from-square"></i></a>
+                    <div class="pr-title-text">sparse: Fix ASan crash in sparse_compressed_to_dense for malformed CPU inputs</div>
+                    <div class="pr-details-box">
+                        <div class="pr-field">
+                            <span class="pr-field-label">Problem:</span> AddressSanitizer (ASan) buffer overflow error when converting malformed CPU sparse tensors to dense representations.
+                        </div>
+                        <div class="pr-field">
+                            <span class="pr-field-label">Solution:</span> Enforced strict array index validation on compressed column/row pointers.
+                        </div>
                     </div>
                 </div>
             </div>
 
             <hr class="item-divider">
 
-            <!-- Canonical Craft Parts Group -->
-            <div class="oss-detail-group">
-                <div class="group-header-row">
-                    <h3>Canonical Craft Parts <a href="https://github.com/canonical/craft-parts" target="_blank" class="ext-repo-link"><i class="fab fa-github"></i> canonical/craft-parts</a></h3>
-                    <span class="badge badge-secondary">Linux Packaging Subsystem</span>
+            <!-- Canonical Craft Parts & Snapcraft -->
+            <div class="oss-project-group fade-up">
+                <div class="oss-group-header">
+                    <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+                        <h2 class="oss-group-title">
+                            <i class="fa-brands fa-ubuntu"></i> Canonical Toolchain
+                        </h2>
+                        <span class="oss-repo-link">canonical/craft-parts &amp; canonical/snapcraft</span>
+                    </div>
+                    <span class="badge badge-merged">Linux Packaging Subsystem</span>
                 </div>
-                <div class="pr-mini-list">
-                    <div class="mini-pr-item">
-                        <span>PR #1628 — Fix: prevent file deletion during self-linking in link_or_copy (fixes snapcraft#6168)</span>
-                        <a href="https://github.com/canonical/craft-parts/pull/1628" target="_blank" class="cred-link">View PR <i class="fas fa-arrow-up-right-from-square"></i></a>
+
+                <div class="pr-card spotlight-card">
+                    <div class="pr-card-header">
+                        <span class="badge badge-merged"><i class="fa-solid fa-code-merge"></i> Merged PR #1628</span>
+                        <a href="https://github.com/canonical/craft-parts/pull/1628" target="_blank" rel="noopener noreferrer" class="pr-num-link">
+                            Craft-Parts #1628 <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                    <div class="pr-title-text">Prevent file deletion during self-linking in link_or_copy (fixes snapcraft#6168)</div>
+                    <div class="pr-details-box">
+                        <div class="pr-field">
+                            <span class="pr-field-label">Problem:</span> In <code>link_or_copy</code>, if source and destination resolved to the same physical file (e.g. via a staged symlink), catching EEXIST and unlinking destination accidentally deleted the source file itself.
+                        </div>
+                        <div class="pr-field">
+                            <span class="pr-field-label">Solution:</span> Added a <code>samefile()</code> check in <code>craft_parts/utils/file_utils.py</code> to return early and safely ignore self-linking collisions without crashing.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pr-card spotlight-card">
+                    <div class="pr-card-header">
+                        <span class="badge badge-merged"><i class="fa-solid fa-code-merge"></i> Merged PR #6272</span>
+                        <a href="https://github.com/canonical/snapcraft/pull/6272" target="_blank" rel="noopener noreferrer" class="pr-num-link">
+                            Snapcraft #6272 <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                    <div class="pr-title-text">Resolve hardcoded linter fallbacks via dynamic build_base resolution across package pipelines</div>
+                    <div class="pr-details-box">
+                        <div class="pr-field">
+                            <span class="pr-field-label">Problem:</span> Hardcoded linter fallbacks in packaging pipelines led to build resolution failures on non-standard host environments.
+                        </div>
+                        <div class="pr-field">
+                            <span class="pr-field-label">Solution:</span> Implemented dynamic build_base resolution to detect environment targets dynamically.
+                        </div>
                     </div>
                 </div>
             </div>
 
             <hr class="item-divider">
 
-            <!-- Canonical Snapcraft Group -->
-            <div class="oss-detail-group">
-                <div class="group-header-row">
-                    <h3>Canonical Snapcraft <a href="https://github.com/canonical/snapcraft" target="_blank" class="ext-repo-link"><i class="fab fa-github"></i> canonical/snapcraft</a></h3>
-                    <span class="badge badge-secondary">Linux Tooling</span>
-                </div>
-                <div class="pr-mini-list">
-                    <div class="mini-pr-item">
-                        <span>PR #6272 — Resolve hardcoded linter fallbacks via dynamic build_base resolution across package pipelines</span>
-                        <a href="https://github.com/canonical/snapcraft/pull/6272" target="_blank" class="cred-link">View PR <i class="fas fa-arrow-up-right-from-square"></i></a>
+            <!-- Automattic Jetpack Group -->
+            <div class="oss-project-group fade-up">
+                <div class="oss-group-header">
+                    <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+                        <h2 class="oss-group-title">
+                            <i class="fa-brands fa-wordpress"></i> Automattic Jetpack
+                        </h2>
+                        <a href="https://github.com/Automattic/jetpack" target="_blank" rel="noopener noreferrer" class="oss-repo-link">
+                            Automattic/jetpack <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
                     </div>
-                    <div class="mini-pr-item">
-                        <span>PR #6269 — Documentation: Add personal-files interface manual connection notes to Snapcraft tutorial</span>
-                        <a href="https://github.com/canonical/snapcraft/pull/6269" target="_blank" class="cred-link">View PR <i class="fas fa-arrow-up-right-from-square"></i></a>
+                    <span class="badge badge-merged">10 Merged PRs</span>
+                </div>
+
+                <div class="pr-card spotlight-card">
+                    <div class="pr-card-header">
+                        <span class="badge badge-merged"><i class="fa-solid fa-code-merge"></i> Merged PR #50818</span>
+                        <a href="https://github.com/Automattic/jetpack/pull/50818" target="_blank" rel="noopener noreferrer" class="pr-num-link">
+                            Jetpack #50818 <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                    <div class="pr-title-text">Map Block: Add wide and full width alignment support (#40715)</div>
+                    <div class="pr-details-box">
+                        <div class="pr-field">
+                            <span class="pr-field-label">Solution:</span> Added wide and full alignment support to the Map block by updating its block.json file to expose UI controls in the editor.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pr-card spotlight-card">
+                    <div class="pr-card-header">
+                        <span class="badge badge-merged"><i class="fa-solid fa-code-merge"></i> Merged PR #50035</span>
+                        <a href="https://github.com/Automattic/jetpack/pull/50035" target="_blank" rel="noopener noreferrer" class="pr-num-link">
+                            Jetpack #50035 <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                    <div class="pr-title-text">Editor Stability: Resolve block editor crash during Gallery to Slideshow transformations</div>
+                    <div class="pr-details-box">
+                        <div class="pr-field">
+                            <span class="pr-field-label">Solution:</span> Normalized event target handling and validated block attribute schemas during state transformations.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pr-card spotlight-card">
+                    <div class="pr-card-header">
+                        <span class="badge badge-merged"><i class="fa-solid fa-code-merge"></i> Merged PR #50030</span>
+                        <a href="https://github.com/Automattic/jetpack/pull/50030" target="_blank" rel="noopener noreferrer" class="pr-num-link">
+                            Jetpack #50030 <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                    <div class="pr-title-text">API Schema: Update Publicize REST API status schema using oneOf to prevent OpenAPI parser crashes</div>
+                    <div class="pr-details-box">
+                        <div class="pr-field">
+                            <span class="pr-field-label">Solution:</span> Updated OpenAPI schema definition to use <code>oneOf</code> for flexible connection status matching.
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <hr class="item-divider">
-
-            <!-- CP Editor Group -->
-            <div class="oss-detail-group">
-                <div class="group-header-row">
-                    <h3>CP Editor <a href="https://github.com/cpeditor/cpeditor" target="_blank" class="ext-repo-link"><i class="fab fa-github"></i> cpeditor/cpeditor</a></h3>
-                    <span class="badge badge-secondary">Qt / C++ App</span>
-                </div>
-                <div class="pr-mini-list">
-                    <div class="mini-pr-item">
-                        <span>PR #1501 — Global Localization &amp; Search Bug: Translate 3,600+ UI strings via LLM pipeline &amp; fix duplicate search indexing</span>
-                        <a href="https://github.com/cpeditor/cpeditor/pull/1501" target="_blank" class="cred-link">View PR <i class="fas fa-arrow-up-right-from-square"></i></a>
-                    </div>
-                    <div class="mini-pr-item">
-                        <span>PR #1499 — Ctrl+Scroll Dynamic Font Scaling: Add user configuration toggle in code editor view</span>
-                        <a href="https://github.com/cpeditor/cpeditor/pull/1499" target="_blank" class="cred-link">View PR <i class="fas fa-arrow-up-right-from-square"></i></a>
-                    </div>
-                    <div class="mini-pr-item">
-                        <span>PR #1498 — Tab Controls: Implement middle-click tab closure interaction logic</span>
-                        <a href="https://github.com/cpeditor/cpeditor/pull/1498" target="_blank" class="cred-link">View PR <i class="fas fa-arrow-up-right-from-square"></i></a>
-                    </div>
-                </div>
+            <!-- Back to Main Button -->
+            <div style="text-align: center; margin-top: 3.5rem; margin-bottom: 2rem;">
+                <a href="/" class="btn-hero btn-hero-primary" style="padding: 10px 24px;">
+                    <i class="fa-solid fa-arrow-left"></i> Return to Main Portfolio
+                </a>
             </div>
+
         </section>
 
-        <section class="section text-center">
-            <a href="/" class="btn btn-secondary">← Back to Main Portfolio</a>
-        </section>
+        <!-- Site Footer -->
+        <footer class="site-footer">
+            <div>
+                Tejas Raj &copy; 2026 · Systems &amp; AI Engineering Open Source
+            </div>
+            <div class="footer-kbd-hints">
+                <span class="kbd-badge">T</span> Theme
+                <span class="kbd-badge">M</span> Lo-Fi
+            </div>
+        </footer>
+
     </main>
 
     <!-- Resume Viewer Modal -->
-    <div id="resume-modal" class="modal-overlay" aria-hidden="true">
+    <div id="resume-modal" class="modal-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="resume-modal-title">
         <div class="resume-modal-card">
             <div class="resume-modal-header">
-                <h3>Tejas Raj — Resume Preview</h3>
+                <h3 id="resume-modal-title" class="resume-modal-title">
+                    <i class="fa-regular fa-file-pdf" style="color:var(--accent-rose);"></i> Tejas Raj — Resume Preview
+                </h3>
                 <div class="resume-modal-actions">
-                    <a href="/resume.pdf" download="Tejas_Raj_Resume.pdf" target="_blank" class="btn btn-primary-sm">
-                        <i class="fas fa-download"></i> Download PDF
+                    <a href="/resume.pdf" download="Tejas_Raj_Resume.pdf" target="_blank" rel="noopener noreferrer" class="btn-hero btn-hero-primary" style="padding: 6px 14px; font-size: 0.8125rem;">
+                        <i class="fa-solid fa-download"></i> Download PDF
                     </a>
-                    <button id="resume-close" class="cmd-close-btn">&times;</button>
+                    <button id="resume-modal-close" class="cmd-close-btn" aria-label="Close Resume Modal">&times;</button>
                 </div>
             </div>
             <div class="resume-modal-body">
@@ -257,12 +388,7 @@
         </div>
     </div>
 
-    <footer>
-        <div class="footer-content">
-            <p>Tejas Raj &copy; 2026. AI Engineering Open Source.</p>
-        </div>
-    </footer>
-
+    <!-- MAIN MODULE SCRIPT -->
     <script type="module" src="/main.js"></script>
 </body>
 

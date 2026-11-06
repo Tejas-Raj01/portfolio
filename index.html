@@ -4,27 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <title>Tejas Raj</title>
+    <title>Tejas Raj — Systems &amp; AI Engineer</title>
     <meta name="description"
         content="Portfolio of Tejas Raj, Software Engineer & AI Builder. B.Tech CSE @ NIT Durgapur '27. Open Source Contributor (vLLM, PyTorch, Canonical, Jetpack), 4★ CodeChef.">
     <meta name="author" content="Tejas Raj">
 
     <!-- Open Graph / LinkedIn Preview Meta Tags -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Tejas Raj - Open Source & Systems Engineer">
+    <meta property="og:title" content="Tejas Raj — Systems &amp; AI Engineer">
     <meta property="og:description" content="Portfolio of Tejas Raj — Open Source Contributor (vLLM, PyTorch, Canonical, Jetpack) & B.Tech CSE @ NIT Durgapur '27. Core ML inference, Linux infrastructure & distributed systems.">
     <meta property="og:image" content="https://tejas-raj01.github.io/portfolio/linkedin_profile_photo.jpeg">
 
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Tejas Raj - Open Source & Systems Engineer">
+    <meta name="twitter:title" content="Tejas Raj — Systems &amp; AI Engineer">
     <meta name="twitter:description" content="Portfolio of Tejas Raj — Open Source Contributor (vLLM, PyTorch, Canonical, Jetpack) & B.Tech CSE @ NIT Durgapur '27. Core ML inference, Linux infrastructure & distributed systems.">
     <meta name="twitter:image" content="https://tejas-raj01.github.io/portfolio/linkedin_profile_photo.jpeg">
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/download.png">
 
-    <!-- Google Fonts: Inter & JetBrains Mono (to match target) -->
+    <!-- Google Fonts: Inter & JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -37,33 +37,71 @@
 </head>
 
 <body class="antialiased">
+    <!-- Reading Progress Bar -->
+    <div id="scroll-progress-bar" class="scroll-progress-bar"></div>
+
+    <!-- Ambient Glow & Background Pattern -->
+    <div class="bg-ambient-layer" aria-hidden="true">
+        <div class="bg-grid-mesh"></div>
+        <div class="ambient-orb orb-primary"></div>
+        <div class="ambient-orb orb-secondary"></div>
+        <div class="ambient-orb orb-tertiary"></div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
     <!-- Floating Navigation Dock -->
-    <nav class="floating-dock" aria-label="Quick links and controls">
-        <button id="theme-toggle" class="dock-theme-toggle" aria-label="Toggle Theme" title="Toggle Theme">
+    <nav class="floating-dock" aria-label="Quick navigation and actions">
+        <a href="#hero-section" class="dock-item" data-tooltip="Home" aria-label="Scroll to Top">
+            <i class="fa-solid fa-house"></i>
+        </a>
+        <a href="#summary-section" class="dock-item" data-tooltip="About" aria-label="Professional Summary">
+            <i class="fa-regular fa-user"></i>
+        </a>
+        <a href="#achievements-section" class="dock-item" data-tooltip="Stats" aria-label="Key Achievements">
+            <i class="fa-solid fa-chart-simple"></i>
+        </a>
+        <a href="#projects-section" class="dock-item" data-tooltip="Projects" aria-label="Star Projects">
+            <i class="fa-solid fa-star"></i>
+        </a>
+        <a href="#opensource-section" class="dock-item" data-tooltip="Open Source" aria-label="Open Source Contributions">
+            <i class="fa-solid fa-code-pull-request"></i>
+        </a>
+        <a href="#tech-section" class="dock-item" data-tooltip="Skills" aria-label="Tech Stack">
+            <i class="fa-solid fa-layer-group"></i>
+        </a>
+        <a href="#about-section" class="dock-item" data-tooltip="Contact" aria-label="Get in Touch">
+            <i class="fa-regular fa-envelope"></i>
+        </a>
+
+        <span class="dock-divider"></span>
+
+        <a href="https://github.com/Tejas-Raj01" target="_blank" rel="noopener noreferrer" class="dock-item" data-tooltip="GitHub" aria-label="GitHub Profile">
+            <i class="fa-brands fa-github"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/tejas-raj-09aa4a236/" target="_blank" rel="noopener noreferrer" class="dock-item" data-tooltip="LinkedIn" aria-label="LinkedIn Profile">
+            <i class="fa-brands fa-linkedin-in"></i>
+        </a>
+        <a href="https://www.codechef.com/users/tejas_raj_01" target="_blank" rel="noopener noreferrer" class="dock-item" data-tooltip="CodeChef (4★)" aria-label="CodeChef Profile">
+            <i class="fa-solid fa-bullseye"></i>
+        </a>
+        <button id="dock-resume-btn" class="dock-item" data-tooltip="Resume PDF" aria-label="Preview Resume">
+            <i class="fa-regular fa-file-pdf"></i>
+        </button>
+
+        <span class="dock-divider"></span>
+
+        <button id="theme-toggle" class="dock-theme-toggle" data-tooltip="Theme [T]" aria-label="Toggle Dark/Light Theme">
             <span class="dock-theme-pill">
                 <i class="fa-solid fa-moon dark-icon"></i>
                 <i class="fa-solid fa-sun light-icon"></i>
             </span>
         </button>
-        <span class="dock-divider"></span>
-        <a href="https://github.com/Tejas-Raj01" target="_blank" class="dock-item" aria-label="GitHub" title="GitHub">
-            <i class="fa-brands fa-github"></i>
-        </a>
-        <a href="https://www.linkedin.com/in/tejas-raj-09aa4a236/" target="_blank" class="dock-item" aria-label="LinkedIn" title="LinkedIn">
-            <i class="fa-brands fa-linkedin-in"></i>
-        </a>
-        <a href="https://x.com" target="_blank" class="dock-item" aria-label="X (Twitter)" title="X / Twitter">
-            <i class="fa-brands fa-x-twitter"></i>
-        </a>
-        <a href="https://www.codechef.com/users/tejas_raj_01" target="_blank" class="dock-item" aria-label="CodeChef" title="CodeChef (4★)">
-            <i class="fa-solid fa-bullseye"></i>
-        </a>
-        <a href="mailto:rajtejas.xyz@gmail.com" class="dock-item" aria-label="Email" title="Email Me">
-            <i class="fa-regular fa-envelope"></i>
-        </a>
     </nav>
 
-    <main class="page-container">
+    <!-- Main Content Container -->
+    <main class="page-container" id="main-content">
         
         <!-- Hero Section -->
         <section id="hero-section" class="section hero-section fade-up">
@@ -75,12 +113,7 @@
             <!-- Content injected by main.js -->
         </section>
 
-        <!-- Open Source Contributions -->
-        <section id="opensource-section" class="section opensource-section fade-up">
-            <!-- Content injected by main.js -->
-        </section>
-
-        <!-- Achievements -->
+        <!-- Achievements Bento -->
         <section id="achievements-section" class="section achievements-section fade-up">
              <!-- Content injected by main.js -->
         </section>
@@ -90,8 +123,8 @@
             <!-- Content injected by main.js -->
         </section>
 
-        <!-- Education -->
-        <section id="education-section" class="section education-section fade-up">
+        <!-- Open Source Contributions -->
+        <section id="opensource-section" class="section opensource-section fade-up">
             <!-- Content injected by main.js -->
         </section>
 
@@ -100,12 +133,49 @@
             <!-- Content injected by main.js -->
         </section>
 
-        <!-- About Me & Contact -->
+        <!-- Education -->
+        <section id="education-section" class="section education-section fade-up">
+            <!-- Content injected by main.js -->
+        </section>
+
+        <!-- Contact Section -->
         <section id="about-section" class="section about-section fade-up">
             <!-- Content injected by main.js -->
         </section>
 
+        <!-- Site Footer -->
+        <footer class="site-footer">
+            <div>
+                Tejas Raj &copy; 2026 · Crafted with precision &amp; minimalism
+            </div>
+            <div class="footer-kbd-hints">
+                <span>Shortcuts:</span>
+                <span class="kbd-badge">T</span> Theme
+                <span class="kbd-badge">M</span> Lo-Fi
+            </div>
+        </footer>
+
     </main>
+
+    <!-- Resume Viewer Modal -->
+    <div id="resume-modal" class="modal-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="resume-modal-title">
+        <div class="resume-modal-card">
+            <div class="resume-modal-header">
+                <h3 id="resume-modal-title" class="resume-modal-title">
+                    <i class="fa-regular fa-file-pdf" style="color:var(--accent-rose);"></i> Tejas Raj — Resume Preview
+                </h3>
+                <div class="resume-modal-actions">
+                    <a href="/resume.pdf" download="Tejas_Raj_Resume.pdf" target="_blank" rel="noopener noreferrer" class="btn-hero btn-hero-primary" style="padding: 6px 14px; font-size: 0.8125rem;">
+                        <i class="fa-solid fa-download"></i> Download PDF
+                    </a>
+                    <button id="resume-modal-close" class="cmd-close-btn" aria-label="Close Resume Modal">&times;</button>
+                </div>
+            </div>
+            <div class="resume-modal-body">
+                <img src="/resume-preview.png" alt="Tejas Raj Resume Preview" class="resume-preview-img">
+            </div>
+        </div>
+    </div>
 
     <!-- MAIN MODULE SCRIPT -->
     <script type="module" src="/main.js"></script>
