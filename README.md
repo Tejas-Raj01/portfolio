@@ -111,6 +111,42 @@ Under `portfolioData.caseStudies`:
 
 ---
 
+## 🎨 Swarm Rebuild Intro Effect (Multiplayer Mode)
+
+The website features an automated **Swarm Rebuild** intro where a collaborative team of multiplayer cursors (named after Tejas's open-source contributions: `vLLM`, `PyTorch`, `Jetpack`, `Craft Parts`, `Snapcraft`, `OpenClaw`, `VS Code`, `CP Editor`) assembles the hero layout live piece by piece:
+- **Ruler Guides**: Pulled across the viewport for alignment.
+- **Wireframes**: Bounding boxes dragged out with crosshairs and live dimension tags (e.g. `180 × 44`).
+- **Live Typing**: Text character typing with blinking carets.
+- **Cursor Flock**: Cursors flock towards the visitor's cursor at the finale before transitioning into the real interactive DOM.
+
+### Configuration & Tuning
+All parameters can be tuned in [`src/components/SwarmIntro/swarmConfig.js`](./src/components/SwarmIntro/swarmConfig.js):
+- **Speeds**: Choose between `1x`, `2x`, or `3x` build speeds via UI controls or configuration.
+- **Cursor Profiles**: Adjust cursor names, colors, and initial distribution coordinates.
+- **Timings**: Adjust character typing delays, wireframe dragging durations, and settle delays.
+
+### How to Disable the Intro
+To permanently disable the intro, set `enabled: false` in `src/components/SwarmIntro/swarmConfig.js`:
+```javascript
+export const swarmConfig = {
+    enabled: false,
+    // ...
+};
+```
+
+### Safety & Accessibility
+- **Zero Blocking**: Real DOM is rendered immediately underneath (100% crawlable by search engines, no SEO or accessibility penalties).
+- **Instant Skip**: Press `Esc`, click anywhere, or scroll to immediately skip to the live page.
+- **Reduced Motion**: Automatically skipped if `prefers-reduced-motion: reduce` is enabled in user system settings.
+- **Session Caching**: Runs once per session via `sessionStorage`.
+- **Replay**: Click **Replay Intro** in the footer or press <kbd>R</kbd> anywhere on the site.
+
+### Credits & Attribution
+- Inspired by the open-source Chrome extension **Swarm Rebuild** by [Dhvanil Patel](https://github.com/DhvanilPatel/swarm-cursors).
+- Original concept inspired by [Joel Califa's Swarm](https://califa.github.io/swarm-site).
+
+---
+
 ## 👤 Author
 
 **Tejas Raj**

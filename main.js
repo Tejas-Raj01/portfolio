@@ -961,7 +961,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Keyboard Shortcuts: 'T' for theme, 'Escape' to close modal
+    // Keyboard Shortcuts: 'T' for theme, 'Escape' to close modal, 'R' to replay intro
     document.addEventListener('keydown', (e) => {
         if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
 
@@ -969,8 +969,36 @@ document.addEventListener('DOMContentLoaded', () => {
             closeResumeModal();
         } else if (e.key === 't' || e.key === 'T') {
             if (themeToggleBtn) themeToggleBtn.click();
+        } else if ((e.key === 'r' || e.key === 'R') && !document.getElementById('swarm-intro-overlay')) {
+            import('./src/components/SwarmIntro/SwarmIntro.js').then(({ initSwarmIntro }) => {
+                initSwarmIntro(true);
+            });
         }
     });
+
+    // Replay Intro Button in Footer
+    const footerReplayBtn = document.getElementById('footer-replay-intro');
+    if (footerReplayBtn) {
+        footerReplayBtn.addEventListener('click', () => {
+            import('./src/components/SwarmIntro/SwarmIntro.js').then(({ initSwarmIntro }) => {
+                initSwarmIntro(true);
+            });
+        });
+    }
+
+    // =========================================================================
+    // LAZY-LOAD SWARM REBUILD INTRO (Runs once per session unless disabled)
+    // =========================================================================
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const introAlreadyPlayed = sessionStorage.getItem('swarm_rebuild_intro_played');
+
+    if (!prefersReducedMotion && (!introAlreadyPlayed || window.location.hash === '#replay-intro')) {
+        setTimeout(() => {
+            import('./src/components/SwarmIntro/SwarmIntro.js').then(({ initSwarmIntro }) => {
+                initSwarmIntro();
+            }).catch(err => console.warn('SwarmIntro deferred:', err));
+        }, 60);
+    }
 
     // =========================================================================
     // ANIMATED STATS COUNTER ON SCROLL REVEAL
