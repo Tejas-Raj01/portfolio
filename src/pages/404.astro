@@ -1,0 +1,41 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+import '../styles/global.css';
+---
+
+<Base title="404: Merge Conflict — Tejas Raj">
+  <Header />
+
+  <div class="site-container" style="display: flex; flex-direction: column; justify-content: center; min-height: 80vh; padding: var(--space-8);">
+    <div class="hunk-header" style="align-self: flex-start;">
+      <span>@@ -404,0 +404,7 @@</span>
+      <span>git merge-tree conflict</span>
+    </div>
+
+    <div class="merge-conflict-box">
+      <div class="conflict-marker">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</div>
+      <p style="padding: 0.5rem 0; color: var(--color-ink);">
+        error: path does not exist on this branch (HTTP 404).
+      </p>
+      <div class="conflict-marker">=======</div>
+      <p style="padding: 0.5rem 0; color: var(--color-ink-muted);">
+        The commit or route you requested was rebased, squashed, or pruned from working tree.
+      </p>
+      <div class="conflict-marker">&gt;&gt;&gt;&gt;&gt;&gt;&gt; origin/main</div>
+
+      <div style="margin-top: var(--space-6); display: flex; gap: var(--space-4);">
+        <a href="/" class="btn-control active">
+          <span>&larr; git checkout main (Return Home)</span>
+        </a>
+        <a href="https://github.com/Tejas-Raj01" target="_blank" rel="noopener noreferrer" class="btn-control">
+          <span>Inspect GitHub &nearr;</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <Footer />
+</Base>

@@ -1,0 +1,70 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+import '../styles/global.css';
+---
+
+<Base title="Colophon — Tejas Raj Portfolio">
+  <Header />
+
+  <div class="site-container" style="display: flex; flex-direction: column; padding: var(--space-12) var(--space-8);">
+    <div class="hunk-header" style="align-self: flex-start;">
+      <span>@@ -1,1 +1,24 @@</span>
+      <span>cat COLOPHON.md</span>
+    </div>
+
+    <article style="max-width: 74ch; margin-top: var(--space-4); display: flex; flex-direction: column; gap: var(--space-6);">
+      <h1 class="display-section">
+        Colophon: How "Many Hands" was built.
+      </h1>
+
+      <p class="sub-serif">
+        A personal portfolio designed as an edited manuscript under version control, not a template.
+      </p>
+
+      <section style="display: flex; flex-direction: column; gap: var(--space-3); border-top: 1px solid var(--color-border-hairline); padding-top: var(--space-4);">
+        <h2 style="font-family: var(--font-serif); font-size: var(--text-xl);">1. The Core Idea: Open Source is Many Hands</h2>
+        <p style="font-family: var(--font-mono); font-size: var(--text-sm); color: var(--color-ink-muted); line-height: var(--leading-relaxed);">
+          Software development is too often presented as one hero typing in a glowing cave. Open source is the opposite: tens of people reviewing diffs, spotting division-by-zero crashes in BSR sparse tensors, and catching file deletion bugs in file utilities. The page is built live in front of the visitor by a swarm of multiplayer cursors tagged with the projects I contributed to (vLLM, PyTorch, Canonical, Jetpack, CP Editor).
+        </p>
+      </section>
+
+      <section style="display: flex; flex-direction: column; gap: var(--space-3); border-top: 1px solid var(--color-border-hairline); padding-top: var(--space-4);">
+        <h2 style="font-family: var(--font-serif); font-size: var(--text-xl);">2. Typography: The Tension Between Words and Code</h2>
+        <p style="font-family: var(--font-mono); font-size: var(--text-sm); color: var(--color-ink-muted); line-height: var(--leading-relaxed);">
+          <strong>Display: Instrument Serif</strong> by Jordan Bell and Rodrigo Fuenzalida. Sharp, confident, editorial serifs with the weight and gravity of a newspaper masthead. Only Regular and Italic exist, forcing strict restraint.<br /><br />
+          <strong>Data and Code: Commit Mono</strong> by Eigil Nikolajsen. Neutral, monospace, designed specifically for code readability and commit logs. Self-hosted as WOFF2 for zero-latency rendering.
+        </p>
+      </section>
+
+      <section style="display: flex; flex-direction: column; gap: var(--space-3); border-top: 1px solid var(--color-border-hairline); padding-top: var(--space-4);">
+        <h2 style="font-family: var(--font-serif); font-size: var(--text-xl);">3. The "Red Pencil" Palette</h2>
+        <p style="font-family: var(--font-mono); font-size: var(--text-sm); color: var(--color-ink-muted); line-height: var(--leading-relaxed);">
+          Warm paper off-white (<code>#F1EEE6</code>) and near-black ink (<code>#1A1A18</code>) evoke printed proofs and manuscript reviews. A single highlighter accent—the editor's red pencil (<code>#C4432B</code> / <code>#E85D44</code>)—marks interactive points, PR links, and cursor selections. Diff green and red appear strictly when communicating added and removed lines.
+        </p>
+      </section>
+
+      <section style="display: flex; flex-direction: column; gap: var(--space-3); border-top: 1px solid var(--color-border-hairline); padding-top: var(--space-4);">
+        <h2 style="font-family: var(--font-serif); font-size: var(--text-xl);">4. Swarm Engine Architecture</h2>
+        <p style="font-family: var(--font-mono); font-size: var(--text-sm); color: var(--color-ink-muted); line-height: var(--leading-relaxed);">
+          Implemented clean-room in vanilla TypeScript:
+        </p>
+        <ul style="font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-ink-muted); list-style: square; padding-left: 1.5rem; display: flex; flex-direction: column; gap: 0.4rem;">
+          <li><strong>Reveal-in-place:</strong> Real DOM is never duplicated or destroyed. The overlay reveals real elements via clipping and CSS transitions. Screen readers and search crawlers see full semantic content immediately.</li>
+          <li><strong>Flocking physics:</strong> Boids algorithm governs cursor separation, alignment, cohesion, and mouse evasion.</li>
+          <li><strong>60fps Budget:</strong> Single requestAnimationFrame loop on a fixed canvas, automatic cursor pruning on slower devices, and full bypass for <code>prefers-reduced-motion</code>.</li>
+        </ul>
+      </section>
+
+      <div style="margin-top: var(--space-6);">
+        <a href="/" class="btn-control active">
+          <span>&larr; Return to main document</span>
+        </a>
+      </div>
+    </article>
+  </div>
+
+  <Footer />
+</Base>

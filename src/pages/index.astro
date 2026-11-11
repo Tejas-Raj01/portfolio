@@ -1,0 +1,38 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import LineGutter from '../components/LineGutter.astro';
+import Hero from '../components/Hero.astro';
+import GitLog from '../components/GitLog.astro';
+import Merged from '../components/Merged.astro';
+import Maintained from '../components/Maintained.astro';
+import GitBlame from '../components/GitBlame.astro';
+import Contact from '../components/Contact.astro';
+import SwarmControls from '../components/SwarmControls.astro';
+import Footer from '../components/Footer.astro';
+
+import '../styles/global.css';
+---
+
+<Base>
+  <Header />
+
+  <div class="site-container">
+    <LineGutter />
+
+    <main class="main-content">
+      <Hero />
+      <GitLog />
+      <Merged />
+      <Maintained />
+      <GitBlame />
+      <Contact />
+      <Footer />
+    </main>
+  </div>
+
+  <SwarmControls />
+
+  <!-- Lazy load Swarm Engine after initial DOM ready -->
+  <script src="../scripts/swarm/index.ts"></script>
+</Base>

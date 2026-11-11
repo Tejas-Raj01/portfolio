@@ -1,0 +1,77 @@
+---
+// Site Header Component
+---
+
+<header class="site-header" data-swarm="box" data-swarm-order="1">
+  <div class="header-left">
+    <a href="/" class="brand-title">Tejas Raj</a>
+    <div class="brand-branch">
+      <svg class="branch-icon" viewBox="0 0 16 16" aria-hidden="true">
+        <path d="M11.75 2.5a1.75 1.75 0 1 0-2.45 1.603V6.5a1 1 0 0 1-1 1H5.2A2.25 2.25 0 0 0 3 9.75v1.647a1.75 1.75 0 1 0 1.5 0V9.75A.75.75 0 0 1 5.25 9h3.05a2.5 2.5 0 0 0 2.5-2.5V4.103A1.75 1.75 0 0 0 11.75 2.5zM4 13.25a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5zm6.75-10a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5z"></path>
+      </svg>
+      <span>origin/main</span>
+    </div>
+  </div>
+
+  <div class="header-right">
+    <!-- View Switcher: Plain English vs Code -->
+    <button id="toggle-view-btn" class="btn-control" title="Toggle between Plain English explanation and Code Diffs">
+      <span class="view-indicator-code">[diff] Code</span>
+      <span class="view-indicator-plain" style="display: none;">[txt] Plain English</span>
+    </button>
+
+    <!-- Theme Toggle -->
+    <button id="theme-toggle-btn" class="btn-control" aria-label="Toggle light and dark paper theme" title="Toggle theme">
+      <svg class="theme-icon light-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="5"></circle>
+        <line x1="12" y1="1" x2="12" y2="3"></line>
+        <line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line>
+        <line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+      </svg>
+      <span class="theme-text">Theme</span>
+    </button>
+  </div>
+</header>
+
+<script>
+  // Theme Toggle Logic
+  const themeBtn = document.getElementById('theme-toggle-btn');
+  themeBtn?.addEventListener('click', () => {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    const nextTheme = isDark ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', nextTheme);
+    localStorage.setItem('theme', nextTheme);
+  });
+
+  // Global View Mode Toggle Logic
+  const viewBtn = document.getElementById('toggle-view-btn');
+  const codeLabel = viewBtn?.querySelector('.view-indicator-code') as HTMLElement;
+  const plainLabel = viewBtn?.querySelector('.view-indicator-plain') as HTMLElement;
+
+  function updateViewDisplay(view: string) {
+    if (view === 'plain') {
+      document.body.setAttribute('data-view', 'plain');
+      if (codeLabel) codeLabel.style.display = 'none';
+      if (plainLabel) plainLabel.style.display = 'inline';
+    } else {
+      document.body.setAttribute('data-view', 'code');
+      if (codeLabel) codeLabel.style.display = 'inline';
+      if (plainLabel) plainLabel.style.display = 'none';
+    }
+  }
+
+  const initialView = localStorage.getItem('preferred-view') || 'code';
+  updateViewDisplay(initialView);
+
+  viewBtn?.addEventListener('click', () => {
+    const current = document.body.getAttribute('data-view') || 'code';
+    const next = current === 'code' ? 'plain' : 'code';
+    localStorage.setItem('preferred-view', next);
+    updateViewDisplay(next);
+  });
+</script>

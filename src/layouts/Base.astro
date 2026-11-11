@@ -1,0 +1,91 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  ogType?: string;
+}
+
+const {
+  title = "Tejas Raj — Open-Source Infrastructure",
+  description = "I fix bugs in infrastructure that millions of people depend on. Core contributions to vLLM, PyTorch, Canonical, and developer tooling.",
+  ogType = "website"
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://tejas-raj01.vercel.app');
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph / Meta -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="/og-image.png" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="/og-image.png" />
+
+    <!-- Preload Fonts -->
+    <link rel="preload" href="/fonts/InstrumentSerif-Regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/CommitMono-Regular.woff2" as="font" type="font/woff2" crossorigin />
+
+    <!-- Favicon SVG -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Theme Initialization Script (Blocks flash of unstyled theme) -->
+    <script is:inline>
+      (function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const queryTheme = urlParams.get('theme');
+        const storedTheme = queryTheme || localStorage.getItem('theme');
+        
+        if (storedTheme === 'dark' || (!storedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        } else if (storedTheme === 'light') {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+
+        const storedView = urlParams.get('view') || localStorage.getItem('preferred-view') || 'code';
+        document.body ? document.body.setAttribute('data-view', storedView) : document.documentElement.setAttribute('data-view', storedView);
+      })();
+    </script>
+  </head>
+  <body data-view="code">
+    <!-- Swarm Overlay Canvas (aria-hidden, non-blocking) -->
+    <canvas id="swarm-canvas" aria-hidden="true"></canvas>
+
+    <div class="page-wrapper">
+      <slot />
+    </div>
+
+    <!-- Theme and Global Client Scripts -->
+    <script>
+      // Initialize view mode sync
+      const currentView = localStorage.getItem('preferred-view') || 'code';
+      document.body.setAttribute('data-view', currentView);
+
+      // Easter Egg: 'git push' triggers swarm bow-out
+      let keyBuffer = '';
+      window.addEventListener('keydown', (e) => {
+        if (['INPUT', 'TEXTAREA'].includes((e.target as HTMLElement)?.tagName)) return;
+        keyBuffer += e.key.toLowerCase();
+        if (keyBuffer.length > 12) keyBuffer = keyBuffer.slice(-12);
+        if (keyBuffer.includes('git push')) {
+          keyBuffer = '';
+          window.dispatchEvent(new CustomEvent('swarm:git-push'));
+        }
+      });
+    </script>
+  </body>
+</html>

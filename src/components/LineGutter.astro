@@ -1,0 +1,11 @@
+---
+// Line Number Gutter Component
+const lineCount = 380;
+const lines = Array.from({ length: lineCount }, (_, i) => String(i + 1).padStart(4, '0'));
+---
+
+<aside class="line-gutter" aria-hidden="true">
+  {lines.map((num) => (
+    <span>{num}</span>
+  ))}
+</aside>

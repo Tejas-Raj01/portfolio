@@ -1,0 +1,97 @@
+---
+import { projects } from '../data/projects';
+
+// Helper to generate SVG sparkline path
+function generateSparkline(data: number[], width = 120, height = 24) {
+  const max = Math.max(...data, 1);
+  const min = Math.min(...data, 0);
+  const range = max - min || 1;
+  const step = width / (data.length - 1);
+
+  const points = data.map((val, i) => {
+    const x = (i * step).toFixed(1);
+    const y = (height - ((val - min) / range) * (height - 4) - 2).toFixed(1);
+    return `${x},${y}`;
+  });
+
+  return points.join(' ');
+}
+---
+
+<section class="section-wrapper" id="maintained">
+  <div class="hunk-header" data-swarm="box" data-swarm-order="20">
+    <span>@@ -102,6 +102,8 @@</span>
+    <span>git branch --list --sort=-committerdate</span>
+  </div>
+
+  <div class="grid-12">
+    <div class="col-span-12">
+      <h2 class="display-section">
+        Maintained & created.
+      </h2>
+      <p class="sub-serif" style="margin-top: var(--space-2); margin-bottom: var(--space-8);">
+        Storage engines, DAG workflow systems, and distributed backends built from first principles.
+      </p>
+    </div>
+  </div>
+
+  <div class="project-list">
+    {projects.map((project, index) => (
+      <article class="project-row" data-swarm="repeat" data-swarm-order={21 + index}>
+        <div class="project-left">
+          <h3 class="project-name">{project.name}</h3>
+          <span class="project-subtitle">{project.subtitle}</span>
+          
+          <div class="project-links">
+            <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" class="diff-pr-link">
+              <span>source code &rarr;</span>
+            </a>
+            {project.liveUrl && (
+              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" class="diff-pr-link">
+                <span>live demo &nearr;</span>
+              </a>
+            )}
+          </div>
+
+          <div style="margin-top: var(--space-4);">
+            <div class="sparkline-wrapper">
+              <svg class="sparkline-svg" viewBox="0 0 120 24" aria-hidden="true">
+                <polyline
+                  fill="none"
+                  stroke="var(--color-accent)"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  points={generateSparkline(project.commitSparkline)}
+                />
+              </svg>
+              <span>activity</span>
+            </div>
+            <div class="commit-hash" style="margin-top: 0.35rem; font-size: 0.7rem;">
+              {project.lastCommit}
+            </div>
+          </div>
+        </div>
+
+        <div class="project-right">
+          <p class="project-desc">{project.description}</p>
+
+          <div class="project-metrics-bar">
+            {project.stats.map(stat => (
+              <div class="metric-badge">
+                <span class="metric-label">{stat.label}</span>
+                <span class="metric-value">{stat.value}</span>
+              </div>
+            ))}
+          </div>
+
+          <div class="project-tags">
+            {project.tech.map(tech => (
+              <span class="tech-tag">{tech}</span>
+            ))}
+          </div>
+        </div>
+      </article>
+    ))}
+  </div>
+</section>

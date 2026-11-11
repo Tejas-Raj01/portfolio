@@ -1,0 +1,146 @@
+/* Layout Architecture: Asymmetric 12-Column Grid with Visible Line Gutter */
+
+.page-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.site-container {
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: var(--gutter-width) 1fr;
+  min-height: 100vh;
+  position: relative;
+  border-left: 1px solid var(--gutter-border);
+  border-right: 1px solid var(--gutter-border);
+}
+
+/* Left-hand Line Number Gutter */
+.line-gutter {
+  background-color: var(--gutter-bg);
+  border-right: 1px solid var(--gutter-border);
+  padding-top: var(--space-8);
+  padding-bottom: var(--space-16);
+  display: flex;
+  flex-direction: column;
+  user-select: none;
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  color: var(--gutter-text);
+  text-align: right;
+  line-height: 1.85rem;
+  letter-spacing: 0.05em;
+  overflow: hidden;
+}
+
+.line-gutter span {
+  display: block;
+  padding-right: var(--space-3);
+  opacity: 0.7;
+}
+
+/* Main Content Column */
+.main-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Section Shell */
+.section-wrapper {
+  position: relative;
+  width: 100%;
+  padding: var(--space-16) var(--space-8);
+  border-bottom: 1px solid var(--color-border-hairline);
+}
+
+.section-wrapper:last-child {
+  border-bottom: none;
+}
+
+/* 12-Column Subgrid */
+.grid-12 {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--space-6);
+  width: 100%;
+}
+
+/* Asymmetric Column Placement Utilities */
+.col-span-12 { grid-column: span 12 / span 12; }
+.col-span-10 { grid-column: span 10 / span 10; }
+.col-span-8  { grid-column: span 8 / span 8; }
+.col-span-7  { grid-column: span 7 / span 7; }
+.col-span-6  { grid-column: span 6 / span 6; }
+.col-span-5  { grid-column: span 5 / span 5; }
+.col-span-4  { grid-column: span 4 / span 4; }
+
+.col-start-1  { grid-column-start: 1; }
+.col-start-2  { grid-column-start: 2; }
+.col-start-3  { grid-column-start: 3; }
+.col-start-4  { grid-column-start: 4; }
+.col-start-5  { grid-column-start: 5; }
+.col-start-6  { grid-column-start: 6; }
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+  .site-container {
+    grid-template-columns: 2.75rem 1fr;
+  }
+
+  .section-wrapper {
+    padding: var(--space-12) var(--space-6);
+  }
+
+  .grid-12 {
+    gap: var(--space-4);
+  }
+}
+
+@media (max-width: 768px) {
+  .site-container {
+    grid-template-columns: 1.5rem 1fr;
+    border-left: none;
+    border-right: none;
+  }
+
+  .line-gutter {
+    font-size: 0.6rem;
+    line-height: 1.6rem;
+  }
+
+  .line-gutter span {
+    padding-right: 0.2rem;
+  }
+
+  .section-wrapper {
+    padding: var(--space-10) var(--space-4);
+  }
+
+  .grid-12 {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .col-span-12, .col-span-10, .col-span-8, .col-span-7, .col-span-6, .col-span-5, .col-span-4 {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-container {
+    grid-template-columns: 0px 1fr;
+  }
+
+  .line-gutter {
+    display: none;
+  }
+
+  .section-wrapper {
+    padding: var(--space-8) var(--space-3);
+  }
+}

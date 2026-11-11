@@ -1,0 +1,44 @@
+---
+import { getGitHubStats } from '../lib/github';
+
+const stats = await getGitHubStats();
+---
+
+<section class="section-wrapper hero-section" id="hero">
+  <div class="hunk-header" data-swarm="box" data-swarm-order="2">
+    <span>@@ -0,0 +1,7 @@</span>
+    <span>init: Tejas Raj</span>
+  </div>
+
+  <div class="hero-claim measure-wide" data-swarm="text" data-swarm-order="3">
+    <h1 class="display-hero">
+      I fix bugs in infrastructure that millions of people depend on.
+    </h1>
+  </div>
+
+  <div class="hero-stats-bar" data-swarm="text" data-swarm-order="4">
+    <span class="stat-item">
+      <strong>{stats.totalMergedPRs}+</strong> merged PRs in external repos
+    </span>
+    <span class="stat-dot" aria-hidden="true">•</span>
+    <span class="stat-item">
+      <strong>{stats.projectsContributedTo}</strong> core systems touched
+    </span>
+    <span class="stat-dot" aria-hidden="true">•</span>
+    <span class="stat-item">
+      <strong>{stats.yearsActive}</strong> years in open source
+    </span>
+    <span class="stat-dot" aria-hidden="true">•</span>
+    <span class="stat-item">
+      NIT Durgapur '27
+    </span>
+    {stats.isLive && (
+      <>
+        <span class="stat-dot" aria-hidden="true">•</span>
+        <span class="live-indicator" title="Data fetched live at build from GitHub API">
+          <span class="swarm-status-dot"></span> live api
+        </span>
+      </>
+    )}
+  </div>
+</section>

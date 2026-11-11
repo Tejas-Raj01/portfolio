@@ -1,0 +1,48 @@
+---
+import { blameStatements } from '../data/about';
+---
+
+<section class="section-wrapper" id="about">
+  <div class="hunk-header" data-swarm="box" data-swarm-order="25">
+    <span>@@ -188,8 +188,14 @@</span>
+    <span>git blame --line-porcelain me.md</span>
+  </div>
+
+  <div class="grid-12">
+    <div class="col-span-12">
+      <h2 class="display-section">
+        git blame me.
+      </h2>
+      <p class="sub-serif" style="margin-top: var(--space-2); margin-bottom: var(--space-8);">
+        Every engineering belief I hold is traced directly to the production bug or pull request that taught it to me.
+      </p>
+    </div>
+  </div>
+
+  <div class="blame-table" data-swarm="box" data-swarm-order="26">
+    {blameStatements.map((item, index) => (
+      <div class="blame-row" data-swarm="line" data-swarm-order={27 + index}>
+        <div class="blame-gutter-meta">
+          <div>
+            <span class="hash">{item.hash}</span>
+            <span style="opacity: 0.5;"> ({item.author})</span>
+          </div>
+          <div class="file">{item.fileGutter}</div>
+          <div style="font-size: 0.6rem; opacity: 0.4;">{item.date}</div>
+        </div>
+
+        <div class="blame-body">
+          <p class="blame-sentence">{item.sentence}</p>
+          <div class="blame-context">
+            <span>&rarr; {item.contextNote}</span>
+            {item.sourceUrl && (
+              <a href={item.sourceUrl} target="_blank" rel="noopener noreferrer" class="diff-pr-link" style="margin-left: 0.5rem;">
+                [source]
+              </a>
+            )}
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

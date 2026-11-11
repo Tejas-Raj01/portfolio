@@ -1,0 +1,165 @@
+---
+import { featuredContributions, allContributions } from '../data/contributions';
+const remainingContributions = allContributions.filter(c => !c.featured);
+---
+
+<section class="section-wrapper" id="merged">
+  <div class="hunk-header" data-swarm="box" data-swarm-order="12">
+    <span>@@ -48,12 +48,16 @@</span>
+    <span>git log -p --grep="merged"</span>
+  </div>
+
+  <div class="merged-header-row">
+    <div>
+      <h2 class="display-section">
+        Merged into other people's repositories.
+      </h2>
+      <p class="sub-serif" style="margin-top: var(--space-2);">
+        Real bug fixes in core libraries that millions of developers and ML pipelines build on.
+      </p>
+    </div>
+
+    <!-- Local Section Toggle -->
+    <div class="view-mode-toggle" aria-label="Toggle between plain English explanation and raw code diffs">
+      <button class="toggle-opt" id="btn-view-code" data-target="code">
+        Show the code [diff]
+      </button>
+      <button class="toggle-opt" id="btn-view-plain" data-target="plain">
+        Plain English [txt]
+      </button>
+    </div>
+  </div>
+
+  <div class="diff-list">
+    {featuredContributions.map((item, index) => (
+      <article class="diff-entry" id={item.id} data-swarm="box" data-swarm-order={13 + index}>
+        <div class="diff-entry-header">
+          <div class="diff-entry-title-group">
+            <span class={`status-badge ${item.status}`}>{item.status}</span>
+            <span class="diff-repo">{item.repo}</span>
+            <span class="commit-hash">PR #{item.prNumber}</span>
+          </div>
+          <a href={item.url} target="_blank" rel="noopener noreferrer" class="diff-pr-link" title="Open pull request on GitHub">
+            <span>github.com/{item.fullRepo}/pull/{item.prNumber} &rarr;</span>
+          </a>
+        </div>
+
+        <!-- Plain English View (for non-developers) -->
+        <div class="diff-plain-view">
+          <div class="plain-field">
+            <span class="plain-label">Problem</span>
+            <p class="plain-val">{item.problem}</p>
+          </div>
+          <div class="plain-field">
+            <span class="plain-label">Solution</span>
+            <p class="plain-val">{item.solution}</p>
+          </div>
+          <div class="plain-field">
+            <span class="plain-label">Outcome</span>
+            <p class="plain-val" style="color: var(--color-diff-add);">{item.outcome}</p>
+          </div>
+        </div>
+
+        <!-- Code Diff View (for developers) -->
+        <div class="diff-code-view">
+          <div class="diff-hunk-label">{item.hunkHeader}</div>
+          {item.diffLines.map((line) => (
+            <div class={`diff-code-line ${line.type}`}>
+              {line.type === 'add' && <span class="diff-marker add">+</span>}
+              {line.type === 'remove' && <span class="diff-marker remove">-</span>}
+              {line.type === 'context' && <span class="diff-marker context">&nbsp;</span>}
+              <code>{line.text.replace(/^[+-]/, '')}</code>
+            </div>
+          ))}
+        </div>
+      </article>
+    ))}
+  </div>
+
+  <!-- Expandable drawer for all other PRs -->
+  {remainingContributions.length > 0 && (
+    <div style="margin-top: var(--space-8); text-align: center;">
+      <button id="toggle-more-prs-btn" class="btn-control" style="margin: 0 auto;">
+        <span>Show all {allContributions.length} contributions (including Jetpack, VS Code, Snapcraft) &darr;</span>
+      </button>
+
+      <div id="more-prs-container" style="display: none; margin-top: var(--space-8); text-align: left;" class="diff-list">
+        {remainingContributions.map((item) => (
+          <article class="diff-entry" id={item.id}>
+            <div class="diff-entry-header">
+              <div class="diff-entry-title-group">
+                <span class={`status-badge ${item.status}`}>{item.status}</span>
+                <span class="diff-repo">{item.repo}</span>
+                <span class="commit-hash">PR #{item.prNumber}</span>
+              </div>
+              <a href={item.url} target="_blank" rel="noopener noreferrer" class="diff-pr-link">
+                <span>github.com/{item.fullRepo}/pull/{item.prNumber} &rarr;</span>
+              </a>
+            </div>
+
+            <div class="diff-plain-view">
+              <div class="plain-field">
+                <span class="plain-label">Problem</span>
+                <p class="plain-val">{item.problem}</p>
+              </div>
+              <div class="plain-field">
+                <span class="plain-label">Outcome</span>
+                <p class="plain-val" style="color: var(--color-diff-add);">{item.outcome}</p>
+              </div>
+            </div>
+
+            <div class="diff-code-view">
+              <div class="diff-hunk-label">{item.hunkHeader}</div>
+              {item.diffLines.map((line) => (
+                <div class={`diff-code-line ${line.type}`}>
+                  {line.type === 'add' && <span class="diff-marker add">+</span>}
+                  {line.type === 'remove' && <span class="diff-marker remove">-</span>}
+                  {line.type === 'context' && <span class="diff-marker context">&nbsp;</span>}
+                  <code>{line.text.replace(/^[+-]/, '')}</code>
+                </div>
+              ))}
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  )}
+</section>
+
+<script>
+  // Toggle between Plain and Code view
+  const btnCode = document.getElementById('btn-view-code');
+  const btnPlain = document.getElementById('btn-view-plain');
+
+  function setView(view: string) {
+    document.body.setAttribute('data-view', view);
+    localStorage.setItem('preferred-view', view);
+
+    if (view === 'code') {
+      btnCode?.classList.add('selected');
+      btnPlain?.classList.remove('selected');
+    } else {
+      btnPlain?.classList.add('selected');
+      btnCode?.classList.remove('selected');
+    }
+  }
+
+  const currentView = localStorage.getItem('preferred-view') || 'code';
+  setView(currentView);
+
+  btnCode?.addEventListener('click', () => setView('code'));
+  btnPlain?.addEventListener('click', () => setView('plain'));
+
+  // More PRs toggle
+  const moreBtn = document.getElementById('toggle-more-prs-btn');
+  const moreContainer = document.getElementById('more-prs-container');
+  moreBtn?.addEventListener('click', () => {
+    if (moreContainer) {
+      const isHidden = moreContainer.style.display === 'none';
+      moreContainer.style.display = isHidden ? 'flex' : 'none';
+      moreBtn.innerHTML = isHidden 
+        ? '<span>Collapse additional contributions &uarr;</span>' 
+        : `<span>Show all ${document.querySelectorAll('.diff-entry').length} contributions &darr;</span>`;
+    }
+  });
+</script>

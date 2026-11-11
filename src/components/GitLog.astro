@@ -1,0 +1,86 @@
+---
+import { careerLog } from '../data/career';
+---
+
+<section class="section-wrapper" id="git-log">
+  <div class="hunk-header" data-swarm="box" data-swarm-order="5">
+    <span>@@ -12,7 +12,9 @@</span>
+    <span>git log --oneline --graph</span>
+  </div>
+
+  <div class="grid-12">
+    <div class="col-span-4">
+      <h2 class="display-section">
+        The commit log of how I got here.
+      </h2>
+      <p class="sub-serif" style="margin-top: var(--space-4);">
+        Each milestone represents a real system broken, inspected, and understood.
+      </p>
+    </div>
+
+    <div class="col-span-8">
+      <div class="git-log-container" id="git-log-rail-container">
+        <!-- Vertical Graph Rail with dynamic scroll progress -->
+        <div class="git-rail" aria-hidden="true">
+          <div class="git-rail-progress" id="git-rail-fill"></div>
+        </div>
+
+        <div class="git-log-list">
+          {careerLog.map((node, index) => (
+            <article class="git-log-node" data-swarm="repeat" data-swarm-order={6 + index}>
+              <div class="node-bullet" aria-hidden="true"></div>
+              <div class="node-content">
+                <div class="node-meta">
+                  <span class="commit-hash">{node.hash}</span>
+                  <span class="node-date">({node.date})</span>
+                  {node.tag && <span class="node-tag">{node.tag}</span>}
+                </div>
+                <h3 class="node-title">{node.summary}</h3>
+                <p class="node-detail">{node.detail}</p>
+                {node.repoUrl && (
+                  <div style="margin-top: 0.35rem;">
+                    <a href={node.repoUrl} target="_blank" rel="noopener noreferrer" class="diff-pr-link">
+                      <span>view diff / ref &rarr;</span>
+                    </a>
+                  </div>
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Dynamic Git Rail Scroll Fill Calculation
+  function updateRail() {
+    const container = document.getElementById('git-log-rail-container');
+    const fill = document.getElementById('git-rail-fill');
+    if (!container || !fill) return;
+
+    const rect = container.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+
+    // Calculate percentage through this section
+    const start = windowHeight * 0.7;
+    const progress = Math.min(Math.max((start - rect.top) / rect.height, 0), 1);
+    fill.style.height = `${(progress * 100).toFixed(1)}%`;
+
+    // Highlight active nodes
+    const nodes = container.querySelectorAll('.git-log-node');
+    nodes.forEach((node) => {
+      const nodeRect = node.getBoundingClientRect();
+      if (nodeRect.top < windowHeight * 0.6) {
+        node.classList.add('active');
+      } else {
+        node.classList.remove('active');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', updateRail, { passive: true });
+  window.addEventListener('resize', updateRail);
+  updateRail();
+</script>

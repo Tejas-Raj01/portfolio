@@ -1,0 +1,144 @@
+---
+// Contact Section — GitHub Issue Form Style
+---
+
+<section class="section-wrapper" id="contact">
+  <div class="hunk-header" data-swarm="box" data-swarm-order="35">
+    <span>@@ -240,6 +240,8 @@</span>
+    <span>gh issue create --repo Tejas-Raj01/contact</span>
+  </div>
+
+  <div class="grid-12">
+    <div class="col-span-5">
+      <h2 class="display-section">
+        Open an issue on me.
+      </h2>
+      <p class="sub-serif" style="margin-top: var(--space-4); margin-bottom: var(--space-6);">
+        Whether you are designing a high-throughput storage engine, debugging an inference framework, or looking for someone who actually reads the compiler errors.
+      </p>
+
+      <div style="font-family: var(--font-mono); font-size: var(--text-xs); line-height: var(--leading-relaxed); color: var(--color-ink-muted);">
+        <p><strong>Direct contact:</strong></p>
+        <p style="margin-top: 0.25rem;">
+          Email: <a href="mailto:rajtejas.xyz@gmail.com" class="diff-pr-link">rajtejas.xyz@gmail.com</a>
+        </p>
+        <p style="margin-top: 0.25rem;">
+          GitHub: <a href="https://github.com/Tejas-Raj01" target="_blank" rel="noopener noreferrer" class="diff-pr-link">@Tejas-Raj01</a>
+        </p>
+        <p style="margin-top: 0.25rem;">
+          LinkedIn: <a href="https://www.linkedin.com/in/tejas-raj-09aa4a236/" target="_blank" rel="noopener noreferrer" class="diff-pr-link">in/tejas-raj-09aa4a236</a>
+        </p>
+      </div>
+
+      <div class="issue-flock-trigger" id="flock-trigger-banner" style="margin-top: var(--space-8);">
+        <span class="swarm-status-dot"></span>
+        <span>Swarm flock mode active &mdash; cursors follow your pointer below.</span>
+      </div>
+    </div>
+
+    <div class="col-span-7">
+      <div class="issue-card" id="contact-issue-form-card" data-swarm="box" data-swarm-order="36">
+        <div class="issue-header">
+          <span>New issue in <strong>Tejas-Raj01/portfolio</strong></span>
+          <span class="status-badge open">issue #1</span>
+        </div>
+
+        <form class="issue-form" id="contact-issue-form" onsubmit="return false;">
+          <div class="form-group">
+            <label for="issue-title" class="form-label">Title</label>
+            <input
+              type="text"
+              id="issue-title"
+              class="form-input"
+              placeholder="e.g. Distributed consensus discussion, or Summer 2026 role"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Labels</label>
+            <div class="label-picker" id="label-picker">
+              <button type="button" class="issue-label-pill selected" data-label="collab">
+                collab
+              </button>
+              <button type="button" class="issue-label-pill" data-label="job">
+                job
+              </button>
+              <button type="button" class="issue-label-pill" data-label="infrastructure">
+                infrastructure
+              </button>
+              <button type="button" class="issue-label-pill" data-label="just-saying-hi">
+                just-saying-hi
+              </button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="issue-body" class="form-label">Body</label>
+            <textarea
+              id="issue-body"
+              class="form-textarea"
+              placeholder="Describe what you want to build, debug, or discuss..."
+              required
+            ></textarea>
+          </div>
+
+          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--space-4);">
+            <button type="submit" class="issue-submit-btn" id="submit-issue-btn">
+              <span>Submit new issue &rarr;</span>
+            </button>
+            <button type="button" class="btn-control" id="swarm-go-live-btn" title="Hand full interactive multiplayer control to your cursor">
+              <span>Hand me the controls [Go Live]</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reward line for people who scrolled to the bottom -->
+  <div class="finale-reward-line">
+    &ldquo;You scrolled past 20 pull requests, 3 storage layers, and thousands of lines of C++. If you read this far, we should probably build something together.&rdquo;
+  </div>
+</section>
+
+<script>
+  // Handle label selection
+  const labelButtons = document.querySelectorAll('.issue-label-pill');
+  labelButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.classList.toggle('selected');
+    });
+  });
+
+  // Handle form submission to prefilled mailto
+  const form = document.getElementById('contact-issue-form');
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const titleInput = document.getElementById('issue-title') as HTMLInputElement;
+    const bodyInput = document.getElementById('issue-body') as HTMLTextAreaElement;
+    
+    const selectedLabels = Array.from(document.querySelectorAll('.issue-label-pill.selected'))
+      .map(el => (el as HTMLElement).dataset.label)
+      .filter(Boolean);
+
+    const subject = encodeURIComponent(`[${selectedLabels.join('/') || 'Issue'}] ${titleInput.value || 'Portfolio Contact'}`);
+    const body = encodeURIComponent(`${bodyInput.value || ''}\n\n---\nSent via portfolio issue form on tejas-raj01.vercel.app`);
+
+    window.location.href = `mailto:rajtejas.xyz@gmail.com?subject=${subject}&body=${body}`;
+  });
+
+  // Payoff: Trigger flocking when mouse enters contact section
+  const contactCard = document.getElementById('contact-issue-form-card');
+  const goLiveBtn = document.getElementById('swarm-go-live-btn');
+
+  contactCard?.addEventListener('mouseenter', () => {
+    window.dispatchEvent(new CustomEvent('swarm:flock-pointer'));
+  });
+
+  goLiveBtn?.addEventListener('click', () => {
+    window.dispatchEvent(new CustomEvent('swarm:go-live'));
+    goLiveBtn.innerText = "✓ Swarm in follower mode";
+    goLiveBtn.classList.add('active');
+  });
+</script>

@@ -1,0 +1,63 @@
+---
+// Swarm Interaction Controls Bar
+---
+
+<div class="swarm-controls-bar" id="swarm-controls-bar" aria-label="Cursor swarm animation controls">
+  <span class="swarm-status-dot" aria-hidden="true"></span>
+  <span style="font-weight: 600; margin-right: 0.25rem;">Swarm</span>
+
+  <button class="swarm-pill" id="swarm-skip-btn" title="Skip animation (Esc)">
+    Skip [Esc]
+  </button>
+
+  <button class="swarm-pill" id="swarm-replay-btn" title="Replay page construction">
+    Replay
+  </button>
+
+  <button class="swarm-pill" id="swarm-speed-btn" title="Toggle build speed">
+    Speed: <span id="swarm-speed-val">1x</span>
+  </button>
+
+  <button class="swarm-pill" id="swarm-audio-btn" title="Synthesized typing audio feedback (off by default)">
+    Audio: <span id="swarm-audio-val">Mute</span>
+  </button>
+</div>
+
+<script>
+  // Control actions wiring
+  const skipBtn = document.getElementById('swarm-skip-btn');
+  const replayBtn = document.getElementById('swarm-replay-btn');
+  const speedBtn = document.getElementById('swarm-speed-btn');
+  const speedVal = document.getElementById('swarm-speed-val');
+  const audioBtn = document.getElementById('swarm-audio-btn');
+  const audioVal = document.getElementById('swarm-audio-val');
+
+  let currentSpeed = 1;
+  let audioEnabled = false;
+
+  skipBtn?.addEventListener('click', () => {
+    window.dispatchEvent(new CustomEvent('swarm:skip'));
+  });
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      window.dispatchEvent(new CustomEvent('swarm:skip'));
+    }
+  });
+
+  replayBtn?.addEventListener('click', () => {
+    window.dispatchEvent(new CustomEvent('swarm:replay'));
+  });
+
+  speedBtn?.addEventListener('click', () => {
+    currentSpeed = currentSpeed === 1 ? 2 : (currentSpeed === 2 ? 4 : 1);
+    if (speedVal) speedVal.textContent = `${currentSpeed}x`;
+    window.dispatchEvent(new CustomEvent('swarm:set-speed', { detail: { speed: currentSpeed } }));
+  });
+
+  audioBtn?.addEventListener('click', () => {
+    audioEnabled = !audioEnabled;
+    if (audioVal) audioVal.textContent = audioEnabled ? 'On' : 'Mute';
+    window.dispatchEvent(new CustomEvent('swarm:toggle-audio', { detail: { enabled: audioEnabled } }));
+  });
+</script>

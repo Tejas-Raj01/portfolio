@@ -1,0 +1,30 @@
+{
+  "username": "Tejas-Raj01",
+  "name": "Tejas Raj",
+  "bio": "B.Tech CSE @ NIT Durgapur '27 | Open Source Contributor (vLLM, PyTorch, Canonical, Jetpack) | 4★ CodeChef (1804)",
+  "publicRepos": 18,
+  "totalMergedPRs": 20,
+  "projectsContributedTo": 8,
+  "yearsActive": 3,
+  "topRepos": [
+    {
+      "name": "distributed-system",
+      "fullName": "Tejas-Raj01/distributed-system",
+      "description": "Distributed Key-Value Database in C++17 with Gossip Protocol & Quorum Consensus",
+      "stars": 12,
+      "forks": 2,
+      "language": "C++",
+      "url": "https://github.com/Tejas-Raj01/distributed-system"
+    },
+    {
+      "name": "DealLens",
+      "fullName": "Tejas-Raj01/DealLens",
+      "description": "Deterministic 7-step RAG DAG workflow engine with PostgreSQL pgvector hybrid search",
+      "stars": 8,
+      "forks": 1,
+      "language": "Python",
+      "url": "https://github.com/Tejas-Raj01/DealLens"
+    }
+  ],
+  "lastFetched": "2026-11-11T06:30:00Z"
+}

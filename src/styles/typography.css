@@ -1,0 +1,145 @@
+/* Display Headlines — Instrument Serif */
+.serif {
+  font-family: var(--font-serif);
+}
+
+.mono {
+  font-family: var(--font-mono);
+}
+
+.display-hero {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(2.1rem, 5.8vw, 5.25rem);
+  line-height: var(--leading-none);
+  letter-spacing: -0.025em;
+  color: var(--color-ink);
+  word-break: normal;
+}
+
+@media (max-width: 480px) {
+  .display-hero {
+    font-size: 1.95rem;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+  }
+}
+
+.display-section {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(2rem, 4.2vw, 3.5rem);
+  line-height: var(--leading-tight);
+  letter-spacing: -0.02em;
+}
+
+.display-title {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(1.4rem, 2.4vw, 2.1rem);
+  line-height: var(--leading-snug);
+  letter-spacing: -0.015em;
+}
+
+.sub-serif {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: var(--text-lg);
+  line-height: var(--leading-normal);
+  color: var(--color-ink-muted);
+}
+
+/* Version Control Elements — Commit Mono */
+.hunk-header {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  color: var(--color-accent);
+  background: var(--color-paper-subtle);
+  border: 1px solid var(--color-border-hairline);
+  padding: 0.25rem 0.6rem;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: var(--space-4);
+  user-select: none;
+  width: fit-content;
+  max-width: 100%;
+  white-space: nowrap;
+}
+
+.commit-hash {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.08em;
+  color: var(--color-ink-faint);
+  text-transform: lowercase;
+}
+
+.commit-hash::before {
+  content: "commit ";
+  opacity: 0.5;
+}
+
+.status-badge {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.15rem 0.45rem;
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-weight: 400;
+  border: 1px solid currentColor;
+}
+
+.status-badge.merged {
+  color: var(--color-diff-add);
+  background: var(--color-diff-add-bg);
+}
+
+.status-badge.open {
+  color: var(--color-accent);
+  background: var(--color-accent-subtle);
+}
+
+/* Margin markers and diff indicators */
+.diff-marker {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  width: 1.25rem;
+  display: inline-block;
+  text-align: center;
+  user-select: none;
+}
+
+.diff-marker.add {
+  color: var(--color-diff-add);
+}
+
+.diff-marker.remove {
+  color: var(--color-diff-remove);
+}
+
+/* Line number column styling */
+.gutter-num {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  color: var(--gutter-text);
+  line-height: var(--leading-normal);
+  text-align: right;
+  padding-right: var(--space-3);
+  user-select: none;
+}
+
+/* Readable prose measure */
+.measure-readable {
+  max-width: 68ch;
+}
+
+.measure-wide {
+  max-width: 82ch;
+}

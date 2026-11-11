@@ -1,0 +1,28 @@
+name: Scheduled Portfolio Rebuild
+
+on:
+  schedule:
+    # Runs at 00:00 UTC every Monday to refresh live GitHub data
+    - cron: '0 0 * * 1'
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build Astro Portfolio
+        run: npm run build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

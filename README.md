@@ -1,156 +1,60 @@
-# Tejas Raj — Portfolio (Developer-Native Edition)
+# Many Hands — Tejas Raj Portfolio
 
-> *"I fix things in the codebases the world runs on."*
+> *"I fix bugs in infrastructure that millions of people depend on."*
 
-Personal developer portfolio engineered with a dark, aesthetic, developer-native aesthetic showcasing upstream open-source contributions across **vLLM**, **PyTorch**, **Canonical**, **Automattic Jetpack**, and **Microsoft VS Code**, along with distributed systems case studies and competitive programming milestones.
+Personal portfolio website of **Tejas Raj** built from scratch on Astro, TypeScript, and vanilla CSS. Designed on the idea of **"Many Hands"**: open source is not one person typing alone; it is many hands building something together.
 
----
-
-## 🛠️ Stack & Architecture
-
-- **Runtime & Bundler**: [Vite 5](https://vitejs.dev/) with ES Modules
-- **Design System**: Developer-native dark theme (`#0a0a0f`), electric violet (`#8b5cf6`) and cyan (`#06b6d4`) accents, subtle grid mesh, 1px glassmorphism cards, and responsive fluid layout.
-- **Typography**: [Space Grotesk](https://fonts.google.com/specimen/Space+Grotesk) (Display headings), [JetBrains Mono](https://fonts.google.com/specimen/JetBrains+Mono) (Code, stats, and labels), [Inter](https://fonts.google.com/specimen/Inter) (Body & UI).
-- **Data-Driven Architecture**: Separation of presentation from data in `src/portfolio-data.js`. All stats (Total PRs, Merged PRs, Upstream Repos) are computed programmatically at runtime with zero hardcoding.
+Live site: [tejas-raj01.vercel.app](https://tejas-raj01.vercel.app)
 
 ---
 
-## 🚀 Running Locally
+## Highlights
+
+- **The Swarm Effect:** Multiplayer cursors tagged with real open source projects (`vllm`, `pytorch`, `canonical`, `jetpack`, `cpeditor`, etc.) orbit, align, and build the page live using flocking physics (Boids) and reveal-in-place scheduling.
+- **The "Red Pencil" Editorial Aesthetic:** Warm paper off-white (`#F1EEE6`) with near-black ink (`#1A1A18`) and a single editor's highlighter accent (`#C4432B`). Inverted dark mode toggle.
+- **Visual Language of Version Control:** Diffs, blame annotations, commit hashes, hunk headers (`@@ -12,7 +12,9 @@`), and line-number gutters.
+- **Dual Perspective:** Interactive toggle switches between **Plain English** (for non-developers) and **Raw Code Diffs** (for systems engineers).
+- **Zero Vibe-Code Bans:** No purple gradients, no terminal hacker neon, no 16px rounded cards, no stock icons, no buzzwords.
+
+---
+
+## Tech Stack & Architecture
+
+- **Framework:** [Astro](https://astro.build/) (Static Site Generation, zero runtime JS overhead for base content)
+- **Language:** TypeScript
+- **Styling:** Vanilla CSS with custom properties & modular typography
+- **Typography:** Self-hosted *Instrument Serif* (display) and *Commit Mono* (code/data)
+- **Swarm Engine:** 60fps canvas animation with vector boids physics, spatial flocking, and Web Audio synthesizer
+- **CI/CD:** GitHub Action scheduled rebuild to keep GitHub statistics fresh
+
+---
+
+## Getting Started Locally
 
 ```bash
-# 1. Clone the repository
+# Clone the repository
 git clone https://github.com/Tejas-Raj01/portfolio.git
 cd portfolio
 
-# 2. Install dependencies
+# Install dependencies
 npm install
 
-# 3. Start local development server
+# Start local dev server
 npm run dev
 
-# 4. Build for production
+# Build for production
 npm run build
-
-# 5. Preview production build
-npm run preview
 ```
 
 ---
 
-## 📖 How to Add a New Upstream PR or Project
+## Attribution & Credits
 
-All portfolio content is decoupled from layout and maintained in [`src/portfolio-data.js`](./src/portfolio-data.js).
-
-### 1. Adding a New Pull Request (PR)
-
-Open `src/portfolio-data.js` and locate the `openSource` array.
-
-1. Find the target repository object (e.g. `vLLM` or `PyTorch`).
-2. Add a new item to the `highlights` array:
-
-```javascript
-{
-    title: "short descriptive title of the PR",
-    status: "Merged PR #12345", // or "Open PR #12345"
-    prNumber: "12345",
-    problem: "Precise technical description of the bug or edge case.",
-    solution: "Technical implementation details of the fix or feature.",
-    url: "https://github.com/org/repo/pull/12345"
-}
-```
-
-> **Note**: The Impact Stats Bar and Filter Pills automatically recalculate total PRs, merged counts, and repo counts from the `status` string.
-
-### 2. Featuring a PR in "Selected Work"
-
-If the PR represents high-leverage architectural work, add it to `portfolioData.selectedWork`:
-
-```javascript
-{
-    repo: "vLLM",
-    prNumber: "12345",
-    title: "short title",
-    status: "Merged PR #12345",
-    url: "https://github.com/vllm-project/vllm/pull/12345",
-    badgeClass: "badge-merged", // or "badge-open"
-    category: "LLM Inference Infrastructure",
-    impact: "High-level summary of production impact",
-    problem: "...",
-    solution: "..."
-}
-```
-
-### 3. Adding or Updating an Engineering Case Study
-
-Under `portfolioData.caseStudies`:
-
-```javascript
-{
-    id: "project-slug",
-    badge: "Systems & Storage",
-    title: "Project Name",
-    subtitle: "One-line architecture summary",
-    language: "C++17 / Python 3.11",
-    githubUrl: "https://github.com/Tejas-Raj01/repo",
-    liveUrl: "https://demo.app",
-    problem: "...",
-    approach: "...",
-    techStack: ["C++17", "Gossip Protocol", "WAL"],
-    keyChallenge: "...",
-    results: ["Metric 1", "Metric 2"],
-    metrics: [
-        { label: "Throughput", value: "33,685 req/s" },
-        { label: "Latency", value: "~2.97 ms" }
-    ],
-    keyDesignDecisions: [
-        "Decision 1 rationale...",
-        "Decision 2 rationale..."
-    ]
-}
-```
+- Cursor swarm effect inspired by **Swarm** by [Joel Califa](https://califa.github.io/swarm-site/) and **Swarm Rebuild** by [Dhvanil Patel](https://github.com/DhvanilPatel/swarm-cursors). Clean-room implementation in vanilla TypeScript.
+- Typefaces: *Instrument Serif* by Jordan Bell & Rodrigo Fuenzalida; *Commit Mono* by Eigil Nikolajsen.
 
 ---
 
-## 🎨 Swarm Rebuild Intro Effect (Multiplayer Mode)
+## License
 
-The website features an automated **Swarm Rebuild** intro where a collaborative team of multiplayer cursors (named after Tejas's open-source contributions: `vLLM`, `PyTorch`, `Jetpack`, `Craft Parts`, `Snapcraft`, `OpenClaw`, `VS Code`, `CP Editor`) assembles the hero layout live piece by piece:
-- **Ruler Guides**: Pulled across the viewport for alignment.
-- **Wireframes**: Bounding boxes dragged out with crosshairs and live dimension tags (e.g. `180 × 44`).
-- **Live Typing**: Text character typing with blinking carets.
-- **Cursor Flock**: Cursors flock towards the visitor's cursor at the finale before transitioning into the real interactive DOM.
-
-### Configuration & Tuning
-All parameters can be tuned in [`src/components/SwarmIntro/swarmConfig.js`](./src/components/SwarmIntro/swarmConfig.js):
-- **Speeds**: Choose between `1x`, `2x`, or `3x` build speeds via UI controls or configuration.
-- **Cursor Profiles**: Adjust cursor names, colors, and initial distribution coordinates.
-- **Timings**: Adjust character typing delays, wireframe dragging durations, and settle delays.
-
-### How to Disable the Intro
-To permanently disable the intro, set `enabled: false` in `src/components/SwarmIntro/swarmConfig.js`:
-```javascript
-export const swarmConfig = {
-    enabled: false,
-    // ...
-};
-```
-
-### Safety & Accessibility
-- **Zero Blocking**: Real DOM is rendered immediately underneath (100% crawlable by search engines, no SEO or accessibility penalties).
-- **Instant Skip**: Press `Esc`, click anywhere, or scroll to immediately skip to the live page.
-- **Reduced Motion**: Automatically skipped if `prefers-reduced-motion: reduce` is enabled in user system settings.
-- **Session Caching**: Runs once per session via `sessionStorage`.
-- **Replay**: Click **Replay Intro** in the footer or press <kbd>R</kbd> anywhere on the site.
-
-### Credits & Attribution
-- Inspired by the open-source Chrome extension **Swarm Rebuild** by [Dhvanil Patel](https://github.com/DhvanilPatel/swarm-cursors).
-- Original concept inspired by [Joel Califa's Swarm](https://califa.github.io/swarm-site).
-
----
-
-## 👤 Author
-
-**Tejas Raj**
-- GitHub: [@Tejas-Raj01](https://github.com/Tejas-Raj01)
-- LinkedIn: [Tejas Raj](https://www.linkedin.com/in/tejas-raj-09aa4a236/)
-- CodeChef: [tejas_raj_01](https://www.codechef.com/users/tejas_raj_01) (4★, Max 1804)
-- Email: [rajtejas.xyz@gmail.com](mailto:rajtejas.xyz@gmail.com)
+MIT &copy; 2026 [Tejas Raj](mailto:rajtejas.xyz@gmail.com)

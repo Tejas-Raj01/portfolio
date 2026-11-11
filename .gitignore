@@ -26,3 +26,6 @@ dist-ssr
 # Nix
 result
 .direnv/
+
+# Astro build cache
+.astro/
